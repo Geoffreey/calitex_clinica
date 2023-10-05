@@ -80,7 +80,7 @@ exit();
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Login <i class="fa fa-arrow-circle-right"></i>
+									Aceeso <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							
@@ -88,7 +88,7 @@ exit();
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> geoffdeep</span>. <span>All rights reserved</span>
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> geoffdeep</span>. <span>todos los derechos reservados</span>
 					</div>
 			
 				</div>

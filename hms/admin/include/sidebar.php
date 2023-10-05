@@ -5,7 +5,7 @@
 
 						<!-- start: MAIN NAVIGATION MENU -->
 						<div class="navbar-title">
-							<span>Main Navigation</span>
+							<span>Navegasion principal</span>
 						</div>
 						<ul class="main-navigation-menu">
 							<li>
