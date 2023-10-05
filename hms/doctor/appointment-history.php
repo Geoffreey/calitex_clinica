@@ -13,7 +13,7 @@ mysqli_query($con,"update appointment set doctorStatus='0' where id ='".$_GET['i
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Doctor | Appointment History</title>
+		<title>Medico | Historial de citas</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -44,14 +44,14 @@ mysqli_query($con,"update appointment set doctorStatus='0' where id ='".$_GET['i
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Doctor  | Appointment History</h1>
+									<h1 class="mainTitle">Medico  | Historial de citas</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Doctor </span>
+										<span>Medico</span>
 									</li>
 									<li class="active">
-										<span>Appointment History</span>
+										<span>Historial de citas</span>
 									</li>
 								</ol>
 							</div>
@@ -70,13 +70,13 @@ mysqli_query($con,"update appointment set doctorStatus='0' where id ='".$_GET['i
 										<thead>
 											<tr>
 												<th class="center">#</th>
-												<th class="hidden-xs">Patient  Name</th>
-												<th>Specialization</th>
-												<th>Consultancy Fee</th>
-												<th>Appointment Date / Time </th>
-												<th>Appointment Creation Date  </th>
-												<th>Current Status</th>
-												<th>Action</th>
+												<th class="hidden-xs">Nombre paciente</th>
+												<th>Especializacion</th>
+												<th>Cuota de consulta</th>
+												<th>Fecha/hora de la cita</th>
+												<th>Fecha de creación de la cita</th>
+												<th>Estado actual</th>
+												<th>Accion</th>
 												
 											</tr>
 										</thead>
@@ -121,7 +121,7 @@ if(($row['userStatus']==1) && ($row['doctorStatus']==0))
 { ?>
 
 													
-	<a href="appointment-history.php?id=<?php echo $row['id']?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
+	<a href="appointment-history.php?id=<?php echo $row['id']?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
 	<?php } else {
 
 		echo "Canceled";
