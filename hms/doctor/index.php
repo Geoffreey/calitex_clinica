@@ -39,7 +39,7 @@ exit();
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Doctor Login</title>
+		<title>Iniciar sesion medico</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -56,17 +56,17 @@ exit();
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../../index.html">	<h2> HMS | Doctor Login</h2></a>
+				<a href="../../index.html">	<h2>CaliTex | Acceso Medicos</h2></a>
 				</div>
 
 				<div class="box-login">
 					<form class="form-login" method="post">
 						<fieldset>
 							<legend>
-								Sign in to your account
+								Iniciar sesion en su cuenta
 							</legend>
 							<p>
-								Please enter your name and password to log in.<br />
+							Por favor ingrese su correo y contraseña para iniciar sesión.<br />
 								<span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg']="";?></span>
 							</p>
 							<div class="form-group">
@@ -80,13 +80,13 @@ exit();
 									<i class="fa fa-lock"></i>
 									 </span>
 									 <a href="forgot-password.php">
-									Forgot Password ?
+									 Has olvidado tu contraseña?
 								</a>
 							</div>
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Login <i class="fa fa-arrow-circle-right"></i>
+									Acceso<i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							
@@ -95,7 +95,7 @@ exit();
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span>
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase">geoffdeep</span>. <span>todos lo derechos reservados</span>
 					</div>
 			
 				</div>
