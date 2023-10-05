@@ -95,7 +95,7 @@ exit();
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase">geoffdeep</span>. <span>todos lo derechos reservados</span>
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> geoffdeep</span>. <span>todos lo derechos reservados</span>
 					</div>
 			
 				</div>

@@ -80,7 +80,7 @@ exit();
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									AccSeso <i class="fa fa-arrow-circle-right"></i>
+									Acceso <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							
