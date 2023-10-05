@@ -23,7 +23,7 @@ echo "<script>window.location.href ='index.php'</script>";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Password Reset</title>
+		<title>Reestableser contraseña</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -53,17 +53,17 @@ return true;
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.html"><h2> HMS | Patient Reset Password</h2></a>
+				<a href="../index.html"><h2>CaliTex | Reestableser contraseña pacientes</h2></a>
 				</div>
 
 				<div class="box-login">
 					<form class="form-login" name="passwordreset" method="post" onSubmit="return valid();">
 						<fieldset>
 							<legend>
-								Patient Reset Password
+							Reestableser contraseña pacientes
 							</legend>
 							<p>
-								Please set your new password.<br />
+							Por favor establece tu nueva contraseña.<br />
 								<span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg']="";?></span>
 							</p>
 
@@ -84,20 +84,20 @@ return true;
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="change">
-									Change <i class="fa fa-arrow-circle-right"></i>
+								Cambiar<i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							<div class="new-account">
-								Already have an account? 
+							Ya tienes una cuenta? 
 								<a href="index.php">
-									Log-in
+									Acceso
 								</a>
 							</div>
 						</fieldset>
 					</form>
 
 					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> HMS</span>. <span>All rights reserved</span>
+						&copy; <span class="current-year"></span><span class="text-bold text-uppercase">geoffdeep</span>. <span>todos los derechos reservados</span>
 					</div>
 			
 				</div>

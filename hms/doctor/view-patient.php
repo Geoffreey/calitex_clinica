@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Doctor | Manage Patients</title>
+		<title>Medico | Administrar pacientes</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -60,14 +60,14 @@ if(isset($_POST['submit']))
 <section id="page-title">
 <div class="row">
 <div class="col-sm-8">
-<h1 class="mainTitle">Doctor | Manage Patients</h1>
+<h1 class="mainTitle">Medico | Administrar pacientes</h1>
 </div>
 <ol class="breadcrumb">
 <li>
-<span>Doctor</span>
+<span>Medico</span>
 </li>
 <li class="active">
-<span>Manage Patients</span>
+<span>Administrar pacientes</span>
 </li>
 </ol>
 </div>
@@ -75,7 +75,7 @@ if(isset($_POST['submit']))
 <div class="container-fluid container-fullw bg-white">
 <div class="row">
 <div class="col-md-12">
-<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
+<h5 class="over-title margin-bottom-15">Administrar<span class="text-bold">pacientes</span></h5>
 <?php
                                $vid=$_GET['viewid'];
                                $ret=mysqli_query($con,"select * from tblpatient where ID='$vid'");
@@ -85,31 +85,31 @@ while ($row=mysqli_fetch_array($ret)) {
 <table border="1" class="table table-bordered">
  <tr align="center">
 <td colspan="4" style="font-size:20px;color:blue">
- Patient Details</td></tr>
+Detalles del paciente</td></tr>
 
     <tr>
-    <th scope>Patient Name</th>
+    <th scope>Nombre pasiente</th>
     <td><?php  echo $row['PatientName'];?></td>
-    <th scope>Patient Email</th>
+    <th scope>Email</th>
     <td><?php  echo $row['PatientEmail'];?></td>
   </tr>
   <tr>
-    <th scope>Patient Mobile Number</th>
+    <th scope>Telefono</th>
     <td><?php  echo $row['PatientContno'];?></td>
-    <th>Patient Address</th>
+    <th>Direccion</th>
     <td><?php  echo $row['PatientAdd'];?></td>
   </tr>
     <tr>
-    <th>Patient Gender</th>
+    <th>Genero</th>
     <td><?php  echo $row['PatientGender'];?></td>
-    <th>Patient Age</th>
+    <th>Eda</th>
     <td><?php  echo $row['PatientAge'];?></td>
   </tr>
   <tr>
     
-    <th>Patient Medical History(if any)</th>
+    <th>Historial médico del paciente(Si aplica)</th>
     <td><?php  echo $row['PatientMedhis'];?></td>
-     <th>Patient Reg Date</th>
+     <th>Fecha de registro del paciente</th>
     <td><?php  echo $row['CreationDate'];?></td>
   </tr>
  
@@ -128,12 +128,12 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
   </tr>
   <tr>
     <th>#</th>
-<th>Blood Pressure</th>
-<th>Weight</th>
-<th>Blood Sugar</th>
-<th>Body Temprature</th>
-<th>Medical Prescription</th>
-<th>Visit Date</th>
+<th>Presión arterial</th>
+<th>Peso</th>
+<th>Glucosa</th>
+<th>Temperatura corporal</th>
+<th>Preescripsion medica</th>
+<th>Fecha visita</th>
 </tr>
 <?php  
 while ($row=mysqli_fetch_array($ret)) { 
@@ -151,55 +151,61 @@ while ($row=mysqli_fetch_array($ret)) {
 </table>
 
 <p align="center">                            
- <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
+ <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar historial medico</button></p>  
 
 <?php  ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
      <div class="modal-content">
       <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                <table class="table table-bordered table-hover data-tables">
+            <h5 class="modal-title" id="exampleModalLabel">Agregar historial medico</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                </button>
+      </div>
 
-                                 <form method="post" name="submit">
+      <div class="modal-body">
+          <table class="table table-bordered table-hover data-tables">
 
-      <tr>
-    <th>Blood Pressure :</th>
-    <td>
-    <input name="bp" placeholder="Blood Pressure" class="form-control wd-450" required="true"></td>
-  </tr>                          
-     <tr>
-    <th>Blood Sugar :</th>
-    <td>
-    <input name="bs" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
-  </tr> 
-  <tr>
-    <th>Weight :</th>
-    <td>
-    <input name="weight" placeholder="Weight" class="form-control wd-450" required="true"></td>
-  </tr>
-  <tr>
-    <th>Body Temprature :</th>
-    <td>
-    <input name="temp" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
-  </tr>
+            <form method="post" name="submit">
+
+              <tr>
+                  <th>Presion arterial:</th>
+                     <td>
+                       <input name="bp" placeholder="Blood Pressure" class="form-control wd-450" required="true">
+                     </td>
+              </tr>                          
+              <tr>
+                  <th>Glucosa:</th>
+                     <td>
+                       <input name="bs" placeholder="Blood Sugar" class="form-control wd-450" required="true">
+                     </td>
+              </tr> 
+              <tr>
+                  <th>Peso:</th>
+                     <td>
+                        <input name="weight" placeholder="Weight" class="form-control wd-450" required="true">
+                     </td>
+              </tr>
+              <tr>
+                  <th>Temperatura corporal:</th>
+                     <td>
+                        <input name="temp" placeholder="Blood Sugar" class="form-control wd-450" required="true">
+                     </td>
+              </tr>
                          
-     <tr>
-    <th>Prescription :</th>
-    <td>
-    <textarea name="pres" placeholder="Medical Prescription" rows="12" cols="14" class="form-control wd-450" required="true"></textarea></td>
-  </tr>  
+              <tr>
+                  <th>Preescripsion:</th>
+                     <td>
+                        <textarea name="pres" placeholder="Medical Prescription" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
+                     </td>
+              </tr>  
    
 </table>
 </div>
 <div class="modal-footer">
- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
- <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+ <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+ <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
   
   </form>
 </div>
