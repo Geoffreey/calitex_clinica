@@ -11,11 +11,14 @@ if (isset($_POST['submit'])) {
     $bs     = $_POST['bs'];
     $weight = $_POST['weight'];
     $temp   = $_POST['temp'];
+	$exf = $_POST['exf'];
     $pres   = $_POST['pres'];
 	$ord   = $_POST['ord'];
 	$evo   = $_POST['evo'];
+	$lab = $_POST['lab'];
+    $rayx = $_POST['rayx'];
 
-    $query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres,OrdenesMedicas,Evolucion)value('$vid','$bp','$bs','$weight','$temp','$pres','$ord',$evo)");
+    $query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,ExamenFisico,MedicalPres,OrdenesMedicas,Evolucion,Laboratorio,RayosX)value('$vid','$bp','$bs','$weight','$temp','$exf','$pres','$ord',$evo,'$lab','$rayx')");
     if ($query) {
         echo '<script>alert("Medicle history has been added.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
@@ -127,9 +130,12 @@ $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vi
 <th>Peso</th>
 <th>Nivel de azucar</th>
 <th>Temperatura corporal</th>
+<th>Examen ficico</th>
 <th>Preiscripsion medica</th>
 <th>Ordenes medicas</th>
 <th>Evolucion</th>
+<th>Laboratorio</th>
+<th>Rayos X</th>
 <th>Fecha de visita</th>
 </tr>
 <?php
@@ -141,9 +147,12 @@ while ($row = mysqli_fetch_array($ret)) {
  <td><?php echo $row['Weight']; ?></td>
  <td><?php echo $row['BloodSugar']; ?></td>
   <td><?php echo $row['Temperature']; ?></td>
+  <td><?php  echo $row['ExamenFisico'];?></td>
   <td><?php echo $row['MedicalPres']; ?></td>
   <td><?php echo $row['OrdenesMedicas']; ?></td>
   <td><?php echo $row['Evolucion']; ?></td>
+  <td><?php  echo $row['Laboratorio'];?></td>
+  <td><?php  echo $row['RayosX'];?></td>
   <td><?php echo $row['CreationDate']; ?></td>
 </tr>
 <?php $cnt = $cnt + 1;}?>
