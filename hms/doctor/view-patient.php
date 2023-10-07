@@ -13,9 +13,11 @@ if(isset($_POST['submit']))
     $weight=$_POST['weight'];
     $temp=$_POST['temp'];
    $pres=$_POST['pres'];
+   $ord=$_POST['ord'];
+   $evo=$_POST['evo'];
    
  
-      $query.=mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+      $query.=mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres,OrdenesMedicas,Evolucion)value('$vid','$bp','$bs','$weight','$temp','$pres', '$ord',$evo')");
     if ($query) {
     echo '<script>alert("Medicle history has been added.")</script>';
     echo "<script>window.location.href ='manage-patient.php'</script>";
@@ -75,7 +77,7 @@ if(isset($_POST['submit']))
 <div class="container-fluid container-fullw bg-white">
 <div class="row">
 <div class="col-md-12">
-<h5 class="over-title margin-bottom-15">Administrar<span class="text-bold">pacientes</span></h5>
+<h5 class="over-title margin-bottom-15">Administrar<span class="text-bold"> pacientes</span></h5>
 <?php
                                $vid=$_GET['viewid'];
                                $ret=mysqli_query($con,"select * from tblpatient where ID='$vid'");
@@ -124,7 +126,7 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
  ?>
 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
   <tr align="center">
-   <th colspan="8" >Medical History</th> 
+   <th colspan="10" >Historial medico</th> 
   </tr>
   <tr>
     <th>#</th>
@@ -133,6 +135,8 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
 <th>Glucosa</th>
 <th>Temperatura corporal</th>
 <th>Preescripsion medica</th>
+<th>Ordenes medicas</th>
+<th>Evolucion</th>
 <th>Fecha visita</th>
 </tr>
 <?php  
@@ -145,6 +149,8 @@ while ($row=mysqli_fetch_array($ret)) {
  <td><?php  echo $row['BloodSugar'];?></td> 
   <td><?php  echo $row['Temperature'];?></td>
   <td><?php  echo $row['MedicalPres'];?></td>
+  <td><?php  echo $row['OrdenesMedicas'];?></td>
+  <td><?php  echo $row['Evolucion'];?></td>
   <td><?php  echo $row['CreationDate'];?></td> 
 </tr>
 <?php $cnt=$cnt+1;} ?>
@@ -198,6 +204,18 @@ while ($row=mysqli_fetch_array($ret)) {
                   <th>Preescripsion:</th>
                      <td>
                         <textarea name="pres" placeholder="Medical Prescription" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
+                     </td>
+              </tr>
+              <tr>
+                  <th>Ordenes medicas:</th>
+                     <td>
+                        <textarea name="ord" placeholder="Ordenes medicas" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
+                     </td>
+              </tr>
+              <tr>
+                  <th>Evolucion:</th>
+                     <td>
+                        <textarea name="evo" placeholder="Evolucion" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
                      </td>
               </tr>  
    
