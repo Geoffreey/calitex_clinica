@@ -60,7 +60,7 @@ if (isset($_POST['submit'])) {
 <section id="page-title">
 <div class="row">
 <div class="col-sm-8">
-<h1 class="mainTitle">Usuairo | Historial medico</h1>
+<h1 class="mainTitle">Paciente | Historial medico</h1>
 </div>
 <ol class="breadcrumb">
 <li>
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 <div class="container-fluid container-fullw bg-white">
 <div class="row">
 <div class="col-md-12">
-<h5 class="over-title margin-bottom-15">Usuarios<span class="text-bold">Historial medico</span></h5>
+<h5 class="over-title margin-bottom-15"> Paciente <span class="text-bold"> Historial medico</span></h5>
 <?php
 $vid = $_GET['viewid'];
 $ret = mysqli_query($con, "select * from tblpatient where ID='$vid'");
@@ -122,7 +122,7 @@ $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vi
 ?>
 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
   <tr align="center">
-   <th colspan="8" >Historial medico</th>
+   <th colspan="13" >Historial medico</th>
   </tr>
   <tr>
     <th>#</th>
@@ -167,11 +167,11 @@ while ($row = mysqli_fetch_array($ret)) {
 </div>
 </div>
 			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
+	<?php //include ('include/footer.php');?>
 			<!-- end: FOOTER -->
 
 			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
+	<?php include ('include/setting.php');?>
 
 			<!-- end: SETTINGS -->
 		</div>
