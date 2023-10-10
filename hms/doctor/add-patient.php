@@ -127,7 +127,7 @@ error:function (){}
                                     <label for="fess">
                                         Email
                                     </label>
-                                    <input type="email" id="patemail" name="patemail" class="form-control"  placeholder="Enter Patient Email id" required="true" onBlur="userAvailability()">
+                                    <input type="email" id="patemail" name="patemail" class="form-control"  placeholder="Enter Patient Email id"  onBlur="userAvailability()">
                                     <span id="user-availability-status1" style="font-size:12px;"></span>
                                  </div>
                                  <div class="form-group">
