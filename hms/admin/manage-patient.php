@@ -36,7 +36,7 @@ check_login();
 						<!-- start: PAGE TITLE -->
 <section id="page-title">
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-10">
 <h1 class="mainTitle">Admin | Ver pacientes</h1>
 </div>
 <ol class="breadcrumb">
@@ -51,14 +51,16 @@ check_login();
 </section>
 <div class="container-fluid container-fullw bg-white">
 <div class="row">
-<div class="col-md-12">
-<h5 class="over-title margin-bottom-15">Ver<span class="text-bold">Pacientes</span></h5>
+<div class="col-md-14">
+<h5 class="over-title margin-bottom-15">Ver<span class="text-bold"> Pacientes</span></h5>
 
 <table class="table table-hover" id="sample-table-1">
 <thead>
 <tr>
 <th class="center">#</th>
+<th>No. Admision</th>
 <th>Nombre paciente</th>
+<th>Fecha de nacimiento</th>
 <th>Telefono</th>
 <th>Genero</th>
 <th>Fecha de creacion</th>
@@ -75,7 +77,9 @@ while ($row = mysqli_fetch_array($sql)) {
     ?>
 <tr>
 <td class="center"><?php echo $cnt; ?>.</td>
+<td><?php echo $row['PatientAdmision'];?></td>
 <td class="hidden-xs"><?php echo $row['PatientName']; ?></td>
+<td><?php echo $row['FechaNac'];?></td>
 <td><?php echo $row['PatientContno']; ?></td>
 <td><?php echo $row['PatientGender']; ?></td>
 <td><?php echo $row['CreationDate']; ?></td>
@@ -89,7 +93,8 @@ while ($row = mysqli_fetch_array($sql)) {
 </tr>
 <?php
 $cnt = $cnt + 1;
-}?></tbody>
+}?>
+</tbody>
 </table>
 </div>
 </div>

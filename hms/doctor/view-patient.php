@@ -89,12 +89,19 @@ if(isset($_POST['submit']))
                                ?>
                            <table border="1" class="table table-bordered">
                                <tr align="center">
-                                  <td colspan="4" style="font-size:20px;color:blue">Detalles del paciente</td>
+                                  <td colspan="5" style="font-size:20px;color:blue">Detalles del paciente</td>
                                </tr>
 
                                <tr>
-                                  <th scope>Nombre pasiente</th>
+                                  <th scope>No. Admision</th>
+                                     <td><?php  echo $row['PatientAdmision'];?></td>
+                                     <th scope>Nombre pasiente</th>
                                      <td><?php  echo $row['PatientName'];?></td>
+                               </tr>
+
+                               <tr>
+                                  <th scope>Fecha de nacimiento</th>
+                                  <td><?php  echo $row['FechaNac'];?></td>
                                   <th scope>Email</th>
                                   <td><?php  echo $row['PatientEmail'];?></td>
                                </tr>

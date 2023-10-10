@@ -43,7 +43,7 @@ if (isset($_GET['del'])) {
 						<!-- start: PAGE TITLE -->
 						<section id="page-title">
 							<div class="row">
-								<div class="col-sm-8">
+								<div class="col-sm-10">
 									<h1 class="mainTitle">Admin | Administrar usuarios</h1>
 																	</div>
 								<ol class="breadcrumb">
@@ -63,14 +63,16 @@ if (isset($_GET['del'])) {
 
 									<div class="row">
 								<div class="col-md-12">
-									<h5 class="over-title margin-bottom-15">Administrar<span class="text-bold">Usuarios</span></h5>
+									<h5 class="over-title margin-bottom-15">Administrar<span class="text-bold"> Paciente</span></h5>
 									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
 								<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
 									<table class="table table-hover" id="sample-table-1">
 										<thead>
 											<tr>
 												<th class="center">#</th>
-												<th>Full Name</th>
+												<th>No. Admision</th>
+												<th>Nombre completo</th>
+												<th>Fecha de nacimiento</th>
 												<th class="hidden-xs">Direccion</th>
 												<th>Ciudad</th>
 												<th>Genero</th>
@@ -82,15 +84,17 @@ if (isset($_GET['del'])) {
 											</tr>
 										</thead>
 										<tbody>
-<?php
-$sql = mysqli_query($con, "select * from users");
-$cnt = 1;
-while ($row = mysqli_fetch_array($sql)) {
-    ?>
+                                        <?php
+                                        $sql = mysqli_query($con, "select * from users");
+                                        $cnt = 1;
+                                        while ($row = mysqli_fetch_array($sql)) {
+                                        ?>
 
 											<tr>
 												<td class="center"><?php echo $cnt; ?>.</td>
+												<td><?php echo $row['PatientAdmision'];?></td>
 												<td class="hidden-xs"><?php echo $row['fullName']; ?></td>
+												<td><?php echo $row['FechaNac'];?></td>
 												<td><?php echo $row['address']; ?></td>
 												<td><?php echo $row['city']; ?>
 												</td>
@@ -103,7 +107,7 @@ while ($row = mysqli_fetch_array($sql)) {
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
 
 
-	<a href="manage-users.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+	                                             <a href="manage-users.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
 												</div>
 												<div class="visible-xs visible-sm hidden-md hidden-lg">
 													<div class="btn-group" dropdown is-open="status.isopen">

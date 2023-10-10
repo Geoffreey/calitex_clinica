@@ -1,13 +1,15 @@
 <?php
 include_once 'include/config.php';
 if (isset($_POST['submit'])) {
-    $fname    = $_POST['full_name'];
-    $address  = $_POST['address'];
-    $city     = $_POST['city'];
-    $gender   = $_POST['gender'];
-    $email    = $_POST['email'];
+	$patadmi=$_POST['patadmi'];
+    $fname=$_POST['full_name'];
+	$fena=$_POST['fena'];
+    $address=$_POST['address'];
+    $city=$_POST['city'];
+    $gender=$_POST['gender'];
+    $email=$_POST['email'];
     $password = md5($_POST['password']);
-    $query    = mysqli_query($con, "insert into users(fullname,address,city,gender,email,password) values('$fname','$address','$city','$gender','$email','$password')");
+    $query    = mysqli_query($con, "insert into users(PatientAdmision,fullname,FechaNac,address,city,gender,email,password) values('$patadmi','$fname','$fena','$address','$city','$gender','$email','$password')");
     if ($query) {
         echo "<script>alert('Successfully Registered. You can login now');</script>";
         //header('location:user-login.php');
@@ -64,16 +66,22 @@ return true;
 								Inscribirse
 							</legend>
 							<p>
-								Intruce tus datos a continuacion:
+								Introduce tus datos a continuacion:
 							</p>
 							<div class="form-group">
-								<input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
+								<input type="text" class="form-control" name="patadmi" placeholder="No. Admision" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="address" placeholder="Address" required>
+								<input type="text" class="form-control" name="full_name" placeholder="Nombre completo" required>
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" name="city" placeholder="City" required>
+                                    <input type="text" name="fena" class="form-control"  placeholder="fecha de nacimiento  AAA-MM-DD" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                 </div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="address" placeholder="Direccion" required>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="city" placeholder="Ciudad" required>
 							</div>
 							<div class="form-group">
 								<label class="block">

@@ -8,18 +8,20 @@ check_login();
 if(isset($_POST['submit']))
 {	
 	$docid=$_SESSION['id'];
+    $patadmi=$_POST['patadmi'];
 	$patname=$_POST['patname'];
-$patcontact=$_POST['patcontact'];
-$patemail=$_POST['patemail'];
-$gender=$_POST['gender'];
-$pataddress=$_POST['pataddress'];
-$patage=$_POST['patage'];
-$medhis=$_POST['medhis'];
-$sql=mysqli_query($con,"insert into tblpatient(Docid,PatientName,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patname','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
-if($sql)
-{
-echo "<script>alert('Patient info added Successfully');</script>";
-header('location:add-patient.php');
+    $fena=$_POST['fena'];
+    $patcontact=$_POST['patcontact'];
+    $patemail=$_POST['patemail'];
+    $gender=$_POST['gender'];
+    $pataddress=$_POST['pataddress'];
+    $patage=$_POST['patage'];
+    $medhis=$_POST['medhis'];
+    $sql=mysqli_query($con,"insert into tblpatient(Docid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
+    if($sql)
+    {
+    echo "<script>alert('Patient info added Successfully');</script>";
+    header('location:add-patient.php');
 
 }
 }
@@ -71,7 +73,7 @@ error:function (){}
 						<!-- start: PAGE TITLE -->
 <section id="page-title">
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-10">
 <h1 class="mainTitle">Paciente | Agregar paciente</h1>
 </div>
     <ol class="breadcrumb">
@@ -86,9 +88,9 @@ error:function (){}
 </section>
        <div class="container-fluid container-fullw bg-white">
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-11">
                 <div class="row margin-top-30">
-                   <div class="col-lg-8 col-md-12">
+                   <div class="col-lg-8 col-md-11">
                        <div class="panel panel-white">
                            <div class="panel-heading">
                                <h5 class="panel-title">Agregar paciente</h5>
@@ -96,11 +98,24 @@ error:function (){}
                             <div class="panel-body">
                                 <form role="form" name="" method="post">
 
+                                <div class="form-group">
+                                     <label for="doctorname">
+                                        No. Admision
+                                     </label>
+                                     <input type="text" name="patadmi" class="form-control"  placeholder="No. adminision" required="true">
+                                 </div>
+
                                  <div class="form-group">
                                      <label for="doctorname">
                                         Nombre paciente
                                      </label>
                                      <input type="text" name="patname" class="form-control"  placeholder="Enter Patient Name" required="true">
+                                 </div>
+                                 <div class="form-group">
+                                    <label for="fess">
+                                       Fecha de nacimiento
+                                    </label>
+                                    <input type="text" name="fena" class="form-control"  placeholder="fecha de nacimiento" required="true" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
                                  </div>
                                  <div class="form-group">
                                     <label for="fess">
@@ -126,7 +141,7 @@ error:function (){}
                                           </label>
                                           <input type="radio" id="rg-male" name="gender" value="male">
                                           <label for="rg-male">
-                                             Maculino
+                                             Masculino
                                           </label>
                                       </div>
                                  </div>

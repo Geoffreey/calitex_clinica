@@ -59,12 +59,12 @@ if (isset($_POST['submit'])) {
 						<!-- start: PAGE TITLE -->
 <section id="page-title">
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-10">
 <h1 class="mainTitle">Paciente | Historial medico</h1>
 </div>
 <ol class="breadcrumb">
 <li>
-<span>Usuarios</span>
+<span>Paciente</span>
 </li>
 <li class="active">
 <span>Historial medico</span>
@@ -84,34 +84,38 @@ while ($row = mysqli_fetch_array($ret)) {
     ?>
 <table border="1" class="table table-bordered">
  <tr align="center">
-<td colspan="4" style="font-size:20px;color:blue">
- Patient Details</td></tr>
+<td colspan="5" style="font-size:20px;color:blue">Patient Details</td></tr>
 
     <tr>
-    <th scope>Nombre paciente</th>
-    <td><?php echo $row['PatientName']; ?></td>
-    <th scope>Email</th>
-    <td><?php echo $row['PatientEmail']; ?></td>
-  </tr>
-  <tr>
-    <th scope>telefono</th>
-    <td><?php echo $row['PatientContno']; ?></td>
-    <th>Direccion</th>
-    <td><?php echo $row['PatientAdd']; ?></td>
-  </tr>
+	   <th scope>No. Admision</th>
+       <td><?php  echo $row['PatientAdmision'];?></td>
+       <th scope>Nombre paciente</th>
+       <td><?php echo $row['PatientName']; ?></td>
+    </tr>
+	<tr>
+	   <th scope>Fecha de nacimiento</th>
+       <td><?php  echo $row['FechaNac'];?></td>
+	   <th scope>Email</th>
+       <td><?php echo $row['PatientEmail']; ?></td>
+	</tr>
     <tr>
-    <th>Genero</th>
-    <td><?php echo $row['PatientGender']; ?></td>
-    <th>Edad</th>
-    <td><?php echo $row['PatientAge']; ?></td>
-  </tr>
-  <tr>
-
-    <th>historial medioc del paciente(si corresponde)</th>
-    <td><?php echo $row['PatientMedhis']; ?></td>
-     <th>fecha de registro del paciente</th>
-    <td><?php echo $row['CreationDate']; ?></td>
-  </tr>
+       <th scope>telefono</th>
+       <td><?php echo $row['PatientContno']; ?></td>
+       <th>Direccion</th>
+       <td><?php echo $row['PatientAdd']; ?></td>
+    </tr>
+    <tr>
+       <th>Genero</th>
+       <td><?php echo $row['PatientGender']; ?></td>
+       <th>Edad</th>
+       <td><?php echo $row['PatientAge']; ?></td>
+    </tr>
+    <tr>
+       <th>historial medioc del paciente(si corresponde)</th>
+       <td><?php echo $row['PatientMedhis']; ?></td>
+       <th>fecha de registro del paciente</th>
+       <td><?php echo $row['CreationDate']; ?></td>
+    </tr>
 
 <?php }?>
 </table>
