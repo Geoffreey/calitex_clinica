@@ -77,7 +77,7 @@ if(isset($_POST['submit']))
                      </ol>
                   </div>
                 </section>
-                  <div class="container-fluid container-fullw bg-white">
+                  <div class="container-fluid container-fullw bg-white" id="printIt">
                       <div class="row">
                          <div class="col-md-12">
                            <h5 class="over-title margin-bottom-15">Administrar<span class="text-bold"> pacientes</span></h5>
@@ -87,7 +87,7 @@ if(isset($_POST['submit']))
                                $cnt=1;
                                while ($row=mysqli_fetch_array($ret)) {
                                ?>
-                           <table border="1" class="table table-bordered">
+                           <table border="1" class="table table-bordered" >
                                <tr align="center">
                                   <td colspan="5" style="font-size:20px;color:blue">Detalles del paciente</td>
                                </tr>
@@ -171,8 +171,9 @@ if(isset($_POST['submit']))
                       
 
                    <p align="center">                            
-                     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar historial medico</button></p>  
-
+                     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar historial medico</button>
+                     <button class="btn btn-primary waves-effect waves-light w-lg" onClick="printOut('printIt')">Imprimir</button>
+                  </p>
                       <?php  ?>
                       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
@@ -182,8 +183,7 @@ if(isset($_POST['submit']))
                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                          <span aria-hidden="true">&times;</span>
                                        </button>
-                                  </div>
-
+                                  </div>    
                            <div class="modal-body">
                                <table class="table table-bordered table-hover data-tables">
 
