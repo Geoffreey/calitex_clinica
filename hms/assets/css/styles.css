@@ -331,6 +331,7 @@ h5.over-title {
   padding-right: 30px;
   padding-top: 30px;
   padding-bottom: 30px;
+  position: relative;
   border-bottom: 1px solid #eee;
 }
 @media (max-width: 768px) {
