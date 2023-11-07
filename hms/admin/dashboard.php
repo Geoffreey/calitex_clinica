@@ -85,10 +85,10 @@ $num_rows                 = mysqli_num_rows($result);
 											<p class="cl-effect-1">
 												<a href="manage-doctors.php">
 												<?php $result1 = mysqli_query($con, "SELECT * FROM doctors ");
-$num_rows1                 = mysqli_num_rows($result1);
-{
-    ?>
-											Total de medicos :<?php echo htmlentities($num_rows1);} ?>
+                                                    $num_rows1                 = mysqli_num_rows($result1);
+                                                     {
+                                                    ?>
+											            Total de medicos :<?php echo htmlentities($num_rows1);} ?>
 												</a>
 
 											</p>
