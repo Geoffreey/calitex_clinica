@@ -11,7 +11,7 @@ check_login();
 	<head>
 		<title>Admin | Ver pacientes</title>
 
-		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -52,7 +52,7 @@ check_login();
 <div class="container-fluid container-fullw bg-white">
 <div class="row">
 <div class="col-md-14">
-<h5 class="over-title margin-bottom-15">Ver<span class="text-bold"> Pacientes</span></h5>
+<h5 class="over-title margin-bottom-15">Lista<span class="text-bold"> Pacientes</span></h5>
 
 <table class="table table-hover" id="sample-table-1">
 <thead>

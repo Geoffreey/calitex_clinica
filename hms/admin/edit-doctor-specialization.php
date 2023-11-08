@@ -8,7 +8,7 @@ $id=intval($_GET['id']);// get value
 if(isset($_POST['submit']))
 {
 $docspecialization=$_POST['doctorspecilization'];
-$sql=mysqli_query($con,"update  doctorSpecilization set specilization='$docspecialization' where id='$id'");
+$sql=mysqli_query($con,"update  doctorspecilization set specilization='$docspecialization' where id='$id'");
 $_SESSION['msg']="Doctor Specialization updated successfully !!";
 } 
 
@@ -18,7 +18,7 @@ $_SESSION['msg']="Doctor Specialization updated successfully !!";
 	<head>
 		<title>Admin | Editar especializacion</title>
 		
-		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -83,7 +83,7 @@ $_SESSION['msg']="Doctor Specialization updated successfully !!";
 	<?php 
 
 $id=intval($_GET['id']);
-	$sql=mysqli_query($con,"select * from doctorSpecilization where id='$id'");
+	$sql=mysqli_query($con,"select * from doctorspecilization where id='$id'");
 while($row=mysqli_fetch_array($sql))
 {														
 	?>		<input type="text" name="doctorspecilization" class="form-control" value="<?php echo $row['specilization'];?>" >
