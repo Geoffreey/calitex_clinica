@@ -19,7 +19,7 @@ echo "<script>window.location.href ='contact.php'</script>";
 	<head>
 		<title>CaliTex | Contacto</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
-		<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<!--start-wrap-->
