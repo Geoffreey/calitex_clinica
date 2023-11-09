@@ -89,32 +89,36 @@ while ($row = mysqli_fetch_array($sql)) {
 												<td class="hidden-xs"><?php echo $row['pname']; ?></td>
 												<td><?php echo $row['doctorSpecialization']; ?></td>
 												<td><?php echo $row['consultancyFees']; ?></td>
-												<td><?php echo $row['appointmentDate']; ?> / <?php echo
-        $row['appointmentTime']; ?>
-												</td>
+												<td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
 												<td><?php echo $row['postingDate']; ?></td>
-												<td>
-<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-        echo "Active";
-    }
-    if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) {
-        echo "Cancel by Patient";
-    }
+												<td><?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1))
+												{
+													echo "Activo";
+												}
+												if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) 
+												{
+													echo "Cancelar por paciente";
+												}
+												if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0))
+												{
+													echo "Cancelar por Medico";
+												}
 
-    if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0)) {
-        echo "Cancel by Doctor";
-    }
-
-    ?></td>
+												if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 2))
+												{
+													echo "Finalizo por Medico";
+												}
+												?>
+												</td>
 												<td >
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-
-        echo "No Action yet";
-    } else {
-
-        echo "Canceled";
-    }?>
+							                       <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1))
+												   {
+													echo "No Action yet";
+												   } else {
+													echo "Cancelada";
+													}
+													?>
 												</div>
 												<div class="visible-xs visible-sm hidden-md hidden-lg">
 													<div class="btn-group" dropdown is-open="status.isopen">

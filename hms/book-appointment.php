@@ -6,7 +6,7 @@ include 'include/checklogin.php';
 check_login();
 
 if (isset($_POST['submit'])) {
-    $specilization = $_POST['Doctorspecialization'];
+    $specilization = $_POST['doctorspecialization'];
     $doctorid      = $_POST['doctor'];
     $userid        = $_SESSION['id'];
     $fees          = $_POST['fees'];
@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     $time          = $_POST['apptime'];
     $userstatus    = 1;
     $docstatus     = 1;
-    $query         = mysqli_query($con, "insert into appointment(doctorSpecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
+    $query         = mysqli_query($con, "insert into appointment(doctorspecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
     if ($query) {
         echo "<script>alert('Your appointment successfully booked');</script>";
     }
@@ -119,7 +119,7 @@ function getfee(val) {
 															<label for="DoctorSpecialization">
 																Especializacion medica
 															</label>
-							                                <select name="Doctorspecialization" class="form-control" onChange="getdoctor(this.value);" required="required">
+							                                <select name="doctorspecialization" class="form-control" onChange="getdoctor(this.value);" required="required">
 																<option value="">Seleccionar especializacion</option>
                                                                 <?php $ret = mysqli_query($con, "select * from doctorspecilization");
                                                                  while ($row = mysqli_fetch_array($ret)) {?>

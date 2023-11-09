@@ -4,12 +4,17 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
-if(isset($_GET['cancel']))
-		  {
-mysqli_query($con,"update appointment set doctorStatus='0' where id ='".$_GET['id']."'");
-                  $_SESSION['msg']="Appointment canceled !!";
-		  }
+if(isset($_GET['Cancelada'])){
+    mysqli_query($con,"update appointment set doctorStatus='0' where id ='".$_GET['id']."'");
+    $_SESSION['msg']="Su cita se cancelo!!";
+}
+
+if (isset($_GET['Terminada'])) {
+	mysqli_query($con, "update appointment set doctorStatus='2' where id = '" . $_GET['id'] . "'");
+	$_SESSION['msg'] = "Su cita finalizó!!";
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -104,17 +109,17 @@ while($row=mysqli_fetch_array($sql))
                                                     }                                 
                                                     if(($row['userStatus']==0) && ($row['doctorStatus']==1))  
                                                     {
-	                                                   echo "Cancelar por paciente";
+	                                                   echo "Finalizada por paciente";
                                                     }
 
                                                     if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
                                                     { 
-	                                                  echo "Cancelar por ti";
+	                                                  echo "Cancelada por ti";
                                                     }
 
-													if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
+													if(($row['userStatus']==1) && ($row['doctorStatus']==2))  
                                                     { 
-	                                                  echo "Terminado por ti";
+	                                                  echo "Finalizada por ti";
                                                     }
 													?>
 													
@@ -125,26 +130,29 @@ while($row=mysqli_fetch_array($sql))
 				                                   <div class="visible-md visible-lg hidden-sm hidden-xs">
 				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
                                                    { ?>
-												   <a href="appointment-history.php?id=<?php echo $row['id']?>&cancel=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
+												   <a href="appointment-history.php?id=<?php echo $row['id']?>&Cancelada=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
 	                                              <?php } else {
-													echo "Canceled";
+													echo "Cancelada";
 													}
 													?>
+													</div>
+												</td>
 
-                                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+												<td>
+												<div class="visible-md visible-lg hidden-sm hidden-xs">
+				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
                                                    { ?>
-												   <a href="appointment-history.php?id=<?php echo $row['id'] ?>&finished=update" onClick="return confirm('¿Estás segura de que quieres terminar su cita? ?')"class="btn btn-transparent btn-xs tooltips" title="finished Appointment" tooltip-placement="top" tooltip="Remove">terminar</a>
-													<?php } else {
-													echo "finished";
+												   <a href="appointment-history.php?id=<?php echo $row['id']?>&Terminada=update" onClick="return confirm('¿Estás segura de que quieres finalizar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Terminar</a>
+	                                              <?php } else {
+													echo "Terminda";
 													}
 													?>
-		 
-												</div>
+													</div>
 												</td>
 											</tr>
 											
 											<?php 
-$cnt=$cnt+1;
+											$cnt=$cnt+1;
 											 }?>
 											
 											
