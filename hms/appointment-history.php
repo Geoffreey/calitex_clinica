@@ -94,31 +94,37 @@ while ($row = mysqli_fetch_array($sql)) {
 												<td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
 												<td><?php echo $row['postingDate']; ?></td>
 												<td>
-                                                   <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
-                                                    echo "Active";
-                                                      }
-                                                          if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) {
-                                                    echo "Cancel by You";
-                                                      }
+                                                   <?php 
+												   if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) 
+												   {
+                                                    echo "Activo";
+                                                   }
 
-                                                          if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0)) {
-                                                    echo "Cancel by Doctor";
-                                                      }
+                                                   if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1))
+												   {
+                                                    echo "Cancelar por ti";
+                                                   }
 
-                                                          ?>
+                                                   if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0))
+												   {
+                                                    echo "Cancelar por Medico";
+                                                   }
+
+												   if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0))
+												   {
+													echo "Terminado por Medico";
+												   }
+												   ?>
 												</td>
+
 												<td >
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
 							                         <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {?>
-
-
-	                                                    <a href="appointment-history.php?id=<?php echo $row['id'] ?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
-	                                                    <a href="appointment-history.php?id=<?php echo $row['id'] ?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">terminar</a>
-	                                                <?php } else {
-
-                                                    echo "Canceled";
+                                                     <a href="appointment-history.php?id=<?php echo $row['id'] ?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
+	                                                 <?php } else {
+														echo "Canceled";
                                                       }
-													        ?>
+													  ?>
 												</div>
 												<div class="visible-xs visible-sm hidden-md hidden-lg">
 													<div class="btn-group" dropdown is-open="status.isopen">

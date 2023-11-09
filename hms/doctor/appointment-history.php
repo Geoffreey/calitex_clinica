@@ -98,34 +98,47 @@ while($row=mysqli_fetch_array($sql))
 												</td>
 												<td><?php echo $row['postingDate'];?></td>
 												<td>
-<?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
-{
-	echo "Active";
-}
-if(($row['userStatus']==0) && ($row['doctorStatus']==1))  
-{
-	echo "Cancel by Patient";
-}
+                                                    <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+                                                    {
+	                                                   echo "Activo";
+                                                    }                                 
+                                                    if(($row['userStatus']==0) && ($row['doctorStatus']==1))  
+                                                    {
+	                                                   echo "Cancelar por paciente";
+                                                    }
 
-if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
-{
-	echo "Cancel by you";
-}
+                                                    if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
+                                                    { 
+	                                                  echo "Cancelar por ti";
+                                                    }
 
-
-
-												?></td>
-												<td >
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							<?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
-{ ?>
-
+													if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
+                                                    { 
+	                                                  echo "Terminado por ti";
+                                                    }
+													?>
 													
-	<a href="appointment-history.php?id=<?php echo $row['id']?>&cancel=update" onClick="return confirm('Are you sure you want to cancel this appointment ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
-	<?php } else {
+													
+												</td>
 
-		echo "Canceled";
-		} ?>
+				                                <td >
+				                                   <div class="visible-md visible-lg hidden-sm hidden-xs">
+				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+                                                   { ?>
+												   <a href="appointment-history.php?id=<?php echo $row['id']?>&cancel=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
+	                                              <?php } else {
+													echo "Canceled";
+													}
+													?>
+
+                                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+                                                   { ?>
+												   <a href="appointment-history.php?id=<?php echo $row['id'] ?>&finished=update" onClick="return confirm('¿Estás segura de que quieres terminar su cita? ?')"class="btn btn-transparent btn-xs tooltips" title="finished Appointment" tooltip-placement="top" tooltip="Remove">terminar</a>
+													<?php } else {
+													echo "finished";
+													}
+													?>
+		 
 												</div>
 												</td>
 											</tr>
