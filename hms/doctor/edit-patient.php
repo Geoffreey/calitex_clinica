@@ -7,18 +7,18 @@ check_login();
 
 if(isset($_POST['submit']))
 {	
-	$eid=$_GET['editid'];
-	$patadmi=$_POST['patadmi'];
-	$patname=$_POST['patname'];
-	$fena=$_POST['fena'];
-    $patcontact=$_POST['patcontact'];
-    $patemail=$_POST['patemail'];
-    $gender=$_POST['gender'];
-    $pataddress=$_POST['pataddress'];
-    $patage=$_POST['patage'];
-    $medhis=$_POST['medhis'];
-    $sql=mysqli_query($con,"update tblpatient set PatientAdmision='$patadmi',PatientName='$patname',FechaNac='$fena',PatientContno='$patcontact',PatientEmail='$patemail',PatientGender='$gender',PatientAdd='$pataddress',PatientAge='$patage',PatientMedhis='$medhis' where ID='$eid'");
-    if($sql)
+    $eid = $_GET['editid'];
+    $patadmi = $_POST['patadmi'];
+    $patname = $_POST['patname'];
+    $fena = $_POST['fena'];
+    $patcontact = $_POST['patcontact'];
+    $patemail = $_POST['patemail'];
+    $gender = $_POST['gender'];
+    $pataddress = $_POST['pataddress'];
+    $patage = $_POST['patage'];
+    $medhis = $_POST['medhis'];
+    $sql = mysqli_query($con,"update tblpatient set PatientAdmision='$patadmi',PatientName='$patname',FechaNac='$fena',PatientContno='$patcontact',PatientEmail='$patemail',PatientGender='$gender',PatientAdd='$pataddress',PatientAge='$patage',PatientMedhis='$medhis' where ID='$eid'");
+    if ($sql)
     {
     echo "<script>alert('Patient info updated Successfully');</script>";
     header('location:manage-patient.php');
@@ -31,7 +31,7 @@ if(isset($_POST['submit']))
 	<head>
 		<title>Medico | Agregar paciente</title>
 		
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">

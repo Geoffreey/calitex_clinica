@@ -7,20 +7,20 @@ check_login();
 
 if(isset($_POST['submit']))
 {	
-	$docid=$_SESSION['id'];
-    $patadmi=$_POST['patadmi'];
-	$patname=$_POST['patname'];
-    $fena=$_POST['fena'];
-    $patcontact=$_POST['patcontact'];
-    $patemail=$_POST['patemail'];
-    $gender=$_POST['gender'];
-    $pataddress=$_POST['pataddress'];
-    $patage=$_POST['patage'];
-    $medhis=$_POST['medhis'];
-    $sql=mysqli_query($con,"insert into tblpatient(Docid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
-    if($sql)
+	$docid = $_SESSION['id'];
+    $patadmi = $_POST['patadmi'];
+	$patname = $_POST['patname'];
+    $fena = $_POST['fena'];
+    $patcontact = $_POST['patcontact'];
+    $patemail = $_POST['patemail'];
+    $gender = $_POST['gender'];
+    $pataddress = $_POST['pataddress'];
+    $patage = $_POST['patage'];
+    $medhis = $_POST['medhis'];
+    $sql = mysqli_query($con,"insert into tblpatient(Docid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
+    if ($sql)
     {
-    echo "<script>alert('Patient info added Successfully');</script>";
+    echo "<script>alert('Informacion del paciente agregada correctamente');</script>";
     header('location:add-patient.php');
 
 }
@@ -31,7 +31,7 @@ if(isset($_POST['submit']))
 	<head>
 		<title>Medico | Agregar paciente</title>
 		
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -115,7 +115,7 @@ error:function (){}
                                     <label for="fess">
                                        Fecha de nacimiento
                                     </label>
-                                    <input type="text" name="fena" class="form-control"  placeholder="fecha de nacimiento" required="true" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                    <input type="text" name="fena" class="form-control"  placeholder="AAA-MM-DD" required="true" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
                                  </div>
                                  <div class="form-group">
                                     <label for="fess">

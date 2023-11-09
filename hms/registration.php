@@ -1,15 +1,15 @@
 <?php
 include_once 'include/config.php';
 if (isset($_POST['submit'])) {
-	$patadmi=$_POST['patadmi'];
-    $fname=$_POST['full_name'];
-	$fena=$_POST['fena'];
-    $address=$_POST['address'];
-    $city=$_POST['city'];
-    $gender=$_POST['gender'];
-    $email=$_POST['email'];
+	$patadmi = $_POST['patadmi'];
+    $fname = $_POST['full_name'];
+	$fena = $_POST['fena'];
+    $address = $_POST['address'];
+    $city = $_POST['city'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
     $password = md5($_POST['password']);
-    $query    = mysqli_query($con, "insert into users(PatientAdmision,fullname,FechaNac,address,city,gender,email,password) values('$patadmi','$fname','$fena','$address','$city','$gender','$email','$password')");
+    $query = mysqli_query($con, "insert into users(PatientAdmision,fullname,FechaNac,address,city,gender,email,password) values('$patadmi','$fname','$fena','$address','$city','$gender','$email','$password')");
     if ($query) {
         echo "<script>alert('Successfully Registered. You can login now');</script>";
         //header('location:user-login.php');
