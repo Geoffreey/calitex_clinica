@@ -120,8 +120,8 @@ while ($data = mysqli_fetch_array($sql)) {
 
 <select name="gender" class="form-control" required="required" >
 <option value="<?php echo htmlentities($data['gender']); ?>"><?php echo htmlentities($data['gender']); ?></option>
-<option value="male">Hombre</option>
-<option value="female">Mujer</option>
+<option value="male">Masculino</option>
+<option value="female">Femenino</option>
 <option value="other">otro</option>
 </select>
 
