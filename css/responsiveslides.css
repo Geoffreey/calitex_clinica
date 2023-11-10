@@ -1,6 +1,6 @@
 /*! http://responsiveslides.com v1.53 by @viljamis */
 
-.rslides {
+.inicio {
   position: relative;
   list-style: none;
   overflow: hidden;
@@ -8,7 +8,7 @@
   margin: 0;
   }
 
-.rslides li {
+.inicio li {
   -webkit-backface-visibility: hidden;
   position: absolute;
   display: none;
@@ -17,13 +17,13 @@
   top: 0;
   }
 
-.rslides li:first-child {
+.inicio li:first-child {
   position: relative;
   display: block;
   float: left;
   }
 
-.rslides img {
+.inicio img {
  	display: block;
 	height: auto;
 	float: left;

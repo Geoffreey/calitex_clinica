@@ -1,133 +1,96 @@
-
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Hospital Luz de vida</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
-		<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/responsiveslides.css">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Hospital General RP</title>
+		<!--<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />-->
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="shortcut icon" href="images/favicon.png">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="css/normalize.css">
+		<!--<link rel="stylesheet" href="css/responsiveslides.css">-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script src="js/responsiveslides.min.js"></script>
-		  <script>
+		<!--<script src="js/responsiveslides.min.js"></script>-->
+		<script src="https://kit.fontawesome.com/45f2bb29fa.js" crossorigin="anonymous"></script>
+		  <!--<script>
 		    // You can also use "$(window).load(function() {"
-			    $(function () {
+			    //$(function () {
 			
 			      // Slideshow 1
-			      $("#slider1").responsiveSlides({
-			        maxwidth: 1600,
-			        speed: 600
-			      });
-			});
-		  </script>
-	</head>
+			      //$("#slider1").responsiveSlides({
+			        //maxwidth: 1600,
+			        //speed: 600
+			      //});
+			//});
+		  </script>-->
+</head>
 	<body>
 		<!--start-wrap-->
-		
-			<!--start-header-->
-			<div class="header">
-				<div class="wrap">
-				<!--start-logo-->
-				<div class="logo">
-					<a href="index.html" style="font-size: 30px;">Hospital luz de Vida</a>
-				</div>
-				<!--end-logo-->
-				<!--start-top-nav-->
-				<div class="top-nav">
-					<ul>
-						<li class="active"><a href="index.html">Inicio</a></li>
-						
-						<li><a href="contact.php">Contacto</a></li>
-					</ul>					
-				</div>
-				<div class="clear"> </div>
-				<!--end-top-nav-->
+		<!--start-header-->
+		<header>
+			<div class="container">
+					    <a href="index.html" style="font-size: 30px; color: white;">Hospital General RP</a>
+				    <nav>
+						 <a href="index.html">Inicio</a>
+						 <a href="contact.php">Contacto</a>					
+				    </nav>
+					<a href="#" class="hamb"><i class="fa-solid fa-bars"></i></a>
 			</div>
-			<!--end-header-->
-		</div>
-		<div class="clear"> </div>
-			<!--start-image-slider---->
-					<div class="image-slider">
-						<!-- Slideshow 1 -->
-					    <ul class="rslides" id="slider1">
-					      <li><img src="images/slider-image1.jpg" alt=""></li>
-					      <li><img src="images/slider-image2.jpg" alt=""></li>
-					      <li><img src="images/slider-image1.jpg" alt=""></li>
-					    </ul>
-						 <!-- Slideshow 2 -->
-					</div>
-					<!--End-image-slider---->
-		    <div class="clear"> </div>
-		    <div class="content-grids">
-		    	<div class="wrap">
-		    	<div class="section group">
-								
-							
-				<div class="listview_1_of_3 images_1_of_3">
-					<div class="listimg listimg_1_of_2">
-						  <img src="images/grid-img3.png">
-					</div>
-					<div class="text list_1_of_2">
-						  <h3>Pacientes</h3>
-						  <p>Registrarce y agendar una cita</p>
-						  <div class="button"><span><a href="hms/user-login.php">Haga click aqui</a></span></div>
-				    </div>
-				</div>	
-
-				<div class="listview_1_of_3 images_1_of_3">
-					<div class="listimg listimg_1_of_2">
-						  <img src="images/grid-img1.png">
-					</div>
-					<div class="text list_1_of_2">
-						  <h3>Inicio de sesion medicos</h3>
-						
-						  <div class="button"><span><a href="hms/doctor/">Haga click aqui</a></span></div>
+		</header>
+		<main>
+			  <section id="inicio">
+				<img src="images/slider-image1.jpg" alt="">
+			  </section>
+			  <section id="servicios" class="seccion">
+				<div class="container">
+					<div class="row">
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Inicio de sesion pacientes</h3>
+									<p>Registrarce y agendar una cita</p>
+									<a href="hms/user-login.php" class="boton boton-blanco">Haga click aqui</a>
+								</div>
+							  </div>
+						</div>
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+							   <div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img1.png">
+								</div>
+								<div class="bloque-contenido-servicio">
+									 <h3>Inicio de sesion medicos</h3>
+									 <a href="hms/doctor/" class="boton boton-blanco">Haga click aqui</a>
+								</div>
+							</div>
+						</div>
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img2.png">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Inicio de sesion adminstrador</h3>
+									<a href="hms/admin" class="boton boton-blanco">Haga click aqui</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-
-
-					<div class="listview_1_of_3 images_1_of_3">
-					<div class="listimg listimg_1_of_2">
-						  <img src="images/grid-img2.png">
-					</div>
-					<div class="text list_1_of_2">
-						  <h3>Inicio de sesion adminstrador</h3>
-						
-						  <div class="button"><span><a href="hms/admin">Haga click aqui</a></span></div>
-				     </div>
-				</div>			
-			</div>
-		    </div>
-		   </div>
-		   <div class="wrap">
-		   <div class="content-box">
-		   <div class="section group">
-				<div class="col_1_of_3 span_1_of_3 frist">
-				
-				</div>
-				<div class="col_1_of_3 span_1_of_3 second">
-					
-				</div>
-				<div class="col_1_of_3 span_1_of_3 frist">
-					
-					
-				</div>
-			</div>
-		   </div>
-		   </div>
-		   <div class="clear"> </div>
-		   <div class="footer">
-		   	 <div class="wrap">
-		   	<div class="footer-left">
-		   			<ul>
-						<li><a href="index.html">Inicio</a></li>
-						<li><a href="contact.php">contacto</a></li>
-					</ul>
-		   	</div>
-		   
-		   	<div class="clear"> </div>
-		   </div>
-		   </div>
-		<!--end-wrap-->
+			</section>
+	    </main>
+		<footer class="barra-footer">
+				 &copy; Derechos Reservados -2023
+		</footer>
+		<script src="js/jquery.js"></script>
+	    <script src="js/funciones.js"></script>
 	</body>
 </html>
 

@@ -1,111 +1,158 @@
-<?php
-include_once('hms/include/config.php');
-if(isset($_POST['submit']))
-{
-$name=$_POST['fullname'];
-$email=$_POST['emailid'];
-$mobileno=$_POST['mobileno'];
-$dscrption=$_POST['description'];
-$query=mysqli_query($con,"insert into tblcontactus(fullname,email,contactno,message) value('$name','$email','$mobileno','$dscrption')");
-echo "<script>alert('Your information succesfully submitted');</script>";
-echo "<script>window.location.href ='contact.php'</script>";
 
-}
-
-
-?>
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>CaliTex | Contacto</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
-		<link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
-	</head>
+<meta charset="utf-8">
+	<meta name="viewport" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Hospital General RP</title>
+		<!--<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />-->
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="shortcut icon" href="images/favicon.png">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="css/normalize.css">
+		<!--<link rel="stylesheet" href="css/responsiveslides.css">-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<!--<script src="js/responsiveslides.min.js"></script>-->
+		<script src="https://kit.fontawesome.com/45f2bb29fa.js" crossorigin="anonymous"></script>
+		  <!--<script>
+		    // You can also use "$(window).load(function() {"
+			    //$(function () {
+			
+			      // Slideshow 1
+			      //$("#slider1").responsiveSlides({
+			        //maxwidth: 1600,
+			        //speed: 600
+			      //});
+			//});
+		  </script>-->
+</head>
 	<body>
-		<!--start-wrap-->
-		
-			<!--start-header-->
-			<div class="header">
-				<div class="wrap">
-				<!--start-logo-->
-				<div class="logo">
-		<a href="index.html" style="font-size: 30px;">Hospital Luz de Vida</a> 
+	<header>
+			<div class="container">
+				 <a href="index.html" style="font-size: 30px; color: white;">Hospital General RP</a>
+				    <nav>
+						 <a href="index.html">Inicio</a>
+						 <a href="contact.php">Contacto</a>					
+				    </nav>
+					<a href="#" class="hamb"><i class="fa-solid fa-bars"></i></a>
+			</div>
+		</header>
+		<section id="contactenos" class="seccion">
+			<iframe width="523" height="403" frameborder="0" src="https://maps.google.com/maps?width=523&amp;height=403&amp;hl=en&amp;q=6%20avenida%205-84%20zona%201%20Chimaltenango+(guatemala)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+			<div class="container-fluid" >
+				<div class="row">
+					<div class="columna columna-41 columna-mobile-100 empujar-58 empujar-mobile-0 sinpadding-mobile">
+						<form action="index.php" method="post">
+							<div class="form-block">
+								<input type="text" name="nombre" class="form-control" placeholder="Nombre">
+							</div>
+							<div class="form-block">
+								<input type="email" name="email" class="form-control" placeholder="usuario@gmail.com">
+							</div>
+							<div class="form-block">
+								<textarea name="mensaje" placeholder="Mensaje"></textarea>
+							</div>
+							<div class="form-block bloque-ultimo">
+								<input type="submit" class="boton boton-negro" value="enviar">
+							</div>
+							<?php
+
+                                // Verifica si el formulario ha sido enviado
+
+                                if(isset($_POST['email'])) {
+
+
+                               // Cambia las próximas dos líneas con tu dirección de email y el asunto del email
+
+                              $email_to = "info@geoffdeep.pw";
+
+                              $email_subject = "Contacto desde el sitio web";
+
+
+                              // Validación de los campos del formulario. En caso de que alguno de los campos no exista, retorna un error.
+
+                              if(!isset($_POST['nombre']) ||
+
+                              !isset($_POST['email']) ||
+
+                              !isset($_POST['mensaje'])) {
+
+
+                              echo "<b>Ocurrió un error y el formulario no ha sido enviado. </b><br />";
+
+                              echo "Por favor, vuelva atrás y verifique la información ingresada<br />";
+
+                              die();
+
+                              }
+
+
+                             // Construcción del mensaje del email
+
+                             $email_message = "Detalles del formulario de contacto:\n\n";
+
+                             $email_message .= "Nombre: " . $_POST['nombre'] . "\n";
+
+                             $email_message .= "E-mail: " . $_POST['email'] . "\n";
+
+                             $email_message .= "mensaje: " . $_POST['mensaje'] . "\n\n";
+
+
+                             // Creación de las cabeceras del email
+
+                             $headers = 'From: '.$email_from."\r\n".
+
+                             'Reply-To: '.$email_from."\r\n" .
+
+                             'X-Mailer: PHP/' . phpversion();
+
+
+                             // Envío del email
+
+                            @mail($email_to, $email_subject, $email_message, $headers);
+
+
+                            // Mensaje de confirmación al usuario
+
+                            echo "¡El formulario se ha enviado con éxito!";
+
+                           }
+
+                          ?>
+						</form>
+					</div>
 				</div>
-				<!--end-logo-->
-				<!--start-top-nav-->
-				<div class="top-nav">
+			</div>
+		</section>
+	</main>
+	<footer class="barra-footer">
+		<div class="container">
+			<div class="row">
+				<div class="columna columna-25 columna-mobile-100">
+				    <a href="index.html" style="font-size: 30px; color: white;" class="logo-footer">Hospital General RP</a>
+				</div>
+			    <div class="columna columna-25 columna-mobile-100">
+					<h3>
+						Datos de contacto
+					</h3>
 					<ul>
-						<li><a href="index.html">Inicio</a></li>
-					
-						<li class="active"><a href="contact.php">Contacto</a></li>
-					</ul>					
-				</div>
-				<div class="clear"> </div>
-				<!--end-top-nav-->
-			</div>
-			<!--end-header-->
-		</div>
-		    <div class="clear"> </div>
-		   <div class="wrap">
-		   	<div class="contact">
-		   	<div class="section group">				
-				<div class="col span_1_of_3">
-					
-      			<div class="company_address">
-				     	<h2>Direccion hospital  :</h2>
-						   		<p>1ra. Calle 6-45 Zona 1, San Jose Pinula</p>
-						   		<p>Guatemala</p>
-				   		<p>Telefono:(+502)6663-6900</p>
-				 	 	<p>Email: <span>grupodecirugia@yahoo.com</span></p>
-				   	
-				   </div>
-				</div>				
-				<div class="col span_2_of_3">
-				  <div class="contact-form">
-				  	<h2>Contacto usuario</h2>
-					    <form name="contactus" method="post">
-					    	<div>
-						    	<span><label>Nombre</label></span>
-						    	<span><input type="text" name="fullname" required="true" value=""></span>
-						    </div>
-						    <div>
-						    	<span><label>E-mail</label></span>
-						    	<span><input type="email" name="emailid" required="ture" value=""></span>
-						    </div>
-						    <div>
-						     	<span><label>Telefono</label></span>
-						    	<span><input type="text" name="mobileno" required="true" value=""></span>
-						    </div>
-						    <div>
-						    	<span><label>Descripsion</label></span>
-						    	<span><textarea name="description" required="true"> </textarea></span>
-						    </div>
-						   <div>
-						   		<span><input type="submit" name="submit" value="Submit"></span>
-						  </div>
-					    </form>
-				    </div>
-  				</div>				
-			  </div>
-			  	 <div class="clear"> </div>
-	</div>
-	<div class="clear"> </div>
-			</div>
-	      <div class="clear"> </div>
-		   <div class="footer">
-		   	 <div class="wrap">
-		   	<div class="footer-left">
-		   			<ul>
-						<li><a href="index.html">Inicio</a></li>
-						
-						<li><a href="contact.php">Contacto</a></li>
+						<li><i class="fa-solid fa-envelope fa-lg" style="color: white;"></i> info@geoffdeep.pw</li>
+
+						<li><i class="fa-solid fa-phone fa-lg" style="color: white;"></i> (+502)48410140</li>
+
+						<li><i class="fa-solid fa-location-dot fa-lg" style="color: white;"></i> Chimaltenango, Guatemala</li>
 					</ul>
-		   	</div>
-		  
-		   	<div class="clear"> </div>
-		   </div>
-		   </div>
-		<!--end-wrap-->
+				</div>
+			</div>
+			
+	    </div>
+	
+				<div class="barra-footer">&copy; Derechos Reservados -2023</div>
+	</footer>
+	    <script src="js/jquery.js"></script>
+	    <script src="js/funciones.js"></script>
 	</body>
 </html>
 
