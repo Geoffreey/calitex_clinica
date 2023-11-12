@@ -1,7 +1,8 @@
 
 <!DOCTYPE HTML>
 <html>
-<meta charset="utf-8">
+<head>
+    <meta charset="utf-8">
 	<meta name="viewport" content="">
 	<meta name="keywords" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +30,7 @@
 		  </script>-->
 </head>
 	<body>
-	<header>
+	    <header>
 			<div class="container">
 				 <a href="index.html" style="font-size: 30px; color: white;">Hospital General RP</a>
 				    <nav>
@@ -39,25 +40,27 @@
 					<a href="#" class="hamb"><i class="fa-solid fa-bars"></i></a>
 			</div>
 		</header>
-		<section id="contactenos" class="seccion">
-			<iframe width="523" height="403" frameborder="0" src="https://maps.google.com/maps?width=523&amp;height=403&amp;hl=en&amp;q=6%20avenida%205-84%20zona%201%20Chimaltenango+(guatemala)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-			<div class="container-fluid" >
-				<div class="row">
-					<div class="columna columna-41 columna-mobile-100 empujar-58 empujar-mobile-0 sinpadding-mobile">
-						<form action="index.php" method="post">
-							<div class="form-block">
-								<input type="text" name="nombre" class="form-control" placeholder="Nombre">
-							</div>
-							<div class="form-block">
-								<input type="email" name="email" class="form-control" placeholder="usuario@gmail.com">
-							</div>
-							<div class="form-block">
-								<textarea name="mensaje" placeholder="Mensaje"></textarea>
-							</div>
-							<div class="form-block bloque-ultimo">
-								<input type="submit" class="boton boton-negro" value="enviar">
-							</div>
-							<?php
+		
+		<main>
+          <section id="contactenos" class="seccion">
+			  <iframe width="523" height="403" frameborder="0" src="https://maps.google.com/maps?width=523&amp;height=403&amp;hl=en&amp;q=6%20avenida%205-84%20zona%201%20Chimaltenango+(guatemala)&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+			  <div class="container-fluid" >
+			      <div class="row">
+					  <div class="columna columna-41 columna-mobile-100 empujar-58 empujar-mobile-0 sinpadding-mobile">
+						  <form action="index.php" method="post">
+							   <div class="form-block">
+								   <input type="text" name="nombre" class="form-control" placeholder="Nombre">
+							    </div>
+							    <div class="form-block">
+								     <input type="email" name="email" class="form-control" placeholder="usuario@gmail.com">
+							    </div>
+							    <div class="form-block">
+								   <textarea name="mensaje" placeholder="Mensaje"></textarea>
+							    </div>
+							    <div class="form-block bloque-ultimo">
+								    <input type="submit" class="boton boton-negro" value="enviar">
+							    </div>
+							  <?php
 
                                 // Verifica si el formulario ha sido enviado
 
@@ -145,14 +148,37 @@
 						<li><i class="fa-solid fa-location-dot fa-lg" style="color: white;"></i> Chimaltenango, Guatemala</li>
 					</ul>
 				</div>
+
+				<div class="columna columna-25 columna-mobile-100">
+					<h3>
+						Redes sociales
+					</h3>
+					<ul class="redes">
+						<li>
+							<a href="https://www.facebook.com/geoffdeep64/">
+								<i class="fa-brands fa-facebook fa-xl"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://wa.link/xj16ys">
+							<i class="fa-brands fa-square-whatsapp fa-xl" style="color: #f7f7f7;"></i>
+							</a>
+						</li>
+						<!--<li>
+							<a href="#">
+								<i class="fa-brands fa-square-instagram fa-xl"></i>
+							</a>
+						</li>-->
+					</ul>
+				</div>
 			</div>
-			
-	    </div>
-	
-				<div class="barra-footer">&copy; Derechos Reservados -2023</div>
+		</div>
+	    <div class="barra-footer">&copy; 
+			Derechos Reservados -2023
+        </div>
 	</footer>
-	    <script src="js/jquery.js"></script>
-	    <script src="js/funciones.js"></script>
-	</body>
+	<script src="js/jquery.js"></script>
+	<script src="js/funciones.js"></script>
+</body>
 </html>
 
