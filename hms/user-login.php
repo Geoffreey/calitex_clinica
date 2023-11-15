@@ -37,7 +37,11 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Inicio de sesion usuario</title>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="">
+	    <meta name="keywords" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		  <title>Inicio de sesion usuario</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -47,14 +51,14 @@ if (isset($_POST['submit'])) {
 		<link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
 		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/plugins.css">
+		<!--<link rel="stylesheet" href="assets/css/plugins.css">-->
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 	</head>
 	<body class="login">
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../index.html"><h2> Calitex | Inisio de secion pacientes</h2></a>
+				<a href="../index.html"><h2> Calitex | Inicio de secion pacientes</h2></a>
 				</div>
 
 				<div class="box-login">

@@ -9426,6 +9426,35 @@ nav.links a {
   display: block;
 }
 
+@media(max-width: 767px){
+  body
+	{
+		font-size: 15px;
+    position: fixed;
+	}
+  .main-login {
+    margin-top: 0;
+    width: 100%;
+    margin-left: 0;
+  }
+  .main-login .box-login {
+    background: rgb(73, 187, 187);;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 15px;
+    margin: 15px 0 65px 0;
+    
+  }
+
+  .main-login .box-forgot{
+    
+  }
+
+  .main-login .box-register{
+    
+  }
+}
+
 /* ---------------------------------------------------------------------- */
 /*  Lock Screen
 /* ---------------------------------------------------------------------- */
