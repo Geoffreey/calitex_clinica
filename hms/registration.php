@@ -88,11 +88,11 @@ return true;
 									Genero
 								</label>
 								<div class="clip-radio radio-primary">
-									<input type="radio" id="rg-female" name="gender" value="female" >
+									<input type="radio" id="rg-female" name="gender" value="femenino" >
 									<label for="rg-female">
 										Femenino
 									</label>
-									<input type="radio" id="rg-male" name="gender" value="male">
+									<input type="radio" id="rg-male" name="gender" value="masculino">
 									<label for="rg-male">
 										Masculino
 									</label>

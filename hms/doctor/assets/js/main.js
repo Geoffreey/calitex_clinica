@@ -443,13 +443,7 @@ var Main = (function () {
   };
 
   //Imprimir
-  function printOut(divId) {
-    var printOutContent = document.getElementById(divId).innerHTML;
-    var originalContent = document.body.innerHTML;
-    document.body.innerHTML = printOutContent;
-    window.print();
-    document.body.innerHTML = originalContent;
-  }
+
   //function to activate the panel tools
   var panelToolsHandler = function () {
     // panel close
