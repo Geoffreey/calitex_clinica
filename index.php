@@ -36,6 +36,7 @@
 					    <a href="index.php" style="font-size: 30px; color: white;">Hospital General RP</a>
 				    <nav>
 						 <a href="index.php">Inicio</a>
+						 <a href="#servicios">Servicios</a>
 						 <a href="#contactenos">Contacto</a>					
 				    </nav>
 					<a href="#" class="hamb"><i class="fa-solid fa-bars"></i></a>
@@ -45,6 +46,15 @@
 			  <section id="inicio">
 				<img src="images/slider-image1.jpg" alt="">
 			  </section>
+
+			  <section id="nosotros" class="seccion">
+			      <div class="container">
+				    <p>
+				       Proporcionamos soporte técnico las 24 horas del día a su infraestructura de TI, para que tu organización pueda operar las 24 horas del día sin fallos.
+			        </p>
+			      </div>
+		      </section>
+
 			  <section id="servicios" class="seccion">
 				<div class="container">
 					<div class="row">

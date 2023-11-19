@@ -249,6 +249,7 @@ footer .redes a
 .columna-33
 {
 	width: 33.33%;
+	padding-top: 15px;
 }
 
 .columna-41
@@ -320,7 +321,7 @@ footer .redes a
 
 #nosotros
 {
-	background-image: url(img/cableado.jpg);
+	background-image: url(images/sliderimage2.png);
 	background-size: cover;
 	color: white;
 	text-align: center;
