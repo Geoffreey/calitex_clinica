@@ -85,7 +85,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/coex.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Consulta externa</h3>
@@ -97,7 +97,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/ginecologia.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Ginecologia</h3>
@@ -109,7 +109,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/pediatria.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Pediatria</h3>
@@ -122,7 +122,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/otorrino.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Otorrinolaringologia</h3>
@@ -135,7 +135,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/cardio.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Cardiologia</h3>
@@ -148,7 +148,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/Odontologia.jpg">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Odontologia</h3>
@@ -161,7 +161,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/Psicología.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Psicologia</h3>
@@ -174,7 +174,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/laboratorio.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Laboratorio</h3>
@@ -187,7 +187,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/grid-img3.jpg">
+									<img src="images/Labrrayosx.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>RayosX</h3>
