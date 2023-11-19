@@ -4,7 +4,7 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
-date_default_timezone_set('Asia/Kolkata');// change according timezone
+date_default_timezone_set('America/Guatemala');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
