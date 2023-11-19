@@ -32,9 +32,9 @@
 	<body>
 	    <header>
 			<div class="container">
-				 <a href="index.html" style="font-size: 30px; color: white;">Hospital General RP</a>
+				 <a href="index.php" style="font-size: 30px; color: white;">Hospital General RP</a>
 				    <nav>
-						 <a href="index.html">Inicio</a>
+						 <a href="index.php">Inicio</a>
 						 <a href="contact.php">Contacto</a>					
 				    </nav>
 					<a href="#" class="hamb"><i class="fa-solid fa-bars"></i></a>
@@ -134,7 +134,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="columna columna-25 columna-mobile-100">
-				    <a href="index.html" style="font-size: 30px; color: white;" class="logo-footer">Hospital General RP</a>
+				    <a href="index.php" style="font-size: 30px; color: white;" class="logo-footer">Hospital General RP</a>
 				</div>
 			    <div class="columna columna-25 columna-mobile-100">
 					<h3>
