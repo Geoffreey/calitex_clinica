@@ -48,7 +48,7 @@
 			  <section id="servicios" class="seccion">
 				<div class="container">
 					<div class="row">
-						<div class="columna columna-33 columna-mobile-100">
+						<!--<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
 									<img src="images/grid-img3.jpg">
@@ -58,8 +58,8 @@
 									<a href="hms/user-login.php" class="boton boton-blanco">Haga click aqui</a>
 								</div>
 							</div>
-						</div>
-						<div class="columna columna-33 columna-mobile-100">
+						</div>-->
+						<!--<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 							   <div class="bloque-img-servicio cuadrado-perfecto">
 									<img src="images/grid-img1.png">
@@ -69,8 +69,8 @@
 									 <a href="hms/doctor/" class="boton boton-blanco">Haga click aqui</a>
 								</div>
 							</div>
-						</div>
-						<div class="columna columna-33 columna-mobile-100">
+						</div>-->
+						<!--<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
 									<img src="images/grid-img2.png">
@@ -80,7 +80,122 @@
 									<a href="hms/admin" class="boton boton-blanco">Haga click aqui</a>
 								</div>
 							</div>
+						</div>-->
+						<!--Iniicio servicio Coex-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Consulta externa</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
 						</div>
+                    <!--Iniicio servicio ginocologia-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Ginecologia</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+                     <!--Iniicio servicio pediatria-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Pediatria</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
+						<!--Iniicio servicio otorrino-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Otorrinolaringologia</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
+						<!--Iniicio servicio cardiologia-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Cardiologia</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
+						<!--Iniicio servicio otorrino-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Odontologia</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
+						<!--Iniicio servicio Psicologia-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Psicologia</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
+						<!--Iniicio servicio laboratorio-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>Laboratorio</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
+						<!--Iniicio servicio Rayos X-->
+						<div class="columna columna-33 columna-mobile-100">
+							<div class="bloque-servicio">
+								<div class="bloque-img-servicio cuadrado-perfecto">
+									<img src="images/grid-img3.jpg">
+								</div>
+								<div class="bloque-contenido-servicio">
+									<h3>RayosX</h3>
+									<a href="hms/user-login.php" class="boton boton-blanco">Agendar cita</a>
+								</div>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</section>
