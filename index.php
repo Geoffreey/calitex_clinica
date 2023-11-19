@@ -36,21 +36,32 @@
 					    <a href="index.php" style="font-size: 30px; color: white;">Hospital General RP</a>
 				    <nav>
 						 <a href="index.php">Inicio</a>
+						 <a href="#nosotros">Nosotros</a>
 						 <a href="#servicios">Servicios</a>
-						 <a href="#contactenos">Contacto</a>					
+						 <a href="#contactenos">Contacto</a>
+						 <a href="hms/user-login.php">Portal pacientes</a>					
 				    </nav>
 					<a href="#" class="hamb"><i class="fa-solid fa-bars"></i></a>
 			</div>
 		</header>
 		<main>
 			  <section id="inicio">
-				<img src="images/slider-image1.jpg" alt="">
+				<img src="images/hospital.jpg" alt="">
+				<div class="bloque-inicio">
+				<h1>Cuando los segundos cuentan..</h1>
+				<p>
+				Hospital RP siempre a tu lado.
+				</p>
+				<a href="#nosotros"  class="boton boton-blanco">Ver más</a>
+			</div>
 			  </section>
 
 			  <section id="nosotros" class="seccion">
 			      <div class="container">
 				    <p>
-				       Proporcionamos soporte técnico las 24 horas del día a su infraestructura de TI, para que tu organización pueda operar las 24 horas del día sin fallos.
+					Somos el Grupo Médico de mayor crecimiento y expansión en Guatemala gracias a que hemos sabido empatizar con nuestros pacientes. 
+					Entendemos que los segundos cuentan cuando tu familia necesita a un especialista de Alto Nivel e instalaciones de gran tecnología, pero sobre todo de calidez humana. 
+					Hemos instalado un Hospital de manera estratégica para estar siempre al alcance de ti y tu familia.
 			        </p>
 			      </div>
 		      </section>
