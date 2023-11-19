@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
 </ol>
 </div>
 </section>
-<div class="container-fluid container-fullw bg-white">
+<div class="container-fluid container-fullw bg-white" id="printIt">
 <div class="row">
 <div class="col-md-12">
 <h5 class="over-title margin-bottom-15"> Paciente <span class="text-bold"> Historial medico</span></h5>
@@ -165,6 +165,9 @@ while ($row = mysqli_fetch_array($ret)) {
 </div>
 </div>
 </div>
+<p align="center">
+	<button class="btn btn-primary waves-effect waves-light w-lg" onClick="printOut('printIt')">Imprimir</button>
+  </p>
 </div>
 </div>
 </div>

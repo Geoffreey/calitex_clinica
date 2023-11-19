@@ -130,7 +130,7 @@ if(isset($_POST['submit']))
                                 $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'");
                                ?>
                   
-                  <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                            <tr align="center">
                              <th colspan="13" >Historial medico</th> 
                           </tr>
@@ -168,12 +168,7 @@ if(isset($_POST['submit']))
                            <?php $cnt=$cnt+1;} ?>
                       </table>
                   
-                      
-
-                   <p align="center">                            
-                     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar historial medico</button>
-                     <button class="btn btn-primary waves-effect waves-light w-lg" onClick="printOut('printIt')">Imprimir</button>
-                  </p>
+                      <!--Aca van los botones de agregar historial medico e imprimir-->
                       <?php  ?>
                       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
@@ -266,6 +261,10 @@ if(isset($_POST['submit']))
        </div>
     </div>
   </div>
+                   <p align="center">                            
+                     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar historial medico</button>
+                     <button class="btn btn-primary waves-effect waves-light w-lg" onClick="printOut('printIt')">Imprimir</button>
+                   </p>
 </div>
 			<!-- start: FOOTER -->
 	<?php include('include/footer.php');?>

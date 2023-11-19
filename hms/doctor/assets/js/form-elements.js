@@ -119,7 +119,7 @@ var FormElements = (function () {
   };
 })();
 
-// impromir
+// Funcion impromir historial medico
 function printOut(divId) {
   var printOutContent = document.getElementById(divId).innerHTML;
   var originalContent = document.body.innerHTML;
