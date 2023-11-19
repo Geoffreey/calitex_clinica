@@ -16,7 +16,7 @@ if (isset($_GET['Finalizada'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Usuario | Historial de citas</title>
 

@@ -20,7 +20,7 @@ echo "<script>alert('Doctor Details updated Successfully');</script>";
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Medico | Editar detalles del doctor</title>
 		

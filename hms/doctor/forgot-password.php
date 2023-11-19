@@ -25,7 +25,7 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Recuperacion de contraseña</title>
 		

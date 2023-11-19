@@ -37,7 +37,7 @@ exit();
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Iniciar sesion medico</title>
 		

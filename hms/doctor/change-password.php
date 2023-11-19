@@ -22,7 +22,7 @@ $_SESSION['msg1']="¡La contraseña antigua no coincide!";
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Medico  | Cambiar la contraseña</title>
 		

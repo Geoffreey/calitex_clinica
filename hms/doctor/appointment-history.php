@@ -16,7 +16,7 @@ if (isset($_GET['Terminada'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Medico | Historial de citas</title>
 		

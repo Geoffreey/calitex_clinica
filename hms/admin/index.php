@@ -30,7 +30,7 @@ exit();
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Inicio de sesion de admin</title>
 		<meta charset="utf-8" />

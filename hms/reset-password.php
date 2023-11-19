@@ -19,7 +19,7 @@ if (isset($_POST['change'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Reestablecer contraseña</title>
 

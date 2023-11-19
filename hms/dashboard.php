@@ -7,7 +7,7 @@ check_login();
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Usuario  | Consola</title>
 

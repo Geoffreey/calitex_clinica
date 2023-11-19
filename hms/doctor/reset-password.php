@@ -21,7 +21,7 @@ echo "<script>window.location.href ='index.php'</script>";
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Reestableser contraseña</title>
 		

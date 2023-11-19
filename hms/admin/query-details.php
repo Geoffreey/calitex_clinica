@@ -18,7 +18,7 @@ if (isset($_POST['update'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Admin | Detalles de consulta</title>
 

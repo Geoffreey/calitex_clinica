@@ -11,7 +11,7 @@ if (isset($_GET['del'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<title>Admin | Administrar consultas de lectura</title>
 
