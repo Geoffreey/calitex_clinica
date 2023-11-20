@@ -52,6 +52,7 @@
 html, body {
   height: 100%;
   width: 100%;
+  background: #ffffff;
 }
 
 html {
@@ -67,7 +68,7 @@ body {
   font-size: 13px;
   padding: 0;
   margin: 0;
-  background: #f7f7f8;
+  background: #ffffff;
   -webkit-font-smoothing: antialiased !important;
 }
 body.bg_style_1 {
@@ -9426,11 +9427,12 @@ nav.links a {
   display: block;
 }
 
-@media(max-width: 767px){
+/*@media(max-width: 767px){
   body
 	{
 		font-size: 15px;
     position: fixed;
+    background-color: #006f95;
 	}
   .main-login {
     margin-top: 0;
@@ -9438,22 +9440,17 @@ nav.links a {
     margin-left: 0;
   }
   .main-login .box-login {
-    background: rgb(73, 187, 187);;
+    background: rgb(73, 187, 187);
     border-radius: 5px;
     overflow: hidden;
     padding: 15px;
     margin: 15px 0 65px 0;
     
   }
-
-  .main-login .box-forgot{
-    
+  .fieldset {
+    background-color: #006f95;
   }
-
-  .main-login .box-register{
-    
-  }
-}
+}*/
 
 /* ---------------------------------------------------------------------- */
 /*  Lock Screen

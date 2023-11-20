@@ -39,6 +39,10 @@ exit();
 <!DOCTYPE html>
 <html lang="es">
 	<head>
+	<meta charset="utf-8">
+	    <meta name="viewport" content="">
+	    <meta name="keywords" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Iniciar sesion medico</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
@@ -49,7 +53,7 @@ exit();
 		<link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
 		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/plugins.css">
+		<!--<link rel="stylesheet" href="assets/css/plugins.css">-->
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 	</head>
 	<body class="login">

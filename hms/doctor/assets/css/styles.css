@@ -465,17 +465,30 @@ h5.over-title {
     height: auto !important;
   }
 }
-@media (max-width: 767px) {
-  .navbar .navbar-collapse {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    overflow: hidden !important;
+/*@media(max-width: 767px){
+  body
+	{
+		font-size: 15px;
+    position: fixed;
+	}
+  .main-login {
+    margin-top: 0;
+    width: 100%;
+    margin-left: 0;
   }
-  .navbar .navbar-collapse .nav {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  .main-login .box-login {
+    background: rgb(73, 187, 187);
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 15px;
+    margin: 15px 0 65px 0;
+    
   }
-}
+  .fieldset {
+    background-color: #006f95;
+  }
+
+}*/
 .navbar .navbar-collapse.in {
   overflow-y: visible;
 }
