@@ -113,6 +113,66 @@ CREATE TABLE `doctorspecilization` (
 
 insert  into `doctorspecilization`(`id`,`specilization`,`creationDate`,`updationDate`) values (1,'Gynecologist/Obstetrician','2016-12-28 01:37:25','0000-00-00 00:00:00'),(2,'General Physician','2016-12-28 01:38:12','0000-00-00 00:00:00'),(3,'Dermatologist','2016-12-28 01:38:48','0000-00-00 00:00:00'),(4,'Homeopath','2016-12-28 01:39:26','0000-00-00 00:00:00'),(5,'Ayurveda','2016-12-28 01:39:51','0000-00-00 00:00:00'),(6,'Dentist','2016-12-28 01:40:08','0000-00-00 00:00:00'),(7,'Ear-Nose-Throat (Ent) Specialist','2016-12-28 01:41:18','0000-00-00 00:00:00'),(9,'Demo test','2016-12-28 02:37:39','0000-00-00 00:00:00'),(10,'Bones Specialist demo','2017-01-07 03:07:53','0000-00-00 00:00:00'),(11,'Test','2019-06-23 12:51:06','2019-06-23 12:55:06'),(12,'Dermatologist','2019-11-10 13:36:36','2019-11-10 13:36:50');
 
+/* Etructora de tabla tecnico de laboratorio*/
+DROP TABLE IF EXISTS `tecnico_lab`;
+
+CREATE TABLE `tecnico_lab` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tecnicoName` varchar(255) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
+  `labFees` varchar(255) DEFAULT NULL,
+  `contactno` bigint(11) DEFAULT NULL,
+  `labEmail` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Datos de inicio de sesion tecnicos de laboratorio*/
+DROP TABLE IF EXISTS `labslog`;
+
+CREATE TABLE `labslog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `userip` binary(16) DEFAULT NULL,
+  `loginTime` timestamp NULL DEFAULT current_timestamp(),
+  `logout` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+/*Estructura de Tecnico de rayos X*/
+DROP TABLE IF EXISTS `tecnico_lab`;
+
+CREATE TABLE `tecnico_rx` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tecnicoName` varchar(255) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
+  `rxFees` varchar(255) DEFAULT NULL,
+  `contactno` bigint(11) DEFAULT NULL,
+  `rxEmail` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Datos de inicio de sesion tecnicos de rayos X*/
+DROP TABLE IF EXISTS `rxlog`;
+
+CREATE TABLE `rxlog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `userip` binary(16) DEFAULT NULL,
+  `loginTime` timestamp NULL DEFAULT current_timestamp(),
+  `logout` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
 /*Table structure for table `tblcontactus` */
 
 DROP TABLE IF EXISTS `tblcontactus`;

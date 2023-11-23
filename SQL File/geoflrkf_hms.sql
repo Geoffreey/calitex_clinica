@@ -177,6 +177,70 @@ INSERT INTO `doctorspecilization` (`id`, `specilization`, `creationDate`, `updat
 (25, 'loboratorio', '2023-11-09 02:50:06', NULL),
 (26, 'RayosX', '2023-11-09 02:50:12', NULL);
 
+
+-- --------------------------------------------------------
+
+--
+
+/* Etructora de tabla tecnico de laboratorio*/
+DROP TABLE IF EXISTS `tecnico_lab`;
+
+CREATE TABLE `tecnico_lab` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tecnicoName` varchar(255) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
+  `labFees` varchar(255) DEFAULT NULL,
+  `contactno` bigint(11) DEFAULT NULL,
+  `labEmail` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Datos de inicio de sesion tecnicos de laboratorio*/
+DROP TABLE IF EXISTS `labslog`;
+
+CREATE TABLE `labslog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `userip` binary(16) DEFAULT NULL,
+  `loginTime` timestamp NULL DEFAULT current_timestamp(),
+  `logout` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+
+/*Estructura de Tecnico de rayos X*/
+DROP TABLE IF EXISTS `tecnico_lab`;
+
+CREATE TABLE `tecnico_rx` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tecnicoName` varchar(255) DEFAULT NULL,
+  `address` longtext DEFAULT NULL,
+  `rxFees` varchar(255) DEFAULT NULL,
+  `contactno` bigint(11) DEFAULT NULL,
+  `rxEmail` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Datos de inicio de sesion tecnicos de rayos X*/
+DROP TABLE IF EXISTS `rxlog`;
+
+CREATE TABLE `rxlog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `userip` binary(16) DEFAULT NULL,
+  `loginTime` timestamp NULL DEFAULT current_timestamp(),
+  `logout` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 
 --
