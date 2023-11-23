@@ -199,9 +199,9 @@ CREATE TABLE `tecnico_lab` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Datos de inicio de sesion tecnicos de laboratorio*/
-DROP TABLE IF EXISTS `labslog`;
+DROP TABLE IF EXISTS `lablog`;
 
-CREATE TABLE `labslog` (
+CREATE TABLE `lablog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
@@ -315,6 +315,8 @@ CREATE TABLE `tblpatient` (
   `ID` int(10) NOT NULL,
   `PatientAdmision` varchar(200) DEFAULT NULL,
   `Docid` int(10) DEFAULT NULL,
+  `labid` int(10) DEFAULT NULL,
+  `rxid` int(10) DEFAULT NULL,
   `PatientName` varchar(200) DEFAULT NULL,
   `FechaNac` date DEFAULT NULL,
   `PatientContno` bigint(10) DEFAULT NULL,

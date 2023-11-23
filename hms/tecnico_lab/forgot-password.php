@@ -5,16 +5,16 @@ include("include/config.php");
 //Checking Details for reset password
 if(isset($_POST['submit'])){
 $contactno=$_POST['contactno'];
-$email=$_POST['email'];
-$query=mysqli_query($con,"select id from  doctors where contactno='$contactno' and docEmail='$email'");
+$labemail=$_POST['labEmail'];
+$query=mysqli_query($con,"select id from  tecnico_lab where contactno='$contactno' and labEmail='$labemail'");
 $row=mysqli_num_rows($query);
 if($row>0){
 
 $_SESSION['cnumber']=$contactno;
-$_SESSION['email']=$email;
+$_SESSION['email']=$labemail;
 header('location:reset-password.php');
 } else {
-echo "<script>alert('Invalid details. Please try with valid details');</script>";
+echo "<script>alert('Detalles no válidos. Por favor, pruebe con datos válidos');</script>";
 echo "<script>window.location.href ='forgot-password.php'</script>";
 
 
@@ -44,14 +44,14 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../../index.php"><h2> CaliTex | Recuperacion de contraseña del médico</h2></a>
+				<a href="../../index.php"><h2> CaliTex | Recuperacion de contraseña del tecncio</h2></a>
 				</div>
 
 				<div class="box-login">
 					<form class="form-login" method="post">
 						<fieldset>
 							<legend>
-							Recuperacion de contraseña  del medico
+							Recuperacion de contraseña  del tecnico
 							</legend>
 							<p>
 							Por favor ingrese su correo electrónico para recuperar su contraseña.<br />

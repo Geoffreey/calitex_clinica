@@ -18,7 +18,7 @@ if (isset($_GET['Terminada'])) {
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Medico | Historial de citas</title>
+		<title>Laboratorio | Historial de citas</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -49,11 +49,11 @@ if (isset($_GET['Terminada'])) {
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Medico  | Historial de citas</h1>
+									<h1 class="mainTitle">Laboratorio  | Historial de citas</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Medico</span>
+										<span>Laboratorio</span>
 									</li>
 									<li class="active">
 										<span>Historial de citas</span>

@@ -8,11 +8,11 @@ date_default_timezone_set('America/Guatemala');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
-$sql=mysqli_query($con,"SELECT password FROM  doctors where password='".md5($_POST['cpass'])."' && id='".$_SESSION['id']."'");
+$sql=mysqli_query($con,"SELECT password FROM  tecnico_lab where password='".md5($_POST['cpass'])."' && id='".$_SESSION['id']."'");
 $num=mysqli_fetch_array($sql);
 if($num>0)
 {
- $con=mysqli_query($con,"update doctors set password='".md5($_POST['npass'])."', updationDate='$currentTime' where id='".$_SESSION['id']."'");
+ $con=mysqli_query($con,"update tecnico_lab set password='".md5($_POST['npass'])."', updationDate='$currentTime' where id='".$_SESSION['id']."'");
 $_SESSION['msg1']="Se modifico la contraseña con exito!! !!";
 }
 else
@@ -24,7 +24,7 @@ $_SESSION['msg1']="¡La contraseña antigua no coincide!";
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Medico  | Cambiar la contraseña</title>
+		<title>Laboratorio  | Cambiar la contraseña</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -86,11 +86,11 @@ return true;
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Medico | Cambiar la contraseña</h1>
+									<h1 class="mainTitle">Laboratorio | Cambiar la contraseña</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Medico</span>
+										<span>Laboratorio</span>
 									</li>
 									<li class="active">
 										<span>cambiar la contraseña</span>

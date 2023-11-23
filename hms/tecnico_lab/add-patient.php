@@ -7,7 +7,7 @@ check_login();
 
 if(isset($_POST['submit']))
 {	
-	$docid = $_SESSION['id'];
+	$labid = $_SESSION['id'];
     $patadmi = $_POST['patadmi'];
 	$patname = $_POST['patname'];
     $fena = $_POST['fena'];
@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
     $pataddress = $_POST['pataddress'];
     $patage = $_POST['patage'];
     $medhis = $_POST['medhis'];
-    $sql = mysqli_query($con,"insert into tblpatient(Docid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
+    $sql = mysqli_query($con,"insert into tblpatient(labid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
     if ($sql)
     {
     echo "<script>alert('Informacion del paciente agregada correctamente');</script>";
@@ -29,7 +29,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Medico | Agregar paciente</title>
+		<title>Laboratorio | Agregar paciente</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
