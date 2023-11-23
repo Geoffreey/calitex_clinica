@@ -60,14 +60,14 @@ if (isset($_POST['submit'])) {
 <section id="page-title">
 <div class="row">
 <div class="col-sm-10">
-<h1 class="mainTitle">Paciente | Historial medico</h1>
+<h1 class="mainTitle">Paciente | Resultados</h1>
 </div>
 <ol class="breadcrumb">
 <li>
 <span>Paciente</span>
 </li>
 <li class="active">
-<span>Historial medico</span>
+<span>Resultados</span>
 </li>
 </ol>
 </div>
@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
 <div class="container-fluid container-fullw bg-white" id="printIt">
 <div class="row">
 <div class="col-md-12">
-<h5 class="over-title margin-bottom-15"> Paciente <span class="text-bold"> Historial medico</span></h5>
+<h5 class="over-title margin-bottom-15"> Paciente <span class="text-bold"> Resultados</span></h5>
 <?php
 $vid = $_GET['viewid'];
 $ret = mysqli_query($con, "select * from tblpatient where ID='$vid'");

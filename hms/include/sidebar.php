@@ -45,7 +45,7 @@
 									</div>
 								</a>
 							</li>
-<li>
+                            <li>
 								<a href="manage-medhistory.php">
 									<div class="item-content">
 										<div class="item-media">
@@ -53,6 +53,19 @@
 										</div>
 										<div class="item-inner">
 											<span class="title"> Historial medico </span>
+										</div>
+									</div>
+								</a>
+							</li>
+
+							<li>
+								<a href="manage-medhistory.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-list"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Resultados </span>
 										</div>
 									</div>
 								</a>

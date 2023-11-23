@@ -84,7 +84,7 @@ while ($row = mysqli_fetch_array($ret)) {
     ?>
 <table border="1" class="table table-bordered">
  <tr align="center">
-<td colspan="5" style="font-size:20px;color:blue">Patient Details</td></tr>
+<td colspan="5" style="font-size:20px;color:blue">Datos del paciente</td></tr>
 
     <tr>
 	   <th scope>No. Admision</th>
@@ -111,7 +111,7 @@ while ($row = mysqli_fetch_array($ret)) {
        <td><?php echo $row['PatientAge']; ?></td>
     </tr>
     <tr>
-       <th>historial medioc del paciente(si corresponde)</th>
+       <th>Motivo de ingreso</th>
        <td><?php echo $row['PatientMedhis']; ?></td>
        <th>fecha de registro del paciente</th>
        <td><?php echo $row['CreationDate']; ?></td>
