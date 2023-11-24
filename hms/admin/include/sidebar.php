@@ -58,42 +58,6 @@
 								</ul>
 							</li>
 
-							<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-										<i class="ti-ruler-pencil"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title">laboratorio</span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
-									<!--<li>
-										<a href="doctor-specilization.php">
-											<span class="title">Tipo de laboratorio</span>
-										</a>
-									</li>-->
-									<li>
-										<a href="add_tecnicolab.php">
-											<span class="title">Agregar tecnico</span>
-										</a>
-									</li>
-									<li>
-										<a href="manage-laboratorio.php">
-											<span class="title">Admin laboratorio</span>
-										</a>
-									</li>
-									<li>
-										<a href="resultados.php">
-											<span class="title">Resultados</span>
-										</a>
-									</li>
-
-								</ul>
-							</li>
-
 				                <li>
 								    <a href="javascript:void(0)">
 									<div class="item-content">
@@ -136,7 +100,42 @@
 
 								</ul>
 								</li>
+								<li>
+								<a href="javascript:void(0)">
+									<div class="item-content">
+										<div class="item-media">
+										<i class="ti-ruler-pencil"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title">laboratorio</span><i class="icon-arrow"></i>
+										</div>
+									</div>
+								</a>
+								<ul class="sub-menu">
+									<!--<li>
+										<a href="doctor-specilization.php">
+											<span class="title">Tipo de laboratorio</span>
+										</a>
+									</li>-->
+									<li>
+										<a href="add_tecnicolab.php">
+											<span class="title">Agregar tecnico</span>
+										</a>
+									</li>
+									<li>
+										<a href="manage-laboratorio.php">
+											<span class="title">Admin laboratorio</span>
+										</a>
+									</li>
+									<li>
+										<a href="resultados.php">
+											<span class="title">Resultados</span>
+										</a>
+									</li>
 
+								</ul>
+							</li>
+							
                                 <li>
 								  <a href="appointment-history.php">
 									  <div class="item-content">
