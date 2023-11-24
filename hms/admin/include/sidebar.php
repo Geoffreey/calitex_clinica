@@ -49,10 +49,41 @@
 									</li>
 
 								</ul>
-								</li>
+							</li>
 
-				<li>
+							<li>
 								<a href="javascript:void(0)">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-user"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title">laboratorio</span><i class="icon-arrow"></i>
+										</div>
+									</div>
+								</a>
+								<ul class="sub-menu">
+									<!--<li>
+										<a href="doctor-specilization.php">
+											<span class="title">Tipo de laboratorio</span>
+										</a>
+									</li>-->
+									<li>
+										<a href="add-tecnicolab.php">
+											<span class="title">Agregar tecnico</span>
+										</a>
+									</li>
+									<li>
+										<a href="manage-laboratorio.php">
+											<span class="title">Admin laboratorio</span>
+										</a>
+									</li>
+
+								</ul>
+							</li>
+
+				                <li>
+								    <a href="javascript:void(0)">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-user"></i>
@@ -94,63 +125,62 @@
 								</ul>
 								</li>
 
-<li>
-								<a href="appointment-history.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-file"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title">Historial citas</span>
-										</div>
-									</div>
-								</a>
-							</li>
+                                <li>
+								  <a href="appointment-history.php">
+									  <div class="item-content">
+										  <div class="item-media">
+											  <i class="ti-file"></i>
+										  </div>
+										   <div class="item-inner">
+											    <span class="title">Historial citas</span>
+										   </div>
+									  </div>
+								   </a>
+							    </li>
 
 
 
-				<li>
-								<a href="javascript:void(0)">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-files"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title">Consultas por contacto</span><i class="icon-arrow"></i>
-										</div>
-									</div>
-								</a>
-								<ul class="sub-menu">
+				                <li>
+								   <a href="javascript:void(0)">
+									   <div class="item-content">
+										   <div class="item-media">
+											   <i class="ti-files"></i>
+										   </div>
+										   <div class="item-inner">
+											     <span class="title">Consultas por contacto</span><i class="icon-arrow"></i>
+										   </div>
+									   </div>
+								   </a>
+								    <ul class="sub-menu">
 
-									<li>
-										<a href="unread-queries.php">
-											<span class="title">Consulta no leida</span>
-										</a>
-									</li>
+    									  <li>
+										     <a href="unread-queries.php">
+											   <span class="title">Consulta no leida</span>
+										     </a>
+									      </li>
 
-									<li>
-										<a href="read-query.php">
-											<span class="title">Leer consulta</span>
-										</a>
-									</li>
-
-								</ul>
+                                          <li>
+										      <a href="read-query.php">
+											     <span class="title">Leer consulta</span>
+										      </a>
+									      </li>
+								    </ul>
 								</li>
 
 
 
-	<li>
-								<a href="doctor-logs.php">
-									<div class="item-content">
-										<div class="item-media">
-											<i class="ti-list"></i>
-										</div>
-										<div class="item-inner">
-											<span class="title">Reg. sesiones medicos</span>
-										</div>
-									</div>
-								</a>
-							</li>
+	                           <li>
+								  <a href="doctor-logs.php">
+									 <div class="item-content">
+										  <div class="item-media">
+											  <i class="ti-list"></i>
+										  </div>
+										  <div class="item-inner">
+											  <span class="title">Reg. sesiones medicos</span>
+										  </div>
+									 </div>
+								  </a>
+							  </li>
 
 
 

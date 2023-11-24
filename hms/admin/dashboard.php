@@ -67,10 +67,10 @@ check_login();
 											<p class="links cl-effect-1">
 												<a href="manage-users.php">
 												<?php $result = mysqli_query($con, "SELECT * FROM users ");
-$num_rows                 = mysqli_num_rows($result);
-{
-    ?>
-											Total de usuarios :<?php echo htmlentities($num_rows);} ?>
+                                                   $num_rows                 = mysqli_num_rows($result);
+                                                     {
+                                                     ?>
+											          Total de usuarios :<?php echo htmlentities($num_rows);} ?>
 												</a>
 											</p>
 										</div>
@@ -89,6 +89,26 @@ $num_rows                 = mysqli_num_rows($result);
                                                      {
                                                     ?>
 											            Total de medicos :<?php echo htmlentities($num_rows1);} ?>
+												</a>
+
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-4">
+									<div class="panel panel-white no-radius text-center">
+										<div class="panel-body">
+											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
+											<h2 class="StepTitle">Administrador de laboratorio</h2>
+
+											<p class="cl-effect-1">
+												<a href="manage-laboratorio.php">
+												<?php $result1 = mysqli_query($con, "SELECT * FROM tecnico_lab ");
+                                                    $num_rows1                 = mysqli_num_rows($result1);
+                                                     {
+                                                    ?>
+											            Total de tecnicos de laboratorio :<?php echo htmlentities($num_rows1);} ?>
 												</a>
 
 											</p>
