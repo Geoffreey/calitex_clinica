@@ -1,3 +1,10 @@
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
+    </head><script src="https://kit.fontawesome.com/45f2bb29fa.js" crossorigin="anonymous"></script>
+</head>
+
 <div class="sidebar app-aside" id="sidebar">
 				<div class="sidebar-container perfect-scrollbar">
 
@@ -55,7 +62,7 @@
 								<a href="javascript:void(0)">
 									<div class="item-content">
 										<div class="item-media">
-											<i class="ti-user"></i>
+										<i class="ti-ruler-pencil"></i>
 										</div>
 										<div class="item-inner">
 											<span class="title">laboratorio</span><i class="icon-arrow"></i>

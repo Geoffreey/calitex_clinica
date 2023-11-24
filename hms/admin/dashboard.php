@@ -11,7 +11,6 @@ check_login();
 	<head>
 		<title>Admin  | Consola</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -25,6 +24,7 @@ check_login();
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<script src="https://kit.fontawesome.com/45f2bb29fa.js" crossorigin="anonymous"></script>
 
 
 	</head>
@@ -99,7 +99,7 @@ check_login();
 								<div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
+											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-flask-vial fa-stack-1x fa-inverse"></i> </span>
 											<h2 class="StepTitle">Administrador de laboratorio</h2>
 
 											<p class="cl-effect-1">
