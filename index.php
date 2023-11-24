@@ -182,7 +182,7 @@
 						<div class="columna columna-33 columna-mobile-100">
 							<div class="bloque-servicio">
 								<div class="bloque-img-servicio cuadrado-perfecto">
-									<img src="images/Psicología.png">
+									<img src="images/psicologia.png">
 								</div>
 								<div class="bloque-contenido-servicio">
 									<h3>Psicologia</h3>
