@@ -213,7 +213,7 @@ CREATE TABLE `lablog` (
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 /*Estructura de Tecnico de rayos X*/
-DROP TABLE IF EXISTS `tecnico_lab`;
+DROP TABLE IF EXISTS `tecnico_rx`;
 
 CREATE TABLE `tecnico_rx` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
