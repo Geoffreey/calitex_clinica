@@ -42,10 +42,10 @@ if (isset($_POST['submit'])) {
 <script type="text/javascript">
 function valid()
 {
- if(document.adddoc.npass.value!= document.adddoc.cfpass.value)
+ if(document.addtec.npass.value!= document.addtec.cfpass.value)
 {
 alert("Password and Confirm Password Field do not match  !!");
-document.adddoc.cfpass.focus();
+document.addtec.cfpass.focus();
 return false;
 }
 return true;
