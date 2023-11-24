@@ -69,7 +69,7 @@
 										</a>
 									</li>-->
 									<li>
-										<a href="add-tecnicolab.php">
+										<a href="add_tecnicolab.php">
 											<span class="title">Agregar tecnico</span>
 										</a>
 									</li>

@@ -8,11 +8,10 @@ check_login();
 if (isset($_POST['submit'])) {
     $tecnicoName           = $_POST['tecnicoName'];
     $labaddress        = $_POST['address'];
-    $labfees           = $_POST['labFees'];
     $contactno      = $_POST['contact'];
     $labemail          = $_POST['labEmail'];
     $password          = md5($_POST['npass']);
-    $sql               = mysqli_query($con, "insert into tecnico_lab(tecnicoName,address,labFees,contactno,labEmail,password) values('$tecnicoName','$labaddress','$labfees','$contactno','$labemail','$password')");
+    $sql               = mysqli_query($con, "insert into tecnico_lab(tecnicoName,address,contactno,labEmail,password) values('$tecnicoName','$labaddress','$contactno','$labemail','$password')");
     if ($sql) {
         echo "<script>alert('Información del médico agregada con éxito');</script>";
         echo "<script>window.location.href ='manage-doctors.php'</script>";
@@ -142,12 +141,12 @@ error:function (){}
 					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
 														</div>
 
-                                                        <div class="form-group">
+                                                        <!--<div class="form-group">
 															<label for="labfess">
 																 Honorarios de consulta
 															</label>
 					                                        <input type="text" name="labfees" class="form-control"  placeholder="Enter Doctor Consultancy Fees" required="true">
-														</div>
+														</div>-->
 
                                                         <div class="form-group">
 									                        <label for="contactno">
