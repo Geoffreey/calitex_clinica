@@ -245,12 +245,57 @@ CREATE TABLE `rxlog` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Laboratorios`
+-- Estructura de tabla para la tabla `Tipos de Laboratorios`
 --
 
 CREATE TABLE `tiposlab` (
   `id` int(11) NOT NULL,
   `Tipo` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Laboratorios`
+--
+
+CREATE TABLE `laboratorios` (
+  `id` int(11) NOT NULL,
+  `Tipo` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `codigo` varchar(255) DEFAULT NULL,
+  `labFees` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Grupos rayos X`
+--
+
+CREATE TABLE `gruporx` (
+  `id` int(11) NOT NULL,
+  `grupo` varchar(255) DEFAULT NULL,
+  `creationDate` timestamp NULL DEFAULT current_timestamp(),
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `Examen Rayos X`
+--
+
+CREATE TABLE `exrx` (
+  `id` int(11) NOT NULL,
+  `grupo` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `codigo` varchar(255) DEFAULT NULL,
+  `rxFees` varchar(255) DEFAULT NULL,
   `creationDate` timestamp NULL DEFAULT current_timestamp(),
   `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
