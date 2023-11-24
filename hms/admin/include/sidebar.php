@@ -78,6 +78,11 @@
 											<span class="title">Admin laboratorio</span>
 										</a>
 									</li>
+									<li>
+										<a href="resultados.php">
+											<span class="title">Resultados</span>
+										</a>
+									</li>
 
 								</ul>
 							</li>
