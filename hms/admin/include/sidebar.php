@@ -140,7 +140,7 @@
 								    <a href="javascript:void(0)">
 									   <div class="item-content">
 										    <div class="item-media">
-										       <i class="ti-ruler-pencil"></i>
+										       <i class="ti-target"></i>
 										    </div>
 										    <div class="item-inner">
 											     <span class="title">Rayos X</span><i class="icon-arrow"></i>
