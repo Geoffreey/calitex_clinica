@@ -7,18 +7,11 @@ check_login();
 if (isset($_POST['submit'])) {
 
     $vid    = $_GET['viewid'];
-    $bp     = $_POST['bp'];
-    $bs     = $_POST['bs'];
-    $weight = $_POST['weight'];
-    $temp   = $_POST['temp'];
-	$exf = $_POST['exf'];
-    $pres   = $_POST['pres'];
-	$ord   = $_POST['ord'];
-	$evo   = $_POST['evo'];
-	$lab = $_POST['lab'];
-    $rayx = $_POST['rayx'];
+    $tipo    = $_POST['tipo'];
+    $nombre     = $_POST['nombre'];
+    $archivo = $_resultados['archivo'];
 
-    $query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,ExamenFisico,MedicalPres,OrdenesMedicas,Evolucion,Laboratorio,RayosX)value('$vid','$bp','$bs','$weight','$temp','$exf','$pres','$ord','$evo','$lab','$rayx')");
+    $query .= mysqli_query($con, "insert   tbldocumento(PatientID,tipo,nombre,archivo)value('$vid','$tipo ','$nombre','$archivo')");
     if ($query) {
         echo '<script>alert("Medicle history has been added.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
@@ -32,7 +25,7 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Usuario | Historial medico</title>
+		<title>Usuario | Resultados lborarotio</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -111,7 +104,7 @@ while ($row = mysqli_fetch_array($ret)) {
        <td><?php echo $row['PatientAge']; ?></td>
     </tr>
     <tr>
-       <th>historial medioc del paciente(si corresponde)</th>
+       <th>Motivo de ingreso</th>
        <td><?php echo $row['PatientMedhis']; ?></td>
        <th>fecha de registro del paciente</th>
        <td><?php echo $row['CreationDate']; ?></td>
@@ -121,7 +114,7 @@ while ($row = mysqli_fetch_array($ret)) {
 </table>
 <?php
 
-$ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
+$ret = mysqli_query($con, "select * from tbldocumento  where PatientID='$vid'");
 
 ?>
 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -130,16 +123,9 @@ $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vi
   </tr>
   <tr>
     <th>#</th>
-<th>Presion arterial</th>
-<th>Peso</th>
-<th>Nivel de azucar</th>
-<th>Temperatura corporal</th>
-<th>Examen ficico</th>
-<th>Preinscripsion medica</th>
-<th>OrdenesMedicas</th>
-<th>Evolucion</th>
-<th>Laboratorio</th>
-<th>Rayos X</th>
+<th>Tipo</th>
+<th>Nombre</th>
+<th>Archivo</th>
 <th>Fecha de visita</th>
 </tr>
 <?php
@@ -147,17 +133,10 @@ while ($row = mysqli_fetch_array($ret)) {
     ?>
 <tr>
   <td><?php echo $cnt; ?></td>
- <td><?php echo $row['BloodPressure']; ?></td>
- <td><?php echo $row['Weight']; ?></td>
- <td><?php echo $row['BloodSugar']; ?></td>
-  <td><?php echo $row['Temperature']; ?></td>
-  <td><?php  echo $row['ExamenFisico'];?></td>
-  <td><?php echo $row['MedicalPres']; ?></td>
-  <td><?php echo $row['OrdenesMedicas']; ?></td>
-  <td><?php echo $row['Evolucion']; ?></td>
-  <td><?php  echo $row['Laboratorio'];?></td>
-  <td><?php  echo $row['RayosX'];?></td>
-  <td><?php echo $row['CreationDate']; ?></td>
+ <td><?php echo $row['tipo']; ?></td>
+ <td><?php echo $row['nombre']; ?></td>
+ <td><?php echo $row['archivo']; ?></td>
+ <td><?php echo $row['CreationDate']; ?></td>
 </tr>
 <?php $cnt = $cnt + 1;}?>
 </table>

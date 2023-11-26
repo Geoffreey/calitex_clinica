@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
 
 insert  into `admin`(`id`,`username`,`password`,`updationDate`) values (1,'admin','Test@12345','28-12-2016 11:42:05 AM');
 
-/*Table structure for table `appointment` */
+/*estructura para tabla cita `cita` */
 
 DROP TABLE IF EXISTS `appointment`;
 
@@ -294,6 +294,7 @@ DROP TABLE IF EXISTS `tblpatient`;
 CREATE TABLE `tblpatient` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `Docid` int(10) DEFAULT NULL,
+  `tecid` int(10) DEFAULT NULL,
   `labid` int(10) DEFAULT NULL,
   `rxid` int(10) DEFAULT NULL,
   `PatientName` varchar(200) DEFAULT NULL,

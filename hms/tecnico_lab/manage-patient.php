@@ -70,8 +70,8 @@ check_login();
 </thead>
 <tbody>
 <?php
-$docid=$_SESSION['id'];
-$sql=mysqli_query($con,"select * from tblpatient where Docid='$docid' ");
+$tecid=$_SESSION['id'];
+$sql=mysqli_query($con,"select * from tblpatient where tcid='$tecid' ");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 {
