@@ -4,15 +4,17 @@ error_reporting(0);
 include 'include/config.php';
 include 'include/checklogin.php';
 check_login();
-$did = intval($_GET['id']); // get doctor id
+
 if (isset($_POST['submit'])) {
     $tecnicoName           = $_POST['tecnicoName'];
-    $labaddress        = $_POST['address'];
-    $contactno      = $_POST['contactno'];
-    $labemail          = $_POST['labEmail'];
-    $sql               = mysqli_query($con, "Update tecnico_lab set tecnicoName='$tecnicoName',address='$labaddress',contactno='$contactno',labEmail='$labemail' where id='$did'");
+    $rxaddress        = $_POST['address'];
+    $contactno      = $_POST['contact'];
+    $rxemail          = $_POST['rxEmail'];
+    $password          = md5($_POST['npass']);
+    $sql               = mysqli_query($con, "insert into tecnico_rx(tecnicoName,address,contactno,rxEmail,password) values('$tecnicoName','$rxaddress','$contactno','$rxemail','$password')");
     if ($sql) {
-        $msg = "Detalles del médico actualizados con éxito";
+        echo "<script>alert('Información del médico agregada con éxito');</script>";
+        echo "<script>window.location.href ='manage-doctors.php'</script>";
 
     }
 }
@@ -20,7 +22,7 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Admin | Editar informacion de tecnico</title>
+		<title>Admin | Agregar Tecnico Rayos X</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -36,8 +38,35 @@ if (isset($_POST['submit'])) {
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+<script type="text/javascript">
+function valid()
+{
+ if(document.addtecrx.npass.value!= document.addtecrx.cfpass.value)
+{
+alert("Password and Confirm Password Field do not match  !!");
+document.addtecrx.cfpass.focus();
+return false;
+}
+return true;
+}
+</script>
 
 
+<script>
+function checkemailAvailability() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "check_availability.php",
+data:'emailid='+$("#rxEmail").val(),
+type: "POST",
+success:function(data){
+$("#email-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+</script>
 	</head>
 	<body>
 		<div id="app">
@@ -45,7 +74,6 @@ if (isset($_POST['submit'])) {
 			<div class="app-content">
 
 						<?php include 'include/header.php';?>
-						<!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
 
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content" >
@@ -54,14 +82,14 @@ if (isset($_POST['submit'])) {
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Admin | Editar informacion de tecnico</h1>
+									<h1 class="mainTitle">Admin | Agregar Tecnico Rayos X</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
 										<span>Admin</span>
 									</li>
 									<li class="active">
-										<span>Editar informacion de tecnico</span>
+										<span>Agregar Tecnico Rayos X</span>
 									</li>
 								</ol>
 							</div>
@@ -71,90 +99,95 @@ if (isset($_POST['submit'])) {
 						<div class="container-fluid container-fullw bg-white">
 							<div class="row">
 								<div class="col-md-12">
-									<h5 style="color: green; font-size:18px; ">
-                                         <?php if ($msg) {echo htmlentities($msg);}?>
-									</h5>
+
 									<div class="row margin-top-30">
 										<div class="col-lg-8 col-md-12">
 											<div class="panel panel-white">
 												<div class="panel-heading">
-													<h5 class="panel-title">Editar informacion de tecnico</h5>
+													<h5 class="panel-title">Agregar tecnico</h5>
 												</div>
 												<div class="panel-body">
-									                  <?php $sql = mysqli_query($con, "select * from tecnico_lab where id='$did'"); 
-                                                         while ($data = mysqli_fetch_array($sql)) {
-                                                       ?>
-                                                      <h4><?php echo htmlentities($data['tecnicoName']); ?>'s Profile</h4>
-                                                         <p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
-                                                          <?php if ($data['updationDate']) {?>
-                                                          <p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
-                                                           <?php }?>
-                                                           <hr />
-													<form role="form" name="addtec" method="post" onSubmit="return valid();">
+
+													<form role="form" name="addtecrx" method="post" onSubmit="return valid();">
 														<!--<div class="form-group">
 															<label for="DoctorSpecialization">
-																Especializacion
+																Especializaicon medica
 															</label>
-							                                <select name="Doctorspecialization" class="form-control" required="required">
-					                                        <option value="<?php //echo htmlentities($data['specilization']); ?>">
-					                                        <?php //echo htmlentities($data['specilization']); ?></option>
-                                                            <?php //$ret = mysqli_query($con, "select * from doctorspecilization");
-                                                              //while ($row = mysqli_fetch_array($ret)) {
-                                                            ?>
-																<option value="<?php //echo htmlentities($row['specilization']); ?>">
-																	<?php //echo htmlentities($row['specilization']); ?>
-																</option>
-																<?php //}?>
+							                                    <select name="Doctorspecialization" class="form-control" required="true">
+																     <option value="">Select Specialization</option>
+                                                                         // <?php //$ret = mysqli_query($con, "select * from doctorspecilization");
+                                                                             // while ($row = mysqli_fetch_array($ret)) {
+                                                                                ?>
+																              <option value="<?php //echo htmlentities($row['specilization']); ?>">
+																	             <?php //echo htmlentities($row['specilization']); ?>
+																              </option>
+																              <?php //}?>
 
-															</select>
+															    </select>
 														</div>-->
 
                                                         <div class="form-group">
 															<label for="tecnicoName">
-																 Nombre medico
+																 Nombre tecnico
 															</label>
-	                                                        <input type="text" name="tecnicoName" class="form-control" value="<?php echo htmlentities($data['tecnicoName']); ?>" >
+					                                           <input type="text" name="tecnicoName" class="form-control"  placeholder="Enter Doctor Name" required="true">
 														</div>
 
 
                                                         <div class="form-group">
 															<label for="address">
-																 Direccion de la clinica medica
+																 Direccion clinica
 															</label>
-					                                        <textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
+					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
 														</div>
 
-                                                         <div class="form-group">
+                                                        <!--<div class="form-group">
+															<label for="labfess">
+																 Honorarios de consulta
+															</label>
+					                                        <input type="text" name="labfees" class="form-control"  placeholder="Enter Doctor Consultancy Fees" required="true">
+														</div>-->
+
+                                                        <div class="form-group">
 									                        <label for="contactno">
 																 Telefono
 															</label>
-					                                        <input type="text" name="contactno" class="form-control" required="required"  value="<?php echo htmlentities($data['contactno']); ?>">
+					                                        <input type="text" name="contactno" class="form-control"  placeholder="Enter Doctor Contact no" required="true">
 														</div>
 
                                                         <div class="form-group">
-									                        <label for="labEmail">
+									                        <label for="rxEmail">
 																 Email
 															</label>
-					                                        <input type="labEmail" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']); ?>">
+                                                            <input type="rxEmail" id="rxEmail" name="rxEmail" class="form-control"  placeholder="Enter Doctor Email id" required="true" onBlur="checkemailAvailability()">
+                                                            <span id="email-availability-status"></span>
+                                                        </div>
+
+														<div class="form-group">
+															<label for="exampleInputPassword1">
+																 Contraseña
+															</label>
+					                                        <input type="password" name="npass" class="form-control"  placeholder="New Password" required="required">
 														</div>
 
+                                                        <div class="form-group">
+															<label for="exampleInputPassword2">
+																Conformar contraseña
+															</label>
+									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirm Password" required="required">
+														</div>
 
-
-
-														<?php }?>
-
-
-														<button type="submit" name="submit" class="btn btn-o btn-primary">
-															Actualizar
+														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
+															Crear
 														</button>
 													</form>
 												</div>
 											</div>
 										</div>
 
-											</div>
+									           </div>
 										</div>
-									<div class="col-lg-12 col-md-12">
+									       <div class="col-lg-12 col-md-12">
 											<div class="panel panel-white">
 
 
@@ -182,7 +215,7 @@ if (isset($_POST['submit'])) {
 
 			<!-- start: SETTINGS -->
 	<?php include 'include/setting.php';?>
-			<>
+
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

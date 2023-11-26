@@ -57,7 +57,7 @@ function checkemailAvailability() {
 $("#loaderIcon").show();
 jQuery.ajax({
 url: "check_availability.php",
-data:'emailid='+$("#docemail").val(),
+data:'emailid='+$("#labEmail").val(),
 type: "POST",
 success:function(data){
 $("#email-availability-status").html(data);

@@ -7,10 +7,10 @@ check_login();
 $did = intval($_GET['id']); // get doctor id
 if (isset($_POST['submit'])) {
     $tecnicoName           = $_POST['tecnicoName'];
-    $labaddress        = $_POST['address'];
+    $rxaddress        = $_POST['address'];
     $contactno      = $_POST['contactno'];
-    $labemail          = $_POST['labEmail'];
-    $sql               = mysqli_query($con, "Update tecnico_lab set tecnicoName='$tecnicoName',address='$labaddress',contactno='$contactno',labEmail='$labemail' where id='$did'");
+    $rxemail          = $_POST['rxEmail'];
+    $sql               = mysqli_query($con, "Update tecnico_rx set tecnicoName='$tecnicoName',address='$rxaddress',contactno='$contactno',rxEmail='$rxemail' where id='$did'");
     if ($sql) {
         $msg = "Detalles del médico actualizados con éxito";
 
@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
 													<h5 class="panel-title">Editar informacion de tecnico</h5>
 												</div>
 												<div class="panel-body">
-									                  <?php $sql = mysqli_query($con, "select * from tecnico_lab where id='$did'"); 
+									                  <?php $sql = mysqli_query($con, "select * from tecnico_rx where id='$did'"); 
                                                          while ($data = mysqli_fetch_array($sql)) {
                                                        ?>
                                                       <h4><?php echo htmlentities($data['tecnicoName']); ?>'s Profile</h4>
@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
                                                           <p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
                                                            <?php }?>
                                                            <hr />
-													<form role="form" name="addtec" method="post" onSubmit="return valid();">
+													<form role="form" name="addtecrx" method="post" onSubmit="return valid();">
 														<!--<div class="form-group">
 															<label for="DoctorSpecialization">
 																Especializacion
@@ -132,10 +132,10 @@ if (isset($_POST['submit'])) {
 														</div>
 
                                                         <div class="form-group">
-									                        <label for="labEmail">
+									                        <label for="rxEmail">
 																 Email
 															</label>
-					                                        <input type="labEmail" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']); ?>">
+					                                        <input type="rxEmail" name="rxEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['rxEmail']); ?>">
 														</div>
 
 
