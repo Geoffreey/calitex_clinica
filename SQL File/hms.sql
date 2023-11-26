@@ -230,6 +230,20 @@ CREATE TABLE `exrx` (
   `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+
+/*estructura para tabla `doumento, laboratorio` */
+
+DROP TABLE IF EXISTS `tbldocumento`;
+
+CREATE TABLE `tbldocumento` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `PatientID` int(10) DEFAULT NULL,
+  `Tipo` varchar(255) DEFAULT NULL,
+  `Nombre` varchar(255) DEFAULT NULL,
+  `archivo` varchar(250) NOT NULL,
+  `CreationDate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 -----------------------------------------------------------------------------------
 
 /*Table structure for table `tblcontactus` */
