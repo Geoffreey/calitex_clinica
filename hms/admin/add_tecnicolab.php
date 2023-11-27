@@ -8,7 +8,7 @@ check_login();
 if (isset($_POST['submit'])) {
     $tecnicoName           = $_POST['tecnicoName'];
     $labaddress        = $_POST['address'];
-    $contactno      = $_POST['contact'];
+    $contactno      = $_POST['contactno'];
     $labemail          = $_POST['labEmail'];
     $password          = md5($_POST['npass']);
     $sql               = mysqli_query($con, "insert into tecnico_lab(tecnicoName,address,contactno,labEmail,password) values('$tecnicoName','$labaddress','$contactno','$labemail','$password')");
@@ -115,13 +115,13 @@ error:function (){}
 															</label>
 							                                    <select name="Doctorspecialization" class="form-control" required="true">
 																     <option value="">Select Specialization</option>
-                                                                         // <?php //$ret = mysqli_query($con, "select * from doctorspecilization");
+                                                                         // <//?//php //$ret = mysqli_query($con, "select * from doctorspecilization");
                                                                              // while ($row = mysqli_fetch_array($ret)) {
                                                                                 ?>
-																              <option value="<?php //echo htmlentities($row['specilization']); ?>">
-																	             <?php //echo htmlentities($row['specilization']); ?>
+																              <option value="<//?//php //echo htmlentities($row['specilization']); ?>">
+																	             <//?//php //echo htmlentities($row['specilization']); ?>
 																              </option>
-																              <?php //}?>
+																              <//?//php //}?>
 
 															    </select>
 														</div>-->
@@ -130,15 +130,15 @@ error:function (){}
 															<label for="tecnicoName">
 																 Nombre medico
 															</label>
-					                                           <input type="text" name="tecnicoName" class="form-control"  placeholder="Enter Doctor Name" required="true">
+					                                           <input type="text" name="tecnicoName" class="form-control"  placeholder="Nombre completo" required="true">
 														</div>
 
 
                                                         <div class="form-group">
 															<label for="address">
-																 Direccion clinica
+																 Direccion
 															</label>
-					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
+					                                        <textarea name="address" class="form-control"  placeholder="Direccion de recidencia" required="true"></textarea>
 														</div>
 
                                                         <!--<div class="form-group">
@@ -152,14 +152,14 @@ error:function (){}
 									                        <label for="contactno">
 																 Telefono
 															</label>
-					                                        <input type="text" name="contactno" class="form-control"  placeholder="Enter Doctor Contact no" required="true">
+					                                        <input type="text" name="contactno" class="form-control"  placeholder="No. telefono" required="true">
 														</div>
 
                                                         <div class="form-group">
 									                        <label for="labEmail">
 																 Email
 															</label>
-                                                            <input type="labEmail" id="labEmail" name="labEmail" class="form-control"  placeholder="Enter Doctor Email id" required="true" onBlur="checkemailAvailability()">
+                                                            <input type="labEmail" id="labEmail" name="labEmail" class="form-control"  placeholder="Correo electronico" required="true" onBlur="checkemailAvailability()">
                                                             <span id="email-availability-status"></span>
                                                         </div>
 
