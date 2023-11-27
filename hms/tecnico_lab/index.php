@@ -22,7 +22,7 @@ exit();
 else
 {
 $host  = $_SERVER['HTTP_HOST'];
-$_SESSION['dlogin']=$_POST['username'];
+$_SESSION['teclogin']=$_POST['username'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=0;
 mysqli_query($con,"insert into lablog(username,userip,status) values('".$_SESSION['teclogin']."','$uip','$status')");

@@ -43,7 +43,7 @@ function valid()
 {
  if(document.addtec.npass.value!= document.addtec.cfpass.value)
 {
-alert("Password and Confirm Password Field do not match  !!");
+alert("El campo Contraseña y Confirmar contraseña no coinciden  !!");
 document.addtec.cfpass.focus();
 return false;
 }
