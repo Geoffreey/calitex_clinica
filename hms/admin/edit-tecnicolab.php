@@ -121,7 +121,7 @@ if (isset($_POST['submit'])) {
 															<label for="address">
 																 Direccion de la clinica medica
 															</label>
-					                                        <textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
+					                                        <textarea name="address" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
 														</div>
 
                                                          <div class="form-group">
