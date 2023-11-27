@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $labemail          = $_POST['labEmail'];
     $sql               = mysqli_query($con, "Update tecnico_lab set tecnicoName='$tecnicoName',address='$labaddress',contactno='$contactno',labEmail='$labemail' where id='$did'");
     if ($sql) {
-        $msg = "Detalles del médico actualizados con éxito";
+        $msg = "Detalles del tecnico actualizados con éxito";
 
     }
 }
