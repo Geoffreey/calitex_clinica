@@ -7,13 +7,12 @@ if(isset($_POST['submit']))
 {
 $labname=$_POST['tecnicoName'];
 $labaddress=$_POST['labaddress'];
-$labfees=$_POST['labfees'];
 $labcontactno=$_POST['contactno'];
 $labemail=$_POST['labEmail'];
-$sql=mysqli_query($con,"Update tecnico_lab set tecnicoName='$labname',address='$labaddress',labFees='$labfees',contactno='$labcontactno',labEmail='$labemail' where id='".$_SESSION['id']."'");
+$sql=mysqli_query($con,"Update tecnico_lab set tecnicoName='$labname',address='$labaddress',contactno='$labcontactno',labEmail='$labemail' where id='".$_SESSION['id']."'");
 if($sql)
 {
-echo "<script>alert('Detalles del médico actualizados con éxito');</script>";
+echo "<script>alert('Detalles del tecnico actualizados con éxito');</script>";
 
 }
 }
@@ -86,7 +85,7 @@ echo "<script>alert('Detalles del médico actualizados con éxito');</script>";
                                                  <p><b>Fecha de la última actualización del perfil: </b><?php echo htmlentities($data['updationDate']);?></p>
                                                     <?php } ?>
                                                    <hr />
-													<form role="form" name="addtecnico" method="post" onSubmit="return valid();">
+													<form role="form" name="addtec" method="post" onSubmit="return valid();">
 														<!--<div class="form-group">
 															<label for="DoctorSpecialization">
 																Especializacion medica
@@ -107,7 +106,7 @@ echo "<script>alert('Detalles del médico actualizados con éxito');</script>";
 														</div>-->
 
                                                         <div class="form-group">
-															<label for="doctorname">
+															<label for="tecnicoName">
 																 nombre tecnico
 															</label>
 	                                                        <input type="text" name="tecnicoName" class="form-control" value="<?php echo htmlentities($data['tecnicoName']);?>" >
@@ -121,12 +120,12 @@ echo "<script>alert('Detalles del médico actualizados con éxito');</script>";
                                                             <textarea name="labaddress" class="form-control"><?php echo htmlentities($data['labaddress']);?></textarea>
 														</div>
 
-                                                        <div class="form-group">
+                                                        <!--<div class="form-group">
 															<label for="labfees">
 																 Honoracion consulta
 															</label>
-		                                                    <input type="text" name="labfees" class="form-control" required="required"  value="<?php echo htmlentities($data['labFees']);?>" >
-														</div>
+		                                                    <input type="text" name="labfees" class="form-control" required="required"  value="<//?php echo htmlentities($data['labFees']);?>" >
+														</div>-->
 	
                                                         <div class="form-group">
 									                         <label for="contactno">
@@ -139,7 +138,7 @@ echo "<script>alert('Detalles del médico actualizados con éxito');</script>";
 									                         <label for="labEmail">
 																 Email
 															 </label>
-					                                         <input type="email" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']);?>">
+					                                         <input type="labemail" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']);?>">
 														</div>
 
 
