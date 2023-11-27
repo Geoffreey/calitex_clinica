@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     $password          = md5($_POST['npass']);
     $sql               = mysqli_query($con, "insert into tecnico_lab(tecnicoName,address,contactno,labEmail,password) values('$tecnicoName','$labaddress','$contactno','$labemail','$password')");
     if ($sql) {
-        echo "<script>alert('Información del médico agregada con éxito');</script>";
+    echo "<script>alert('Información del tecnico agregada con éxito');</script>";
         echo "<script>window.location.href ='manage-doctors.php'</script>";
 
     }
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Admin | Aggregar Tecnico laboratorio</title>
+		<title>Admin | Agregar Tecnico laboratorio</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
