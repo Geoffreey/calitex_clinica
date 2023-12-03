@@ -5,13 +5,13 @@ include("include/config.php");
 //Checking Details for reset password
 if(isset($_POST['submit'])){
 $contactno=$_POST['contactno'];
-$labemail=$_POST['labEmail'];
-$query=mysqli_query($con,"select id from  tecnico_lab where contactno='$contactno' and labEmail='$labemail'");
+$email=$_POST['email'];
+$query=mysqli_query($con,"select id from  tecnico_lab where contactno='$contactno' and labEmail='$email'");
 $row=mysqli_num_rows($query);
 if($row>0){
 
 $_SESSION['cnumber']=$contactno;
-$_SESSION['email']=$labemail;
+$_SESSION['email']=$email;
 header('location:reset-password.php');
 } else {
 echo "<script>alert('Detalles no válidos. Por favor, pruebe con datos válidos');</script>";

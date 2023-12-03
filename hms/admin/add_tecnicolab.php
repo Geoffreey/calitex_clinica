@@ -101,7 +101,7 @@ error:function (){}
 								<div class="col-md-12">
 
 									<div class="row margin-top-30">
-										<div class="col-lg-8 col-md-12">
+										<div class="col-lg-6 col-md-12">
 											<div class="panel panel-white">
 												<div class="panel-heading">
 													<h5 class="panel-title">Agregar tecnico</h5>
@@ -128,7 +128,7 @@ error:function (){}
 
                                                         <div class="form-group">
 															<label for="tecnicoName">
-																 Nombre medico
+																 Nombre
 															</label>
 					                                           <input type="text" name="tecnicoName" class="form-control"  placeholder="Nombre completo" required="true">
 														</div>
