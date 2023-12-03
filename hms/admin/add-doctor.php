@@ -45,7 +45,7 @@ function valid()
 {
  if(document.adddoc.npass.value!= document.adddoc.cfpass.value)
 {
-alert("Password and Confirm Password Field do not match  !!");
+alert("La contraseña y el campo Confirmar contraseña no coinciden  !!");
 document.adddoc.cfpass.focus();
 return false;
 }
