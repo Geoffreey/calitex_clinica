@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $labemail          = $_POST['labEmail'];
     $sql               = mysqli_query($con, "Update tecnico_lab set tecnicoName='$tecnicoName',address='$labaddress',contactno='$contactno',labEmail='$labemail' where id='$did'");
     if ($sql) {
-        $msg = "Detalles del médico actualizados con éxito";
+        $msg = "Detalles del tecnico actualizados con éxito";
 
     }
 }
@@ -121,7 +121,7 @@ if (isset($_POST['submit'])) {
 															<label for="address">
 																 Direccion de la clinica medica
 															</label>
-					                                        <textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
+					                                        <textarea name="address" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
 														</div>
 
                                                          <div class="form-group">
