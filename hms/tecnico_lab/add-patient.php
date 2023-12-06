@@ -17,7 +17,7 @@ if(isset($_POST['submit']))
     $pataddress = $_POST['pataddress'];
     $patage = $_POST['patage'];
     $medhis = $_POST['medhis'];
-    $sql = mysqli_query($con,"insert into tblpatient(labid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$docid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
+    $sql = mysqli_query($con,"insert into tblpatient(labid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$labid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
     if ($sql)
     {
     echo "<script>alert('Informacion del paciente agregada correctamente');</script>";

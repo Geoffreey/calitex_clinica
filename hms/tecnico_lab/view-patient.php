@@ -7,21 +7,17 @@ check_login();
 if(isset($_POST['submit']))
   {
     
-    //$vid=$_GET['viewid'];
-    //$bp=$_POST['bp'];
-    //$bs=$_POST['bs'];
-    //$weight=$_POST['weight'];
-    //$temp=$_POST['temp'];
-    //$exf=$_POST['exf'];
-   //$pres=$_POST['pres'];
-   //$ord=$_POST['ord'];
-   //$evo=$_POST['evo'];
-   //$lab=$_POST['lab'];
-   //$rayx=$_POST['rayx'];
-   $vid    = $_GET['viewid'];
-    $tipo    = $_POST['tipo'];
-    $nombre     = $_POST['nombre'];
-    $archivo = $_resultados['archivo'];
+   $vid=$_GET['viewid'];
+   $bp=$_POST['bp'];
+   $bs=$_POST['bs'];
+   $weight=$_POST['weight'];
+   $temp=$_POST['temp'];
+   $exf=$_POST['exf'];
+   $pres=$_POST['pres'];
+   $ord=$_POST['ord'];
+   $evo=$_POST['evo'];
+   $lab=$_POST['lab'];
+   $rayx=$_POST['rayx'];
    
  
       $query.=mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,ExamenFisico,MedicalPres,OrdenesMedicas,Evolucion,Laboratorio,RayosX)value('$vid','$bp','$bs','$weight','$temp','$exf','$pres', '$ord','$evo','$lab','$rayx')");
