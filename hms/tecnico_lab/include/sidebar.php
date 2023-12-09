@@ -29,7 +29,7 @@
 											<i class="ti-list"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Historial de citas </span>
+											<span class="title"> Historial laboratorios </span>
 										</div>
 									</div>
 								</a>
@@ -58,14 +58,24 @@
 										</a>
 									</li>
 
-									<li>
-										<a href="resultados_lab.php">
-											<span class="title"> Resultados </span>
-										</a>
 									</li>
 								</ul>
-								
-								</li>
+							</li>
+
+							<li>
+								<a href="resultados_lab.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-list"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title"> Resultados </span>
+										</div>
+									</div>
+								</a>
+							</li>
+
+							
 <li>
 								<a href="search.php">
 									<div class="item-content">

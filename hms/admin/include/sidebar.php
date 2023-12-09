@@ -112,11 +112,11 @@
 									   </div>
 								    </a>
 								    <ul class="sub-menu">
-									    <!--<li>
-										      <a href="doctor-specilization.php">
+									    <li>
+										      <a href="laboratorios.php">
 											      <span class="title">Tipo de laboratorio</span>
 										      </a>
-									    </li>-->
+									    </li>
 									    <li>
 										   <a href="add_tecnicolab.php">
 											   <span class="title">Agregar tecnico</span>
@@ -148,11 +148,11 @@
 									   </div>
 								    </a>
 								    <ul class="sub-menu">
-									    <!--<li>
-										      <a href="doctor-specilization.php">
-											      <span class="title">Tipo de laboratorio</span>
+									    <li>
+										      <a href="rayosx.php">
+											      <span class="title">Rayos X</span>
 										      </a>
-									    </li>-->
+									    </li>
 									    <li>
 										   <a href="add_tecnirx.php">
 											   <span class="title">Agregar tecnico</span>
