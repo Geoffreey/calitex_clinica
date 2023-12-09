@@ -57,8 +57,14 @@
 											<span class="title"> Administrar paciente </span>
 										</a>
 									</li>
-									
+
+									<li>
+										<a href="resultados_lab.php">
+											<span class="title"> Resultados </span>
+										</a>
+									</li>
 								</ul>
+								
 								</li>
 <li>
 								<a href="search.php">
