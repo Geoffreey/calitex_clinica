@@ -62,7 +62,7 @@
 								<a href="manage-medhistory.php">
 									<div class="item-content">
 										<div class="item-media">
-											<i class="ti-list"></i>
+											<i class="ti-receipt"></i>
 										</div>
 										<div class="item-inner">
 											<span class="title"> Resultados </span>
