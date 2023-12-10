@@ -107,10 +107,10 @@ if(isset($_GET['del']))
 														</div>
 
 														<div class="form-group">
-															<label for="LabFees">
+															<label for="fees">
 																Precio
 															</label>
-							                                <input type="text" name="LabFees" class="form-control"  placeholder="Ingrese precio de examen">
+							                                <input type="text" name="labFees" class="form-control"  placeholder="Ingrese precio de examen">
 														</div>
 														
 												        <button type="submit" name="submit" class="btn btn-o btn-primary">
@@ -169,8 +169,8 @@ while($row=mysqli_fetch_array($sql))
 												
 												<td >
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							                        <a href="edit-doctor-specialization.php?id=<?php echo $row['id'];?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
-													<a href="doctor-specilization.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+							                        <a href="edit-laboratorios.php?id=<?php echo $row['id'];?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+													<a href="laboratorios.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
 												</div>
 												<div class="visible-xs visible-sm hidden-md hidden-lg">
 													<div class="btn-group" dropdown is-open="status.isopen">

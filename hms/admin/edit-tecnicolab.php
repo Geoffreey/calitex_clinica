@@ -111,7 +111,7 @@ if (isset($_POST['submit'])) {
 
                                                         <div class="form-group">
 															<label for="tecnicoName">
-																 Nombre medico
+																 Nombre tecnico
 															</label>
 	                                                        <input type="text" name="tecnicoName" class="form-control" value="<?php echo htmlentities($data['tecnicoName']); ?>" >
 														</div>
@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
 
                                                         <div class="form-group">
 															<label for="address">
-																 Direccion de la clinica medica
+																 Direccion
 															</label>
 					                                        <textarea name="address" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
 														</div>
