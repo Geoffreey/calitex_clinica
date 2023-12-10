@@ -114,7 +114,7 @@ if(isset($_GET['del']))
 														</div>
 														
 												        <button type="submit" name="submit" class="btn btn-o btn-primary">
-															Actualizar
+															Crear
 														</button>
 													</form>
 												</div>
