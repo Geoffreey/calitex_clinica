@@ -11,7 +11,7 @@ if(isset($_POST['submit']))
     $nombre = $_POST['Nombre'];
 	$codigo = $_POST['codigo'];
     $labFees = $_POST['labFees'];
-    $sql=mysqli_query($con,"update  laboratorios set Tipo='$Tipo', Nombre='$Nombre', codigo='$codigo', labFees='$labFees' where id='$id'");
+    $sql=mysqli_query($con,"update  laboratorios set Tipo='$Tipo', Nombre='$nombre',codigo='$codigo',labFees='$labFees' where id='$id'");
     $_SESSION['msg']="Examen de laboratorio actualizado con exito !!";
 } 
 
@@ -77,12 +77,13 @@ if(isset($_POST['submit']))
 												<div class="panel-body">
 								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']);?>
 								<?php echo htmlentities($_SESSION['msg']="");?></p>	
+								
 													<form role="form" name="labs" method="post" >
-													    <div class="form-group">
+													    <!--<div class="form-group">
 															<label for="Tipo">
 																Tipo
 															</label>
-															<input type="text" name="Tipo" class="form-control"  placeholder="Ingrese tipo de laboratorio">
+															<input type="text" name="Tipo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['Tipo'];?>">
 														</div>
                                                         <div class="form-group">
 															<label for="Nombre">
@@ -101,7 +102,7 @@ if(isset($_POST['submit']))
 																Precio
 															</label>
 															<input type="text" name="labFees" class="form-control"  placeholder="Ingrese precio de examen">
-														</div>
+														</div>-->
 
 	                                                     <?php 
 
@@ -109,12 +110,42 @@ if(isset($_POST['submit']))
 	                                                        $sql=mysqli_query($con,"select * from laboratorios where id='$id'");
                                                             while($row=mysqli_fetch_array($sql))
                                                             {														
-	                                                         ?>		<input type="text" name="laboratorios" class="form-control" value="<?php echo $row['specilization'];?>" >
+	                                                         ?>		<div class="form-group">
+															           <label for="Tipo">
+																          Tipo
+															           </label>
+															           <input type="text" name="Tipo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['Tipo'];?>">
+														            </div>
+																	<div class="form-group">
+															           <label for="Nombre">
+																          Nombre
+															           </label>
+															           <input type="text" name="Nombre" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['Nombre'];?>">
+														            </div>
+																	<div class="form-group">
+															           <label for="codigo">
+																          Codigo
+															           </label>
+															           <input type="text" name="codigo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['codigo'];?>">
+														            </div>
+																	<div class="form-group">
+															           <label for="labFees">
+																          Precio
+															           </label>
+															           <input type="text" name="labFees" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['labFees'];?>">
+														            </div>
+															        <!--<input type="text" name="Tipo" class="form-control" value="</?php //echo $row['Tipo'];?>" >
+															        <input type="text" name="Nombre" class="form-control" value="</?php //echo $row['Nombre'];?>" >
+																	<input type="text" name="codigo" class="form-control" value="</?php //echo $row['codigo'];?>" >
+																	<input type="text" name="labFees" class="form-control" value="</?php //echo $row['labFees'];?>" >-->
 	                                                         <?php } ?>
 														</div>
 												
 														<button type="submit" name="submit" class="btn btn-o btn-primary">
 															Actualizar
+														</button>
+														<button type="submit" name="submit" class="btn btn-o btn-primary">
+															<a href="laboratorios.php">Regresar</a>
 														</button>
 													</form>
 												</div>
