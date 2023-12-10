@@ -6,20 +6,27 @@ include('include/checklogin.php');
 check_login();
 if(isset($_POST['submit']))
 {
-$sql=mysqli_query($con,"insert into doctorspecilization(specilization) values('".$_POST['doctorspecilization']."')");
-$_SESSION['msg']="Doctor Specialization added successfully !!";
+	$Tipo = $_POST['Tipo'];
+    $nombre = $_POST['Nombre'];
+	$codigo = $_POST['codigo'];
+    $labFees = $_POST['labFees'];
+	$sql =mysqli_query($con,"insert into laboratorios(Tipo,Nombre,codigo,labFees ) values('$Tipo','$nombre','$codigo','$labFees')");
+	if ($sql)
+{
+$_SESSION['msg']="Laboratorio agregado exitosamente !!";
+}
 }
 
 if(isset($_GET['del']))
 		  {
-		          mysqli_query($con,"delete from doctorspecilization where id = '".$_GET['id']."'");
-                  $_SESSION['msg']="data deleted !!";
+		          mysqli_query($con,"delete from laboratorios where id = '".$_GET['id']."'");
+                  $_SESSION['msg']="Datos eliminados !!";
 		  }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Admin | Especializaciones medicas</title>
+		<title>Admin | Examenes de laboratorio</title>
 	
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -50,14 +57,14 @@ if(isset($_GET['del']))
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Admin | Agregar especializacion medica</h1>
+									<h1 class="mainTitle">Admin | Agregar laboratorio</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
 										<span>Admin</span>
 									</li>
 									<li class="active">
-										<span>Agregar especializacion medica</span>
+										<span>Agregar laboratorio</span>
 									</li>
 								</ol>
 							</div>
@@ -72,23 +79,41 @@ if(isset($_GET['del']))
 										<div class="col-lg-6 col-md-12">
 											<div class="panel panel-white">
 												<div class="panel-heading">
-													<h5 class="panel-title">Especializaciones medicas</h5>
+													<h5 class="panel-title">Crear laboratorios</h5>
 												</div>
 												<div class="panel-body">
-								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']);?>
-								<?php echo htmlentities($_SESSION['msg']="");?></p>	
-													<form role="form" name="dcotorspcl" method="post" >
+								                      <p style="color:red;"><?php echo htmlentities($_SESSION['msg']);?>
+								                      <?php echo htmlentities($_SESSION['msg']="");?></p>	
+													  <form role="form" name="labs" method="post" >
 														<div class="form-group">
-															<label for="exampleInputEmail1">
-																Especializaciones
+
+															<label for="Tipo">
+																Tipo
 															</label>
-							<input type="text" name="doctorspecilization" class="form-control"  placeholder="Enter Doctor Specialization">
+							                                <input type="text" name="Tipo" class="form-control"  placeholder="Ingrese tipo de laboratorio">
 														</div>
-												
+
+														<div class="form-group">
+															<label for="Nombre">
+																Nombre
+															</label>
+							                                <input type="text" name="Nombre" class="form-control"  placeholder="Ingrese nombre de examen">
+														</div>
+														<div class="form-group">
+															<label for="codigo">
+																Codigo
+															</label>
+							                                <input type="text" name="codigo" class="form-control"  placeholder="Ingrese codigo de examen">
+														</div>
+
+														<div class="form-group">
+															<label for="LabFees">
+																Precio
+															</label>
+							                                <input type="text" name="LabFees" class="form-control"  placeholder="Ingrese precio de examen">
+														</div>
 														
-														
-														
-														<button type="submit" name="submit" class="btn btn-o btn-primary">
+												        <button type="submit" name="submit" class="btn btn-o btn-primary">
 															Actualizar
 														</button>
 													</form>
@@ -108,13 +133,16 @@ if(isset($_GET['del']))
 
 									<div class="row">
 								<div class="col-md-12">
-									<h5 class="over-title margin-bottom-15">Administrar <span class="text-bold">Especializacion medica</span></h5>
+									<h5 class="over-title margin-bottom-15"><span class="text-bold">Laboratorios</span></h5>
 									
 									<table class="table table-hover" id="sample-table-1">
 										<thead>
 											<tr>
 												<th class="center">#</th>
-												<th>Especializacion</th>
+												<th>Tipo</th>
+												<th>Nombre</th>
+												<th>Codigo</th>
+												<th>Precio</th>
 												<th class="hidden-xs">Fecha de creacion</th>
 												<th>Fecha de actualizacion</th>
 												<th>Accion</th>
@@ -123,7 +151,7 @@ if(isset($_GET['del']))
 										</thead>
 										<tbody>
 <?php
-$sql=mysqli_query($con,"select * from doctorspecilization");
+$sql=mysqli_query($con,"select * from laboratorios");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 {
@@ -131,16 +159,18 @@ while($row=mysqli_fetch_array($sql))
 
 											<tr>
 												<td class="center"><?php echo $cnt;?>.</td>
-												<td class="hidden-xs"><?php echo $row['specilization'];?></td>
+												<td class="hidden-xs"><?php echo $row['Tipo'];?></td>
+												<td class="hidden-xs"><?php echo $row['Nombre'];?></td>
+												<td class="hidden-xs"><?php echo $row['codigo'];?></td>
+												<td class="hidden-xs"><?php echo $row['labFees'];?></td>
 												<td><?php echo $row['creationDate'];?></td>
 												<td><?php echo $row['updationDate'];?>
 												</td>
 												
 												<td >
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							<a href="edit-doctor-specialization.php?id=<?php echo $row['id'];?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
-													
-	<a href="doctor-specilization.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+							                        <a href="edit-doctor-specialization.php?id=<?php echo $row['id'];?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+													<a href="doctor-specilization.php?id=<?php echo $row['id']?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
 												</div>
 												<div class="visible-xs visible-sm hidden-md hidden-lg">
 													<div class="btn-group" dropdown is-open="status.isopen">

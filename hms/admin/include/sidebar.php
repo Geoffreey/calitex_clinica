@@ -150,7 +150,7 @@
 								    <ul class="sub-menu">
 									    <li>
 										      <a href="rayosx.php">
-											      <span class="title">Rayos X</span>
+											      <span class="title">Tipos de Rayos X</span>
 										      </a>
 									    </li>
 									    <li>
