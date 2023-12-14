@@ -146,9 +146,9 @@ check_login();
 												<a href="book-appointment.php">
 													<a href="appointment-history.php">
 												<?php $sql = mysqli_query($con, "SELECT * FROM appointment");
-$num_rows2             = mysqli_num_rows($sql);
-{
-    ?>
+                                                   $num_rows2             = mysqli_num_rows($sql);
+                                                   {
+                                                   ?>
 											Total de citas:<?php echo htmlentities($num_rows2);} ?>
 												</a>
 												</a>
@@ -157,7 +157,7 @@ $num_rows2             = mysqli_num_rows($sql);
 									</div>
 								</div>
 
-<div class="col-sm-4">
+                                <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
@@ -165,13 +165,13 @@ $num_rows2             = mysqli_num_rows($sql);
 
 											<p class="links cl-effect-1">
 												<a href="manage-patient.php">
-<?php $result = mysqli_query($con, "SELECT * FROM tblpatient ");
-$num_rows     = mysqli_num_rows($result);
-{
-    ?>
-Total de pacientes:<?php echo htmlentities($num_rows);
-} ?>
-</a>
+                                                  <?php $result = mysqli_query($con, "SELECT * FROM tblpatient ");
+                                                    $num_rows     = mysqli_num_rows($result);
+                                                    {
+                                                    ?>
+                                                    Total de pacientes:<?php echo htmlentities($num_rows);
+                                                     } ?>
+                                                </a>
 											</p>
 										</div>
 									</div>
@@ -181,7 +181,7 @@ Total de pacientes:<?php echo htmlentities($num_rows);
 
 
 
-			<div class="col-sm-4">
+			                    <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
@@ -191,10 +191,10 @@ Total de pacientes:<?php echo htmlentities($num_rows);
 												<a href="book-appointment.php">
 													<a href="unread-queries.php">
 												<?php
-$sql        = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
-$num_rows22 = mysqli_num_rows($sql);
-?>
-											Total de nuevas consultas:<?php echo htmlentities($num_rows22); ?>
+                                                $sql        = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
+                                                $num_rows22 = mysqli_num_rows($sql);
+                                                ?>
+											    Total de nuevas consultas:<?php echo htmlentities($num_rows22); ?>
 												</a>
 												</a>
 											</p>
