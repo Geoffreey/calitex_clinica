@@ -5,12 +5,12 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 if(isset($_GET['Cancelada'])){
-    mysqli_query($con,"update appointment set doctorStatus='0' where id ='".$_GET['id']."'");
+    mysqli_query($con,"update appointment_lab set tecnicoStatus='0' where id ='".$_GET['id']."'");
     $_SESSION['msg']="Su cita se cancelo!!";
 }
 
 if (isset($_GET['Terminada'])) {
-	mysqli_query($con, "update appointment set doctorStatus='2' where id = '" . $_GET['id'] . "'");
+	mysqli_query($con, "update appointment_lab set tecnicoStatus='2' where id = '" . $_GET['id'] . "'");
 	$_SESSION['msg'] = "Su cita finalizó!!";
 }
 ?>
@@ -76,10 +76,10 @@ if (isset($_GET['Terminada'])) {
 											<tr>
 												<th class="center">#</th>
 												<th class="hidden-xs">Nombre paciente</th>
-												<th>Especializacion</th>
-												<th>Cuota de consulta</th>
+												<th>Tipo de Laboratorio</th>
+												<th>Costo laboratorio </th>
 												<th>Fecha/hora de la cita</th>
-												<th>Fecha de creación de la cita</th>
+												<th>Fecha creación de la cita</th>
 												<th>Estado actual</th>
 												<th>Accion</th>
 												
@@ -87,7 +87,7 @@ if (isset($_GET['Terminada'])) {
 										</thead>
 										<tbody>
 <?php
-$sql=mysqli_query($con,"select users.fullName as fname,appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='".$_SESSION['id']."'");
+$sql=mysqli_query($con,"select users.fullName as fname,appointment_lab.*  from appointment_lab join users on users.id=appointment_lab_.userId where appointment_lab.tecnicoId='".$_SESSION['id']."'");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 {
@@ -96,28 +96,28 @@ while($row=mysqli_fetch_array($sql))
 											<tr>
 												<td class="center"><?php echo $cnt;?>.</td>
 												<td class="hidden-xs"><?php echo $row['fname'];?></td>
-												<td><?php echo $row['doctorSpecialization'];?></td>
+												<td><?php echo $row['Laboratorios'];?></td>
 												<td><?php echo $row['consultancyFees'];?></td>
 												<td><?php echo $row['appointmentDate'];?> / <?php echo
 												 $row['appointmentTime'];?>
 												</td>
 												<td><?php echo $row['postingDate'];?></td>
 												<td>
-                                                    <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+                                                    <?php if(($row['userStatus']==1) && ($row['tecnicoStatus']==1))  
                                                     {
 	                                                   echo "Activo";
                                                     }                                 
-                                                    if(($row['userStatus']==0) && ($row['doctorStatus']==1))  
+                                                    if(($row['userStatus']==0) && ($row['tecnicostatusStatus']==1))  
                                                     {
 	                                                   echo "Finalizada por paciente";
                                                     }
 
-                                                    if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
+                                                    if(($row['userStatus']==1) && ($row['tecnicoStatus']==0))  
                                                     { 
 	                                                  echo "Cancelada por ti";
                                                     }
 
-													if(($row['userStatus']==1) && ($row['doctorStatus']==2))  
+													if(($row['userStatus']==1) && ($row['tecnicoStatus']==2))  
                                                     { 
 	                                                  echo "Finalizada por ti";
                                                     }
@@ -128,7 +128,7 @@ while($row=mysqli_fetch_array($sql))
 
 				                                <td >
 				                                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+				                                   <?php if(($row['userStatus']==1) && ($row['tecnicoStatus']==1))  
                                                    { ?>
 												   <a href="appointment-history.php?id=<?php echo $row['id']?>&Cancelada=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
 	                                              <?php } else {
@@ -140,7 +140,7 @@ while($row=mysqli_fetch_array($sql))
 
 												<td>
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
-				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
+				                                   <?php if(($row['userStatus']==1) && ($row['tecnicoStatus']==1))  
                                                    { ?>
 												   <a href="appointment-history.php?id=<?php echo $row['id']?>&Terminada=update" onClick="return confirm('¿Estás segura de que quieres finalizar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Terminar</a>
 	                                              <?php } else {

@@ -76,6 +76,25 @@ INSERT INTO `appointment` (`id`, `doctorSpecialization`, `doctorId`, `userId`, `
 (10, 'MÃ©dico general', 12, 9, 375, '2023-11-17', '1:30 PM', '2023-11-17 19:23:53', 1, 1, NULL);
 
 -- --------------------------------------------------------
+/*estructura para tabla cita `cita laboratorio` */
+
+DROP TABLE IF EXISTS `appointment_lab`;
+
+CREATE TABLE `appointment_lab` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `laboratorios` varchar(255) DEFAULT NULL,
+  `tecnicoId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `consultancyFees` int(11) DEFAULT NULL,
+  `appointmentDate` varchar(255) DEFAULT NULL,
+  `appointmentTime` varchar(255) DEFAULT NULL,
+  `postingDate` timestamp NULL DEFAULT current_timestamp(),
+  `userStatus` int(11) DEFAULT NULL,
+  `tecnicoStatus` int(11) DEFAULT NULL,
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+-----------------------------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `doctors`
@@ -306,9 +325,9 @@ CREATE TABLE `exrx` (
 
 /*estructura para tabla `doumento, laboratorio` */
 
-DROP TABLE IF EXISTS `tbldocumento`;
+DROP TABLE IF EXISTS `tblresultadoslab`;
 
-CREATE TABLE `tbldocumento` (
+CREATE TABLE `tblresultadoslab` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `PatientID` int(10) DEFAULT NULL,
   `Tipo` varchar(255) DEFAULT NULL,

@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -37,28 +37,27 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Tipo</th>
-                            <th>Laboratorio</th>
+                            <th>Usuario</th>
+                            <th>Descripcion</th>
                             <th>Archivo</th>
                             <th>Descargar</th>
                         </tr>
                     </thead>
                     <tbody>
                        <?php
-                       include('include/checklogin.php');
-                       require_once "include/db.php";
+                       require_once "../include/db.php";
                        $consulta = mysqli_query($conexion, "SELECT * FROM tblresultadoslab");
                        while ($fila = mysqli_fetch_assoc($consulta)):
-                        
+                    
 
                        ?>
                             <tr>
                             <td><?php echo $fila['id'] ;?></td>
-                            <td><?php echo $fila['Tipo'] ;?></td>
-                            <td><?php echo $fila['Nombre'] ;?></td>
+                            <td><?php echo $fila['nombre'] ;?></td>
+                            <td><?php echo $fila['descripcion'] ;?></td>
                             <td><?php echo $fila['archivo'] ;?></td>
                                 <td>
-                                    <a href="include/download.php?id= <?php echo $fila['id'] ;?>" class="btn btn-primary">
+                                    <a href="../includes/download.php?id= <?php echo $fila['id'] ;?>" class="btn btn-primary">
                                   <i class="fas fa-download"></i></a>
                                 </td>
                                 <?php endwhile ;?>
@@ -83,7 +82,7 @@
 </style>
 
 <footer>
-    <!--<p class="s">Volver<a href="appointment-history.php/">⬅️</a></p>-->
+    <p class="s">Volver<a href="..tecnico_lab/view-patient.php/">⬅️</a></p>
 </footer>
 
 <?php include "agregar.php"; ?>

@@ -56,6 +56,25 @@ CREATE TABLE `appointment` (
 
 insert  into `appointment`(`id`,`doctorSpecialization`,`doctorId`,`userId`,`consultancyFees`,`appointmentDate`,`appointmentTime`,`postingDate`,`userStatus`,`doctorStatus`,`updationDate`) values (3,'Demo test',7,6,600,'2019-06-29','9:15 AM','2019-06-23 13:31:28',1,0,'0000-00-00 00:00:00'),(4,'Ayurveda',5,5,8050,'2019-11-08','1:00 PM','2019-11-05 05:28:54',1,1,'0000-00-00 00:00:00'),(5,'Dermatologist',9,7,500,'2019-11-30','5:30 PM','2019-11-10 13:41:34',1,0,'2019-11-10 13:48:30'),(6,'General Physician',6,2,2500,'2022-07-22','6:30 PM','2022-07-15 16:24:38',1,1,NULL);
 
+
+/*estructura para tabla cita `cita laboratorio` */
+
+DROP TABLE IF EXISTS `appointment_lab`;
+
+CREATE TABLE `appointment_lab` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `laboratorios` varchar(255) DEFAULT NULL,
+  `tecnicoId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `consultancyFees` int(11) DEFAULT NULL,
+  `appointmentDate` varchar(255) DEFAULT NULL,
+  `appointmentTime` varchar(255) DEFAULT NULL,
+  `postingDate` timestamp NULL DEFAULT current_timestamp(),
+  `userStatus` int(11) DEFAULT NULL,
+  `tecnicoStatus` int(11) DEFAULT NULL,
+  `updationDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*Table structure for table `doctors` */
 
 DROP TABLE IF EXISTS `doctors`;
@@ -233,9 +252,9 @@ CREATE TABLE `exrx` (
 
 /*estructura para tabla `doumento, laboratorio` */
 
-DROP TABLE IF EXISTS `tbldocumento`;
+DROP TABLE IF EXISTS `tblresultadoslab`;
 
-CREATE TABLE `tbldocumento` (
+CREATE TABLE `tblresultadoslab` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `PatientID` int(10) DEFAULT NULL,
   `Tipo` varchar(255) DEFAULT NULL,
