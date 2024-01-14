@@ -128,7 +128,7 @@
 										    </a>
 									    </li>
 									    <li>
-										    <a href="resultados.php">
+										    <a href="resultados_lab.php">
 											    <span class="title">Resultados</span>
 										    </a>
 									    </li>
