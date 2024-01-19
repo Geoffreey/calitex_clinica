@@ -7,7 +7,7 @@ check_login();
 
 if(isset($_POST['submit']))
 {	
-	$labid = $_SESSION['id'];
+	$tecid = $_SESSION['id'];
     $patadmi = $_POST['patadmi'];
 	$patname = $_POST['patname'];
     $fena = $_POST['fena'];
@@ -17,10 +17,10 @@ if(isset($_POST['submit']))
     $pataddress = $_POST['pataddress'];
     $patage = $_POST['patage'];
     $medhis = $_POST['medhis'];
-    $sql = mysqli_query($con,"insert into tblpatient(labid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$labid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
+    $sql = mysqli_query($con,"insert into tblpatient(tecid,PatientAdmision,PatientName,FechaNac,PatientContno,PatientEmail,PatientGender,PatientAdd,PatientAge,PatientMedhis) values('$tecid','$patadmi','$patname','$fena','$patcontact','$patemail','$gender','$pataddress','$patage','$medhis')");
     if ($sql)
     {
-    echo "<script>alert('Informacion del paciente agregada correctamente');</script>";
+    echo "<script>alert('Informacion del paciente se agrego correctamente');</script>";
     header('location:add-patient.php');
     
 }

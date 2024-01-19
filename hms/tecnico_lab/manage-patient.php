@@ -70,8 +70,8 @@ check_login();
                                        </thead>
                                        <tbody>
                                            <?php
-                                              $labid=$_SESSION['id'];
-                                              $sql=mysqli_query($con,"select * from tblpatient where labid='$labid' ");
+                                              $tecid=$_SESSION['id'];
+                                              $sql=mysqli_query($con,"select * from tblpatient where tecid='$tecid' ");
                                               $cnt=1;
                                               while($row=mysqli_fetch_array($sql))
                                               {
@@ -85,7 +85,7 @@ check_login();
                                                       <td><?php echo $row['PatientGender'];?></td>
                                                       <td><?php echo $row['CreationDate'];?></td>
                                                       <td><?php echo $row['UpdationDate'];?></td>
-                                                      <td><a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> || <a href="resultados_lab.php"><i class="fa fa-eye"></i></a></td>
+                                                      <td><a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> || <a href="appointment-history.php"><i class="fa fa-eye"></i></a></td>
                                                   </tr>
                                                   <?php 
                                                       $cnt=$cnt+1;

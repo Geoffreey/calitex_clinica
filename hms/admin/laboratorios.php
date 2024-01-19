@@ -4,6 +4,11 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
+/*if(isset($_POST['submit']))
+{
+$sql=mysqli_query($con,"insert into laboratorios(Tipo,Nombre,codigo,labFees) values('".$_POST['laboratorios']."')");
+$_SESSION['msg']="Laboratorio creado con exito!!";
+}*/
 if(isset($_POST['submit']))
 {
 	$Tipo = $_POST['Tipo'];
@@ -23,6 +28,7 @@ if(isset($_GET['del']))
                   $_SESSION['msg']="Datos eliminados !!";
 		  }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>
