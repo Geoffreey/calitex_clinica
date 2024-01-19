@@ -22,9 +22,10 @@ if(isset($_POST['submit']))
     {
     echo "<script>alert('Informacion del paciente agregada correctamente');</script>";
     header('location:add-patient.php');
+    
+}
+}
 
-}
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
