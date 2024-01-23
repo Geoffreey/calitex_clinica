@@ -14,7 +14,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Tipo</label>
-                                <input type="text" id="tipo" name="tipo" class="form-control" required>
+                                <input type="text" id="Tipo" name="Tipo" class="form-control" required>
 
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Laboratorio</label>
-                                <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+                                <input type="text" id="Nombre" name="Nombre" class="form-control" required>
                             </div>
                         </div>
                     </div>
