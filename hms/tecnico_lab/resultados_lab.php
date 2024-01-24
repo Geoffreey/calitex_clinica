@@ -47,7 +47,7 @@
                        <?php
                        include('include/checklogin.php');
                        require_once "include/db.php";
-                       $consulta = mysqli_query($conexion, "SELECT * FROM tblresultadoslab");
+                       $consulta = mysqli_query($conexion, "SELECT * FROM tblresultadoslab where PatientID='$vid'");
                        while ($fila = mysqli_fetch_assoc($consulta)):
                         
 

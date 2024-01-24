@@ -3,7 +3,7 @@
 // Comprobar si se ha cargado un archivo
 if (isset($_FILES['archivo'])) {
     extract($_POST);
-    $vid=$_GET['viewid'];
+    $vid = $_GET['viewid'];
     $tipo = $_POST['Tipo'];
     $nombre = $_POST['Nombre'];
     
@@ -23,7 +23,7 @@ if (isset($_FILES['archivo'])) {
         if (move_uploaded_file($_FILES["archivo"]["tmp_name"], $carpeta_destino . $nombre_archivo)) {
             // Insertar la información del archivo en la base de datos
             include "db.php";
-            $sql = "INSERT INTO tblresultadoslab (PatientID, Tipo, Nombre, archivo) 
+            $sql = "INSERT INTO tblresultadoslab (PatientID,Tipo, Nombre, archivo) 
             VALUES ( '$vid', '$tipo','$nombre', '$nombre_archivo')";
             $resultado = mysqli_query($conexion, $sql);
             if ($resultado) {

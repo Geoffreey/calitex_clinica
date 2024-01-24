@@ -314,6 +314,7 @@ CREATE TABLE `tblpatient` (
   `ID` int(10) NOT NULL AUTO_INCREMENT,
   `Docid` int(10) DEFAULT NULL,
   `tecid` int(10) DEFAULT NULL,
+  'resulid` int(10) DEFAULT NULL,
   `labid` int(10) DEFAULT NULL,
   `rxid` int(10) DEFAULT NULL,
   `PatientName` varchar(200) DEFAULT NULL,
