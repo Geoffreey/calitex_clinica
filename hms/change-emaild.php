@@ -38,12 +38,10 @@ if (isset($_POST['submit'])) {
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
-			<div class="app-content">
-
-						<?php include 'include/header.php';?>
-
-				<!-- end: TOP NAVBAR -->
+          <?php include 'include/sidebar.php';?>
+		  <div class="app-content">
+               <?php include 'include/header.php';?>
+              <!-- end: TOP NAVBAR -->
 				<div class="main-content" >
 					<div class="wrap-content container" id="container">
 						<!-- start: PAGE TITLE -->
@@ -67,8 +65,7 @@ if (isset($_POST['submit'])) {
 						<div class="container-fluid container-fullw bg-white">
 							<div class="row">
 								<div class="col-md-12">
-<h5 style="color: green; font-size:18px; ">
-<?php if ($msg) {echo htmlentities($msg);}?> </h5>
+                                  <h5 style="color: green; font-size:18px; "><?php if ($msg) {echo htmlentities($msg);}?></h5>
 									<div class="row margin-top-30">
 										<div class="col-lg-8 col-md-12">
 											<div class="panel panel-white">
@@ -76,48 +73,30 @@ if (isset($_POST['submit'])) {
 													<h5 class="panel-title">Editar perfil</h5>
 												</div>
 												<div class="panel-body">
-				<form name="registration" id="updatemail"  method="post">
-<div class="form-group">
-									<label for="fess">
-																 Usuario Email
-															</label>
-			<input type="email" class="form-control" name="email" id="email" onBlur="userAvailability()"  placeholder="Email" required>
-
-									 <span id="user-availability-status1" style="font-size:12px;"></span>
+				                                  <form name="registration" id="updatemail"  method="post">
+                                                     <div class="form-group">
+									                     <label for="fess">Usuario Email</label>
+			                                             <input type="email" class="form-control" name="email" id="email" onBlur="userAvailability()"  placeholder="Email" required>
+                                                         <span id="user-availability-status1" style="font-size:12px;"></span>
 														</div>
-
-
-
-
-
-
-
 														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
 															Actualizar
 														</button>
 													</form>
-
 												</div>
-											</div>
-										</div>
-
-											</div>
-										</div>
-									<div class="col-lg-12 col-md-12">
-											<div class="panel panel-white">
-
-
 											</div>
 										</div>
 									</div>
 								</div>
+								<div class="col-lg-12 col-md-12">
+									<div class="panel panel-white">
+
+									</div>
+								</div>
+							</div>
+						</div>
 
 						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
 
 						<!-- end: SELECT BOXES -->
 
@@ -125,11 +104,11 @@ if (isset($_POST['submit'])) {
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
+	        <?php include 'include/footer.php';?>
 			<!-- end: FOOTER -->
 
 			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
+	        <?php include 'include/setting.php';?>
 
 			<!-- end: SETTINGS -->
 		</div>
@@ -161,21 +140,21 @@ if (isset($_POST['submit'])) {
 				FormElements.init();
 			});
 		</script>
-	<script>
-function userAvailability() {
-$("#loaderIcon").show();
-jQuery.ajax({
-url: "check_availability.php",
-data:'email='+$("#email").val(),
-type: "POST",
-success:function(data){
-$("#user-availability-status1").html(data);
-$("#loaderIcon").hide();
-},
-error:function (){}
-});
-}
-</script>
+	    <script>
+          function userAvailability() {
+          $("#loaderIcon").show();
+          jQuery.ajax({
+          url: "check_availability.php",
+          data:'email='+$("#email").val(),
+          type: "POST",
+          success:function(data){
+          $("#user-availability-status1").html(data);
+          $("#loaderIcon").hide();
+          },
+          error:function (){}
+         });
+         }
+       </script>
 
 	</body>
 </html>
