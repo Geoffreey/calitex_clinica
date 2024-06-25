@@ -45,28 +45,26 @@
 			</div>
 		</header>
 		<main>
-			  <section id="inicio">
+			<section id="inicio">
 				<img src="images/hospital.jpg" alt="">
 				<div class="bloque-inicio">
-				<h1>Cuando los segundos cuentan..</h1>
-				<p>
-				Hospital RP siempre a tu lado.
-				</p>
-				<a href="#nosotros"  class="boton boton-blanco">Ver más</a>
-			</div>
-			  </section>
+				  <h1>Cuando los segundos cuentan..</h1>
+				  <p>Hospital RP siempre a tu lado.</p>
+				  <a href="#nosotros"  class="boton boton-blanco">Ver más</a>
+			    </div>
+			</section>
 
-			  <section id="nosotros" class="seccion">
-			      <div class="container">
-				    <p>
+			<section id="nosotros" class="seccion">
+			    <div class="container">
+				   <p>
 					Somos el Grupo Médico de mayor crecimiento y expansión en Guatemala gracias a que hemos sabido empatizar con nuestros pacientes. 
 					Entendemos que los segundos cuentan cuando tu familia necesita a un especialista de Alto Nivel e instalaciones de gran tecnología, pero sobre todo de calidez humana. 
 					Hemos instalado un Hospital de manera estratégica para estar siempre al alcance de ti y tu familia.
 			        </p>
-			      </div>
-		      </section>
+			    </div>
+		    </section>
 
-			  <section id="servicios" class="seccion">
+			<section id="servicios" class="seccion">
 				<div class="container">
 					<div class="row">
 						<!--<div class="columna columna-33 columna-mobile-100">
