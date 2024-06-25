@@ -41,31 +41,30 @@ if (isset($_POST['submit'])) {
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 		<script>
-function getdoctor(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_doctor.php",
-	data:'specilizationid='+val,
-	success: function(data){
-		$("#doctor").html(data);
-	}
-	});
-}
-</script>
+           function getdoctor(val) {
+	         $.ajax({
+	         type: "POST",
+	         url: "get_doctor.php",
+	         data:'specilizationid='+val,
+	         success: function(data){
+		     $("#doctor").html(data);
+	          }
+	         });
+            }  
+       </script>
 
-
-<script>
-function getfee(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_doctor.php",
-	data:'doctor='+val,
-	success: function(data){
-		$("#fees").html(data);
-	}
-	});
-}
-</script>
+       <script>
+          function getfee(val) {
+	      $.ajax({
+	      type: "POST",
+	      url: "get_doctor.php",
+	      data:'doctor='+val,
+	      success: function(data){
+		  $("#fees").html(data);
+	       }
+	      });
+          }
+       </script>
 
 
 
@@ -73,11 +72,9 @@ function getfee(val) {
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
+          <?php include 'include/sidebar.php';?>
 			<div class="app-content">
-
-						<?php include 'include/header.php';?>
-
+               <?php include 'include/header.php';?>
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content" >
 					<div class="wrap-content container" id="container">
@@ -86,7 +83,7 @@ function getfee(val) {
 							<div class="row">
 								<div class="col-sm-8">
 									<h1 class="mainTitle">Usuario | Agendar cita</h1>
-																	</div>
+								</div>
 								<ol class="breadcrumb">
 									<li>
 										<span>Usuario</span>
@@ -95,6 +92,7 @@ function getfee(val) {
 										<span>Agendar cita</span>
 									</li>
 								</ol>
+		                   </div>
 						</section>
 						<!-- end: PAGE TITLE -->
 						<!-- start: BASIC EXAMPLE -->
@@ -109,7 +107,7 @@ function getfee(val) {
 													<h5 class="panel-title">Agendar cita</h5>
 												</div>
 												<div class="panel-body">
-								                <p style="color:red;"><?php echo htmlentities($_SESSION['msg1']); ?>
+								                  <p style="color:red;"><?php echo htmlentities($_SESSION['msg1']); ?>
 								                  <?php echo htmlentities($_SESSION['msg1'] = ""); ?></p>
 													<form role="form" name="book" method="post" >
 
@@ -176,19 +174,12 @@ function getfee(val) {
 												</div>
 											</div>
 										</div>
-
-											</div>
-										</div>
-
-									</div>
+                                   </div>
 								</div>
+                            </div>
+						</div>
 
 						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
 
 						<!-- end: SELECT BOXES -->
 
@@ -196,11 +187,11 @@ function getfee(val) {
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
+	        <?php include 'include/footer.php';?>
 			<!-- end: FOOTER -->
 
 			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
+	        <?php include 'include/setting.php';?>
 
 			<!-- end: SETTINGS -->
 		</div>
@@ -233,17 +224,17 @@ function getfee(val) {
 			});
 
 			$('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    startDate: '-3d'
-});
+            format: 'yyyy-mm-dd',
+            startDate: '-3d'
+            });
 		</script>
-		  <script type="text/javascript">
+		<script type="text/javascript">
             $('#timepicker1').timepicker();
         </script>
 		<!-- end: JavaScript Event Handlers for this page -->
 		<!-- end: CLIP-TWO JAVASCRIPTS -->
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
 	</body>
 </html>

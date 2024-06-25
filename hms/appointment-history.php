@@ -47,7 +47,8 @@ if (isset($_GET['Finalizada'])) {
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Usuario | Historial de citas</h1>								</div>
+									<h1 class="mainTitle">Usuario | Historial de citas</h1>
+								</div>
 								    <ol class="breadcrumb">
 									  <li>
 										<span>User </span>
@@ -56,7 +57,6 @@ if (isset($_GET['Finalizada'])) {
 										<span>Historial de citas</span>
 									  </li>
 								   </ol>
-							    </div>
                             </div>
 						</section>
 						<!-- end: PAGE TITLE -->
