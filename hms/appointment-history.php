@@ -37,11 +37,9 @@ if (isset($_GET['Finalizada'])) {
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
+           <?php include 'include/sidebar.php';?>
 			<div class="app-content">
-
-
-					<?php include 'include/header.php';?>
+               <?php include 'include/header.php';?>
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content" >
 					<div class="wrap-content container" id="container">
@@ -49,28 +47,25 @@ if (isset($_GET['Finalizada'])) {
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Usuario | Historial de citas</h1>
-																	</div>
-								<ol class="breadcrumb">
-									<li>
+									<h1 class="mainTitle">Usuario | Historial de citas</h1>								</div>
+								    <ol class="breadcrumb">
+									  <li>
 										<span>User </span>
-									</li>
-									<li class="active">
+									  </li>
+									  <li class="active">
 										<span>Historial de citas</span>
-									</li>
-								</ol>
-							</div>
+									  </li>
+								   </ol>
+							    </div>
+                            </div>
 						</section>
 						<!-- end: PAGE TITLE -->
 						<!-- start: BASIC EXAMPLE -->
 						<div class="container-fluid container-fullw bg-white">
-
-
-									<div class="row">
+                           <div class="row">
 								<div class="col-md-12">
-
-									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-								<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
+                                  <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
+								  <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
 									<table class="table table-hover" id="sample-table-1">
 										<thead>
 											<tr>
@@ -82,15 +77,14 @@ if (isset($_GET['Finalizada'])) {
 												<th>fecha de creacion de cita</th>
 												<th>Estado actual</th>
 												<th>Accion</th>
-
-											</tr>
+                                            </tr>
 										</thead>
 										<tbody>
-<?php
-$sql = mysqli_query($con, "select doctors.doctorName as docname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId where appointment.userId='" . $_SESSION['id'] . "'");
-$cnt = 1;
-while ($row = mysqli_fetch_array($sql)) {
-    ?>
+                                           <?php
+                                             $sql = mysqli_query($con, "select doctors.doctorName as docname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId where appointment.userId='" . $_SESSION['id'] . "'");
+                                             $cnt = 1;
+                                             while ($row = mysqli_fetch_array($sql)) {
+                                            ?>
 
 											<tr>
 												<td class="center"><?php echo $cnt; ?>.</td>
@@ -125,20 +119,20 @@ while ($row = mysqli_fetch_array($sql)) {
 												</td>
 
 												<td >
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
+												  <div class="visible-md visible-lg hidden-sm hidden-xs">
 							                         <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {?>
                                                      <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
 	                                                 <?php } else {
 														echo "Cancelada";
                                                       }
 													  ?>
-												</div>
-												<div class="visible-xs visible-sm hidden-md hidden-lg">
-													<div class="btn-group" dropdown is-open="status.isopen">
-														<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-															<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-														</button>
-														<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+												   </div>
+												   <div class="visible-xs visible-sm hidden-md hidden-lg">
+													  <div class="btn-group" dropdown is-open="status.isopen">
+														 <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+															 <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+														 </button>
+														 <ul class="dropdown-menu pull-right dropdown-light" role="menu">
 															<li>
 																<a href="#">
 																	Editar
@@ -154,21 +148,22 @@ while ($row = mysqli_fetch_array($sql)) {
 																	Eliminar
 																</a>
 															</li>
-														</ul>
-													</div>
-												</div></td>
+														  </ul>
+													    </div>
+												   </div>
+											    </td>
 											</tr>
 
 											<?php
-$cnt = $cnt + 1;
-}?>
+                                              $cnt = $cnt + 1;
+                                            }?>
 
 
 										</tbody>
 									</table>
 								</div>
 							</div>
-								</div>
+						</div>
 
 						<!-- end: BASIC EXAMPLE -->
 						<!-- end: SELECT BOXES -->
@@ -177,11 +172,11 @@ $cnt = $cnt + 1;
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
+	        <?php include 'include/footer.php';?>
 			<!-- end: FOOTER -->
 
 			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
+	        <?php include 'include/setting.php';?>
 
 			<!-- end: SETTINGS -->
 		</div>
