@@ -177,6 +177,3 @@ if (isset($_GET['del'])) {
     </script>
 </body>
 </html>
-
-
-

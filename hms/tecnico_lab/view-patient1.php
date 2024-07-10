@@ -3,16 +3,17 @@ session_start();
 error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
+
 check_login();
 if(isset($_POST['submit']))
   {
     
-    $vid=$_GET['viewid'];
-    $bp=$_POST['bp'];
-    $bs=$_POST['bs'];
-    $weight=$_POST['weight'];
-    $temp=$_POST['temp'];
-    $exf=$_POST['exf'];
+   $vid=$_GET['viewid'];
+   $bp=$_POST['bp'];
+   $bs=$_POST['bs'];
+   $weight=$_POST['weight'];
+   $temp=$_POST['temp'];
+   $exf=$_POST['exf'];
    $pres=$_POST['pres'];
    $ord=$_POST['ord'];
    $evo=$_POST['evo'];
@@ -22,7 +23,7 @@ if(isset($_POST['submit']))
  
       $query.=mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,ExamenFisico,MedicalPres,OrdenesMedicas,Evolucion,Laboratorio,RayosX)value('$vid','$bp','$bs','$weight','$temp','$exf','$pres', '$ord','$evo','$lab','$rayx')");
     if ($query) {
-    echo '<script>alert("Medicle history has been added.")</script>';
+    echo '<script>alert("Se agrego el documento con exito.")</script>';
     echo "<script>window.location.href ='manage-patient.php'</script>";
   }
   else
@@ -37,7 +38,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Medico | Administrar pacientes</title>
+		<title>Laboratorio | Administrar pacientes</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -65,11 +66,11 @@ if(isset($_POST['submit']))
                <section id="page-title">
                  <div class="row">
                     <div class="col-sm-8">
-                        <h1 class="mainTitle">Medico | Administrar pacientes</h1>
+                        <h1 class="mainTitle">Laboratorio | Administrar pacientes</h1>
                     </div>
                     <ol class="breadcrumb">
                        <li>
-                        <span>Medico</span>
+                        <span>Laboratorio</span>
                        </li>
                        <li class="active">
                         <span>Administrar pacientes</span>
@@ -174,96 +175,53 @@ if(isset($_POST['submit']))
                           <div class="modal-dialog" role="document">
                               <div class="modal-content">
                                  <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">Agregar historial medico</h5>
+                                      <h5 class="modal-title" id="exampleModalLabel">Agregar resultado</h5>
                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                          <span aria-hidden="true">&times;</span>
                                        </button>
                                   </div>    
-                           <div class="modal-body">
-                               <table class="table table-bordered table-hover data-tables">
+                                  <div class="modal-body">
+                                    <table class="table table-bordered table-hover data-tables">
 
-                               <form method="post" name="submit">
+                                       <form method="post" name="submit">
 
-                                   <tr>
-                                      <th>Presion arterial:</th>
-                                      <td>
-                                        <input name="bp" placeholder="Blood Pressure" class="form-control wd-450" required="true">
-                                     </td>
-                                  </tr>                          
-                                  <tr>
-                                      <th>Glucosa:</th>
-                                      <td>
-                                        <input name="bs" placeholder="Blood Sugar" class="form-control wd-450" required="true">
-                                     </td>
-                                  </tr> 
-                                  <tr>
-                                     <th>Peso:</th>
-                                        <td>
-                                           <input name="weight" placeholder="Weight" class="form-control wd-450" required="true">
-                                        </td>
-                                 </tr>
-                                 <tr>
-                                     <th>Temperatura corporal:</th>
-                                     <td>
-                                        <input name="temp" placeholder="Blood Sugar" class="form-control wd-450" required="true">
-                                     </td>
-                                  </tr>
-
-                                  <tr>
-                                      <th>Examen fisico:</th>
-                                      <td>
-                                      <textarea name="exf" placeholder="examnen fisico" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
-                                      </td>
-                                  </tr>
-                         
-                                  <tr>
-                                     <th>Preescripsion:</th>
-                                     <td>
-                                        <textarea name="pres" placeholder="Medical Prescription" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
-                                     </td>
-                                  </tr>
-                                  <tr>
-                                     <th>Ordenes medicas:</th>
-                                     <td>
-                                        <textarea name="ord" placeholder="Ordenes medicas" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
-                                     </td>
-                                  </tr>
-                                  <tr>
-                                     <th>Evolucion:</th>
-                                     <td>
-                                        <textarea name="evo" placeholder="Evolucion" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
-                                     </td>
-                                  </tr>
-                                  <tr>
-                                      <th>Laboratorio:</th>
-                                      <td>
-                                        <textarea name="lab" placeholder="laboratorio" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
-                                      </td>
-                                 </tr> 
-                                 <tr>
-                                      <th>Rayos x:</th>
-                                      <td>
-                                         <textarea name="rayx" placeholder="rayos x" rows="12" cols="14" class="form-control wd-450" required="true"></textarea>
-                                     </td>
-                                  </tr>
+                                          <tr>
+                                             <th>tipo de laboraorio:</th>
+                                             <td>
+                                                <input name="tipo" placeholder="tipo" class="form-control wd-450" required="true">
+                                            </td>
+                                         </tr>                          
+                                         <tr>
+                                            <th>Nombre de la boratorio:</th>
+                                            <td>
+                                               <input name="nombre" placeholder="nombre" class="form-control wd-450" required="true">
+                                            </td>
+                                         </tr> 
+                                         <tr>
+                                            <th>Resultado:</th>
+                                            <td>
+                                               <input name="archivo" placeholder="archivo" class="form-control wd-450" required="true">
+                                            </td>
+                                         </tr>
    
-                              </table>
+                                    </table>
                        </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                              <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
   
-                              </form>
-                      </div>
+                                       </form>
+                          </div>
                   </div>
                </div>
            </div>
        </div>
     </div>
   </div>
-                   <p align="center">                            
-                     <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar historial medico</button>
-                     <button class="btn btn-primary waves-effect waves-light w-lg" onClick="printOut('printIt')">Imprimir</button>
+                   <p align="center">                          
+                     <!--<button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Agregar hisotrial</button>-->
+                     <!--<button class="btn btn-primary waves-effect waves-light w-lg" onClick="printOut('printIt')">Imprimir</button>-->
+                     <a href="resultados_lab.php"><button class="btn btn-primary waves-effect waves-light w-lg">Laboratorios</button></a>
                    </p>
 </div>
 			<!-- start: FOOTER -->
