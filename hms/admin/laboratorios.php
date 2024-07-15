@@ -1,27 +1,25 @@
 <?php
 session_start();
-error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
 if (isset($_POST['submit'])) {
-    $Tipo = $_POST['Tipo'];
-    $Nombre = $_POST['Nombre'];
+    $tipo = $_POST['Tipo'];
+    $nombre = $_POST['Nombre'];
     $codigo = $_POST['codigo'];
-    $labFees = $_POST['labFees'];
-    $sql = mysqli_query($con, "INSERT INTO laboratorios(tipo, nombre, codigo, labFees) VALUES('$Tipo', '$Nombre', '$codigo', '$labFees')");
-    if ($sql) {
+    $costo = $_POST['labFees'];
+    
+    $query = mysqli_query($con, "INSERT INTO laboratories (tipo, nombre, codigo, costo) 
+                                 VALUES ('$tipo', '$nombre', '$codigo', '$costo')");
+    
+    if ($query) {
         $_SESSION['msg'] = "Laboratorio agregado exitosamente !!";
+    } else {
+        $_SESSION['msg'] = "Error al agregar laboratorio";
     }
 }
-
-if (isset($_GET['del'])) {
-    mysqli_query($con, "DELETE FROM laboratorios WHERE id = '" . $_GET['id'] . "'");
-    $_SESSION['msg'] = "Datos eliminados !!";
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -70,7 +68,7 @@ if (isset($_GET['del'])) {
                                     <div class="col-lg-6 col-md-12">
                                         <div class="panel panel-white">
                                             <div class="panel-heading">
-                                                <h5 class="panel-title">Exámenes de laboratorio</h5>
+                                                <h5 class="panel-title">Agregar Examen de Laboratorio</h5>
                                             </div>
                                             <div class="panel-body">
                                                 <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
@@ -100,7 +98,7 @@ if (isset($_GET['del'])) {
                                     <div class="col-lg-12 col-md-12">
                                         <div class="panel panel-white">
                                             <div class="panel-heading">
-                                                <h5 class="panel-title">Administrar exámenes</h5>
+                                                <h5 class="panel-title">Administrar Exámenes de Laboratorio</h5>
                                             </div>
                                             <div class="panel-body">
                                                 <table class="table table-hover" id="sample-table-1">
@@ -111,27 +109,29 @@ if (isset($_GET['del'])) {
                                                             <th>Nombre</th>
                                                             <th>Código</th>
                                                             <th>Costo</th>
-                                                            <th class="hidden-xs">Fecha de creación</th>
+                                                            <th>Fecha de creación</th>
+                                                            <th>Última actualización</th>
                                                             <th>Acción</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = mysqli_query($con, "SELECT * FROM laboratorios");
+                                                        $sql = mysqli_query($con, "SELECT * FROM laboratories");
                                                         $cnt = 1;
                                                         while ($row = mysqli_fetch_array($sql)) {
                                                         ?>
                                                             <tr>
                                                                 <td class="center"><?php echo $cnt; ?>.</td>
-                                                                <td class="hidden-xs"><?php echo $row['tipo']; ?></td>
+                                                                <td><?php echo $row['tipo']; ?></td>
                                                                 <td><?php echo $row['nombre']; ?></td>
                                                                 <td><?php echo $row['codigo']; ?></td>
-                                                                <td><?php echo $row['labFees']; ?></td>
-                                                                <td><?php echo $row['creationDate']; ?></td>
+                                                                <td><?php echo $row['costo']; ?></td>
+                                                                <td><?php echo $row['created_at']; ?></td>
+                                                                <td><?php echo $row['updated_at']; ?></td>
                                                                 <td>
                                                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                                        <a href="edit-laboratory.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                                                                        <a href="manage-laboratories.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este laboratorio?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+                                                                        <a href="edit-laboratory.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="manage-laboratories.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este laboratorio?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -177,3 +177,4 @@ if (isset($_GET['del'])) {
     </script>
 </body>
 </html>
+

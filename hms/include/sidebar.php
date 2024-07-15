@@ -32,7 +32,18 @@
 									</div>
 								</a>
 							</li>
-
+							<li>
+								<a href="citas-laboratorio.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-pencil-alt"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title">Cita laboratorio </span>
+										</div>
+									</div>
+								</a>
+							</li>
 							<li>
 								<a href="appointment-history.php">
 									<div class="item-content">

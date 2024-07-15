@@ -85,8 +85,8 @@ if(!isset($_SESSION['id'])) {
                                                 <td><?php echo $row['UpdationDate'];?></td>
                                                 <td>
                                                     <a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> 
-                                                    || 
-                                                    <a href="view-patient.php"><i class="fa fa-eye"></i></a>
+                                                    ||
+                                                    <a href="view-patient.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                             <?php 

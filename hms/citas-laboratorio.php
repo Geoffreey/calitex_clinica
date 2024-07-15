@@ -1,249 +1,193 @@
 <?php
 session_start();
-//error_reporting(0);
 include 'include/config.php';
 include 'include/checklogin.php';
 check_login();
 
 if (isset($_POST['submit'])) {
-    $laboratorio = $_POST['laboratorios'];
-    $tecnicoid      = $_POST['tecnicoid'];
-    $userid        = $_SESSION['userid'];
-    $consultancyFees          = $_POST['consultancyFees'];
-    $appdate       = $_POST['appdate'];
-    $time          = $_POST['apptime'];
-    $userstatus    = 1;
-    $docstatus     = 1;
-    $query         = mysqli_query($con, "insert into appointment_lab(laboratorios,tencnicoId,userid,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
-    if ($query) {
-        echo "<script>alert('Su cita se reservo con éxito');</script>";
-    }
+    $labtype = $_POST['labtype'];
+    $labid = $_POST['labid'];
+    $userid = $_SESSION['id'];
+    $fees = $_POST['fees'];
+    $appdate = $_POST['appdate'];
+    $time = $_POST['apptime'];
+    $userstatus = 1;
+    $docstatus = 1;
+    $technician_id = 1;
 
+    // Obtener un técnico disponible
+    $query_technician = "SELECT id FROM tecnico_lab WHERE disponible = 1 LIMIT 1";
+    $result_technician = mysqli_query($con, $query_technician);
+
+    if ($result_technician && mysqli_num_rows($result_technician) > 0) {
+        $row_technician = mysqli_fetch_assoc($result_technician);
+        $technician_id = $row_technician['id'];
+
+        // Insertar la cita de laboratorio asignando el técnico disponible
+        $query = mysqli_query($con, "INSERT INTO lab_appointments(labType, labId, userId, consultancyFees, appointmentDate, appointmentTime, userStatus, doctorStatus, technician_id) VALUES ('$labtype', '$labid', '$userid', '$fees', '$appdate', '$time', '$userstatus', '$docstatus', '$technician_id')");
+
+        if ($query) {
+            echo "<script>alert('Tu cita de laboratorio se ha agendado correctamente');</script>";
+        } else {
+            $error_message = mysqli_error($con);
+            echo '<script>alert("Error al agendar la cita: ' . $error_message . '");</script>';
+        }
+    } else {
+        echo '<script>alert("No hay técnicos disponibles en este momento. Por favor, intenta de nuevo más tarde.");</script>';
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<title>Usuario  | Agendar cita</title>
+<head>
+    <title>Crear Cita de Laboratorio</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
+    <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
+    <link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
+    <link href="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="screen">
+    <link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
+    <link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/plugins.css">
+    <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+</head>
+<body>
+    <div id="app">
+        <?php include 'include/sidebar.php'; ?>
+        <div class="app-content">
+            <?php include 'include/header.php'; ?>
+            <div class="main-content">
+                <div class="wrap-content container" id="container">
+                    <section id="page-title">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <h1 class="mainTitle">Crear Cita de Laboratorio</h1>
+                            </div>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <span>User</span>
+                                </li>
+                                <li class="active">
+                                    <span>Crear Cita de Laboratorio</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+                    <div class="container-fluid container-fullw bg-white">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form action="citas-laboratorio.php" method="post">
+                                    <div class="form-group">
+                                        <label for="labtype">Tipo de Laboratorio</label>
+                                        <select name="labtype" id="labtype" class="form-control" required="required">
+                                            <option value="">Seleccionar tipo de laboratorio</option>
+                                            <?php
+                                                $ret = mysqli_query($con, "SELECT DISTINCT tipo FROM laboratories");
+                                                while ($row = mysqli_fetch_array($ret)) {
+                                                    echo '<option value="' . $row['tipo'] . '">' . $row['tipo'] . '</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
 
-		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
-		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
-		<link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
-		<link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
-		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
-		<link href="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
-		<link href="vendor/select2/select2.min.css" rel="stylesheet" media="screen">
-		<link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
-		<link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
-		<link rel="stylesheet" href="assets/css/styles.css">
-		<link rel="stylesheet" href="assets/css/plugins.css">
-		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-		<script>
-function getdoctor(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_teclab.php",
-	data:'laboratorioid='+val,
-	success: function(data){
-		$("#doctor").html(data);
-	}
-	});
-}
-</script>
+                                    <div class="form-group">
+                                        <label for="labid">Laboratorio</label>
+                                        <select name="labid" id="labid" class="form-control" required="required">
+                                            <option value="">Seleccionar laboratorio</option>
+                                        </select>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="fees">Honorarios de Consulta</label>
+                                        <input type="text" name="fees" id="fees" class="form-control" readonly>
+                                    </div>
 
-<script>
-function getfee(val) {
-	$.ajax({
-	type: "POST",
-	url: "get_doctor.php",
-	data:'doctor='+val,
-	success: function(data){
-		$("#fees").html(data);
-	}
-	});
-}
-</script>
+                                    <div class="form-group">
+                                        <label for="appdate">Fecha de la Cita</label>
+                                        <input type="text" name="appdate" id="appdate" class="form-control datepicker" required="required">
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="apptime">Hora de la Cita</label>
+                                        <input type="text" name="apptime" id="apptime" class="form-control" required="required">
+                                    </div>
 
+                                    <button type="submit" name="submit" class="btn btn-primary">Guardar Cita</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php include 'include/footer.php'; ?>
+        <?php include 'include/setting.php'; ?>
+    </div>
 
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/modernizr/modernizr.js"></script>
+    <script src="vendor/jquery-cookie/jquery.cookie.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="vendor/switchery/switchery.min.js"></script>
+    <script src="vendor/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="vendor/autosize/autosize.min.js"></script>
+    <script src="vendor/selectFx/classie.js"></script>
+    <script src="vendor/selectFx/selectFx.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/form-elements.js"></script>
 
-	</head>
-	<body>
-		<div id="app">
-<?php include 'include/sidebar.php';?>
-			<div class="app-content">
+    <script>
+    $(document).ready(function() {
+        $('#labtype').change(function() {
+            var labtype = $(this).val();
+            $.ajax({
+                url: 'get-labs-by-type.php',
+                type: 'post',
+                data: { labtype: labtype },
+                success: function(response) {
+                    $('#labid').html(response);
+                    $('#fees').val('');
+                }
+            });
+        });
 
-						<?php include 'include/header.php';?>
+        $('#labid').change(function() {
+            var selectedOption = $(this).find(':selected');
+            var costo = selectedOption.data('costo');
+            $('#fees').val(costo);
+        });
 
-				<!-- end: TOP NAVBAR -->
-				<div class="main-content" >
-					<div class="wrap-content container" id="container">
-						<!-- start: PAGE TITLE -->
-						<section id="page-title">
-							<div class="row">
-								<div class="col-sm-8">
-									<h1 class="mainTitle">Usuario | Agendar cita</h1>
-																	</div>
-								<ol class="breadcrumb">
-									<li>
-										<span>Usuario</span>
-									</li>
-									<li class="active">
-										<span>Agendar cita</span>
-									</li>
-								</ol>
-						</section>
-						<!-- end: PAGE TITLE -->
-						<!-- start: BASIC EXAMPLE -->
-						<div class="container-fluid container-fullw bg-white">
-							<div class="row">
-								<div class="col-md-12">
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-3d'
+        });
 
-									<div class="row margin-top-30">
-										<div class="col-lg-8 col-md-12">
-											<div class="panel panel-white">
-												<div class="panel-heading">
-													<h5 class="panel-title">Agendar cita</h5>
-												</div>
-												<div class="panel-body">
-								                <p style="color:red;"><?php echo htmlentities($_SESSION['msg1']); ?>
-								                  <?php echo htmlentities($_SESSION['msg1'] = ""); ?></p>
-													<form role="form" name="book" method="post" >
-
-
-
-                                                        <div class="form-group">
-															<label for="DoctorSpecialization">
-																Especializacion medica
-															</label>
-							                                <select name="doctorspecialization" class="form-control" onChange="getdoctor(this.value);" required="required">
-																<option value="">Seleccionar especializacion</option>
-                                                                <?php $ret = mysqli_query($con, "select * from doctorspecilization");
-                                                                 while ($row = mysqli_fetch_array($ret)) {?>
-																<option value="<?php echo htmlentities($row['specilization']); ?>">
-																	<?php echo htmlentities($row['specilization']); ?>
-																</option>
-																<?php }?>
-															</select>
-														</div>
-
-
-
-
-														<div class="form-group">
-															<label for="doctor">
-																Medicos
-															</label>
-						                                    <select name="doctor" class="form-control" id="doctor" onChange="getfee(this.value);" required="required">
-						                                    <option value="">Seleccionar medico</option>
-						                                    </select>
-														</div>
-
-
-
-
-
-														<div class="form-group">
-															<label for="consultancyfees">
-																Honoracios consulta
-															</label>
-					                                        <select name="fees" class="form-control" id="fees"  readonly>	
-															</select>
-														</div>
-
-                                                        <div class="form-group">
-															<label for="AppointmentDate">
-																Fecha
-															</label>
-                                                            <input class="form-control datepicker" name="appdate"  required="required" data-date-format="yyyy-mm-dd">
-
-														</div>
-
-                                                        <div class="form-group">
-															<label for="Appointmenttime">
-																Hora
-															</label>
-			                                                <input class="form-control" name="apptime" id="timepicker1" required="required">Ej : 10:00 PM
-														</div>
-
-														<button type="submit" name="submit" class="btn btn-o btn-primary">
-															Crear
-														</button>
-													</form>
-												</div>
-											</div>
-										</div>
-
-											</div>
-										</div>
-
-									</div>
-								</div>
-
-						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
-						<!-- end: SELECT BOXES -->
-
-					</div>
-				</div>
-			</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-
-			<!-- end: SETTINGS -->
-		</div>
-		<!-- start: MAIN JAVASCRIPTS -->
-		<script src="vendor/jquery/jquery.min.js"></script>
-		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-		<script src="vendor/modernizr/modernizr.js"></script>
-		<script src="vendor/jquery-cookie/jquery.cookie.js"></script>
-		<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-		<script src="vendor/switchery/switchery.min.js"></script>
-		<!-- end: MAIN JAVASCRIPTS -->
-		<!-- start: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		<script src="vendor/maskedinput/jquery.maskedinput.min.js"></script>
-		<script src="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-		<script src="vendor/autosize/autosize.min.js"></script>
-		<script src="vendor/selectFx/classie.js"></script>
-		<script src="vendor/selectFx/selectFx.js"></script>
-		<script src="vendor/select2/select2.min.js"></script>
-		<script src="vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-		<script src="vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
-		<!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
-		<!-- start: CLIP-TWO JAVASCRIPTS -->
-		<script src="assets/js/main.js"></script>
-		<!-- start: JavaScript Event Handlers for this page -->
-		<script src="assets/js/form-elements.js"></script>
-		<script>
-			jQuery(document).ready(function() {
-				Main.init();
-				FormElements.init();
-			});
-
-			$('.datepicker').datepicker({
-    format: 'yyyy-mm-dd',
-    startDate: '-3d'
-});
-		</script>
-		  <script type="text/javascript">
-            $('#timepicker1').timepicker();
-        </script>
-		<!-- end: JavaScript Event Handlers for this page -->
-		<!-- end: CLIP-TWO JAVASCRIPTS -->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-
-	</body>
+        $('#apptime').timepicker();
+    });
+    </script>
+</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
