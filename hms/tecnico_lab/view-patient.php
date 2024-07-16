@@ -12,10 +12,10 @@ if (!isset($_SESSION['id'])) {
 }
 
 if (isset($_GET['viewid'])) {
-    $vid = $_GET['viewid']; // Obtén el ID del paciente desde el parámetro de la URL
+    $vid = intval($_GET['viewid']); // Asegúrate de convertir el ID a un entero
 
-    // Consulta para obtener la información del paciente
-    $sql_patient = "SELECT * FROM tblpatient WHERE ID = '$vid'";
+    // Consulta para obtener la información del paciente desde la tabla `users`
+    $sql_patient = "SELECT * FROM users WHERE id = '$vid'";
     $result_patient = mysqli_query($con, $sql_patient);
 
     if (mysqli_num_rows($result_patient) > 0) {
@@ -25,7 +25,7 @@ if (isset($_GET['viewid'])) {
         exit;
     }
 
-    // Consulta para obtener el historial de citas de laboratorio del paciente
+    // Consulta para obtener el historial de citas de laboratorio del paciente desde la tabla `lab_appointments`
     $sql_lab_appointments = "SELECT * FROM lab_appointments WHERE userId = '$vid'";
     $result_lab_appointments = mysqli_query($con, $sql_lab_appointments);
 } else {
@@ -83,44 +83,38 @@ if (isset($_GET['viewid'])) {
                                         <th>No. Admisión</th>
                                         <td><?php echo $row_patient['PatientAdmision']; ?></td>
                                         <th>Nombre paciente</th>
-                                        <td><?php echo $row_patient['PatientName']; ?></td>
+                                        <td><?php echo $row_patient['fullName']; ?></td>
                                     </tr>
                                     <tr>
                                         <th>Fecha de nacimiento</th>
                                         <td><?php echo $row_patient['FechaNac']; ?></td>
                                         <th>Email</th>
-                                        <td><?php echo $row_patient['PatientEmail']; ?></td>
+                                        <td><?php echo $row_patient['email']; ?></td>
                                     </tr>
                                     <tr>
                                         <th>Teléfono</th>
                                         <td><?php echo $row_patient['PatientContno']; ?></td>
                                         <th>Dirección</th>
-                                        <td><?php echo $row_patient['PatientAdd']; ?></td>
+                                        <td><?php echo $row_patient['address']; ?></td>
                                     </tr>
                                     <tr>
                                         <th>Género</th>
-                                        <td><?php echo $row_patient['PatientGender']; ?></td>
-                                        <th>Edad</th>
-                                        <td><?php echo $row_patient['PatientAge']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Historial médico del paciente (si aplica)</th>
-                                        <td colspan="3"><?php echo $row_patient['PatientMedhis']; ?></td>
+                                        <td><?php echo $row_patient['gender']; ?></td>
                                     </tr>
                                     <tr>
                                         <th>Fecha de registro del paciente</th>
-                                        <td><?php echo $row_patient['CreationDate']; ?></td>
+                                        <td><?php echo $row_patient['regDate']; ?></td>
                                         <th>Fecha de actualización</th>
-                                        <td><?php echo $row_patient['UpdationDate']; ?></td>
+                                        <td><?php echo $row_patient['updationDate']; ?></td>
                                     </tr>
                                 </table>
 
                                 <?php
-                                if(mysqli_num_rows($result_lab_appointments) > 0) {
+                                if (mysqli_num_rows($result_lab_appointments) > 0) {
                                     echo "<h5>Historial de Citas de Laboratorio:</h5>";
                                     echo "<table class='table table-bordered'>";
                                     echo "<tr><th>Fecha de Cita</th><th>Hora de Cita</th><th>Tipo de Laboratorio</th><th>Estado del Usuario</th><th>Estado del Doctor</th></tr>";
-                                    while($row=mysqli_fetch_array($result_lab_appointments)) {
+                                    while ($row = mysqli_fetch_array($result_lab_appointments)) {
                                         echo "<tr>";
                                         echo "<td>".$row['appointmentDate']."</td>";
                                         echo "<td>".$row['appointmentTime']."</td>";

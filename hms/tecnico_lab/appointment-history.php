@@ -146,6 +146,7 @@ if (isset($_GET['Finalizada'])) {
                                                     <th>Fecha de creación</th>
                                                     <th>Estado</th>
                                                     <th>Acción</th>
+                                                    <th>Ver</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -181,6 +182,9 @@ if (isset($_GET['Finalizada'])) {
                                                         <?php if ($row['userStatus'] == 1) { ?>
                                                         <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-danger btn-sm" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
                                                         <?php } ?>
+                                                    </td>
+                                                    <td>
+                                                        <a href="view-patient.php?viewid=<?php echo $row['userId']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -236,6 +240,7 @@ if (isset($_GET['Finalizada'])) {
     </script>
 </body>
 </html>
+
 
 
 
