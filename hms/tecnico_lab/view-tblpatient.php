@@ -1,40 +1,20 @@
 <?php
 session_start();
-error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
-// Verifica si la sesión contiene el ID del técnico
-if (!isset($_SESSION['id'])) {
-    echo "Error: No se encontró el ID del técnico en la sesión.";
-    exit;
-}
+$viewid = intval($_GET['viewid']); // Get the patient ID from the URL
 
-if (isset($_GET['viewid'])) {
-    $vid = intval($_GET['viewid']); // Asegúrate de convertir el ID a un entero
+// Fetch patient details
+$query = mysqli_query($con, "SELECT * FROM tblpatient WHERE ID='$viewid'");
+$patient = mysqli_fetch_array($query);
 
-    // Consulta para obtener la información del paciente desde la tabla tblpatient
-    $sql_patient = "SELECT * FROM tblpatient WHERE user_id = '$vid'";
-    $result_patient = mysqli_query($con, $sql_patient);
-
-    if (mysqli_num_rows($result_patient) > 0) {
-        $row_patient = mysqli_fetch_assoc($result_patient);
-    } else {
-        echo "No se encontró ningún paciente con ese ID.";
-        exit;
-    }
-
-    // Consulta para obtener el historial de citas de laboratorio del paciente desde la tabla lab_appointments
-    $sql_lab_appointments = "SELECT laboratories.tipo AS labtype, laboratories.nombre AS labname, lab_appointments.*
-                             FROM lab_appointments
-                             JOIN laboratories ON laboratories.id = lab_appointments.labId
-                             WHERE lab_appointments.user_id = '$vid'";
-    $result_lab_appointments = mysqli_query($con, $sql_lab_appointments);
-} else {
-    echo "Error: No se proporcionó ningún ID de paciente.";
-    exit;
-}
+// Fetch lab appointments
+$sql_lab_appointments = mysqli_query($con, "SELECT laboratories.tipo AS labtype, laboratories.nombre AS labname, lab_appointments.*
+                                            FROM lab_appointments
+                                            JOIN laboratories ON laboratories.id = lab_appointments.labId
+                                            WHERE lab_appointments.userId='$viewid'");
 ?>
 
 <!DOCTYPE html>
@@ -83,44 +63,38 @@ if (isset($_GET['viewid'])) {
                                         <td colspan="4" style="font-size:20px;color:blue">Detalles del paciente</td>
                                     </tr>
                                     <tr>
-                                        <th>No. Admisión</th>
-                                        <td><?php echo $row_patient['PatientAdmision']; ?></td>
-                                        <th>Nombre paciente</th>
-                                        <td><?php echo $row_patient['PatientName']; ?></td>
+                                        <th>Nombre del Paciente</th>
+                                        <td><?php echo $patient['PatientName']; ?></td>
+                                        <th>Contacto del Paciente</th>
+                                        <td><?php echo $patient['PatientContno']; ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Fecha de nacimiento</th>
-                                        <td><?php echo $row_patient['FechaNac']; ?></td>
-                                        <th>Email</th>
-                                        <td><?php echo $row_patient['PatientEmail']; ?></td>
+                                        <th>Email del Paciente</th>
+                                        <td><?php echo $patient['PatientEmail']; ?></td>
+                                        <th>Género del Paciente</th>
+                                        <td><?php echo $patient['PatientGender']; ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Teléfono</th>
-                                        <td><?php echo $row_patient['PatientContno']; ?></td>
-                                        <th>Dirección</th>
-                                        <td><?php echo $row_patient['PatientAdd']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Género</th>
-                                        <td><?php echo $row_patient['PatientGender']; ?></td>
+                                        <th>Edad del Paciente</th>
+                                        <td><?php echo $patient['PatientAge']; ?></td>
                                         <th>Historial Médico</th>
-                                        <td><?php echo $row_patient['PatientMedhis']; ?></td>
+                                        <td><?php echo $patient['PatientMedhis']; ?></td>
                                     </tr>
                                     <tr>
-                                        <th>Fecha de registro del paciente</th>
-                                        <td><?php echo $row_patient['CreationDate']; ?></td>
-                                        <th>Fecha de actualización</th>
-                                        <td><?php echo $row_patient['UpdationDate']; ?></td>
+                                        <th>Fecha de Creación</th>
+                                        <td><?php echo $patient['CreationDate']; ?></td>
+                                        <th>Fecha de Actualización</th>
+                                        <td><?php echo $patient['UpdationDate']; ?></td>
                                     </tr>
                                 </table>
 
                                 <?php
-                                if (mysqli_num_rows($result_lab_appointments) > 0) {
+                                if (mysqli_num_rows($sql_lab_appointments) > 0) {
                                     echo "<h5>Historial de Citas de Laboratorio:</h5>";
                                     echo "<table class='table table-bordered'>";
                                     echo "<tr><th>#</th><th>Tipo de Laboratorio</th><th>Nombre de Laboratorio</th><th>Costo</th><th>Fecha de la cita</th><th>Fecha de creación</th><th>Estado</th></tr>";
                                     $cnt = 1;
-                                    while ($row = mysqli_fetch_array($result_lab_appointments)) {
+                                    while ($row = mysqli_fetch_array($sql_lab_appointments)) {
                                         echo "<tr>";
                                         echo "<td>".$cnt."</td>";
                                         echo "<td>".$row['labtype']."</td>";
@@ -190,19 +164,4 @@ if (isset($_GET['viewid'])) {
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

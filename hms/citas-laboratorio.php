@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $technician_id = $row_technician['id'];
 
         // Insertar la cita de laboratorio asignando el técnico disponible
-        $query = mysqli_query($con, "INSERT INTO lab_appointments(labType, labId, userId, consultancyFees, appointmentDate, appointmentTime, userStatus, doctorStatus, technician_id) VALUES ('$labtype', '$labid', '$userid', '$fees', '$appdate', '$time', '$userstatus', '$docstatus', '$technician_id')");
+        $query = mysqli_query($con, "INSERT INTO lab_appointments(labType, labId, user_id, consultancyFees, appointmentDate, appointmentTime, userStatus, doctorStatus, technician_id) VALUES ('$labtype', '$labid', '$userid', '$fees', '$appdate', '$time', '$userstatus', '$docstatus', '$technician_id')");
 
         if ($query) {
             echo "<script>alert('Tu cita de laboratorio se ha agendado correctamente');</script>";
@@ -178,6 +178,7 @@ if (isset($_POST['submit'])) {
     </script>
 </body>
 </html>
+
 
 
 

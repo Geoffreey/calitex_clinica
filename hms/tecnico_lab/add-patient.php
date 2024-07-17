@@ -16,10 +16,23 @@ if (isset($_POST['submit'])) {
     $pataddress = $_POST['pataddress'];
     $patage = $_POST['patage'];
     $medhis = $_POST['medhis'];
-    $sql = mysqli_query($con, "INSERT INTO tblpatient(tecid, PatientAdmision, PatientName, FechaNac, PatientContno, PatientEmail, PatientGender, PatientAdd, PatientAge, PatientMedhis) VALUES('$tecid', '$patadmi', '$patname', '$fena', '$patcontact', '$patemail', '$gender', '$pataddress', '$patage', '$medhis')");
-    if ($sql) {
-        echo "<script>alert('Información del paciente se agregó correctamente');</script>";
-        header('location:add-patient.php');
+
+    // Insertar en la tabla users
+    $sql_user = mysqli_query($con, "INSERT INTO users (fullName, FechaNac, address, city, gender, email, password) VALUES ('$patname', '$fena', '$pataddress', '', '$gender', '$patemail', '')");
+    if ($sql_user) {
+        // Obtener el ID del usuario recién creado
+        $user_id = mysqli_insert_id($con);
+
+        // Insertar en la tabla tblpatient usando el user_id
+        $sql_patient = mysqli_query($con, "INSERT INTO tblpatient (user_id, tecid, PatientAdmision, PatientName, FechaNac, PatientContno, PatientEmail, PatientGender, PatientAdd, PatientAge, PatientMedhis) VALUES ('$user_id', '$tecid', '$patadmi', '$patname', '$fena', '$patcontact', '$patemail', '$gender', '$pataddress', '$patage', '$medhis')");
+        if ($sql_patient) {
+            echo "<script>alert('Información del paciente se agregó correctamente');</script>";
+            header('location:add-patient.php');
+        } else {
+            echo "<script>alert('Error al agregar la información del paciente');</script>";
+        }
+    } else {
+        echo "<script>alert('Error al agregar la información del usuario');</script>";
     }
 }
 ?>
@@ -111,9 +124,9 @@ if (isset($_POST['submit'])) {
                                                     <div class="form-group">
                                                         <label class="block">Genero</label>
                                                         <div class="clip-radio radio-primary">
-                                                            <input type="radio" id="rg-female" name="gender" value="femenino">
+                                                            <input type="radio" id="rg-female" name="gender" value="femenino" required>
                                                             <label for="rg-female">Femenino</label>
-                                                            <input type="radio" id="rg-male" name="gender" value="masculino">
+                                                            <input type="radio" id="rg-male" name="gender" value="masculino" required>
                                                             <label for="rg-male">Masculino</label>
                                                         </div>
                                                     </div>
@@ -144,9 +157,9 @@ if (isset($_POST['submit'])) {
                 </div>				
             </div>
         </div>
+        <?php include('include/footer.php');?>
+        <?php include('include/setting.php');?>
     </div>
-    <?php include('include/footer.php');?>
-    <?php include('include/setting.php');?>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/modernizr/modernizr.js"></script>
@@ -171,3 +184,5 @@ if (isset($_POST['submit'])) {
     </script>
 </body>
 </html>
+
+

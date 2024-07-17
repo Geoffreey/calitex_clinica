@@ -4,17 +4,12 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
-
-// Verifica si la sesión contiene el ID del técnico
-if(!isset($_SESSION['id'])) {
-    echo "Error: No se encontró el ID del técnico en la sesión.";
-    exit;
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Laboratorio | Pacientes</title>
+    <title>Administrador | Administrar Pacientes</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -37,62 +32,59 @@ if(!isset($_SESSION['id'])) {
             <?php include('include/header.php');?>
             <div class="main-content">
                 <div class="wrap-content container" id="container">
-                    <!-- start: PAGE TITLE -->
                     <section id="page-title">
                         <div class="row">
-                            <div class="col-sm-10">
-                                <h1 class="mainTitle">Labortorio | Administrar pacientes</h1>
+                            <div class="col-sm-8">
+                                <h1 class="mainTitle">Administrador | Administrar Pacientes</h1>
                             </div>
                             <ol class="breadcrumb">
-                                <li><span>Laboratorio</span></li>
-                                <li class="active"><span>Administrar pacientes</span></li>
+                                <li>
+                                    <span>Administrador</span>
+                                </li>
+                                <li class="active">
+                                    <span>Administrar Pacientes</span>
+                                </li>
                             </ol>
                         </div>
                     </section>
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
-                            <div class="col-md-14">
-                                <h5 class="over-title margin-bottom-15">Lista <span class="text-bold"> Pacientes</span></h5>
+                            <div class="col-md-12">
+                                <h5 class="over-title margin-bottom-15">Administrar <span class="text-bold">Pacientes</span></h5>
                                 <table class="table table-hover" id="sample-table-1">
                                     <thead>
                                         <tr>
                                             <th class="center">#</th>
-                                            <th>No. Admision</th>
-                                            <th>Nombre paciente</th>
-                                            <th>Fecha de nacimiento</th>
-                                            <th>Telefono</th>
-                                            <th>Genero</th>
-                                            <th>Fecha creacion</th>
-                                            <th>Fecha actualizacion</th>
-                                            <th>Accion</th>
+                                            <th>Nombre del Paciente</th>
+                                            <th>Contacto del Paciente</th>
+                                            <th>Género del Paciente</th>
+                                            <th>Fecha de Creación</th>
+                                            <th>Fecha de Actualización</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $tecid = $_SESSION['id'];
-                                        $sql = mysqli_query($con, "SELECT * FROM tblpatient WHERE tecid='$tecid'");
+                                        $sql = mysqli_query($con, "SELECT * FROM tblpatient");
                                         $cnt = 1;
                                         while ($row = mysqli_fetch_array($sql)) {
-                                            ?>
-                                            <tr>
-                                                <td class="center"><?php echo $cnt;?>.</td>
-                                                <td><?php echo $row['PatientAdmision'];?></td>
-                                                <td class="hidden-xs"><?php echo $row['PatientName'];?></td>
-                                                <td><?php echo $row['FechaNac'];?></td>
-                                                <td><?php echo $row['PatientContno'];?></td>
-                                                <td><?php echo $row['PatientGender'];?></td>
-                                                <td><?php echo $row['CreationDate'];?></td>
-                                                <td><?php echo $row['UpdationDate'];?></td>
-                                                <td>
-                                                    <a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> 
-                                                    ||
-                                                    <a href="view-patient.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a>
-                                                </td>
-                                            </tr>
-                                            <?php 
-                                            $cnt = $cnt + 1;
-                                        }
                                         ?>
+                                        <tr>
+                                            <td class="center"><?php echo $cnt; ?>.</td>
+                                            <td class="hidden-xs"><?php echo $row['PatientName']; ?></td>
+                                            <td><?php echo $row['PatientContno']; ?></td>
+                                            <td><?php echo $row['PatientGender']; ?></td>
+                                            <td><?php echo $row['CreationDate']; ?></td>
+                                            <td><?php echo $row['UpdationDate']; ?></td>
+                                            <td>
+                                                <a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> 
+                                                ||
+                                                <a href="view-tblpatient.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a>
+                                            </td>
+                                        </tr>
+                                        <?php 
+                                        $cnt = $cnt + 1;
+                                        }?>
                                     </tbody>
                                 </table>
                             </div>
@@ -101,9 +93,9 @@ if(!isset($_SESSION['id'])) {
                 </div>
             </div>
         </div>
+        <?php include('include/footer.php');?>
+        <?php include('include/setting.php');?>
     </div>
-    <?php include('include/footer.php');?>
-    <?php include('include/setting.php');?>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/modernizr/modernizr.js"></script>
@@ -128,3 +120,4 @@ if(!isset($_SESSION['id'])) {
     </script>
 </body>
 </html>
+

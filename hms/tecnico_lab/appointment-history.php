@@ -41,91 +41,9 @@ if (isset($_GET['Finalizada'])) {
 </head>
 <body>
     <div id="app">
-        <div class="sidebar app-aside" id="sidebar">
-            <div class="sidebar-container perfect-scrollbar">
-                <nav>
-                    <div class="navbar-title">
-                        <span>Navegación principal</span>
-                    </div>
-                    <ul class="main-navigation-menu">
-                        <li>
-                            <a href="dashboard.php">
-                                <div class="item-content">
-                                    <div class="item-media">
-                                        <i class="ti-home"></i>
-                                    </div>
-                                    <div class="item-inner">
-                                        <span class="title"> Consola </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="appointment-history.php">
-                                <div class="item-content">
-                                    <div class="item-media">
-                                        <i class="ti-list"></i>
-                                    </div>
-                                    <div class="item-inner">
-                                        <span class="title"> Historial laboratorios </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0)" class="toggle-submenu">
-                                <div class="item-content">
-                                    <div class="item-media">
-                                        <i class="ti-user"></i>
-                                    </div>
-                                    <div class="item-inner">
-                                        <span class="title"> Pacientes </span><i class="icon-arrow"></i>
-                                    </div>
-                                </div>
-                            </a>
-                            <ul class="sub-menu">
-                                <li>
-                                    <a href="add-patient.php">
-                                        <span class="title"> Agregar paciente</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="manage-patient.php">
-                                        <span class="title"> Administrar paciente </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="resultados_lab.php">
-                                <div class="item-content">
-                                    <div class="item-media">
-                                        <i class="ti-list"></i>
-                                    </div>
-                                    <div class="item-inner">
-                                        <span class="title"> Resultados </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="search.php">
-                                <div class="item-content">
-                                    <div class="item-media">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                    <div class="item-inner">
-                                        <span class="title"> Buscar </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <?php include 'include/sidebar.php'; ?>
         <div class="app-content">
-            <?php include 'include/header.php';?>
+            <?php include 'include/header.php'; ?>
             <div class="main-content">
                 <div class="container-fluid">
                     <div class="row">
@@ -146,22 +64,21 @@ if (isset($_GET['Finalizada'])) {
                                                     <th>Fecha de creación</th>
                                                     <th>Estado</th>
                                                     <th>Acción</th>
-                                                    <th>Ver</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sql = mysqli_query($con, "SELECT laboratories.tipo AS labtype, laboratories.nombre AS labname, lab_appointments.*, users.fullName
+                                                $sql = mysqli_query($con, "SELECT laboratories.tipo AS labtype, laboratories.nombre AS labname, lab_appointments.*, tblpatient.PatientName
                                                     FROM lab_appointments
                                                     JOIN laboratories ON laboratories.id = lab_appointments.labId
-                                                    LEFT JOIN users ON users.id = lab_appointments.userId
+                                                    LEFT JOIN tblpatient ON tblpatient.user_id = lab_appointments.user_id
                                                     WHERE lab_appointments.technician_id='" . $technician_id . "'");
                                                 $cnt = 1;
                                                 while ($row = mysqli_fetch_array($sql)) {
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $cnt; ?></td>
-                                                    <td><?php echo $row['fullName']; ?></td>
+                                                    <td><?php echo $row['PatientName']; ?></td>
                                                     <td><?php echo $row['labtype']; ?></td>
                                                     <td><?php echo $row['labname']; ?></td>
                                                     <td><?php echo $row['consultancyFees']; ?></td>
@@ -180,11 +97,19 @@ if (isset($_GET['Finalizada'])) {
                                                     </td>
                                                     <td>
                                                         <?php if ($row['userStatus'] == 1) { ?>
-                                                        <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-danger btn-sm" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
+                                                            <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-danger btn-sm" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
+                                                            <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
+                                                            
+                                                            <!-- Formulario de subida de archivo -->
+                                                            <form action="upload.php" method="post" enctype="multipart/form-data" style="display: inline; margin-right: 5px;">
+                                                                <input type="file" name="fileToUpload" id="fileToUpload<?php echo $row['id']; ?>" style="display: none;">
+                                                                <label for="fileToUpload<?php echo $row['id']; ?>" class="btn btn-info btn-sm"><i class="fa fa-upload"></i> Subir Archivo</label>
+                                                                <input type="hidden" name="appointmentId" value="<?php echo $row['id']; ?>">
+                                                                <input type="submit" value="Subir Archivo" name="submit" class="btn btn-success btn-sm" style="display: none;">
+                                                            </form>
+                                                            
+                                                            <a href="#" class="btn btn-warning btn-sm" onClick="alert('Sin archivo adjunto'); return false; margin-left: 5px;"><i class="fa fa-exclamation-triangle"></i> Sin Archivo</a>
                                                         <?php } ?>
-                                                    </td>
-                                                    <td>
-                                                        <a href="view-patient.php?viewid=<?php echo $row['userId']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
                                                     </td>
                                                 </tr>
                                                 <?php
@@ -201,8 +126,8 @@ if (isset($_GET['Finalizada'])) {
                 </div>
             </div>
         </div>
-        <?php include 'include/footer.php';?>
-        <?php include 'include/setting.php';?>
+        <?php include 'include/footer.php'; ?>
+        <?php include 'include/setting.php'; ?>
     </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -240,6 +165,16 @@ if (isset($_GET['Finalizada'])) {
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
 
 
 
