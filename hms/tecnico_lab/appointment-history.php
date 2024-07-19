@@ -109,9 +109,10 @@ if (isset($_GET['Finalizada'])) {
                                                             <?php if (!$file_exists) { ?>
                                                             <!-- Formulario de subida de archivo -->
                                                             <form action="upload.php" method="post" enctype="multipart/form-data" style="display: inline; margin-right: 5px;">
-                                                                <input type="file" name="fileToUpload" id="fileToUpload<?php echo $row['id']; ?>" style="display: none;">
+                                                                <input type="file" name="fileToUpload" id="fileToUpload<?php echo $row['id']; ?>" style="display: none;" onchange="document.getElementById('submitBtn<?php echo $row['id']; ?>').style.display='inline';">
                                                                 <label for="fileToUpload<?php echo $row['id']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i> Subir Archivo</label>
                                                                 <input type="hidden" name="appointmentId" value="<?php echo $row['id']; ?>">
+                                                                <button type="submit" id="submitBtn<?php echo $row['id']; ?>" class="btn btn-success btn-sm" style="display:none;">Cargar</button>
                                                             </form>
                                                             <?php } else { ?>
                                                                 <span class="btn btn-success btn-sm"><i class="fa fa-check"></i> Archivo Subido</span>
@@ -149,6 +150,7 @@ if (isset($_GET['Finalizada'])) {
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
 
 
 
