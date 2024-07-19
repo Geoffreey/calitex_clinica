@@ -1,53 +1,67 @@
 <?php
 session_start();
-include('include/config.php');
-include('include/checklogin.php');
-check_login();
+include 'include/config.php';
 
-if(isset($_POST['submit'])) {
-    $appointment_id = $_POST['appointmentId'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $uploadOk = 1;
+    $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-    // Check file type
-    $allowed_types = array("jpg", "png", "jpeg", "pdf", "doc", "docx", "xls", "xlsx");
-    if(!in_array($file_type, $allowed_types)) {
-        echo "Tipo de archivo no permitido.";
-        exit;
-    }
-
-    // Check if file already exists
+    // Verificar si el archivo ya existe
     if (file_exists($target_file)) {
-        echo "El archivo ya existe.";
-        exit;
+        $_SESSION['msg'] = "El archivo ya existe.";
+        $uploadOk = 0;
     }
 
-    // Check file size (you can adjust this as per your requirement)
-    if ($_FILES["fileToUpload"]["size"] > 5000000) { // 5MB limit
-        echo "El archivo es demasiado grande.";
-        exit;
+    // Verificar el tamaño del archivo
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        $_SESSION['msg'] = "El archivo es demasiado grande.";
+        $uploadOk = 0;
     }
 
-    // Move the file to the uploads directory
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        // Insert file details into the database
-        $file_name = basename($_FILES["fileToUpload"]["name"]);
-        $query = "INSERT INTO tblfiles (AppointmentID, FileName, FileType, FilePath) VALUES ('$appointment_id', '$file_name', '$file_type', '$target_file')";
-        $result = mysqli_query($con, $query);
+    // Permitir ciertos formatos de archivo
+    if ($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "pdf" && $fileType != "docx" && $fileType != "xlsx") {
+        $_SESSION['msg'] = "Solo se permiten archivos JPG, JPEG, PNG, PDF, DOCX, y XLSX.";
+        $uploadOk = 0;
+    }
 
-        if ($result) {
-            echo "El archivo ha sido subido exitosamente.";
-            // Redireccionar a la página de historial de citas
-            header('Location: appointment-history.php');
-            exit;
-        } else {
-            echo "Error al guardar la información del archivo: " . mysqli_error($con);
-        }
+    // Verificar si $uploadOk es 0 por un error
+    if ($uploadOk == 0) {
+        $_SESSION['msg'] = "El archivo no fue subido.";
     } else {
-        echo "Error al subir el archivo.";
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            $fileName = basename($_FILES["fileToUpload"]["name"]);
+            $filePath = $target_file;
+            $appointmentId = $_POST['appointmentId'];
+
+            // Insertar el registro del archivo en la base de datos
+            $query = "INSERT INTO tblfiles (FileName, FileType, FilePath, appointment_id) VALUES ('$fileName', '$fileType', '$filePath', '$appointmentId')";
+            if (mysqli_query($con, $query)) {
+                $_SESSION['msg'] = "El archivo " . htmlspecialchars($fileName) . " ha sido subido.";
+            } else {
+                $_SESSION['msg'] = "Error al subir el archivo: " . mysqli_error($con);
+            }
+        } else {
+            $_SESSION['msg'] = "Hubo un error al subir el archivo.";
+        }
     }
+
+    header("Location: appointment-history.php");
+    exit();
 }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
 
 

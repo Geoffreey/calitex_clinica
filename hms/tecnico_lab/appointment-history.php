@@ -1,13 +1,15 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
 include 'include/config.php';
 include 'include/checklogin.php';
 check_login();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 $technician_id = $_SESSION['id'];
 
-// Procesar cancelaciones o finalizaciones de citas
 if (isset($_GET['Cancelada'])) {
     mysqli_query($con, "UPDATE lab_appointments SET userStatus='0' WHERE id = '" . $_GET['id'] . "'");
     $_SESSION['msg'] = "¡Tu cita ha sido cancelada!";
@@ -75,6 +77,10 @@ if (isset($_GET['Finalizada'])) {
                                                     WHERE lab_appointments.technician_id='" . $technician_id . "'");
                                                 $cnt = 1;
                                                 while ($row = mysqli_fetch_array($sql)) {
+                                                    // Check if a file exists for this appointment
+                                                    $file_check_sql = mysqli_query($con, "SELECT COUNT(*) AS file_count FROM tblfiles WHERE appointment_id='" . $row['id'] . "'");
+                                                    $file_check_row = mysqli_fetch_array($file_check_sql);
+                                                    $file_exists = $file_check_row['file_count'] > 0;
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $cnt; ?></td>
@@ -100,34 +106,37 @@ if (isset($_GET['Finalizada'])) {
                                                             <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-danger btn-sm" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
                                                             <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
                                                             
+                                                            <?php if (!$file_exists) { ?>
                                                             <!-- Formulario de subida de archivo -->
                                                             <form action="upload.php" method="post" enctype="multipart/form-data" style="display: inline; margin-right: 5px;">
-                                                                <input type="file" name="fileToUpload" id="fileToUpload<?php echo $row['id']; ?>" style="display: none;">
-                                                                <label for="fileToUpload<?php echo $row['id']; ?>" class="btn btn-info btn-sm"><i class="fa fa-upload"></i> Subir Archivo</label>
+                                                                <input type="file" name="fileToUpload" id="fileToUpload<?php echo $row['id']; ?>" style="display: none;" onchange="document.getElementById('submitBtn<?php echo $row['id']; ?>').style.display='inline';">
+                                                                <label for="fileToUpload<?php echo $row['id']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-upload"></i> Subir Archivo</label>
                                                                 <input type="hidden" name="appointmentId" value="<?php echo $row['id']; ?>">
-                                                                <input type="submit" value="Subir Archivo" name="submit" class="btn btn-success btn-sm" style="display: none;">
+                                                                <button type="submit" id="submitBtn<?php echo $row['id']; ?>" class="btn btn-success btn-sm" style="display:none;">Cargar</button>
                                                             </form>
-                                                            
-                                                            <a href="#" class="btn btn-warning btn-sm" onClick="alert('Sin archivo adjunto'); return false; margin-left: 5px;"><i class="fa fa-exclamation-triangle"></i> Sin Archivo</a>
+                                                            <?php } else { ?>
+                                                                <span class="btn btn-success btn-sm"><i class="fa fa-check"></i> Archivo Subido</span>
+                                                            <?php } ?>
+                                                        <?php } elseif ($row['userStatus'] == 2) { ?>
+                                                            <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
                                                         <?php } ?>
                                                     </td>
                                                 </tr>
-                                                <?php
-                                                    $cnt++;
-                                                }
-                                                ?>
+                                                <?php $cnt = $cnt + 1; } ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
+                            <?php if (isset($_SESSION['msg'])) { ?>
+                            <div class="alert alert-info"><?php echo $_SESSION['msg']; unset($_SESSION['msg']); ?></div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <?php include 'include/footer.php'; ?>
-        <?php include 'include/setting.php'; ?>
     </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -135,47 +144,12 @@ if (isset($_GET['Finalizada'])) {
     <script src="vendor/jquery-cookie/jquery.cookie.js"></script>
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="vendor/switchery/switchery.min.js"></script>
-    <script src="vendor/maskedinput/jquery.maskedinput.min.js"></script>
-    <script src="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
-    <script src="vendor/autosize/autosize.min.js"></script>
-    <script src="vendor/selectFx/classie.js"></script>
-    <script src="vendor/selectFx/selectFx.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/form-elements.js"></script>
-    <script>
-        jQuery(document).ready(function() {
-            Main.init();
-            FormElements.init();
-
-            // Toggle submenu
-            $('.toggle-submenu').on('click', function(e) {
-                e.preventDefault();
-                var $this = $(this);
-                var $submenu = $this.next('.sub-menu');
-                if ($submenu.is(':visible')) {
-                    $submenu.slideUp();
-                } else {
-                    $submenu.slideDown();
-                }
-            });
-        });
-    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
