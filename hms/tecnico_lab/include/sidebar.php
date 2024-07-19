@@ -52,17 +52,17 @@
 											<span class="title"> Agregar paciente</span>
 										</a>
 									</li>
-									<li>
+									<!--<li>
 										<a href="manage-patient.php">
 											<span class="title"> Administrar paciente </span>
 										</a>
-									</li>
+									</li>-->
 
 									</li>
 								</ul>
 							</li>
 
-							<li>
+							<!--<li>
 								<a href="resultados_lab.php">
 									<div class="item-content">
 										<div class="item-media">
@@ -73,10 +73,10 @@
 										</div>
 									</div>
 								</a>
-							</li>
+							</li>-->
 
 							
-<li>
+                            <li>
 								<a href="search.php">
 									<div class="item-content">
 										<div class="item-media">
