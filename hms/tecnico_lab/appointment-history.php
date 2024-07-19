@@ -43,7 +43,7 @@ if (isset($_GET['Finalizada'])) {
 </head>
 <body>
     <div id="app">
-        <?php include 'include/sidebar.php'; ?>
+        <?php include 'include/sidebar.php';?>
         <div class="app-content">
             <?php include 'include/header.php'; ?>
             <div class="main-content">
@@ -137,6 +137,7 @@ if (isset($_GET['Finalizada'])) {
             </div>
         </div>
         <?php include 'include/footer.php'; ?>
+        <?php include('include/setting.php');?>
     </div>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
@@ -144,10 +145,30 @@ if (isset($_GET['Finalizada'])) {
     <script src="vendor/jquery-cookie/jquery.cookie.js"></script>
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="vendor/switchery/switchery.min.js"></script>
+    <script src="vendor/maskedinput/jquery.maskedinput.min.js"></script>
+    <script src="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="vendor/autosize/autosize.min.js"></script>
+    <script src="vendor/selectFx/classie.js"></script>
+    <script src="vendor/selectFx/selectFx.js"></script>
     <script src="vendor/select2/select2.min.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="vendor/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script src="vendor/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/form-elements.js"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Main.init();
+            FormElements.init();
+        });
+
+        function printData() {
+            var divToPrint = document.getElementById("printIt");
+            var newWin = window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+    </script>
 </body>
 </html>
 
