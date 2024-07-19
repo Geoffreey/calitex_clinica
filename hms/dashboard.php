@@ -108,7 +108,7 @@ check_login();
 											<h2 class="StepTitle">Resultados</h2>
 
 											<p class="links cl-effect-1">
-												<a href="resultados.php">
+												<a href="resultado-laboratorio.php">
 													Ver resultados
 												</a>
 											</p>

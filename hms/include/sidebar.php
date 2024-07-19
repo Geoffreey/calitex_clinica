@@ -70,7 +70,7 @@
 							</li>
 
 							<li>
-								<a href="manage-medhistory.php">
+								<a href="resultado-laboratorio.php">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-receipt"></i>
