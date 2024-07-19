@@ -118,16 +118,28 @@ if (isset($_GET['viewid'])) {
                                 if (mysqli_num_rows($result_lab_appointments) > 0) {
                                     echo "<h5>Historial de Citas de Laboratorio:</h5>";
                                     echo "<table class='table table-bordered'>";
-                                    echo "<tr><th>#</th><th>Tipo de Laboratorio</th><th>Nombre de Laboratorio</th><th>Costo</th><th>Fecha de la cita</th><th>Fecha de creación</th><th>Estado</th></tr>";
+                                    echo "<tr><th>#</th><th>Tipo de Laboratorio</th><th>Nombre de Laboratorio</th><th>Costo</th><th>Fecha de la cita</th><th>Resultado</th><th>Estado</th></tr>";
                                     $cnt = 1;
                                     while ($row = mysqli_fetch_array($result_lab_appointments)) {
+                                        // Consulta para obtener el archivo almacenado según el appointment_id
+                                        $appointment_id = $row['id'];
+                                        $sql_file = "SELECT * FROM tblfiles WHERE appointment_id = '$appointment_id' LIMIT 1";
+                                        $result_file = mysqli_query($con, $sql_file);
+                                        $file_row = mysqli_fetch_assoc($result_file);
+
                                         echo "<tr>";
                                         echo "<td>".$cnt."</td>";
                                         echo "<td>".$row['labtype']."</td>";
                                         echo "<td>".$row['labname']."</td>";
                                         echo "<td>".$row['consultancyFees']."</td>";
                                         echo "<td>".$row['appointmentDate'] . ' / ' . $row['appointmentTime']."</td>";
-                                        echo "<td>".$row['created_at']."</td>";
+                                        echo "<td>";
+                                        if ($file_row) {
+                                            echo "<a href='".$file_row['FilePath']."' target='_blank'>Ver archivo</a>";
+                                        } else {
+                                            echo "No disponible";
+                                        }
+                                        echo "</td>";
                                         echo "<td>";
                                         if ($row['userStatus'] == 1) {
                                             echo "Activo";
@@ -190,6 +202,7 @@ if (isset($_GET['viewid'])) {
     </script>
 </body>
 </html>
+
 
 
 
