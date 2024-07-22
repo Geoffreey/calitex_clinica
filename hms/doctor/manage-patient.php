@@ -34,11 +34,11 @@ check_login();
                  <div class="main-content" >
                      <div class="wrap-content container" id="container">
 						<!-- start: PAGE TITLE -->
-                        <section id="page-title">
-                            <div class="row">
-                                 <div class="col-sm-10">
+                          <section id="page-title">
+                              <div class="row">
+                                  <div class="col-sm-10">
                                       <h1 class="mainTitle">Medico | Administrar pacientes</h1>
-                                 </div>
+                                  </div>
                                   <ol class="breadcrumb">
                                      <li>
                                         <span>Medico</span>
@@ -47,68 +47,59 @@ check_login();
                                        <span>Administrar pacientes</span>
                                      </li>
                                   </ol>
-                             </div>
-                        </section>
-                        <div class="container-fluid container-fullw bg-white">
-                           <div class="row">
-                              <div class="col-md-14">
-                                  <h5 class="over-title margin-bottom-15">Lista <span class="text-bold"> Pacientes</span></h5>
-	
-                                  <table class="table table-hover" id="sample-table-1">
-                                     <thead>
-                                         <tr>
-                                             <th class="center">#</th>
-                                             <th>No. Admision</th>
-                                             <th>Nombre paciente</th>
-                                             <th>Fecha de nacimiento</th>
-                                             <th>Telefono</th>
-                                             <th>Genero</th>
-                                             <th>Fecha creacion</th>
-                                             <th>Fecha actualizacion</th>
-                                             <th>Accion</th>
-                                         </tr>
-                                     </thead>
-                                     <tbody>
-                                          <?php
-                                             $docid=$_SESSION['id'];
-                                             $sql=mysqli_query($con,"select * from tblpatient where Docid='$docid' ");
-                                             $cnt=1;
-                                             while($row=mysqli_fetch_array($sql))
-                                             {
-                                             ?>
-                                            <tr>
-                                               <td class="center"><?php echo $cnt;?>.</td>
-                                               <td><?php echo $row['PatientAdmision'];?></td>
-                                               <td class="hidden-xs"><?php echo $row['PatientName'];?></td>
-                                               <td><?php echo $row['FechaNac'];?></td>
-                                               <td><?php echo $row['PatientContno'];?></td>
-                                               <td><?php echo $row['PatientGender'];?></td>
-                                               <td><?php echo $row['CreationDate'];?></td>
-                                               <td><?php echo $row['UpdationDate'];?></td>
-                                               <td><a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> || <a href="view-patient.php?viewid=<?php echo $row['ID'];?>"><i class="fa fa-eye"></i></a></td>
-                                         </tr>
-                                         <?php 
-                                             $cnt=$cnt+1;
-                                            }?>
-                                      </tbody>
-                                  </table>
+                              </div>
+                          </section>
+                          <div class="container-fluid container-fullw bg-white">
+                              <div class="row">
+                                 <div class="col-md-14">
+                                     <h5 class="over-title margin-bottom-15">Lista <span class="text-bold"> Pacientes</span></h5>
+	                                 <table class="table table-hover" id="sample-table-1">
+                                         <thead>
+                                             <tr>
+                                                 <th class="center">#</th>
+                                                 <th>No. Admision</th>
+                                                 <th>Nombre paciente</th>
+                                                 <th>Fecha de nacimiento</th>
+                                                 <th>Telefono</th>
+                                                 <th>Genero</th>
+                                                 <th>Fecha creacion</th>
+                                                 <th>Fecha actualizacion</th>
+                                                 <th>Accion</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                               <?php
+                                                  $docid=$_SESSION['id'];
+                                                  $sql=mysqli_query($con,"select * from tblpatient where Docid='$docid' ");
+                                                  $cnt=1;
+                                                  while($row=mysqli_fetch_array($sql))
+                                                  {
+                                                ?>
+                                               <tr>
+                                                  <td class="center"><?php echo $cnt;?>.</td>
+                                                  <td><?php echo $row['PatientAdmision'];?></td>
+                                                  <td class="hidden-xs"><?php echo $row['PatientName'];?></td>
+                                                  <td><?php echo $row['FechaNac'];?></td>
+                                                  <td><?php echo $row['PatientContno'];?></td>
+                                                  <td><?php echo $row['PatientGender'];?></td>
+                                                  <td><?php echo $row['CreationDate'];?></td>
+                                                  <td><?php echo $row['UpdationDate'];?></td>
+                                                  <td><a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> || <a href="view-patient.php?viewid=<?php echo $row['ID'];?>"><i class="fa fa-eye"></i></a></td>
+                                              </tr>
+                                              <?php 
+                                                 $cnt=$cnt+1;
+                                                }?>
+                                         </tbody>
+                                      </table>
+                                 </div>
                               </div>
                           </div>
                       </div>
-                  </div>
+                 </div>
              </div>
-         </div>
-      </div>
- </div>
-			         <!-- start: FOOTER -->
-	                  <?php include('include/footer.php');?>
-			         <!-- end: FOOTER -->
-		
-			         <!-- start: SETTINGS -->
-	                 <?php include('include/setting.php');?>
-			
-			         <!-- end: SETTINGS -->
-		</div>
+	            <?php include('include/footer.php');?>
+	            <?php include('include/setting.php');?>
+	     </div>
 		             <!-- start: MAIN JAVASCRIPTS -->
 		             <script src="vendor/jquery/jquery.min.js"></script>
 		             <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
