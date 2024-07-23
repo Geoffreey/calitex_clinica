@@ -40,44 +40,40 @@ if (isset($_POST['submit'])) {
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-<script type="text/javascript">
-function valid()
-{
- if(document.adddoc.npass.value!= document.adddoc.cfpass.value)
-{
-alert("La contraseña y el campo Confirmar contraseña no coinciden  !!");
-document.adddoc.cfpass.focus();
-return false;
-}
-return true;
-}
-</script>
-
-
-<script>
-function checkemailAvailability() {
-$("#loaderIcon").show();
-jQuery.ajax({
-url: "check_availability.php",
-data:'emailid='+$("#docemail").val(),
-type: "POST",
-success:function(data){
-$("#email-availability-status").html(data);
-$("#loaderIcon").hide();
-},
-error:function (){}
-});
-}
-</script>
+        <script type="text/javascript">
+            function valid()
+              {
+              if(document.adddoc.npass.value!= document.adddoc.cfpass.value)
+              {
+              alert("La contraseña y el campo Confirmar contraseña no coinciden  !!");
+              document.adddoc.cfpass.focus();
+              return false;
+              }
+              return true;
+            }
+        </script>
+        <script>
+          function checkemailAvailability() {
+             $("#loaderIcon").show();
+             jQuery.ajax({
+             url: "check_availability.php",
+             data:'emailid='+$("#docemail").val(),
+             type: "POST",
+             success:function(data){
+             $("#email-availability-status").html(data);
+             $("#loaderIcon").hide();
+             },
+             error:function (){}
+             });
+            }
+       </script>
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
+           <?php include 'include/sidebar.php';?>
 			<div class="app-content">
-
-						<?php include 'include/header.php';?>
-
-				<!-- end: TOP NAVBAR -->
+				<?php include 'include/header.php';?>
+                <!-- end: TOP NAVBAR -->
 				<div class="main-content" >
 					<div class="wrap-content container" id="container">
 						<!-- start: PAGE TITLE -->
@@ -101,7 +97,6 @@ error:function (){}
 						<div class="container-fluid container-fullw bg-white">
 							<div class="row">
 								<div class="col-md-12">
-
 									<div class="row margin-top-30">
 										<div class="col-lg-8 col-md-12">
 											<div class="panel panel-white">
@@ -109,80 +104,51 @@ error:function (){}
 													<h5 class="panel-title">Agregar medico</h5>
 												</div>
 												<div class="panel-body">
-
 													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
 														<div class="form-group">
 															<label for="DoctorSpecialization">
 																Especializaicon medica
 															</label>
-							<select name="Doctorspecialization" class="form-control" required="true">
+							                                <select name="Doctorspecialization" class="form-control" required="true">
 																<option value="">Select Specialization</option>
-<?php $ret = mysqli_query($con, "select * from doctorspecilization");
-while ($row = mysqli_fetch_array($ret)) {
-    ?>
+                                                                <?php $ret = mysqli_query($con, "select * from doctorspecilization");
+                                                                  while ($row = mysqli_fetch_array($ret)) {
+                                                                ?>
 																<option value="<?php echo htmlentities($row['specilization']); ?>">
 																	<?php echo htmlentities($row['specilization']); ?>
 																</option>
 																<?php }?>
-
 															</select>
 														</div>
-
-<div class="form-group">
-															<label for="doctorname">
-																 Nombre medico
-															</label>
-					<input type="text" name="docname" class="form-control"  placeholder="Enter Doctor Name" required="true">
+                                                        <div class="form-group">
+															<label for="doctorname">Nombre medico</label>
+					                                        <input type="text" name="docname" class="form-control"  placeholder="Enter Doctor Name" required="true">
 														</div>
-
-
-<div class="form-group">
-															<label for="address">
-																 Direccion clinica
-															</label>
-					<textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
-														</div>
-<div class="form-group">
-															<label for="fess">
-																 Honorarios de consulta
-															</label>
-					<input type="text" name="docfees" class="form-control"  placeholder="Enter Doctor Consultancy Fees" required="true">
-														</div>
-
-<div class="form-group">
-									<label for="fess">
-																 Telefono
-															</label>
-					<input type="text" name="doccontact" class="form-control"  placeholder="Enter Doctor Contact no" required="true">
-														</div>
-
-<div class="form-group">
-									<label for="fess">
-																 Email
-															</label>
-<input type="email" id="docemail" name="docemail" class="form-control"  placeholder="Enter Doctor Email id" required="true" onBlur="checkemailAvailability()">
-<span id="email-availability-status"></span>
-</div>
-
-
-
-
 														<div class="form-group">
-															<label for="exampleInputPassword1">
-																 Contraseña
-															</label>
-					<input type="password" name="npass" class="form-control"  placeholder="New Password" required="required">
+															<label for="address">Direccion clinica</label>
+					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
 														</div>
-
-<div class="form-group">
-															<label for="exampleInputPassword2">
-																Conformar contraseña
-															</label>
-									<input type="password" name="cfpass" class="form-control"  placeholder="Confirm Password" required="required">
+                                                        <div class="form-group">
+															<label for="fess">Honorarios de consulta</label>
+					                                        <input type="text" name="docfees" class="form-control"  placeholder="Enter Doctor Consultancy Fees" required="true">
 														</div>
-
-
-
+														<div class="form-group">
+									                       <label for="fess">Telefono</label>
+					                                       <input type="text" name="doccontact" class="form-control"  placeholder="Enter Doctor Contact no" required="true">
+														</div>
+														<div class="form-group">
+									                       <label for="fess">Email</label>
+                                                           <input type="email" id="docemail" name="docemail" class="form-control"  placeholder="Enter Doctor Email id" required="true" onBlur="checkemailAvailability()">
+                                                           <span id="email-availability-status"></span>
+                                                        </div>
+														<div class="form-group">
+															<label for="exampleInputPassword1">Contraseña</label>
+					                                        <input type="password" name="npass" class="form-control"  placeholder="New Password" required="required">
+														</div>
+														<div class="form-group">
+															<label for="exampleInputPassword2">Conformar contraseña</label>
+									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirm Password" required="required">
+														</div>
 														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
 															Crear
 														</button>
@@ -190,39 +156,15 @@ while ($row = mysqli_fetch_array($ret)) {
 												</div>
 											</div>
 										</div>
-
-											</div>
-										</div>
-									<div class="col-lg-12 col-md-12">
-											<div class="panel panel-white">
-
-
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
-						<!-- end: SELECT BOXES -->
-
 					</div>
 				</div>
 			</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-
-			<!-- end: SETTINGS -->
+			<?php include 'include/footer.php';?>
+			<?php include 'include/setting.php';?>
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>

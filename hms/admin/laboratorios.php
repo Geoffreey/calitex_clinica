@@ -148,11 +148,12 @@ if (isset($_POST['submit'])) {
                         </div>
                     </div>
                 </div>
-                <?php include 'include/footer.php'; ?>
-                <?php include 'include/setting.php'; ?>
             </div>
         </div>
+        <?php include 'include/footer.php'; ?>
+        <?php include 'include/setting.php'; ?>
     </div>
+
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/modernizr/modernizr.js"></script>

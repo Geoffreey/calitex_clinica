@@ -32,11 +32,9 @@ if (isset($_GET['del'])) {
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
+           <?php include 'include/sidebar.php';?>
 			<div class="app-content">
-
-						<?php include 'include/header.php';?>
-
+				<?php include 'include/header.php';?>
 				<!-- end: TOP NAVBAR -->
 				<div class="main-content" >
 					<div class="wrap-content container" id="container">
@@ -45,7 +43,7 @@ if (isset($_GET['del'])) {
 							<div class="row">
 								<div class="col-sm-8">
 									<h1 class="mainTitle">Admin | Administrar consultas no leidas</h1>
-																	</div>
+								</div>
 								<ol class="breadcrumb">
 									<li>
 										<span>Admin</span>
@@ -59,11 +57,9 @@ if (isset($_GET['del'])) {
 						<!-- end: PAGE TITLE -->
 						<!-- start: BASIC EXAMPLE -->
 						<div class="container-fluid container-fullw bg-white">
-
-
-									<div class="row">
+							<div class="row">
 								<div class="col-md-12">
-									<h5 class="over-title margin-bottom-15">administrar<span class="text-bold">Consultas no leidas</span></h5>
+									<h5 class="over-title margin-bottom-15">administrar <span class="text-bold">Consultas no leidas</span></h5>
 									<table class="table table-hover" id="sample-table-1">
 										<thead>
 											<tr>
@@ -73,81 +69,52 @@ if (isset($_GET['del'])) {
 												<th>Telefono</th>
 												<th>Mensaje</th>
 												<th>Accion</th>
-
 											</tr>
 										</thead>
 										<tbody>
-<?php
-$sql = mysqli_query($con, "select * from tblcontactus where IsRead is null");
-$cnt = 1;
-while ($row = mysqli_fetch_array($sql)) {
-    ?>
-
+											<?php
+											$sql = mysqli_query($con, "select * from tblcontactus where IsRead is null");
+											$cnt = 1;
+											while ($row = mysqli_fetch_array($sql)) {
+											?>
 											<tr>
 												<td class="center"><?php echo $cnt; ?>.</td>
 												<td class="hidden-xs"><?php echo $row['fullname']; ?></td>
 												<td><?php echo $row['email']; ?></td>
 												<td><?php echo $row['contactno']; ?></td>
 												<td><?php echo $row['message']; ?></td>
-
 												<td >
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							<a href="query-details.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
-												</div>
-												<div class="visible-xs visible-sm hidden-md hidden-lg">
-													<div class="btn-group" dropdown is-open="status.isopen">
-														<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-															<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-														</button>
-														<ul class="dropdown-menu pull-right dropdown-light" role="menu">
-															<li>
-																<a href="#">
-																	Editar
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Compartir
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Eliminar
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div></td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs">
+														<a href="query-details.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
+												    </div>
+												    <div class="visible-xs visible-sm hidden-md hidden-lg">
+														<div class="btn-group" dropdown is-open="status.isopen">
+															<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+																<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+														    </button>
+															<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+																<li><a href="#">Editar</a></li>
+															    <li><a href="#">Compartir</a></li>
+															    <li><a href="#">Eliminar</a></li>
+														    </ul>
+													   </div>
+												    </div>
+												</td>
 											</tr>
-
 											<?php
-$cnt = $cnt + 1;
-}?>
-
-
+											$cnt = $cnt + 1;
+											}?>
 										</tbody>
 									</table>
 								</div>
 							</div>
-								</div>
-							</div>
 						</div>
-						<!-- end: BASIC EXAMPLE -->
-						<!-- end: SELECT BOXES -->
-
 					</div>
 				</div>
 			</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-
-			<!-- end: SETTINGS -->
+			<?php include 'include/footer.php';?>
+	        <?php include 'include/setting.php';?>
 		</div>
-		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="vendor/modernizr/modernizr.js"></script>
