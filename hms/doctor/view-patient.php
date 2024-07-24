@@ -308,6 +308,7 @@ if(isset($_POST['submit_lab']))
 
                             <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
+                            <button class="btn btn-primary" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados</button>
                             <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
                         </div>
                     </div>
