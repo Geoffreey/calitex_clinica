@@ -39,13 +39,13 @@ if(isset($_POST['submit_lab']))
     $appointmentTime = $_POST['appointmentTime'];
     $userStatus = 1; // Assuming user status is set to 1 when appointment is created
     $doctorStatus = 1; // Assuming doctor status is set to 1 when appointment is created
-    
+    $technician_id = 1;
     // Obtener user_id del paciente
     $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
     $row = mysqli_fetch_assoc($result);
     $user_id = $row['user_id']; // Asignar el user_id a la variable
 
-    $query = mysqli_query($con, "INSERT INTO lab_appointments (labType, labId, consultancyFees, appointmentDate, appointmentTime, userStatus, doctorStatus, user_id) VALUES ('$labType', '$labId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$userStatus', '$doctorStatus', '$user_id')");
+    $query = mysqli_query($con, "INSERT INTO lab_appointments (labType, labId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) VALUES ('$labType', '$labId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id',  '$userStatus', '$doctorStatus', '$user_id')");
     
     if ($query) {
         echo '<script>alert("Lab appointment has been created.")</script>';
@@ -307,7 +307,7 @@ if(isset($_POST['submit_lab']))
 </div>
 
                             <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Crear Cita de Laboratorio</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
                             <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
                         </div>
                     </div>
