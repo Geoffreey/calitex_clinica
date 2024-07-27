@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
     $labemail          = $_POST['labEmail'];
     $sql               = mysqli_query($con, "Update tecnico_lab set tecnicoName='$tecnicoName',address='$labaddress',contactno='$contactno',labEmail='$labemail' where id='$did'");
     if ($sql) {
-        $msg = "Detalles del tecnico actualizados con éxito";
+        $msg = "Datos actualizados con éxito";
 
     }
 }
@@ -84,10 +84,10 @@ if (isset($_POST['submit'])) {
 									                  <?php $sql = mysqli_query($con, "select * from tecnico_lab where id='$did'"); 
                                                          while ($data = mysqli_fetch_array($sql)) {
                                                        ?>
-                                                      <h4><?php echo htmlentities($data['tecnicoName']); ?>'s Profile</h4>
-                                                         <p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
+                                                      <h4>Perfil <?php echo htmlentities($data['tecnicoName']); ?></h4>
+                                                         <p><b>Fecha ingreso: </b><?php echo htmlentities($data['creationDate']); ?></p>
                                                           <?php if ($data['updationDate']) {?>
-                                                          <p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
+                                                          <p><b>Fecha actualizacion: </b><?php echo htmlentities($data['updationDate']); ?></p>
                                                            <?php }?>
                                                            <hr />
 													<form role="form" name="addtec" method="post" onSubmit="return valid();">
@@ -137,13 +137,7 @@ if (isset($_POST['submit'])) {
 															</label>
 					                                        <input type="labEmail" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']); ?>">
 														</div>
-
-
-
-
 														<?php }?>
-
-
 														<button type="submit" name="submit" class="btn btn-o btn-primary">
 															Actualizar
 														</button>
@@ -165,24 +159,14 @@ if (isset($_POST['submit'])) {
 							</div>
 						</div>
 						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
 						<!-- end: SELECT BOXES -->
-
+						
 					</div>
+					<?php include 'include/footer.php';?>
+						<?php include 'include/setting.php';?>
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-			<>
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->

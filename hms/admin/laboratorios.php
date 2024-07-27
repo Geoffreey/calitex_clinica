@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
                                                 <table class="table table-hover" id="sample-table-1">
                                                     <thead>
                                                         <tr>
-                                                            <th class="center">#</th>
+                                                            <th class="center">No.</th>
                                                             <th>Tipo</th>
                                                             <th>Nombre</th>
                                                             <th>Código</th>
@@ -130,7 +130,7 @@ if (isset($_POST['submit'])) {
                                                                 <td><?php echo $row['updated_at']; ?></td>
                                                                 <td>
                                                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                                        <a href="edit-laboratory.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="edit-laboratorios.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
                                                                         <a href="manage-laboratories.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este laboratorio?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
                                                                     </div>
                                                                 </td>

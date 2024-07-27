@@ -7,11 +7,11 @@ check_login();
 $id=intval($_GET['id']);// get value
 if(isset($_POST['submit']))
 {
-	$Tipo = $_POST['Tipo'];
-    $nombre = $_POST['Nombre'];
+	$tipo = $_POST['tipo'];
+    $nombre = $_POST['nombre'];
 	$codigo = $_POST['codigo'];
-    $labFees = $_POST['labFees'];
-    $sql=mysqli_query($con,"update  laboratorios set Tipo='$Tipo', Nombre='$nombre',codigo='$codigo',labFees='$labFees' where id='$id'");
+    $costo = $_POST['costo'];
+    $sql=mysqli_query($con,"update  laboratories set tipo='$tipo', nombre='$nombre',codigo='$codigo',costo='$costo' where id='$id'");
     $_SESSION['msg']="Examen de laboratorio actualizado con exito !!";
 } 
 
@@ -107,20 +107,20 @@ if(isset($_POST['submit']))
 	                                                     <?php 
 
                                                             $id=intval($_GET['id']);
-	                                                        $sql=mysqli_query($con,"select * from laboratorios where id='$id'");
+	                                                        $sql=mysqli_query($con,"select * from laboratories where id='$id'");
                                                             while($row=mysqli_fetch_array($sql))
                                                             {														
 	                                                         ?>		<div class="form-group">
-															           <label for="Tipo">
+															           <label for="tipo">
 																          Tipo
 															           </label>
-															           <input type="text" name="Tipo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['Tipo'];?>">
+															           <input type="text" name="tipo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['tipo'];?>">
 														            </div>
 																	<div class="form-group">
-															           <label for="Nombre">
+															           <label for="nombre">
 																          Nombre
 															           </label>
-															           <input type="text" name="Nombre" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['Nombre'];?>">
+															           <input type="text" name="nombre" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['nombre'];?>">
 														            </div>
 																	<div class="form-group">
 															           <label for="codigo">
@@ -129,10 +129,10 @@ if(isset($_POST['submit']))
 															           <input type="text" name="codigo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['codigo'];?>">
 														            </div>
 																	<div class="form-group">
-															           <label for="labFees">
+															           <label for="costo">
 																          Precio
 															           </label>
-															           <input type="text" name="labFees" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['labFees'];?>">
+															           <input type="text" name="costo" class="form-control"  placeholder="Ingrese tipo de laboratorio" value="<?php echo $row['costo'];?>">
 														            </div>
 															        <!--<input type="text" name="Tipo" class="form-control" value="</?php //echo $row['Tipo'];?>" >
 															        <input type="text" name="Nombre" class="form-control" value="</?php //echo $row['Nombre'];?>" >
@@ -168,18 +168,11 @@ if(isset($_POST['submit']))
 						</div>
 						<!-- end: BASIC EXAMPLE -->
 						<!-- end: SELECT BOXES -->
-						
+						<?php include('include/footer.php');?>
+						<?php include('include/setting.php');?>	
 					</div>
 				</div>
 			</div>
-			<!-- start: FOOTER -->
-	<?php include('include/footer.php');?>
-			<!-- end: FOOTER -->
-		
-			<!-- start: SETTINGS -->
-	<?php include('include/setting.php');?>
-			
-			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>
