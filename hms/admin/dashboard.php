@@ -62,7 +62,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Administrador de usuarios</h2>
+											<h2 class="StepTitle">Admin. Usuarios</h2>
 
 											<p class="links cl-effect-1">
 												<a href="manage-users.php">
@@ -70,7 +70,7 @@ check_login();
                                                    $num_rows                 = mysqli_num_rows($result);
                                                      {
                                                      ?>
-											          Total de usuarios :<?php echo htmlentities($num_rows);} ?>
+											          Total usuarios :<?php echo htmlentities($num_rows);} ?>
 												</a>
 											</p>
 										</div>
@@ -80,7 +80,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Administrador de medicos</h2>
+											<h2 class="StepTitle">Admin. Medicos</h2>
 
 											<p class="cl-effect-1">
 												<a href="manage-doctors.php">
@@ -100,7 +100,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-flask-vial fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Administrador de laboratorio</h2>
+											<h2 class="StepTitle">Admin. Laboratorio</h2>
 
 											<p class="cl-effect-1">
 												<a href="manage-laboratorio.php">
@@ -108,7 +108,7 @@ check_login();
                                                     $num_rows1                 = mysqli_num_rows($result1);
                                                      {
                                                     ?>
-											            Total de tecnicos de laboratorio :<?php echo htmlentities($num_rows1);} ?>
+											            Total tecnicos de laboratorio :<?php echo htmlentities($num_rows1);} ?>
 												</a>
 
 											</p>
@@ -120,7 +120,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-person-rays fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Administrador de rayos X</h2>
+											<h2 class="StepTitle">Admin. Rayos X</h2>
 
 											<p class="cl-effect-1">
 												<a href="manage-rayosx.php">
@@ -128,7 +128,7 @@ check_login();
                                                     $num_rows1                 = mysqli_num_rows($result1);
                                                      {
                                                     ?>
-											            Total de tecnicos de rayos x :<?php echo htmlentities($num_rows1);} ?>
+											            Total tecnicos rayos x :<?php echo htmlentities($num_rows1);} ?>
 												</a>
 
 											</p>
@@ -140,7 +140,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Citas</h2>
+											<h2 class="StepTitle">Admin. Citas</h2>
 
 											<p class="links cl-effect-1">
 												<a href="book-appointment.php">
@@ -161,7 +161,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Administrador de pacientes</h2>
+											<h2 class="StepTitle">Admin. Pacientes</h2>
 
 											<p class="links cl-effect-1">
 												<a href="manage-patient.php">
@@ -169,7 +169,7 @@ check_login();
                                                     $num_rows     = mysqli_num_rows($result);
                                                     {
                                                     ?>
-                                                    Total de pacientes:<?php echo htmlentities($num_rows);
+                                                     Total pacientes:<?php echo htmlentities($num_rows);
                                                      } ?>
                                                 </a>
 											</p>
@@ -185,7 +185,7 @@ check_login();
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Nuevas consultas</h2>
+											<h2 class="StepTitle">Consultas Web</h2>
 
 											<p class="links cl-effect-1">
 												<a href="book-appointment.php">
@@ -194,7 +194,7 @@ check_login();
                                                 $sql        = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
                                                 $num_rows22 = mysqli_num_rows($sql);
                                                 ?>
-											    Total de nuevas consultas:<?php echo htmlentities($num_rows22); ?>
+											    Total consultas web:<?php echo htmlentities($num_rows22); ?>
 												</a>
 												</a>
 											</p>
