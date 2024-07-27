@@ -6,7 +6,7 @@ include "db.php";
 $id = $_GET['id'];
 
 // Buscar el archivo en la base de datos
-$sql = "SELECT * FROM documento WHERE id = '$id'";
+$sql = "SELECT * FROM tblresultadoslab WHERE id = '$id'";
 $resultado = mysqli_query($conexion, $sql);
 
 if (mysqli_num_rows($resultado) == 1) {

@@ -3,7 +3,7 @@
 					<i class="fa fa-spin fa-gear"></i>
 				</button>
 				<div class="panel-heading">
-					Style Selector
+					Selector de estilo
 				</div>
 				<div class="panel-body">
 					<!-- start: FIXED HEADER -->

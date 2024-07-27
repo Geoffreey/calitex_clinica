@@ -4,16 +4,16 @@ include("include/config.php");
 error_reporting(0);
 if(isset($_POST['submit']))
 {
-$ret=mysqli_query($con,"SELECT * FROM tecnico_rx WHERE rxEmail='".$_POST['username']."' and password='".md5($_POST['password'])."'");
+$ret=mysqli_query($con,"SELECT * FROM tecnico_rx WHERE labEmail='".$_POST['username']."' and password='".md5($_POST['password'])."'");
 $num=mysqli_fetch_array($ret);
 if($num>0)
 {
 $extra="dashboard.php";
-$_SESSION['rxlogin']=$_POST['username'];
+$_SESSION['teclogin']=$_POST['username'];
 $_SESSION['id']=$num['id'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=1;
-$log=mysqli_query($con,"insert into rxlog(uid,username,userip,status) values('".$_SESSION['id']."','".$_SESSION['rxlogin']."','$uip','$status')");
+$log=mysqli_query($con,"insert into tcrxlog(uid,username,userip,status) values('".$_SESSION['id']."','".$_SESSION['teclogin']."','$uip','$status')");
 $host=$_SERVER['HTTP_HOST'];
 $uri=rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
 header("location:http://$host$uri/$extra");
@@ -22,10 +22,10 @@ exit();
 else
 {
 $host  = $_SERVER['HTTP_HOST'];
-$_SESSION['rxlogin']=$_POST['username'];
+$_SESSION['teclogin']=$_POST['username'];
 $uip=$_SERVER['REMOTE_ADDR'];
 $status=0;
-mysqli_query($con,"insert into rxlog(username,userip,status) values('".$_SESSION['rxlogin']."','$uip','$status')");
+mysqli_query($con,"insert into tcrxlog(username,userip,status) values('".$_SESSION['teclogin']."','$uip','$status')");
 $_SESSION['errmsg']="Nombre de usuario o contraseña no válidos";
 $extra="index.php";
 $uri  = rtrim(dirname($_SERVER['PHP_SELF']),'/\\');
@@ -43,7 +43,7 @@ exit();
 	    <meta name="viewport" content="">
 	    <meta name="keywords" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Iniciar sesion medico</title>
+		<title>Iniciar sesion rayos X</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -60,7 +60,7 @@ exit();
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<a href="../../index.php">	<h2>CaliTex | Acceso Rayos X</h2></a>
+				<a href="../../index.php">	<h2>CaliTex | Acceso laboratorio</h2></a>
 				</div>
 
 				<div class="box-login">
@@ -90,7 +90,7 @@ exit();
 							<div class="form-actions">
 								
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Acceso<i class="fa fa-arrow-circle-right"></i>
+									Acceso <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							

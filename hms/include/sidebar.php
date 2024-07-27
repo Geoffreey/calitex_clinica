@@ -45,6 +45,18 @@
 								</a>
 							</li>
 							<li>
+								<a href="cita-rayosx.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-pencil-alt"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title">Cita Rayos X</span>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
 								<a href="appointment-history.php">
 									<div class="item-content">
 										<div class="item-media">

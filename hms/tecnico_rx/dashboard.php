@@ -9,7 +9,7 @@ check_login();
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Medico  | Consola</title>
+		<title>Laboratorio  | Consola</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -42,7 +42,7 @@ check_login();
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Medico | Consola</h1>
+									<h1 class="mainTitle">Laboratorio | Consola</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
@@ -86,6 +86,21 @@ check_login();
 										</div>
 									</div>
 								</div>
+
+								<!--<div class="col-sm-4">
+									<div class="panel panel-white no-radius text-center">
+										<div class="panel-body">
+											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
+											<h2 class="StepTitle">Resultados</h2>
+										
+											<p class="cl-effect-1">
+												<a href="resultados.php">
+												Ver resultados
+												</a>
+											</p>
+										</div>
+									</div>
+								</div>-->
 								
 							</div>
 						</div>

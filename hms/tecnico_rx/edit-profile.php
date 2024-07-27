@@ -5,16 +5,14 @@ include('include/config.php');
 include('include/checklogin.php');
 if(isset($_POST['submit']))
 {
-	$docspecialization=$_POST['Doctorspecialization'];
-$docname=$_POST['docname'];
-$docaddress=$_POST['clinicaddress'];
-$docfees=$_POST['docfees'];
-$doccontactno=$_POST['doccontact'];
-$docemail=$_POST['docemail'];
-$sql=mysqli_query($con,"Update doctors set specilization='$docspecialization',doctorName='$docname',address='$docaddress',docFees='$docfees',contactno='$doccontactno' where id='".$_SESSION['id']."'");
+$labname=$_POST['tecnicoName'];
+$labaddress=$_POST['labaddress'];
+$labcontactno=$_POST['contactno'];
+$labemail=$_POST['labEmail'];
+$sql=mysqli_query($con,"Update tecnico_lab set tecnicoName='$labname',address='$labaddress',contactno='$labcontactno',labEmail='$labemail' where id='".$_SESSION['id']."'");
 if($sql)
 {
-echo "<script>alert('Doctor Details updated Successfully');</script>";
+echo "<script>alert('Detalles del tecnico actualizados con éxito');</script>";
 
 }
 }
@@ -22,7 +20,7 @@ echo "<script>alert('Doctor Details updated Successfully');</script>";
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Medico | Editar detalles del doctor</title>
+		<title>Laboratorio | Editar detalles del tecnico</title>
 		
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -52,14 +50,14 @@ echo "<script>alert('Doctor Details updated Successfully');</script>";
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Medico | Editar detalles del doctor</h1>
+									<h1 class="mainTitle">Laboratorio | Editar detalles del tecnico</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Medico</span>
+										<span>Laboratorio</span>
 									</li>
 									<li class="active">
-										<span>Editar detalles del doctor</span>
+										<span>Editar detalles del tecnico</span>
 									</li>
 								</ol>
 							</div>
@@ -74,72 +72,73 @@ echo "<script>alert('Doctor Details updated Successfully');</script>";
 										<div class="col-lg-8 col-md-12">
 											<div class="panel panel-white">
 												<div class="panel-heading">
-													<h5 class="panel-title">Editar medico</h5>
+													<h5 class="panel-title">Editar tecnico</h5>
 												</div>
 												<div class="panel-body">
-									<?php $sql=mysqli_query($con,"select * from doctors where docEmail='".$_SESSION['dlogin']."'");
-while($data=mysqli_fetch_array($sql))
-{
-?>
-<h4><?php echo htmlentities($data['doctorName']);?>Perfil de</h4>
-<p><b>Registro de perfil. Fecha:</b><?php echo htmlentities($data['creationDate']);?></p>
-<?php if($data['updationDate']){?>
-<p><b>Fecha de la última actualización del perfil: </b><?php echo htmlentities($data['updationDate']);?></p>
-<?php } ?>
-<hr />
-													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-														<div class="form-group">
+									<?php $sql=mysqli_query($con,"select * from tecnico_lab where labEmail='".$_SESSION['teclogin']."'");
+                                        while($data=mysqli_fetch_array($sql))
+                                        {
+                                           ?>
+                                          <h4><?php echo htmlentities($data['tecnicoName']);?>Perfil de</h4> 
+                                              <p><b>Registro de perfil. Fecha:</b><?php echo htmlentities($data['creationDate']);?></p>
+                                               <?php if($data['updationDate']){?>
+                                                 <p><b>Fecha de la última actualización del perfil: </b><?php echo htmlentities($data['updationDate']);?></p>
+                                                    <?php } ?>
+                                                   <hr />
+													<form role="form" name="addtec" method="post" onSubmit="return valid();">
+														<!--<div class="form-group">
 															<label for="DoctorSpecialization">
 																Especializacion medica
 															</label>
-							<select name="Doctorspecialization" class="form-control" required="required">
-					<option value="<?php echo htmlentities($data['specilization']);?>">
-					<?php echo htmlentities($data['specilization']);?></option>
-<?php $ret=mysqli_query($con,"select * from doctorspecilization");
-while($row=mysqli_fetch_array($ret))
-{
-?>
-																<option value="<?php echo htmlentities($row['specilization']);?>">
-																	<?php echo htmlentities($row['specilization']);?>
+							                                <select name="Doctorspecialization" class="form-control" required="required">
+					                                            <option value="<?php echo htmlentities($data['specilization']);?>">
+					                                               <?php echo htmlentities($data['specilization']);?>
 																</option>
-																<?php } ?>
+                                                                      <?php $ret=mysqli_query($con,"select * from doctorspecilization");
+                                                                        while($row=mysqli_fetch_array($ret))
+                                                                           { ?>
+																 <option value="<?php echo htmlentities($row['specilization']);?>">
+																	    <?php echo htmlentities($row['specilization']);?>
+																 </option>
+																        <?php } ?>
 																
 															</select>
-														</div>
+														</div>-->
 
-<div class="form-group">
-															<label for="doctorname">
-																 nombre medico
+                                                        <div class="form-group">
+															<label for="tecnicoName">
+																 nombre tecnico
 															</label>
-	<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['doctorName']);?>" >
+	                                                        <input type="text" name="tecnicoName" class="form-control" value="<?php echo htmlentities($data['tecnicoName']);?>" >
 														</div>
 
 
-<div class="form-group">
-															<label for="address">
+                                                        <div class="form-group">
+															<label for="labaddress">
 																 Direccion
 															</label>
-					<textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']);?></textarea>
-														</div>
-<div class="form-group">
-															<label for="fess">
-																 Honoracion consulta
-															</label>
-		<input type="text" name="docfees" class="form-control" required="required"  value="<?php echo htmlentities($data['docFees']);?>" >
-														</div>
-	
-<div class="form-group">
-									<label for="fess">
-																 Telefono
-															</label>
-					<input type="text" name="doccontact" class="form-control" required="required"  value="<?php echo htmlentities($data['contactno']);?>">
+                                                            <textarea name="labaddress" class="form-control"><?php echo htmlentities($data['labaddress']);?></textarea>
 														</div>
 
-<div class="form-group">
-									<label for="fess">
-																 Email
+                                                        <!--<div class="form-group">
+															<label for="labfees">
+																 Honoracion consulta
 															</label>
-					<input type="email" name="docemail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['docEmail']);?>">
+		                                                    <input type="text" name="labfees" class="form-control" required="required"  value="<//?php echo htmlentities($data['labFees']);?>" >
+														</div>-->
+	
+                                                        <div class="form-group">
+									                         <label for="contactno">
+																 Telefono
+															</label>
+					                                        <input type="text" name="contactno" class="form-control" required="required"  value="<?php echo htmlentities($data['contactno']);?>">
+														</div>
+
+                                                        <div class="form-group">
+									                         <label for="labEmail">
+																 Email
+															 </label>
+					                                         <input type="labemail" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']);?>">
 														</div>
 
 

@@ -22,7 +22,7 @@
 						<ul class="nav navbar-right">
 							<!-- start: MESSAGES DROPDOWN -->
 								<li  style="padding-top:2% ">
-								<h2>Hospital Luz de Vida</h2>
+								<h2>Hospital General RP</h2>
 							</li>
 						
 						
@@ -32,11 +32,11 @@
 
 
 
-									<?php $query=mysqli_query($con,"select doctorName from doctors where id='".$_SESSION['id']."'");
-while($row=mysqli_fetch_array($query))
-{
-	echo $row['doctorName'];
-}
+									<?php $query=mysqli_query($con,"select tecnicoName from tecnico_rx where id='".$_SESSION['id']."'");
+                                        while($row=mysqli_fetch_array($query))
+                                        { 
+	                                      echo $row['tecnicoName'];
+                                        }
 									?> <i class="ti-angle-down"></i></i></span>
 								</a>
 								<ul class="dropdown-menu dropdown-dark">
