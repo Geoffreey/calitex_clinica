@@ -69,8 +69,11 @@ if (isset($_GET['del'])) {
 									<table class="table table-hover" id="sample-table-1">
 										<thead>
 											<tr>
-												<th class="center">#</th>
+												<th class="center">No.</th>
 												<th class="hidden-xs">Nombre tecnico</th>
+												<th class="hidden-xs">Telefono</th>
+												<th class="hidden-xs">Correo electronico</th>
+												<th class="hidden-xs">Direccion</th>
 												<th>Fecha de creacion</th>
 												<th>Accion</th>
 
@@ -86,6 +89,9 @@ if (isset($_GET['del'])) {
 											<tr>
 												<td class="center"><?php echo $cnt; ?>.</td>
 												<td><?php echo $row['tecnicoName']; ?></td>
+												<td><?php echo $row['contactno']; ?></td>
+												<td><?php echo $row['labEmail']; ?></td>
+												<td><?php echo $row['address']; ?></td>
 												<td><?php echo $row['creationDate']; ?>
 												</td>
 
@@ -136,16 +142,10 @@ if (isset($_GET['del'])) {
 						<!-- end: SELECT BOXES -->
 
 					</div>
+					<?php include 'include/footer.php';?>
+					<?php include 'include/setting.php';?>
 				</div>
 			</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-
-			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>

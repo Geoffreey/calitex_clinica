@@ -13,8 +13,8 @@ if (isset($_POST['submit'])) {
     $password = md5($_POST['npass']);
     $sql = mysqli_query($con, "INSERT INTO tecnico_lab(tecnicoName,address,contactno,labEmail,password) VALUES('$tecnicoName','$labaddress','$contactno','$labemail','$password')");
     if ($sql) {
-        echo "<script>alert('Información del técnico agregada con éxito'); </script>";
-        echo "<script>window.location.href = 'manage-doctors.php'</script>";
+        echo "<script>alert('Se guardo con exito'); </script>";
+        echo "<script>window.location.href = 'manage-laboratorio.php'</script>";
     }
 }
 ?>

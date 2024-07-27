@@ -7,12 +7,13 @@ check_login();
 $did = intval($_GET['id']); // get doctor id
 if (isset($_POST['submit'])) {
     $tecnicoName           = $_POST['tecnicoName'];
-    $rxaddress        = $_POST['address'];
+    $address        = $_POST['address'];
     $contactno      = $_POST['contactno'];
-    $rxemail          = $_POST['rxEmail'];
-    $sql               = mysqli_query($con, "Update tecnico_rx set tecnicoName='$tecnicoName',address='$rxaddress',contactno='$contactno',rxEmail='$rxemail' where id='$did'");
+    $labemail          = $_POST['labEmail'];
+    $sql               = mysqli_query($con, "Update tecnico_rx set tecnicoName='$tecnicoName',address='$address',contactno='$contactno',labEmail='$labemail' where id='$did'");
     if ($sql) {
-        $msg = "Detalles del médico actualizados con éxito";
+        echo "<script>alert('Datos actualizados con éxito');</script>";
+		echo "<script>window.location.href ='manage-rayosx.php'</script>";
 
     }
 }
@@ -84,10 +85,10 @@ if (isset($_POST['submit'])) {
 									                  <?php $sql = mysqli_query($con, "select * from tecnico_rx where id='$did'"); 
                                                          while ($data = mysqli_fetch_array($sql)) {
                                                        ?>
-                                                      <h4><?php echo htmlentities($data['tecnicoName']); ?>'s Profile</h4>
-                                                         <p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
+                                                      <h4>Perfil <?php echo htmlentities($data['tecnicoName']); ?></h4>
+                                                         <p><b>Fecha ingreso: </b><?php echo htmlentities($data['creationDate']); ?></p>
                                                           <?php if ($data['updationDate']) {?>
-                                                          <p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
+                                                          <p><b>Fecha actualizacion: </b><?php echo htmlentities($data['updationDate']); ?></p>
                                                            <?php }?>
                                                            <hr />
 													<form role="form" name="addtecrx" method="post" onSubmit="return valid();">
@@ -119,9 +120,9 @@ if (isset($_POST['submit'])) {
 
                                                         <div class="form-group">
 															<label for="address">
-																 Direccion de la clinica medica
+																 Direccion
 															</label>
-					                                        <textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
+					                                        <textarea name="address" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
 														</div>
 
                                                          <div class="form-group">
@@ -132,18 +133,12 @@ if (isset($_POST['submit'])) {
 														</div>
 
                                                         <div class="form-group">
-									                        <label for="rxEmail">
+									                        <label for="labEmail">
 																 Email
 															</label>
-					                                        <input type="rxEmail" name="rxEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['rxEmail']); ?>">
+					                                        <input type="labEmail" name="labEmail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['labEmail']); ?>">
 														</div>
-
-
-
-
 														<?php }?>
-
-
 														<button type="submit" name="submit" class="btn btn-o btn-primary">
 															Actualizar
 														</button>
@@ -165,25 +160,12 @@ if (isset($_POST['submit'])) {
 							</div>
 						</div>
 						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
 						<!-- end: SELECT BOXES -->
-
 					</div>
+					<?php include 'include/footer.php';?>
+	                <?php include 'include/setting.php';?>
 				</div>
 			</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-			<>
-			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>

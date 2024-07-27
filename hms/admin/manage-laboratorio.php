@@ -64,8 +64,8 @@ if (isset($_GET['del'])) {
                                             <th class="center">No.</th>
                                             <th class="hidden-xs">Nombre técnico</th>
                                             <th>Teléfono</th>
-                                            <th>Dirección</th>
                                             <th>Correo Electrónico</th>
+                                            <th>Dirección</th>
                                             <th>Fecha de creación</th>
                                             <th>Acción</th>
                                         </tr>
@@ -80,8 +80,8 @@ if (isset($_GET['del'])) {
                                                 <td class="center"><?php echo $cnt; ?>.</td>
                                                 <td><?php echo $row['tecnicoName']; ?></td>
                                                 <td><?php echo $row['contactno']; ?></td>
-                                                <td><?php echo $row['address']; ?></td>
                                                 <td><?php echo $row['labEmail']; ?></td>
+                                                <td><?php echo $row['address']; ?></td>
                                                 <td><?php echo $row['creationDate']; ?></td>
                                                 <td>
                                                     <div class="visible-md visible-lg hidden-sm hidden-xs">

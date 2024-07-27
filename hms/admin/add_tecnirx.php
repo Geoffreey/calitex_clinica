@@ -7,14 +7,14 @@ check_login();
 
 if (isset($_POST['submit'])) {
     $tecnicoName           = $_POST['tecnicoName'];
-    $rxaddress        = $_POST['address'];
-    $contactno      = $_POST['contact'];
-    $rxemail          = $_POST['rxEmail'];
+    $address        = $_POST['address'];
+    $contactno      = $_POST['contactno'];
+    $labemail          = $_POST['labEmail'];
     $password          = md5($_POST['npass']);
-    $sql               = mysqli_query($con, "insert into tecnico_rx(tecnicoName,address,contactno,rxEmail,password) values('$tecnicoName','$rxaddress','$contactno','$rxemail','$password')");
+    $sql               = mysqli_query($con, "INSERT INTO tecnico_rx(tecnicoName,address,contactno,labEmail,password) values('$tecnicoName','$address','$contactno','$labemail','$password')");
     if ($sql) {
-        echo "<script>alert('Información del médico agregada con éxito');</script>";
-        echo "<script>window.location.href ='manage-doctors.php'</script>";
+        echo "<script>alert('Se guardo con exito');</script>";
+        echo "<script>window.location.href ='manage-rayosx.php'</script>";
 
     }
 }
@@ -43,7 +43,7 @@ function valid()
 {
  if(document.addtecrx.npass.value!= document.addtecrx.cfpass.value)
 {
-alert("Password and Confirm Password Field do not match  !!");
+alert("Los campos Contraseña y Confirmar contraseña no coinciden!!");
 document.addtecrx.cfpass.focus();
 return false;
 }
@@ -57,7 +57,7 @@ function checkemailAvailability() {
 $("#loaderIcon").show();
 jQuery.ajax({
 url: "check_availability.php",
-data:'emailid='+$("#rxEmail").val(),
+data:'emailid='+$("#labEmail").val(),
 type: "POST",
 success:function(data){
 $("#email-availability-status").html(data);
@@ -128,17 +128,17 @@ error:function (){}
 
                                                         <div class="form-group">
 															<label for="tecnicoName">
-																 Nombre tecnico
+																 Nombre
 															</label>
-					                                           <input type="text" name="tecnicoName" class="form-control"  placeholder="Enter Doctor Name" required="true">
+					                                           <input type="text" name="tecnicoName" class="form-control"  placeholder="Nombres y Apellidos" required="true">
 														</div>
 
 
                                                         <div class="form-group">
 															<label for="address">
-																 Direccion clinica
+																 Direccion
 															</label>
-					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
+					                                        <textarea name="address" class="form-control"  placeholder="Domicilio" required="true"></textarea>
 														</div>
 
                                                         <!--<div class="form-group">
@@ -152,14 +152,14 @@ error:function (){}
 									                        <label for="contactno">
 																 Telefono
 															</label>
-					                                        <input type="text" name="contactno" class="form-control"  placeholder="Enter Doctor Contact no" required="true">
+					                                        <input type="text" name="contactno" class="form-control"  placeholder="Contacto telefonico" required="true">
 														</div>
 
                                                         <div class="form-group">
-									                        <label for="rxEmail">
+									                        <label for="labEmail">
 																 Email
 															</label>
-                                                            <input type="rxEmail" id="rxEmail" name="rxEmail" class="form-control"  placeholder="Enter Doctor Email id" required="true" onBlur="checkemailAvailability()">
+                                                            <input type="labEmail" id="labEmail" name="labEmail" class="form-control"  placeholder="Correo electronico" required="true" onBlur="checkemailAvailability()">
                                                             <span id="email-availability-status"></span>
                                                         </div>
 
@@ -167,14 +167,14 @@ error:function (){}
 															<label for="exampleInputPassword1">
 																 Contraseña
 															</label>
-					                                        <input type="password" name="npass" class="form-control"  placeholder="New Password" required="required">
+					                                        <input type="password" name="npass" class="form-control"  placeholder="Contraseña" required="required">
 														</div>
 
                                                         <div class="form-group">
 															<label for="exampleInputPassword2">
 																Conformar contraseña
 															</label>
-									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirm Password" required="required">
+									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirme contraseña" required="required">
 														</div>
 
 														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
@@ -198,24 +198,13 @@ error:function (){}
 							</div>
 						</div>
 						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
 						<!-- end: SELECT BOXES -->
-
 					</div>
+					<?php include 'include/footer.php';?>
+    <?php include 'include/setting.php';?>
 				</div>
 			</div>
 			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
