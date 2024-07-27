@@ -127,13 +127,7 @@
 											    <span class="title">Admin laboratorio</span>
 										    </a>
 									    </li>
-									    <li>
-										    <a href="resultados_lab.php">
-											    <span class="title">Resultados</span>
-										    </a>
-									    </li>
-
-								    </ul>
+									</ul>
 							    </li>
 
 								<li>
@@ -163,13 +157,7 @@
 											    <span class="title">Admin Rayos X</span>
 										    </a>
 									    </li>
-									    <li>
-										    <a href="resultados.php">
-											    <span class="title">Resultados</span>
-										    </a>
-									    </li>
-
-								    </ul>
+									</ul>
 							    </li>
 							
                                 <li>
@@ -184,46 +172,38 @@
 									  </div>
 								   </a>
 							    </li>
-
-
-
-				                <li>
+								<li>
 								   <a href="javascript:void(0)">
 									   <div class="item-content">
 										   <div class="item-media">
 											   <i class="ti-files"></i>
 										   </div>
 										   <div class="item-inner">
-											     <span class="title">Consultas por contacto</span><i class="icon-arrow"></i>
+											     <span class="title">Consultas web</span><i class="icon-arrow"></i>
 										   </div>
 									   </div>
 								   </a>
 								    <ul class="sub-menu">
-
-    									  <li>
+									<li>
+										<a href="read-query.php">
+											     <span class="title">Leer consulta</span>
+										      </a>
+									      </li>
+										<li>
 										     <a href="unread-queries.php">
 											   <span class="title">Consulta no leida</span>
 										     </a>
 									      </li>
-
-                                          <li>
-										      <a href="read-query.php">
-											     <span class="title">Leer consulta</span>
-										      </a>
-									      </li>
 								    </ul>
 								</li>
-
-
-
-	                           <li>
+								<li>
 								  <a href="doctor-logs.php">
 									 <div class="item-content">
 										  <div class="item-media">
 											  <i class="ti-list"></i>
 										  </div>
 										  <div class="item-inner">
-											  <span class="title">Reg. sesiones medicos</span>
+											  <span class="title">Reg. seciones medicos</span>
 										  </div>
 									 </div>
 								  </a>
@@ -238,7 +218,7 @@
 											<i class="ti-list"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title">Reg. sesiones usuairos</span>
+											<span class="title">Reg. seciones usuairos</span>
 										</div>
 									</div>
 								</a>

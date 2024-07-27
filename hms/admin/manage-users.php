@@ -61,7 +61,7 @@ if (isset($_GET['del'])) {
 							 <table class="table table-hover" id="sample-table-1">
 								 <thead>
 									 <tr>
-										 <th class="center">#</th>
+										 <th class="center">No.</th>
 										 <th>No. Admision</th>
 										 <th>Nombre completo</th>
 										 <th>Fecha de nacimiento</th>
