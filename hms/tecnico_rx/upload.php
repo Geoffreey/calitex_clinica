@@ -33,10 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             $fileName = basename($_FILES["fileToUpload"]["name"]);
             $filePath = $target_file;
-            $appointmentrxId = $_POST['appointmentrxId'];
+            $appointmentId = $_POST['appointmentId'];
 
             // Insertar el registro del archivo en la base de datos
-            $query = "INSERT INTO tblfiles (FileName, FileType, FilePath, appointmentrx_id) VALUES ('$fileName', '$fileType', '$filePath', '$appointmentrxId')";
+            $query = "INSERT INTO tblfiles (FileName, FileType, FilePath, appointmentrx_id) VALUES ('$fileName', '$fileType', '$filePath', '$appointmentId')";
             if (mysqli_query($con, $query)) {
                 $_SESSION['msg'] = "El archivo " . htmlspecialchars($fileName) . " ha sido subido.";
             } else {

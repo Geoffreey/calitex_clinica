@@ -6,7 +6,7 @@ check_login();
 
 if (isset($_POST['submit'])) {
     $rxtype = $_POST['rxtype'];
-    $rxid = $_POST['rxbid'];
+    $rxid = $_POST['rxid'];
     $userid = $_SESSION['id'];
     $fees = $_POST['fees'];
     $appdate = $_POST['appdate'];

@@ -25,7 +25,7 @@ if (isset($_GET['Finalizada'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Técnico | Historial de citas de laboratorio</title>
+    <title>Técnico | Historial de citas de Rayos X</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -72,7 +72,7 @@ if (isset($_GET['Finalizada'])) {
                                                 <?php
                                                 $sql = mysqli_query($con, "SELECT rayosx.tipo AS rxtype, rayosx.nombre AS rxname, rx_appointments.*, tblpatient.PatientName
                                                     FROM rx_appointments
-                                                    JOIN rayosx ON rayosx.id = rx_appointments.rxbId
+                                                    JOIN rayosx ON rayosx.id = rx_appointments.rxId
                                                     LEFT JOIN tblpatient ON tblpatient.user_id = rx_appointments.user_id
                                                     WHERE rx_appointments.technician_id='" . $technician_id . "'");
                                                 $cnt = 1;

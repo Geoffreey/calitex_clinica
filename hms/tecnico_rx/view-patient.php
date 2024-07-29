@@ -27,7 +27,7 @@ if (isset($_GET['viewid'])) {
 
     // Consulta para obtener el historial de citas de laboratorio del paciente desde la tabla lab_appointments
     $sql_rx_appointments = "SELECT rayosx.tipo AS rxtype, rayosx.nombre AS rxname, rx_appointments.*
-                             FROM lab_appointments
+                             FROM rx_appointments
                              JOIN rayosx ON rayosx.id = rx_appointments.rxId
                              WHERE rx_appointments.user_id = '$vid'";
     $result_rx_appointments = mysqli_query($con, $sql_rx_appointments);
