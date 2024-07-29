@@ -148,6 +148,12 @@ if (isset($_POST['submit'])) {
     <script src="assets/js/form-elements.js"></script>
 
     <script>
+        
+        jQuery(document).ready(function() {
+            Main.init();
+            FormElements.init();
+        });
+
     $(document).ready(function() {
         $('#labtype').change(function() {
             var labtype = $(this).val();

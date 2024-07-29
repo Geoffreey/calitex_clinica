@@ -16,13 +16,13 @@ if(isset($_POST['submit']))
     $pres = $_POST['pres'];
     $ord = $_POST['ord'];
     $evo = $_POST['evo'];
-    $lab = $_POST['lab'];
-    $rayx = $_POST['rayx'];
+    //$lab = $_POST['lab'];//
+    //$rayx = $_POST['rayx'];//
     
-    $query = mysqli_query($con, "INSERT INTO tblmedicalhistory (PatientID, BloodPressure, BloodSugar, Weight, Temperature, ExamenFisico, MedicalPres, OrdenesMedicas, Evolucion, Laboratorio, RayosX) VALUES ('$vid', '$bp', '$bs', '$weight', '$temp', '$exf', '$pres', '$ord', '$evo', '$lab', '$rayx')");
+    $query = mysqli_query($con, "INSERT INTO tblmedicalhistory (PatientID, BloodPressure, BloodSugar, Weight, Temperature, ExamenFisico, MedicalPres, OrdenesMedicas, Evolucion) VALUES ('$vid', '$bp', '$bs', '$weight', '$temp', '$exf', '$pres', '$ord', '$evo')");
     
     if ($query) {
-        echo '<script>alert("Medical history has been added.")</script>';
+        echo '<script>alert("Se ha añadido el historial médico.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
     } else {
         echo '<script>alert("Something Went Wrong. Please try again")</script>';
@@ -48,13 +48,43 @@ if(isset($_POST['submit_lab']))
     $query = mysqli_query($con, "INSERT INTO lab_appointments (labType, labId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) VALUES ('$labType', '$labId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id',  '$userStatus', '$doctorStatus', '$user_id')");
     
     if ($query) {
-        echo '<script>alert("Lab appointment has been created.")</script>';
+        echo '<script>alert("Se ha creado una orden para laboratorio.")</script>';
+        echo "<script>window.location.href ='manage-patient.php'</script>";
+    } else {
+        echo '<script>alert("Something Went Wrong. Please try again")</script>';
+    }
+}
+
+if(isset($_POST['submit_rx']))
+{
+    $vid = $_GET['viewid'];
+    $rxType = $_POST['rxType'];
+    $rxId = $_POST['rxId'];
+    $consultancyFees = $_POST['consultancyFees'];
+    $appointmentDate = $_POST['appointmentDate'];
+    $appointmentTime = $_POST['appointmentTime'];
+    $userStatus = 1; // Assuming user status is set to 1 when appointment is created
+    $doctorStatus = 1; // Assuming doctor status is set to 1 when appointment is created
+    $technician_id = 1;
+    // Obtener user_id del paciente
+    $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
+    $row = mysqli_fetch_assoc($result);
+    $user_id = $row['user_id']; // Asignar el user_id a la variable
+
+    $query = mysqli_query($con, "INSERT INTO rx_appointments (rxType, rxId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) VALUES ('$rxType', '$rxId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id',  '$userStatus', '$doctorStatus', '$user_id')");
+    
+    if ($query) {
+        echo '<script>alert("Se ha creado una orden para rayos X.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
     } else {
         echo '<script>alert("Something Went Wrong. Please try again")</script>';
     }
 }
 ?>
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -152,7 +182,7 @@ if(isset($_POST['submit_lab']))
                                     <th colspan="13">Historial medico</th>
                                 </tr>
                                 <tr>
-                                    <th>#</th>
+                                    <th>No.</th>
                                     <th>Presión arterial</th>
                                     <th>Peso</th>
                                     <th>Glucosa</th>
@@ -161,8 +191,8 @@ if(isset($_POST['submit_lab']))
                                     <th>Prescripción médica</th>
                                     <th>Ordenes médicas</th>
                                     <th>Evolución</th>
-                                    <th>Laboratorio</th>
-                                    <th>Rayos X</th>
+                                    <!--<th>Laboratorio</th>
+                                    <th>Rayos X</th>-->
                                     <th>Fecha visita</th>
                                 </tr>
                                 <?php
@@ -178,8 +208,8 @@ if(isset($_POST['submit_lab']))
                                         <td><?php echo $row['MedicalPres'];?></td>
                                         <td><?php echo $row['OrdenesMedicas'];?></td>
                                         <td><?php echo $row['Evolucion'];?></td>
-                                        <td><?php echo $row['Laboratorio'];?></td>
-                                        <td><?php echo $row['RayosX'];?></td>
+                                        <!--<td><7?php echo $row['Laboratorio'];?></td>
+                                        <td><7?php echo $row['RayosX'];?></td>-->
                                         <td><?php echo $row['CreationDate'];?></td>
                                     </tr>
                                     <?php $cnt = $cnt + 1;} ?>
@@ -229,14 +259,14 @@ if(isset($_POST['submit_lab']))
                                                         <th>Evolución :</th>
                                                         <td><textarea name="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
                                                     </tr>
-                                                    <tr>
+                                                    <!--<tr>
                                                         <th>Laboratorio :</th>
                                                         <td><textarea name="lab" placeholder="Laboratorio" class="form-control wd-450" required="true"></textarea></td>
                                                     </tr>
                                                     <tr>
                                                         <th>Rayos X :</th>
                                                         <td><textarea name="rayx" placeholder="Rayos X" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>
+                                                    </tr>-->
                                                 </table>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -247,70 +277,128 @@ if(isset($_POST['submit_lab']))
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal para agregar cita de laboratorio -->
-<div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Crear Cita de Laboratorio</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form name="add-labappointment" method="post" action="">
-                    <input type="hidden" name="user_id" value="<?php echo $vid; ?>"> <!-- Campo oculto para user_id -->
-                    <table class="table table-bordered table-hover data-tables">
-                        <tr>
-                            <th>Tipo de Laboratorio :</th>
-                            <td>
-                                <select id="labType" name="labType" class="form-control wd-450" required="true" onchange="updateLabOptions()">
-                                    <option value="">Seleccione un tipo de laboratorio</option>
-                                    <?php
-                                    $query = mysqli_query($con, "SELECT DISTINCT tipo FROM laboratories");
-                                    while ($row = mysqli_fetch_array($query)) {
-                                        echo "<option value='{$row['tipo']}'>{$row['tipo']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>ID del Laboratorio :</th>
-                            <td>
-                                <select id="labId" name="labId" class="form-control wd-450" required="true">
-                                    <option value="">Seleccione un ID</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Costos de consultoría :</th>
-                            <td><input name="consultancyFees" id="consultancyFees" placeholder="Costos de consultoría" class="form-control wd-450" required="true" readonly></td>
-                        </tr>
-                        <tr>
-                            <th>Fecha de la Cita :</th>
-                            <td><input type="date" name="appointmentDate" placeholder="Fecha de la Cita" class="form-control wd-450" required="true"></td>
-                        </tr>
-                        <tr>
-                            <th>Hora de la Cita :</th>
-                            <td><input type="time" name="appointmentTime" placeholder="Hora de la Cita" class="form-control wd-450" required="true"></td>
-                        </tr>
-                    </table>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" name="submit_lab" class="btn btn-primary">Crear</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
+                            <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Crear Cita de Laboratorio</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="add-labappointment" method="post" action="">
+                                                <input type="hidden" name="user_id" value="<?php echo $vid; ?>"> <!-- Campo oculto para user_id -->
+                                                <table class="table table-bordered table-hover data-tables">
+                                                    <tr>
+                                                        <th>Tipo de Laboratorio :</th>
+                                                        <td>
+                                                            <select id="labType" name="labType" class="form-control wd-450" required="true" onchange="updateLabOptions()">
+                                                                <option value="">Seleccione un tipo de laboratorio</option>
+                                                                <?php
+                                                                $query = mysqli_query($con, "SELECT DISTINCT tipo FROM laboratories");
+                                                                while ($row = mysqli_fetch_array($query)) {
+                                                                echo "<option value='{$row['tipo']}'>{$row['tipo']}</option>";
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                         </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>ID del Laboratorio :</th>
+                                                            <td>
+                                                                <select id="labId" name="labId" class="form-control wd-450" required="true">
+                                                                    <option value="">Seleccione un ID</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Costos de consultoría :</th>
+                                                            <td><input name="consultancyFees" id="consultancyFees" placeholder="Costos de consultoría" class="form-control wd-450" required="true" readonly></td>
+                                                        </tr>
+                                                         <tr>
+                                                            <th>Fecha de la Cita :</th>
+                                                            <td><input type="date" name="appointmentDate" placeholder="Fecha de la Cita" class="form-control wd-450" required="true"></td>
+                                                        </tr>
+                                                         <tr>
+                                                            <th>Hora de la Cita :</th>
+                                                            <td><input type="time" name="appointmentTime" placeholder="Hora de la Cita" class="form-control wd-450" required="true"></td>
+                                                        </tr>
+                                                    </tr>
+                                                </table>
+                                                 <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" name="submit_lab" class="btn btn-primary">Crear</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="addRxAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Crear orden para rayos X</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form name="add-rxappointment" method="post" action="">
+                                                <input type="hidden" name="user_id" value="<?php echo $vid; ?>"> <!-- Campo oculto para user_id -->
+                                                <table class="table table-bordered table-hover data-tables">
+                                                    <tr>
+                                                        <th>Tipo de rayos X:</th>
+                                                        <td>
+                                                            <select id="rxType" name="rxType" class="form-control wd-450" required="true" onchange="updaterxOptions()">
+                                                                <option value="">Seleccione un tipo de rayos X</option>
+                                                                <?php
+                                                                $query = mysqli_query($con, "SELECT DISTINCT tipo FROM rayosx");
+                                                                while ($row = mysqli_fetch_array($query)) {
+                                                                echo "<option value='{$row['tipo']}'>{$row['tipo']}</option>";
+                                                                }
+                                                                ?>
+                                                            </select>
+                                                         </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>ID de rayos X:</th>
+                                                            <td>
+                                                                <select id="rxId" name="rxId" class="form-control wd-450" required="true">
+                                                                    <option value="">Seleccione un ID</option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Costos de consultoría :</th>
+                                                            <td><input name="consultancyFees" id="rxConsultancyFees" placeholder="Costos de consultoría" class="form-control wd-450" required="true" readonly></td>
+                                                        </tr>
+                                                         <tr>
+                                                            <th>Fecha de la Cita :</th>
+                                                            <td><input type="date" name="appointmentDate" placeholder="Fecha de la Cita" class="form-control wd-450" required="true"></td>
+                                                        </tr>
+                                                         <tr>
+                                                            <th>Hora de la Cita :</th>
+                                                            <td><input type="time" name="appointmentTime" placeholder="Hora de la Cita" class="form-control wd-450" required="true"></td>
+                                                        </tr>
+                                                    </tr>
+                                                </table>
+                                                 <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" name="submit_rx" class="btn btn-primary">Crear</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
                             <button class="btn btn-primary" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados</button>
                             <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
-                        </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -377,6 +465,59 @@ document.getElementById('labId').addEventListener('change', function() {
     }
 });
 </script>
+
+<!--Modal crear cita Rayos X-->
+<script>
+function updaterxOptions() {
+    var rxType = document.getElementById('rxType').value;
+    var rxIdSelect = document.getElementById('rxId');
+    var consultancyFeesInput = document.getElementById('rxConsultancyFees');
+    
+    // Limpiar las opciones existentes
+    rxIdSelect.innerHTML = '<option value="">Seleccione un ID</option>';
+    consultancyFeesInput.value = '';
+    
+    if (rxType) {
+        // Hacer una solicitud AJAX para obtener los laboratorios de ese tipo
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get_rx_options.php?rxType=' + encodeURIComponent(rxType), true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                response.forEach(function(rx) {
+                    var option = document.createElement('option');
+                    option.value = rx.id;
+                    option.text = rx.codigo;
+                    rxIdSelect.add(option);
+                });
+            }
+        };
+        xhr.send();
+    }
+}
+
+// Actualiza el costo cuando cambia el ID del laboratorio
+document.getElementById('rxId').addEventListener('change', function() {
+    var rxId = this.value;
+    var consultancyFeesInput = document.getElementById('rxConsultancyFees');
+    
+    if (rxId) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'get_rx_cost.php?rxId=' + encodeURIComponent(rxId), true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                consultancyFeesInput.value = response.costo;
+            }
+        };
+        xhr.send();
+    } else {
+        consultancyFeesInput.value = '';
+    }
+});
+</script>
+
+
 
 <!-- include required scripts here -->
 <script src="vendor/jquery/jquery.min.js"></script>

@@ -15,8 +15,8 @@ if (isset($_POST['submit'])) {
     $pres   = $_POST['pres'];
 	$ord   = $_POST['ord'];
 	$evo   = $_POST['evo'];
-	$lab = $_POST['lab'];
-    $rayx = $_POST['rayx'];
+	//$lab = $_POST['lab'];
+    //$rayx = $_POST['rayx'];
 
     $query .= mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,ExamenFisico,MedicalPres,OrdenesMedicas,Evolucion,Laboratorio,RayosX)value('$vid','$bp','$bs','$weight','$temp','$exf','$pres','$ord','$evo','$lab','$rayx')");
     if ($query) {
@@ -129,7 +129,7 @@ $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vi
    <th colspan="13" >Historial medico</th>
   </tr>
   <tr>
-    <th>#</th>
+    <th>No.</th>
 <th>Presion arterial</th>
 <th>Peso</th>
 <th>Nivel de azucar</th>
@@ -138,8 +138,8 @@ $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vi
 <th>Preinscripsion medica</th>
 <th>OrdenesMedicas</th>
 <th>Evolucion</th>
-<th>Laboratorio</th>
-<th>Rayos X</th>
+<!--<th>Laboratorio</th>
+<th>Rayos X</th>-->
 <th>Fecha de visita</th>
 </tr>
 <?php
@@ -155,8 +155,8 @@ while ($row = mysqli_fetch_array($ret)) {
   <td><?php echo $row['MedicalPres']; ?></td>
   <td><?php echo $row['OrdenesMedicas']; ?></td>
   <td><?php echo $row['Evolucion']; ?></td>
-  <td><?php  echo $row['Laboratorio'];?></td>
-  <td><?php  echo $row['RayosX'];?></td>
+  <!--<td></?php  echo $row['Laboratorio'];?></td>
+  <td></?php  echo $row['RayosX'];?></td>-->
   <td><?php echo $row['CreationDate']; ?></td>
 </tr>
 <?php $cnt = $cnt + 1;}?>

@@ -36,7 +36,7 @@
 								<a href="citas-laboratorio.php">
 									<div class="item-content">
 										<div class="item-media">
-											<i class="ti-pencil-alt"></i>
+										  <i class="ti-ruler-pencil"></i>
 										</div>
 										<div class="item-inner">
 											<span class="title">Cita laboratorio </span>
@@ -48,7 +48,7 @@
 								<a href="cita-rayosx.php">
 									<div class="item-content">
 										<div class="item-media">
-											<i class="ti-pencil-alt"></i>
+										  <i class="ti-target"></i>
 										</div>
 										<div class="item-inner">
 											<span class="title">Cita Rayos X</span>
@@ -82,6 +82,31 @@
 							</li>
 
 							<li>
+								    <a href="javascript:void(0)">
+									   <div class="item-content">
+										    <div class="item-media">
+											  <i class="ti-receipt"></i>
+										    </div>
+										    <div class="item-inner">
+											     <span class="title">Resultados</span><i class="icon-arrow"></i>
+										    </div>
+									   </div>
+								    </a>
+								    <ul class="sub-menu">
+									    <li>
+										      <a href="resultado-laboratorio.php">
+											      <span class="title">Laboratorio</span>
+										      </a>
+									    </li>
+									    <li>
+										   <a href="resultado-rayosx.php">
+											   <span class="title">Rayos X</span>
+										   </a>
+									    </li>
+									</ul>
+							    </li>
+
+							<!--<li>
 								<a href="resultado-laboratorio.php">
 									<div class="item-content">
 										<div class="item-media">
@@ -92,7 +117,7 @@
 										</div>
 									</div>
 								</a>
-							</li>
+							</li>-->
 
 						</ul>
 						<!-- end: CORE FEATURES -->

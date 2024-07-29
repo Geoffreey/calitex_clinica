@@ -69,7 +69,7 @@ if (isset($_GET['Finalizada'])) {
 									<table class="table table-hover" id="sample-table-1">
 										<thead>
 											<tr>
-												<th class="center">#</th>
+												<th class="center">No.</th>
 												<th class="hidden-xs">Nombre doctor</th>
 												<th>Especializacion</th>
 												<th>Honorarios consulta</th>

@@ -8,7 +8,7 @@ check_login();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Reg. Usuario | Ver historial laboratorio</title>
+    <title>Reg. Usuario | Ver historial Rayos X</title>
 
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -36,14 +36,14 @@ check_login();
                 <section id="page-title">
                     <div class="row">
                         <div class="col-sm-10">
-                            <h1 class="mainTitle">Paciente | Resultados de laboratorios</h1>
+                            <h1 class="mainTitle">Paciente | Resultados de rayos X</h1>
                         </div>
                         <ol class="breadcrumb">
                             <li>
                                 <span>Paciente</span>
                             </li>
                             <li class="active">
-                                <span>Ver historial médico</span>
+                                <span>Ver historial Rayos X</span>
                             </li>
                         </ol>
                     </div>
@@ -51,14 +51,14 @@ check_login();
                 <div class="container-fluid container-fullw bg-white">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="over-title margin-bottom-15"><span class="text-bold"> Historial de laboratorios</span></h5>
+                            <h5 class="over-title margin-bottom-15"><span class="text-bold"> Historial de rayos X</span></h5>
 
                             <table class="table table-hover" id="sample-table-1">
                                 <thead>
                                     <tr>
                                         <th class="center">No.</th>
-                                        <th>Nombre del Laboratorio</th>
-                                        <th>Tipo de Laboratorio</th>
+                                        <th>Nombre</th>
+                                        <th>Tipo</th>
                                         <th>Costo</th>
                                         <th>Fecha de Cita</th>
                                         <th>Resultado</th> <!-- Nueva columna -->
@@ -68,23 +68,23 @@ check_login();
                                     <?php
                                     $uid = $_SESSION['id'];
                                     // Obtener los laboratorios asociados al paciente
-                                    $sql = mysqli_query($con, "SELECT l.nombre AS labname, l.tipo AS labtype, l.costo, a.appointmentDate, a.id AS appointment_id
-                                                               FROM lab_appointments a
-                                                               JOIN laboratories l ON l.id = a.labId
+                                    $sql = mysqli_query($con, "SELECT l.nombre AS rxname, l.tipo AS rxtype, l.costo, a.appointmentDate, a.id AS appointmentrx_id
+                                                               FROM rx_appointments a
+                                                               JOIN rayosx l ON l.id = a.rxId
                                                                JOIN tblpatient p ON p.user_id = a.user_id
                                                                WHERE p.ID = (SELECT ID FROM tblpatient WHERE user_id = '$uid')");
                                     $cnt = 1;
                                     while ($row = mysqli_fetch_array($sql)) {
                                         // Obtener el enlace al archivo asociado con el appointment_id
-                                        $file_sql = mysqli_query($con, "SELECT FilePath FROM tblfiles WHERE appointment_id = '".$row['appointment_id']."' LIMIT 1");
+                                        $file_sql = mysqli_query($con, "SELECT FilePath FROM tblfiles WHERE appointmentrx_id = '".$row['appointmentrx_id']."' LIMIT 1");
                                         $file_row = mysqli_fetch_array($file_sql);
-                                        $file_url = $file_row['FilePath'] ? 'http://localhost/calitex_clinica/hms/tecnico_lab/' . $file_row['FilePath'] : '#';
+                                        $file_url = $file_row['FilePath'] ? 'http://localhost/calitex_clinica/hms/tecnico_rx/' . $file_row['FilePath'] : '#';
                                         $file_link = $file_row['FilePath'] ? '<a href="' . $file_url . '" target="_blank">Ver Resultado</a>' : 'Sin Resultado';
                                         ?>
                                         <tr>
                                             <td class="center"><?php echo $cnt; ?>.</td>
-                                            <td><?php echo $row['labname']; ?></td>
-                                            <td><?php echo $row['labtype']; ?></td>
+                                            <td><?php echo $row['rxname']; ?></td>
+                                            <td><?php echo $row['rxtype']; ?></td>
                                             <td><?php echo $row['costo']; ?></td>
                                             <td><?php echo $row['appointmentDate']; ?></td>
                                             <td><?php echo $file_link; ?></td> <!-- Nueva columna -->
@@ -128,6 +128,3 @@ check_login();
 </script>
 </body>
 </html>
-
-
-
