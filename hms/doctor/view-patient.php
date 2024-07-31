@@ -396,10 +396,10 @@ if(isset($_POST['submit_rx']))
                             </div>
                             <div class='text-center'>
                                <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
-                               <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
-                               <button class="btn btn-primary" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
-                               <button class="btn btn-primary" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
-                               <button class="btn btn-primary" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
+                               <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
+                               <button class="btn btn-primary" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
+                               <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
+                               <button class="btn btn-primary" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
                                <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
                             </div>
                          </div>
