@@ -6253,6 +6253,10 @@ fieldset[disabled] .btn-default.active {
   border-bottom: 4px solid #8e8e93;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .btn-primary {
   background-color: #007aff;
   border-color: #007aff;

@@ -129,6 +129,7 @@ if(isset($_POST['submit_rx']))
                     </div>
                 </section>
                 <div class="container-fluid container-fullw bg-white" id="printIt">
+                
                     <div class="row">
                         <div class="col-md-12">
                             <h5 class="over-title margin-bottom-15">Administrar<span class="text-bold"> pacientes</span></h5>
@@ -393,11 +394,14 @@ if(isset($_POST['submit_rx']))
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
-                            <button class="btn btn-primary" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados</button>
-                            <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
+                            <div class='text-center'>
+                               <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
+                               <button class="btn btn-primary" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
+                               <button class="btn btn-primary" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
+                               <button class="btn btn-primary" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
+                               <button class="btn btn-primary" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
+                               <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
+                            </div>
                          </div>
                     </div>
                 </div>
