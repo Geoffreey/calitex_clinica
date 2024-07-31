@@ -2,7 +2,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100&display=swap" rel="stylesheet">
-    </head><script src="https://kit.fontawesome.com/45f2bb29fa.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/45f2bb29fa.js" crossorigin="anonymous"></script>
 </head>
 
 <div class="sidebar app-aside" id="sidebar">
@@ -155,6 +155,40 @@
 									    <li>
 										    <a href="manage-rayosx.php">
 											    <span class="title">Admin Rayos X</span>
+										    </a>
+									    </li>
+									</ul>
+							    </li>
+								<li>
+								    <a href="javascript:void(0)">
+									   <div class="item-content">
+										    <div class="item-media">
+											<i class="ti-support"></i>
+										    </div>
+										    <div class="item-inner">
+											     <span class="title">Farmacia</span><i class="icon-arrow"></i>
+										    </div>
+									   </div>
+								    </a>
+								    <ul class="sub-menu">
+									    <li>
+										      <a href="agregar-medicamento.php">
+											      <span class="title">Productos</span>
+										      </a>
+									    </li>
+									    <li>
+										   <a href="agregar-categoria.php">
+											   <span class="title">Categorias</span>
+										   </a>
+									    </li>
+									    <li>
+										    <a href="agregar-marca.php">
+											    <span class="title">Marca</span>
+										    </a>
+									    </li>
+										<li>
+										    <a href="agregar-proveedor.php">
+											    <span class="title">Proveedores</span>
 										    </a>
 									    </li>
 									</ul>
