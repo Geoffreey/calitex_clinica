@@ -4,6 +4,15 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
+// Recuperar proveedores
+$proveedores = $con->query("SELECT id, nombre FROM proveedores");
+
+// Recuperar marcas
+$marcas = $con->query("SELECT id, nombre FROM marcas");
+
+// Recuperar categorías
+$categorias = $con->query("SELECT id, nombre FROM categorias");
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
@@ -23,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Admin | Famacia</title>
+    <title>Admin | Farmacia</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Creta+Redondo:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -66,43 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col-md-12">
                                 <div class="row margin-top-30">
                                     <div class="col-lg-6 col-md-12">
-                                        <div class="panel panel-white">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title">Agregar producto</h5>
-                                            </div>
-                                            <div class="panel-body">
-                                                <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-                                                    <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-                                                
-                                                <form role="form" method="post" name="dcotorspcl" action="agregar_medicamento.php">
-                                                    <div class='form-group'>
-                                                      <input type="text" class="form-control" name="nombre" placeholder="Nombre del Medicamento" required>
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <input type="number" class="form-control" step="0.01" name="precio" placeholder="Precio" required>
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <select name="proveedor_id" class="form-control" required>
-                                                        <!-- Opciones de proveedores desde la base de datos -->
-                                                      </select>
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <select name="marca_id" class="form-control" required>
-                                                            <!-- Opciones de marcas desde la base de datos -->
-                                                      </select>
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <select name="categoria_id" class="form-control" required>
-                                                            <!-- Opciones de categorías desde la base de datos -->
-                                                      </select>
-                                                    </div>
-                                                    <div class='form-goup'>
-                                                    <textarea name="descripcion" placeholder="Descripción"></textarea>
-                                                    </div>
-                                                      <button class='form-group' type="submit">Agregar Medicamento</button>
-                                                    </form>
-                                                </div>
-                                        </div>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">Agregar Producto</button>
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="panel panel-white">
@@ -114,33 +87,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     <thead>
                                                         <tr>
                                                             <th class="center">No.</th>
-                                                            <th>Tipo</th>
                                                             <th>Nombre</th>
-                                                            <th>Código</th>
-                                                            <th>Costo</th>
-                                                            <th>Fecha de creación</th>
-                                                            <th>Última actualización</th>
+                                                            <th>Precio</th>
+                                                            <th>Categoria</th>
+                                                            <th>Marca</th>
+                                                            <th>Proveedor</th>
+                                                            <th>Descripción</th>
                                                             <th>Acción</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = mysqli_query($con, "SELECT * FROM laboratories");
+                                                        $sql = "SELECT m.id, m.nombre, m.precio, c.nombre as categoria, b.nombre as marca, p.nombre as proveedor, m.descripcion 
+                                                                FROM medicamentos m 
+                                                                JOIN categorias c ON m.categoria_id = c.id 
+                                                                JOIN marcas b ON m.marca_id = b.id 
+                                                                JOIN proveedores p ON m.proveedor_id = p.id";
+                                                        $result = mysqli_query($con, $sql);
                                                         $cnt = 1;
-                                                        while ($row = mysqli_fetch_array($sql)) {
+                                                        while ($row = mysqli_fetch_array($result)) {
                                                         ?>
                                                             <tr>
                                                                 <td class="center"><?php echo $cnt; ?>.</td>
-                                                                <td><?php echo $row['tipo']; ?></td>
                                                                 <td><?php echo $row['nombre']; ?></td>
-                                                                <td><?php echo $row['codigo']; ?></td>
-                                                                <td><?php echo $row['costo']; ?></td>
-                                                                <td><?php echo $row['created_at']; ?></td>
-                                                                <td><?php echo $row['updated_at']; ?></td>
+                                                                <td><?php echo $row['precio']; ?></td>
+                                                                <td><?php echo $row['categoria']; ?></td>
+                                                                <td><?php echo $row['marca']; ?></td>
+                                                                <td><?php echo $row['proveedor']; ?></td>
+                                                                <td><?php echo $row['descripcion']; ?></td>
                                                                 <td>
                                                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                                        <a href="edit-laboratorios.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
-                                                                        <a href="manage-laboratories.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este laboratorio?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+                                                                        <a href="edit-medicamento.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="manage-medicamentos.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este medicamento?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -161,6 +139,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <?php include 'include/footer.php'; ?>
         <?php include 'include/setting.php'; ?>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addProductModalLabel">Agregar Producto</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" method="post" name="dcotorspcl" action="agregar-medicamento.php">
+                        <div class='form-group'>
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre del Medicamento" required>
+                        </div>
+                        <div class='form-group'>
+                            <input type="number" class="form-control" step="0.01" name="precio" placeholder="Precio" required>
+                        </div>
+                        <div class='form-group'>
+                            <select name="proveedor_id" class="form-control" required>
+                                <option value="">Seleccione un Proveedor</option>
+                                <?php while ($row = $proveedores->fetch_assoc()) { ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class='form-group'>
+                            <select name="marca_id" class="form-control" required>
+                                <option value="">Seleccione una Marca</option>
+                                <?php while ($row = $marcas->fetch_assoc()) { ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class='form-group'>
+                            <select name="categoria_id" class="form-control" required>
+                                <option value="">Seleccione una Categoría</option>
+                                <?php while ($row = $categorias->fetch_assoc()) { ?>
+                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class='form-group'>
+                            <textarea class="form-control" name="descripcion" placeholder="Descripción"></textarea>
+                        </div>
+                        <button class='form-group' type="submit">Agregar Medicamento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -187,3 +215,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
 </body>
 </html>
+
+

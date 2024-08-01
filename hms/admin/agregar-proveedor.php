@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Admin | Famacia</title>
+    <title>Admin | Farmacia</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Creta+Redondo:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -65,71 +65,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col-md-12">
                                 <div class="row margin-top-30">
                                     <div class="col-lg-6 col-md-12">
-                                        <div class="panel panel-white">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title">Agregar proveedor</h5>
-                                            </div>
-                                            <div class="panel-body">
-                                                <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-                                                    <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-                                                <form role="form" method="post" name="dcotorspcl" action="agregar-proveedor.php">
-                                                    <div class='form-group'>
-                                                      <input type="text" class='form-group' name="nombre" placeholder="Nombre del Proveedor" required>
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <input type="text" class='form-group'name="contacto" placeholder="Persona de Contacto">
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <input type="text" class='form-group'name="telefono" placeholder="Teléfono">
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <input type="email" class='form-group' name="email" placeholder="Email">
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <textarea name="direccion" class='form-goup' placeholder="Dirección"></textarea>
-                                                    </div>
-                                                      <button class='form-group' type="submit">Agregar Proveedor</button>
-                                                    </form>
-                                             </div>
-                                        </div>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProviderModal">Agregar Proveedor</button>
                                     </div>
                                     <div class="col-lg-12 col-md-12">
                                         <div class="panel panel-white">
                                             <div class="panel-heading">
-                                                <h5 class="panel-title">Lista de proveedor</h5>
+                                                <h5 class="panel-title">Lista de proveedores</h5>
                                             </div>
                                             <div class="panel-body">
                                                 <table class="table table-hover" id="sample-table-1">
                                                     <thead>
                                                         <tr>
                                                             <th class="center">No.</th>
-                                                            <th>Tipo</th>
                                                             <th>Nombre</th>
-                                                            <th>Código</th>
-                                                            <th>Costo</th>
-                                                            <th>Fecha de creación</th>
-                                                            <th>Última actualización</th>
+                                                            <th>Contacto</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Email</th>
+                                                            <th>Dirección</th>
                                                             <th>Acción</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = mysqli_query($con, "SELECT * FROM laboratories");
+                                                        $sql = "SELECT * FROM proveedores";
+                                                        $result = mysqli_query($con, $sql);
                                                         $cnt = 1;
-                                                        while ($row = mysqli_fetch_array($sql)) {
+                                                        while ($row = mysqli_fetch_array($result)) {
                                                         ?>
                                                             <tr>
                                                                 <td class="center"><?php echo $cnt; ?>.</td>
-                                                                <td><?php echo $row['tipo']; ?></td>
                                                                 <td><?php echo $row['nombre']; ?></td>
-                                                                <td><?php echo $row['codigo']; ?></td>
-                                                                <td><?php echo $row['costo']; ?></td>
-                                                                <td><?php echo $row['created_at']; ?></td>
-                                                                <td><?php echo $row['updated_at']; ?></td>
+                                                                <td><?php echo $row['contacto']; ?></td>
+                                                                <td><?php echo $row['telefono']; ?></td>
+                                                                <td><?php echo $row['email']; ?></td>
+                                                                <td><?php echo $row['direccion']; ?></td>
                                                                 <td>
                                                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                                        <a href="edit-laboratorios.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
-                                                                        <a href="manage-laboratories.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este laboratorio?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+                                                                        <a href="edit-proveedor.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="manage-proveedores.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este proveedor?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -150,6 +123,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <?php include 'include/footer.php'; ?>
         <?php include 'include/setting.php'; ?>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addProviderModal" tabindex="-1" role="dialog" aria-labelledby="addProviderModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="addProviderModalLabel">Agregar Proveedor</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" method="post" name="addprovider" action="agregar-proveedor.php">
+                        <div class='form-group'>
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre del Proveedor" required>
+                        </div>
+                        <div class='form-group'>
+                            <input type="text" class="form-control" name="contacto" placeholder="Persona de Contacto">
+                        </div>
+                        <div class='form-group'>
+                            <input type="text" class="form-control" name="telefono" placeholder="Teléfono">
+                        </div>
+                        <div class='form-group'>
+                            <input type="email" class="form-control" name="email" placeholder="Email">
+                        </div>
+                        <div class='form-group'>
+                            <textarea class="form-control" name="direccion" placeholder="Dirección"></textarea>
+                        </div>
+                        <button class='btn btn-primary' type="submit">Agregar Proveedor</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>

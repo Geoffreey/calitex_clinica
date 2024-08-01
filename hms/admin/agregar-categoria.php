@@ -10,16 +10,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $query = "INSERT INTO categorias (nombre, descripcion) VALUES ('$nombre', '$descripcion')";
     if (mysqli_query($con, $query)) {
-        echo "Categoría agregada exitosamente.";
+        $_SESSION['msg'] = "Categoría agregada exitosamente.";
     } else {
-        echo "Error: " . mysqli_error($con);
+        $_SESSION['msg'] = "Error: " . mysqli_error($con);
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Admin | Famacia</title>
+    <title>Admin | Farmacia</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Creta+Redondo:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <span>Admin</span>
                                 </li>
                                 <li class="active">
-                                    <span>Categorias</span>
+                                    <span>Categorías</span>
                                 </li>
                             </ol>
                         </div>
@@ -61,40 +61,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row margin-top-30">
-                                    <div class="col-lg-6 col-md-12">
+                                    <div class="col-lg-12 col-md-12">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCategoryModal">
+                                            Agregar Categoría
+                                        </button>
                                         <div class="panel panel-white">
                                             <div class="panel-heading">
-                                                <h5 class="panel-title">Agregar categoria</h5>
+                                                <h5 class="panel-title">Lista de Categorías</h5>
                                             </div>
                                             <div class="panel-body">
                                                 <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
                                                     <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-                                                <form role="form" method="post" name="dcotorspcl" action="agregar-categoria.php">
-                                                    <div class='form-group'>
-                                                      <input type="text" class='form-group' name="nombre" placeholder="Nombre de la Categoría" required>
-                                                    </div>
-                                                    <div class='form-group'>
-                                                      <textarea name="descripcion" class='form-group' placeholder="Descripción"></textarea>
-                                                    </div>
-                                                      <button type="submit" class='form-group'>Agregar Categoría</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="panel panel-white">
-                                            <div class="panel-heading">
-                                                <h5 class="panel-title">Lista de categoria</h5>
-                                            </div>
-                                            <div class="panel-body">
                                                 <table class="table table-hover" id="sample-table-1">
                                                     <thead>
                                                         <tr>
                                                             <th class="center">No.</th>
-                                                            <th>Tipo</th>
                                                             <th>Nombre</th>
-                                                            <th>Código</th>
-                                                            <th>Costo</th>
+                                                            <th>Descripción</th>
                                                             <th>Fecha de creación</th>
                                                             <th>Última actualización</th>
                                                             <th>Acción</th>
@@ -102,22 +85,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        $sql = mysqli_query($con, "SELECT * FROM laboratories");
+                                                        $sql = mysqli_query($con, "SELECT * FROM categorias");
                                                         $cnt = 1;
                                                         while ($row = mysqli_fetch_array($sql)) {
                                                         ?>
                                                             <tr>
                                                                 <td class="center"><?php echo $cnt; ?>.</td>
-                                                                <td><?php echo $row['tipo']; ?></td>
                                                                 <td><?php echo $row['nombre']; ?></td>
-                                                                <td><?php echo $row['codigo']; ?></td>
-                                                                <td><?php echo $row['costo']; ?></td>
+                                                                <td><?php echo $row['descripcion']; ?></td>
                                                                 <td><?php echo $row['created_at']; ?></td>
                                                                 <td><?php echo $row['updated_at']; ?></td>
                                                                 <td>
                                                                     <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                                        <a href="edit-laboratorios.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
-                                                                        <a href="manage-laboratories.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar este laboratorio?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+                                                                        <a href="edit-categoria.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Editar"><i class="fa fa-pencil"></i></a>
+                                                                        <a href="manage-categorias.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
                                                                     </div>
                                                                 </td>
                                                             </tr>
@@ -138,6 +119,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <?php include 'include/footer.php'; ?>
         <?php include 'include/setting.php'; ?>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Agregar Categoría</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" method="post" action="agregar-categoria.php">
+                        <div class='form-group'>
+                            <input type="text" class='form-control' name="nombre" placeholder="Nombre de la Categoría" required>
+                        </div>
+                        <div class='form-group'>
+                            <textarea name="descripcion" class='form-control' placeholder="Descripción"></textarea>
+                        </div>
+                        <button type="submit" class='btn btn-primary'>Agregar Categoría</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
