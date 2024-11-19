@@ -16,8 +16,6 @@ if(isset($_POST['submit']))
     $pres = $_POST['pres'];
     $ord = $_POST['ord'];
     $evo = $_POST['evo'];
-    //$lab = $_POST['lab'];//
-    //$rayx = $_POST['rayx'];//
     
     $query = mysqli_query($con, "INSERT INTO tblmedicalhistory (PatientID, BloodPressure, BloodSugar, Weight, Temperature, ExamenFisico, MedicalPres, OrdenesMedicas, Evolucion) VALUES ('$vid', '$bp', '$bs', '$weight', '$temp', '$exf', '$pres', '$ord', '$evo')");
     
@@ -80,6 +78,86 @@ if(isset($_POST['submit_rx']))
         echo '<script>alert("Something Went Wrong. Please try again")</script>';
     }
 }
+
+if (isset($_POST['emitir_receta'])) {
+    $vid = $_GET['viewid']; // Asegúrate de que el viewid se pasa correctamente
+
+    // Verifica que el ID del doctor esté disponible en la sesión
+    if (!isset($_SESSION['doctor_id'])) {
+        $_SESSION['msg'] = "Error: No se ha establecido el ID del doctor.";
+        header("Location: view-patient.php?viewid=$vid");
+        exit();
+    }
+
+    $doctor_id = $_SESSION['doctor_id']; // Asegúrate de que esta variable esté configurada correctamente
+    $medicamento_ids = $_POST['medicamento_id'];
+    $cantidades = $_POST['cantidad'];
+    $indicaciones = $_POST['indicacion'];
+
+    // Verificar que el doctor_id exista en la tabla doctors
+    $doctorCheckQuery = "SELECT id FROM doctors WHERE id='$doctor_id'";
+    $doctorCheckResult = mysqli_query($con, $doctorCheckQuery);
+
+    if (mysqli_num_rows($doctorCheckResult) == 0) {
+        $_SESSION['msg'] = "El doctor no existe.";
+        header("Location: view-patient.php?viewid=$vid");
+        exit();
+    }
+
+    // Verificar que el user_id exista en la tabla tblpatient
+    $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
+    if ($result === false) {
+        $_SESSION['msg'] = "Error en la consulta SQL: " . mysqli_error($con);
+        header("Location: view-patient.php?viewid=$vid");
+        exit();
+    }
+
+    $row = mysqli_fetch_assoc($result);
+    if (!$row) {
+        $_SESSION['msg'] = "El paciente no existe.";
+        header("Location: view-patient.php?viewid=$vid");
+        exit();
+    }
+
+    $user_id = $row['user_id'];
+
+    // Insertar receta
+    $query = "INSERT INTO recetas (paciente_id, doctor_id) VALUES ('$vid', '$doctor_id')";
+    if (mysqli_query($con, $query)) {
+        $receta_id = mysqli_insert_id($con);
+
+        // Insertar detalles de receta
+        $all_successful = true;
+        for ($i = 0; $i < count($medicamento_ids); $i++) {
+            $medicamento_id = $medicamento_ids[$i];
+            $cantidad = $cantidades[$i];
+            $indicacion = $indicaciones[$i];
+
+            $query_detalle = "INSERT INTO detalles_receta (receta_id, medicamento_id, cantidad, indicacion) VALUES ('$receta_id', '$medicamento_id', '$cantidad', '$indicacion')";
+            if (!mysqli_query($con, $query_detalle)) {
+                $all_successful = false;
+                $_SESSION['msg'] = "Error al insertar el detalle de la receta: " . mysqli_error($con);
+                break;
+            }
+        }
+
+        if ($all_successful) {
+            $_SESSION['msg'] = "Receta emitida exitosamente.";
+        } else {
+            $_SESSION['msg'] = "Error al emitir la receta: " . mysqli_error($con);
+        }
+    } else {
+        $_SESSION['msg'] = "Error al emitir la receta: " . mysqli_error($con);
+    }
+    header("Location: view-patient.php?viewid=$vid");
+    exit();
+}
+
+if (isset($_SESSION['msg'])) {
+    echo "<div class='alert alert-info'>{$_SESSION['msg']}</div>";
+    unset($_SESSION['msg']);
+}
+
 ?>
 
 
@@ -192,8 +270,6 @@ if(isset($_POST['submit_rx']))
                                     <th>Prescripción médica</th>
                                     <th>Ordenes médicas</th>
                                     <th>Evolución</th>
-                                    <!--<th>Laboratorio</th>
-                                    <th>Rayos X</th>-->
                                     <th>Fecha visita</th>
                                 </tr>
                                 <?php
@@ -209,8 +285,6 @@ if(isset($_POST['submit_rx']))
                                         <td><?php echo $row['MedicalPres'];?></td>
                                         <td><?php echo $row['OrdenesMedicas'];?></td>
                                         <td><?php echo $row['Evolucion'];?></td>
-                                        <!--<td><7?php echo $row['Laboratorio'];?></td>
-                                        <td><7?php echo $row['RayosX'];?></td>-->
                                         <td><?php echo $row['CreationDate'];?></td>
                                     </tr>
                                     <?php $cnt = $cnt + 1;} ?>
@@ -260,14 +334,6 @@ if(isset($_POST['submit_rx']))
                                                         <th>Evolución :</th>
                                                         <td><textarea name="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
                                                     </tr>
-                                                    <!--<tr>
-                                                        <th>Laboratorio :</th>
-                                                        <td><textarea name="lab" placeholder="Laboratorio" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Rayos X :</th>
-                                                        <td><textarea name="rayx" placeholder="Rayos X" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>-->
                                                 </table>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -278,6 +344,7 @@ if(isset($_POST['submit_rx']))
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -394,12 +461,109 @@ if(isset($_POST['submit_rx']))
                                     </div>
                                 </div>
                             </div>
+                            <!-- Modal para emitir receta -->
+<!-- Modal para emitir receta -->
+<div class="modal fade" id="emitirRecetaModal" tabindex="-1" role="dialog" aria-labelledby="emitirRecetaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emitirRecetaModalLabel">Emitir Receta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="emitirRecetaForm" method="post" action="view-patient.php?viewid=<?php echo $_GET['viewid']; ?>">
+                    <input type="hidden" name="doctor_id" value="<?php echo $doctor_id; ?>">
+                    <div id="medicamentosContainer">
+                        <div class="medicamento-row">
+                            <div class="form-group">
+                                <label for="medicamento_id">Medicamento</label>
+                                <select id="medicamento_id" name="medicamento_id[]" class="form-control" required>
+                                    <option value="">Seleccione un medicamento</option>
+                                    <?php
+                                    $query = mysqli_query($con, "SELECT id, nombre FROM medicamentos");
+                                    while ($row = mysqli_fetch_array($query)) {
+                                        echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" name="cantidad[]" class="form-control" placeholder="Cantidad" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="indicacion">Indicación</label>
+                                <textarea name="indicacion[]" class="form-control" placeholder="Indicación" required></textarea>
+                            </div>
+                            <button type="button" class="btn btn-danger remove-medicamento">Eliminar</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success" id="addMedicamento">Agregar otro medicamento</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="submit" name="emitir_receta" class="btn btn-primary">Emitir Receta</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('addMedicamento').addEventListener('click', function() {
+        const container = document.getElementById('medicamentosContainer');
+        const newMedicamentoRow = document.createElement('div');
+        newMedicamentoRow.className = 'medicamento-row';
+        newMedicamentoRow.innerHTML = `
+            <div class="form-group">
+                <label for="medicamento_id">Medicamento</label>
+                <select name="medicamento_id[]" class="form-control" required>
+                    <option value="">Seleccione un medicamento</option>
+                    <?php
+                    $query = mysqli_query($con, "SELECT id, nombre FROM medicamentos");
+                    while ($row = mysqli_fetch_array($query)) {
+                        echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" name="cantidad[]" class="form-control" placeholder="Cantidad" required>
+            </div>
+            <div class="form-group">
+                <label for="indicacion">Indicación</label>
+                <textarea name="indicacion[]" class="form-control" placeholder="Indicación" required></textarea>
+            </div>
+            <button type="button" class="btn btn-danger remove-medicamento">Eliminar</button>
+        `;
+        container.appendChild(newMedicamentoRow);
+
+        // Add event listener to the new remove button
+        newMedicamentoRow.querySelector('.remove-medicamento').addEventListener('click', function() {
+            newMedicamentoRow.remove();
+        });
+    });
+
+    // Add event listener to the existing remove button
+    document.querySelectorAll('.remove-medicamento').forEach(function(button) {
+        button.addEventListener('click', function() {
+            button.parentElement.remove();
+        });
+    });
+</script>
+
+
+                            
                             <div class='text-center'>
                                <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
                                <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
                                <button class="btn btn-primary" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
                                <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
                                <button class="btn btn-primary" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
+                               <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
                                <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
                             </div>
                          </div>
@@ -520,6 +684,40 @@ document.getElementById('rxId').addEventListener('change', function() {
     }
 });
 </script>
+<script>
+    $(document).ready(function() {
+        $('#categoria').change(function() {
+            var categoriaId = $(this).val();
+            $.ajax({
+                url: 'get_medicamentos.php',
+                type: 'post',
+                data: {categoria: categoriaId},
+                dataType: 'json',
+                success:function(response) {
+                    var len = response.length;
+                    $('#medicamento_id').empty();
+                    for (var i = 0; i < len; i++) {
+                        var id = response[i]['id'];
+                        var nombre = response[i]['nombre'];
+                        $('#medicamento_id').append("<option value='"+id+"'>"+nombre+"</option>");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<!--agregar medicamtno a recemta medica-->
+<!--<script>
+    document.getElementById('addMedicamento').addEventListener('click', function () {
+        var container = document.getElementById('medicamentosContainer');
+        var entry = document.querySelector('.medicamento-entry').cloneNode(true);
+        entry.querySelectorAll('input, textarea').forEach(function(input) {
+            input.value = '';
+        });
+        container.appendChild(entry);
+    });
+</script>-->
 
 
 
