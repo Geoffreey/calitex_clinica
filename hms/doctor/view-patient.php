@@ -4,6 +4,8 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
+echo "Doctor ID en sesión: " . ($_SESSION['doctor_id'] ?? 'No definido') . "<br>";
+
 
 if(isset($_POST['submit']))
 {
@@ -79,78 +81,80 @@ if(isset($_POST['submit_rx']))
     }
 }
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if (isset($_POST['emitir_receta'])) {
-    $vid = $_GET['viewid']; // Asegúrate de que el viewid se pasa correctamente
+    require_once("include/config.php");
+    session_start();
 
-    // Verifica que el ID del doctor esté disponible en la sesión
     if (!isset($_SESSION['doctor_id'])) {
-        $_SESSION['msg'] = "Error: No se ha establecido el ID del doctor.";
-        header("Location: view-patient.php?viewid=$vid");
+        die("Error: No se ha establecido el ID del doctor.");
+    }
+
+    $vid = $_GET['viewid']; // ID del paciente
+    $doctor_id = $_SESSION['doctor_id'];
+    $medicamento_ids = $_POST['medicamento_id'] ?? [];
+    $cantidades = $_POST['cantidad'] ?? [];
+    $indicaciones = $_POST['indicacion'] ?? [];
+
+    // Estados como en `submit_lab`
+    $doctorStatus = 1;
+    $userStatus = 1;
+
+    // Validar que haya al menos un medicamento
+    if (empty($medicamento_ids) || empty($cantidades) || empty($indicaciones)) {
+        echo '<script>alert("Debes agregar al menos un medicamento.");</script>';
+        echo "<script>window.location.href ='view-patient.php?viewid=$vid'</script>";
         exit();
     }
 
-    $doctor_id = $_SESSION['doctor_id']; // Asegúrate de que esta variable esté configurada correctamente
-    $medicamento_ids = $_POST['medicamento_id'];
-    $cantidades = $_POST['cantidad'];
-    $indicaciones = $_POST['indicacion'];
-
-    // Verificar que el doctor_id exista en la tabla doctors
-    $doctorCheckQuery = "SELECT id FROM doctors WHERE id='$doctor_id'";
-    $doctorCheckResult = mysqli_query($con, $doctorCheckQuery);
-
-    if (mysqli_num_rows($doctorCheckResult) == 0) {
-        $_SESSION['msg'] = "El doctor no existe.";
-        header("Location: view-patient.php?viewid=$vid");
-        exit();
+    if (!$con) {
+        die("Error de conexión: " . mysqli_connect_error());
     }
 
-    // Verificar que el user_id exista en la tabla tblpatient
+    // Obtener user_id del paciente
     $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
-    if ($result === false) {
-        $_SESSION['msg'] = "Error en la consulta SQL: " . mysqli_error($con);
-        header("Location: view-patient.php?viewid=$vid");
-        exit();
-    }
-
     $row = mysqli_fetch_assoc($result);
     if (!$row) {
-        $_SESSION['msg'] = "El paciente no existe.";
-        header("Location: view-patient.php?viewid=$vid");
+        echo '<script>alert("El paciente no existe.");</script>';
+        echo "<script>window.location.href ='view-patient.php?viewid=$vid'</script>";
         exit();
     }
-
     $user_id = $row['user_id'];
 
-    // Insertar receta
-    $query = "INSERT INTO recetas (paciente_id, doctor_id) VALUES ('$vid', '$doctor_id')";
-    if (mysqli_query($con, $query)) {
+    // Insertar receta con `doctorStatus` y `userStatus`
+    $query = mysqli_query($con, "INSERT INTO recetas (paciente_id, doctor_id, doctorStatus, userStatus) 
+              VALUES ('$user_id', '$doctor_id', '$doctorStatus', '$userStatus')");
+
+    if ($query) {
         $receta_id = mysqli_insert_id($con);
 
         // Insertar detalles de receta
-        $all_successful = true;
+        $success = true;
         for ($i = 0; $i < count($medicamento_ids); $i++) {
-            $medicamento_id = $medicamento_ids[$i];
-            $cantidad = $cantidades[$i];
-            $indicacion = $indicaciones[$i];
+            $medicamento_id = mysqli_real_escape_string($con, $medicamento_ids[$i]);
+            $cantidad = mysqli_real_escape_string($con, $cantidades[$i]);
+            $indicacion = mysqli_real_escape_string($con, $indicaciones[$i]);
 
-            $query_detalle = "INSERT INTO detalles_receta (receta_id, medicamento_id, cantidad, indicacion) VALUES ('$receta_id', '$medicamento_id', '$cantidad', '$indicacion')";
-            if (!mysqli_query($con, $query_detalle)) {
-                $all_successful = false;
-                $_SESSION['msg'] = "Error al insertar el detalle de la receta: " . mysqli_error($con);
+            $query_detalle = mysqli_query($con, "INSERT INTO detalles_receta (receta_id, medicamento_id, cantidad, indicacion) 
+                          VALUES ('$receta_id', '$medicamento_id', '$cantidad', '$indicacion')");
+
+            if (!$query_detalle) {
+                $success = false;
                 break;
             }
         }
 
-        if ($all_successful) {
-            $_SESSION['msg'] = "Receta emitida exitosamente.";
+        if ($success) {
+            echo '<script>alert("Se ha emitido la receta correctamente.");</script>';
+            echo "<script>window.location.href ='manage-patient.php'</script>";
         } else {
-            $_SESSION['msg'] = "Error al emitir la receta: " . mysqli_error($con);
+            echo '<script>alert("Error al guardar detalles de la receta.");</script>';
         }
     } else {
-        $_SESSION['msg'] = "Error al emitir la receta: " . mysqli_error($con);
+        echo '<script>alert("Error al emitir la receta.");</script>';
     }
-    header("Location: view-patient.php?viewid=$vid");
-    exit();
 }
 
 if (isset($_SESSION['msg'])) {
@@ -473,8 +477,8 @@ if (isset($_SESSION['msg'])) {
                 </button>
             </div>
             <div class="modal-body">
-                <form id="emitirRecetaForm" method="post" action="view-patient.php?viewid=<?php echo $_GET['viewid']; ?>">
-                    <input type="hidden" name="doctor_id" value="<?php echo $doctor_id; ?>">
+              <form id="emitirRecetaForm" method="post" action="view-patient.php?viewid=<?php echo $_GET['viewid']; ?>" enctype="multipart/form-data">
+                  <input type="hidden" name="doctor_id" value="<?php echo $_SESSION['doctor_id']; ?>">
                     <div id="medicamentosContainer">
                         <div class="medicamento-row">
                             <div class="form-group">
