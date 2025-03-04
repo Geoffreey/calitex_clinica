@@ -27,7 +27,7 @@ function check_login()
     $query = mysqli_query($con, "SELECT uid FROM doctorslog WHERE username='$email' ORDER BY uid DESC LIMIT 1");
 
     if (!$query) {
-        die("❌ Error en la consulta SQL: " . mysqli_error($con));
+       // die("❌ Error en la consulta SQL: " . mysqli_error($con));
     }
 
     $row = mysqli_fetch_assoc($query);

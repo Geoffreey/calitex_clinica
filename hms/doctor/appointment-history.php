@@ -72,91 +72,89 @@ if (isset($_GET['Terminada'])) {
 									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']);?>
 								<?php echo htmlentities($_SESSION['msg']="");?></p>	
 									<table class="table table-hover" id="sample-table-1">
-										<thead>
-											<tr>
-												<th class="center">#</th>
-												<th class="hidden-xs">Nombre paciente</th>
-												<th>Especializacion</th>
-												<th>Cuota de consulta</th>
-												<th>Fecha/hora de la cita</th>
-												<th>Fecha de creación de la cita</th>
-												<th>Estado actual</th>
-												<th>Accion</th>
-												
-											</tr>
-										</thead>
-										<tbody>
+									<thead>
+    <tr>
+        <th class="center">#</th>
+        <th class="hidden-xs">Nombre paciente</th>
+        <th>Especializacion</th>
+        <th>Cuota de consulta</th>
+        <th>Fecha/hora de la cita</th>
+        <th>Fecha de creación de la cita</th>
+        <th>Teléfono</th>
+        <th>Correo Electrónico</th>
+        <th>Dirección</th>
+        <th>Historial Médico</th>
+        <th>Estado actual</th>
+        <th>Acción</th>
+    </tr>
+</thead>
+<tbody>
 <?php
-$sql=mysqli_query($con,"select users.fullName as fname,appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='".$_SESSION['id']."'");
-$cnt=1;
-while($row=mysqli_fetch_array($sql))
-{
+$sql = mysqli_query($con, "SELECT 
+users.id AS userId, 
+users.fullName AS fname, 
+appointment.*, 
+tblpatient.PatientName, 
+tblpatient.PatientAge, 
+tblpatient.PatientGender, 
+tblpatient.PatientContno, 
+tblpatient.PatientEmail, 
+tblpatient.PatientAdd, 
+tblpatient.PatientMedhis 
+FROM appointment 
+JOIN users ON users.id = appointment.userId 
+LEFT JOIN tblpatient ON tblpatient.user_id = users.id
+WHERE appointment.doctorId = '".$_SESSION['id']."'");
+$cnt = 1;
+while ($row = mysqli_fetch_assoc($sql)) {
 ?>
-
-											<tr>
-												<td class="center"><?php echo $cnt;?>.</td>
-												<td class="hidden-xs"><?php echo $row['fname'];?></td>
-												<td><?php echo $row['doctorSpecialization'];?></td>
-												<td><?php echo $row['consultancyFees'];?></td>
-												<td><?php echo $row['appointmentDate'];?> / <?php echo
-												 $row['appointmentTime'];?>
-												</td>
-												<td><?php echo $row['postingDate'];?></td>
-												<td>
-                                                    <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
-                                                    {
-	                                                   echo "Activo";
-                                                    }                                 
-                                                    if(($row['userStatus']==0) && ($row['doctorStatus']==1))  
-                                                    {
-	                                                   echo "Finalizada por paciente";
-                                                    }
-
-                                                    if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
-                                                    { 
-	                                                  echo "Cancelada por ti";
-                                                    }
-
-													if(($row['userStatus']==1) && ($row['doctorStatus']==2))  
-                                                    { 
-	                                                  echo "Finalizada por ti";
-                                                    }
-													?>
-													
-													
-												</td>
-
-				                                <td >
-				                                   <div class="visible-md visible-lg hidden-sm hidden-xs">
-				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
-                                                   { ?>
-												   <a href="appointment-history.php?id=<?php echo $row['id']?>&Cancelada=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
-	                                              <?php } else {
-													echo "Cancelada";
-													}
-													?>
-													</div>
-												</td>
-
-												<td>
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
-				                                   <?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
-                                                   { ?>
-												   <a href="appointment-history.php?id=<?php echo $row['id']?>&Terminada=update" onClick="return confirm('¿Estás segura de que quieres finalizar esta cita? ?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Terminar</a>
-	                                              <?php } else {
-													echo "Terminda";
-													}
-													?>
-													</div>
-												</td>
-											</tr>
-											
-											<?php 
-											$cnt=$cnt+1;
-											 }?>
-											
-											
-										</tbody>
+    <tr>
+        <td class="center"><?php echo $cnt; ?>.</td>
+        <td class="hidden-xs"><?php echo isset($row['PatientName']) ? $row['PatientName'] : '<span class="text-muted">No registrado</span>'; ?></td>
+        <td><?php echo $row['doctorSpecialization']; ?></td>
+        <td><?php echo $row['consultancyFees']; ?></td>
+        <td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
+        <td><?php echo $row['postingDate']; ?></td>
+        <td><?php echo isset($row['PatientContno']) ? $row['PatientContno'] : '<span class="text-muted">No disponible</span>'; ?></td>
+        <td><?php echo isset($row['PatientEmail']) ? $row['PatientEmail'] : '<span class="text-muted">No disponible</span>'; ?></td>
+        <td><?php echo isset($row['PatientAdd']) ? $row['PatientAdd'] : '<span class="text-muted">No disponible</span>'; ?></td>
+        <td><?php echo !empty($row['PatientMedhis']) ? nl2br(htmlspecialchars($row['PatientMedhis'])) : '<span class="text-muted">Sin historial</span>'; ?></td>
+        <td>
+            <?php 
+            if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
+                echo "Activo";
+            } elseif (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) {
+                echo "Finalizada por paciente";
+            } elseif (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0)) {
+                echo "Cancelada por ti";
+            } elseif (($row['userStatus'] == 1) && ($row['doctorStatus'] == 2)) {
+                echo "Finalizada por ti";
+            }
+            ?>
+        </td>
+        <td>
+            <div class="visible-md visible-lg hidden-sm hidden-xs">
+                <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) { ?>
+                    <div class="dropdown">
+                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenuButton<?php echo $row['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acción <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?php echo $row['id']; ?>">
+                            <li><a class="dropdown-item" href="view-patient.php?viewid=<?php echo isset($row['userId']) ? htmlspecialchars($row['userId']) : '0'; ?>">Atender</a></li>
+                            <li><a class="dropdown-item text-danger" href="appointment-history.php?id=<?php echo $row['id']; ?>&Cancelada=update" onclick="return confirm('¿Estás seguro de cancelar esta cita?');">Cancelar</a></li>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+                    <span class="text-muted">Sin acciones</span>
+                <?php } ?>
+            </div>
+        </td>
+    </tr>
+<?php
+    $cnt++;
+}
+?>
+</tbody>
 									</table>
 								</div>
 							</div>
