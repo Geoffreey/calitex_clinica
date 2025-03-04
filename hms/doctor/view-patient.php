@@ -1,6 +1,7 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
@@ -81,15 +82,22 @@ if(isset($_POST['submit_rx']))
     }
 }
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-if (isset($_POST['emitir_receta'])) {
+//Emitir receta
+if (isset($_POST['emitir_receta'])) { 
     require_once("include/config.php");
-    session_start();
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
     if (!isset($_SESSION['doctor_id'])) {
-        die("Error: No se ha establecido el ID del doctor.");
+        header("Location: view-patient.php?viewid=" . $_GET['viewid']);
+        exit();
+    }
+
+    if (!isset($con)) {
+        header("Location: view-patient.php?viewid=" . $_GET['viewid']);
+        exit();
     }
 
     $vid = $_GET['viewid']; // ID del paciente
@@ -98,40 +106,31 @@ if (isset($_POST['emitir_receta'])) {
     $cantidades = $_POST['cantidad'] ?? [];
     $indicaciones = $_POST['indicacion'] ?? [];
 
-    // Estados como en `submit_lab`
-    $doctorStatus = 1;
-    $userStatus = 1;
-
     // Validar que haya al menos un medicamento
     if (empty($medicamento_ids) || empty($cantidades) || empty($indicaciones)) {
-        echo '<script>alert("Debes agregar al menos un medicamento.");</script>';
-        echo "<script>window.location.href ='view-patient.php?viewid=$vid'</script>";
+        header("Location: view-patient.php?viewid=$vid&error=empty_medicamento");
         exit();
-    }
-
-    if (!$con) {
-        die("Error de conexión: " . mysqli_connect_error());
     }
 
     // Obtener user_id del paciente
     $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
     $row = mysqli_fetch_assoc($result);
+
     if (!$row) {
-        echo '<script>alert("El paciente no existe.");</script>';
-        echo "<script>window.location.href ='view-patient.php?viewid=$vid'</script>";
+        header("Location: view-patient.php?viewid=$vid&error=paciente_not_found");
         exit();
     }
+
     $user_id = $row['user_id'];
 
-    // Insertar receta con `doctorStatus` y `userStatus`
-    $query = mysqli_query($con, "INSERT INTO recetas (paciente_id, doctor_id, doctorStatus, userStatus) 
-              VALUES ('$user_id', '$doctor_id', '$doctorStatus', '$userStatus')");
+    // Insertar receta
+    $query = mysqli_query($con, "INSERT INTO recetas (paciente_id, doctor_id) VALUES ('$vid', '$doctor_id')");
 
     if ($query) {
         $receta_id = mysqli_insert_id($con);
+        $success = true;
 
         // Insertar detalles de receta
-        $success = true;
         for ($i = 0; $i < count($medicamento_ids); $i++) {
             $medicamento_id = mysqli_real_escape_string($con, $medicamento_ids[$i]);
             $cantidad = mysqli_real_escape_string($con, $cantidades[$i]);
@@ -147,19 +146,16 @@ if (isset($_POST['emitir_receta'])) {
         }
 
         if ($success) {
-            echo '<script>alert("Se ha emitido la receta correctamente.");</script>';
-            echo "<script>window.location.href ='manage-patient.php'</script>";
+            header("Location: manage-patient.php?success=receta_emitida");
+            exit();
         } else {
-            echo '<script>alert("Error al guardar detalles de la receta.");</script>';
+            header("Location: view-patient.php?viewid=$vid&error=detalle_error");
+            exit();
         }
     } else {
-        echo '<script>alert("Error al emitir la receta.");</script>';
+        header("Location: view-patient.php?viewid=$vid&error=receta_error");
+        exit();
     }
-}
-
-if (isset($_SESSION['msg'])) {
-    echo "<div class='alert alert-info'>{$_SESSION['msg']}</div>";
-    unset($_SESSION['msg']);
 }
 
 ?>
@@ -172,7 +168,6 @@ if (isset($_SESSION['msg'])) {
 <html lang="es">
 <head>
     <title>Medico | Administrar pacientes</title>
-    
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
