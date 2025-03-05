@@ -302,46 +302,46 @@ if (isset($_POST['emitir_receta'])) {
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form name="add-medhistory" method="post" action="">
-                                                <table class="table table-bordered table-hover data-tables">
-                                                    <tr>
-                                                        <th>Presión arterial :</th>
-                                                        <td><input name="bp" placeholder="Presion arterial" class="form-control wd-450" required="true"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Glucosa :</th>
-                                                        <td><input name="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required="true"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Peso :</th>
-                                                        <td><input name="weight" placeholder="Peso" class="form-control wd-450" required="true"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Temperatura corporal :</th>
-                                                        <td><input name="temp" placeholder="Temperatura corporal" class="form-control wd-450" required="true"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Examen físico :</th>
-                                                        <td><textarea name="exf" placeholder="Examen fisico" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Prescripción médica :</th>
-                                                        <td><textarea name="pres" placeholder="Prescripción médica" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Ordenes médicas :</th>
-                                                        <td><textarea name="ord" placeholder="Ordenes médicas" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Evolución :</th>
-                                                        <td><textarea name="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
-                                                    </tr>
-                                                </table>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                    <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
-                                                </div>
-                                            </form>
+                                        <form id="addHistorialForm">
+    <table class="table table-bordered table-hover data-tables">
+        <tr>
+            <th>Presión arterial :</th>
+            <td><input name="bp" id="bp" placeholder="Presion arterial" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+            <th>Glucosa :</th>
+            <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+            <th>Peso :</th>
+            <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+            <th>Temperatura corporal :</th>
+            <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required="true"></td>
+        </tr>
+        <tr>
+            <th>Examen físico :</th>
+            <td><textarea name="exf" id="exf" placeholder="Examen fisico" class="form-control wd-450" required="true"></textarea></td>
+        </tr>
+        <tr>
+            <th>Prescripción médica :</th>
+            <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required="true"></textarea></td>
+        </tr>
+        <tr>
+            <th>Ordenes médicas :</th>
+            <td><textarea name="ord" id="ord" placeholder="Ordenes médicas" class="form-control wd-450" required="true"></textarea></td>
+        </tr>
+        <tr>
+            <th>Evolución :</th>
+            <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
+        </tr>
+    </table>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
                                         </div>
                                     </div>
                                 </div>
@@ -577,6 +577,49 @@ if (isset($_POST['emitir_receta'])) {
     <?php include('include/footer.php');?>
     <?php include('include/setting.php'); ?>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#addHistorialForm").submit(function(event) {
+            event.preventDefault(); // Evita la recarga de la página
+
+            let formData = {
+                viewid: "<?php echo isset($_GET['viewid']) ? $_GET['viewid'] : ''; ?>",
+                bp: $("#bp").val(),
+                bs: $("#bs").val(),
+                weight: $("#weight").val(),
+                temp: $("#temp").val(),
+                exf: $("#exf").val(),
+                pres: $("#pres").val(),
+                ord: $("#ord").val(),
+                evo: $("#evo").val()
+            };
+
+            console.log("Enviando datos AJAX:", formData); // Debug en consola
+
+            $.ajax({
+                type: "POST",
+                url: "add_medical_history.php",
+                data: formData,
+                dataType: "json",
+                success: function(response) {
+                    console.log("Respuesta del servidor:", response); // Depuración
+                    if (response.status === "success") {
+                        alert(response.message);
+                        $("#addHistorialModal").modal("hide"); // Cerrar modal
+                        location.reload(); // Recargar la vista del paciente
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error AJAX:", textStatus, errorThrown, jqXHR.responseText);
+                    alert("Error en la solicitud AJAX.");
+                }
+            });
+        });
+    });
+</script>
 <script>
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -746,6 +789,7 @@ document.getElementById('rxId').addEventListener('change', function() {
         FormElements.init();
     });
 </script>
+
 </body>
 </html>
 
