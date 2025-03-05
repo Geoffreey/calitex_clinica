@@ -4,15 +4,6 @@ error_reporting(0);
 include 'include/config.php';
 include 'include/checklogin.php';
 check_login();
-if (isset($_GET['Cancelada'])) {
-    mysqli_query($con, "update appointment set userStatus='0' where id = '" . $_GET['id'] . "'");
-    $_SESSION['msg'] = "Su cita se cancelo!!";
-}
-
-if (isset($_GET['Finalizada'])) {
-    mysqli_query($con, "update appointment set userStatus='2' where id = '" . $_GET['id'] . "'");
-    $_SESSION['msg'] = "Su cita finalizó!!";
-}
 ?>
 
 <!DOCTYPE html>

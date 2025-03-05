@@ -7,10 +7,10 @@ include('include/checklogin.php');
 check_login();
 
 if (isset($_GET['viewid'])) {
-    echo "✅ Recibido viewid: " . htmlspecialchars($_GET['viewid']);
-} else {
-    echo "❌ No se recibió viewid.";
-}
+    //echo "✅ Recibido viewid: " . htmlspecialchars($_GET['viewid']);
+} //else {
+    //echo "❌ No se recibió viewid.";
+//}
 
 if(isset($_POST['submit']))
 {
@@ -161,32 +161,6 @@ if (isset($_POST['emitir_receta'])) {
         exit();
     }
 }
-
-require_once("include/config.php");
-$viewid = isset($_GET['viewid']) ? intval($_GET['viewid']) : 0;
-
-echo "<h3>🔍 Buscando historial para el paciente con ID: " . $viewid . "</h3>";
-
-// Consulta para obtener el historial del paciente
-$query = mysqli_query($con, "SELECT * FROM tblpatient WHERE user_id='$viewid'");
-$row = mysqli_fetch_assoc($query);
-
-if (!$row) {
-    echo "<h3>❌ No se encontró el historial del paciente.</h3>";
-} else {
-    echo "<h3>✅ Historial encontrado para: " . htmlspecialchars($row['PatientName']) . "</h3>";
-    echo "<pre>";
-    print_r($row); // Esto imprimirá todos los datos del paciente
-    echo "</pre>";
-}
-
-if (!empty($row['PatientMedhis'])) {
-    echo "<h3>📌 Historial Médico:</h3>";
-    echo "<p>" . nl2br(htmlspecialchars($row['PatientMedhis'])) . "</p>";
-} else {
-    echo "<h3>⚠️ No hay historial médico registrado para este paciente.</h3>";
-}
-
 ?>
 
 
@@ -241,7 +215,7 @@ if (!empty($row['PatientMedhis'])) {
                             <h5 class="over-title margin-bottom-15">Administrar<span class="text-bold"> pacientes</span></h5>
                             <?php
                             $vid = $_GET['viewid'];
-                            $ret = mysqli_query($con, "SELECT * FROM tblpatient WHERE ID='$vid'");
+                            $ret = mysqli_query($con, "SELECT * FROM tblpatient WHERE User_id='$vid'");
                             $cnt = 1;
                             while ($row = mysqli_fetch_array($ret)) {
                                 ?>

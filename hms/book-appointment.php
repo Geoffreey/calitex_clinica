@@ -8,17 +8,24 @@ check_login();
 if (isset($_POST['submit'])) {
     $specilization = $_POST['doctorspecialization'];
     $doctorid      = $_POST['doctor'];
-    $userid        = $_SESSION['id'];
+    
+    // Obtener el user_id correcto desde tblpatient
+    $query_user = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE USER_ID='".$_SESSION['id']."'");
+    $row_user = mysqli_fetch_assoc($query_user);
+    $userid = $row_user['user_id']; // Ahora el ID correcto
+
     $fees          = $_POST['fees'];
     $appdate       = $_POST['appdate'];
     $time          = $_POST['apptime'];
     $userstatus    = 1;
     $docstatus     = 1;
-    $query         = mysqli_query($con, "insert into appointment(doctorspecialization,doctorId,userId,consultancyFees,appointmentDate,appointmentTime,userStatus,doctorStatus) values('$specilization','$doctorid','$userid','$fees','$appdate','$time','$userstatus','$docstatus')");
-    if ($query) {
-        echo "<script>alert('Your appointment successfully booked');</script>";
-    }
 
+    $query = mysqli_query($con, "INSERT INTO appointment (doctorspecialization, doctorId, userId, consultancyFees, appointmentDate, appointmentTime, userStatus, doctorStatus) 
+                                 VALUES ('$specilization', '$doctorid', '$userid', '$fees', '$appdate', '$time', '$userstatus', '$docstatus')");
+
+    if ($query) {
+        echo "<script>alert('Su cita ha sido reservada con éxito');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
