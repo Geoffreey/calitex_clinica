@@ -303,49 +303,49 @@ if (isset($_POST['emitir_receta'])) {
                                         </div>
                                         <div class="modal-body">
                                         <form id="addHistorialForm">
-    <table class="table table-bordered table-hover data-tables">
-        <tr>
-            <th>Presión arterial :</th>
-            <td><input name="bp" id="bp" placeholder="Presion arterial" class="form-control wd-450" required="true"></td>
-        </tr>
-        <tr>
-            <th>Glucosa :</th>
-            <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required="true"></td>
-        </tr>
-        <tr>
-            <th>Peso :</th>
-            <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required="true"></td>
-        </tr>
-        <tr>
-            <th>Temperatura corporal :</th>
-            <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required="true"></td>
-        </tr>
-        <tr>
-            <th>Examen físico :</th>
-            <td><textarea name="exf" id="exf" placeholder="Examen fisico" class="form-control wd-450" required="true"></textarea></td>
-        </tr>
-        <tr>
-            <th>Prescripción médica :</th>
-            <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required="true"></textarea></td>
-        </tr>
-        <tr>
-            <th>Ordenes médicas :</th>
-            <td><textarea name="ord" id="ord" placeholder="Ordenes médicas" class="form-control wd-450" required="true"></textarea></td>
-        </tr>
-        <tr>
-            <th>Evolución :</th>
-            <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
-        </tr>
-    </table>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-    </div>
-</form>
-                                        </div>
+                                            <table class="table table-bordered table-hover data-tables">
+                                                <tr>
+                                                    <th>Presión arterial :</th>
+                                                        <td><input name="bp" id="bp" placeholder="Presion arterial" class="form-control wd-450" required="true"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Glucosa :</th>
+                                                        <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required="true"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Peso :</th>
+                                                        <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required="true"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Temperatura corporal :</th>
+                                                        <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required="true"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Examen físico :</th>
+                                                        <td><textarea name="exf" id="exf" placeholder="Examen fisico" class="form-control wd-450" required="true"></textarea></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Prescripción médica :</th>
+                                                        <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required="true"></textarea></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ordenes médicas :</th>
+                                                        <td><textarea name="ord" id="ord" placeholder="Ordenes médicas" class="form-control wd-450" required="true"></textarea></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Evolución :</th>
+                                                        <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
+                                                </tr>
+                                            </table>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                             
                             <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -560,13 +560,13 @@ if (isset($_POST['emitir_receta'])) {
 
                             
                             <div class='text-center'>
-                               <button class="btn btn-primary" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
-                               <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
-                               <button class="btn btn-primary" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
-                               <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
-                               <button class="btn btn-primary" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
-                               <button class="btn btn-primary" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
-                               <button class="btn btn-primary" onclick="printDiv('printIt')">Imprimir</button>
+                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
+                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
+                               <button class="btn btn-primary no-print" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
+                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
+                               <button class="btn btn-primary no-print" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
+                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
+                               <button class="btn btn-primary no-print" onclick="printDiv('printIt')">Imprimir</button>
                             </div>
                          </div>
                     </div>

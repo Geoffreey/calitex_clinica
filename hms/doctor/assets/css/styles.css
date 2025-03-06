@@ -13073,3 +13073,10 @@ td.small-width {
     display: none;
   }
 }
+
+/*Clase para no imprimir botones*/
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
