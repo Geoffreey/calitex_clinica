@@ -69,7 +69,7 @@
 								</a>
 							</li>
                             <li>
-								<a href="manage-medhistory.php">
+								<a href="view-medhistory.php?viewid=<?php echo $_SESSION['id']; ?>">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-list"></i>

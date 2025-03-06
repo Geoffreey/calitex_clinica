@@ -71,7 +71,7 @@ check_login();
 <tbody>
 <?php
 $uid = $_SESSION['id'];
-$sql = mysqli_query($con, "select tblpatient.* from tblpatient join users on users.email=tblpatient.PatientEmail where users.id='$uid'");
+$sql = mysqli_query($con, "SELECT * FROM tblpatient WHERE user_id = '$uid'");
 $cnt = 1;
 while ($row = mysqli_fetch_array($sql)) {
     ?>
