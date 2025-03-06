@@ -29,7 +29,7 @@ check_login();
 	</head>
 	<body>
 		<div id="app">		
-<?php include('include/sidebar.php');?>
+            <?php include('include/sidebar.php');?>
 			<div class="app-content">
 				
 
