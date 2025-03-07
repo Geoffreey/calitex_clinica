@@ -12,28 +12,6 @@ if (isset($_GET['viewid'])) {
     //echo "❌ No se recibió viewid.";
 //}
 
-if(isset($_POST['submit']))
-{
-    $vid = $_GET['viewid'];
-    $bp = $_POST['bp'];
-    $bs = $_POST['bs'];
-    $weight = $_POST['weight'];
-    $temp = $_POST['temp'];
-    $exf = $_POST['exf'];
-    $pres = $_POST['pres'];
-    $ord = $_POST['ord'];
-    $evo = $_POST['evo'];
-    
-    $query = mysqli_query($con, "INSERT INTO tblmedicalhistory (PatientID, BloodPressure, BloodSugar, Weight, Temperature, ExamenFisico, MedicalPres, OrdenesMedicas, Evolucion) VALUES ('$vid', '$bp', '$bs', '$weight', '$temp', '$exf', '$pres', '$ord', '$evo')");
-    
-    if ($query) {
-        echo '<script>alert("Se ha añadido el historial médico.")</script>';
-        echo "<script>window.location.href ='manage-patient.php'</script>";
-    } else {
-        echo '<script>alert("Something Went Wrong. Please try again")</script>';
-    }
-}
-
 if(isset($_POST['submit_lab']))
 {
     $vid = $_GET['viewid'];
@@ -297,46 +275,47 @@ if (isset($_POST['emitir_receta'])) {
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                        <form id="addHistorialForm">
-                                            <table class="table table-bordered table-hover data-tables">
-                                                <tr>
-                                                    <th>Presión arterial :</th>
-                                                        <td><input name="bp" id="bp" placeholder="Presion arterial" class="form-control wd-450" required="true"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Glucosa :</th>
-                                                        <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required="true"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Peso :</th>
-                                                        <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required="true"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Temperatura corporal :</th>
-                                                        <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required="true"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Examen físico :</th>
-                                                        <td><textarea name="exf" id="exf" placeholder="Examen fisico" class="form-control wd-450" required="true"></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Prescripción médica :</th>
-                                                        <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required="true"></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Ordenes médicas :</th>
-                                                        <td><textarea name="ord" id="ord" placeholder="Ordenes médicas" class="form-control wd-450" required="true"></textarea></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Evolución :</th>
-                                                        <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required="true"></textarea></td>
-                                                </tr>
-                                            </table>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                            </div>
-                                        </form>
+                                        <form id="addHistorialForm" method="POST">
+    <input type="hidden" name="appointmentid" value="<?php echo isset($_GET['appointmentid']) ? $_GET['appointmentid'] : ''; ?>">
+    <table class="table table-bordered table-hover data-tables">
+        <tr>
+            <th>Presión arterial :</th>
+            <td><input name="bp" id="bp" placeholder="Presión arterial" class="form-control wd-450" required></td>
+        </tr>
+        <tr>
+            <th>Glucosa :</th>
+            <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required></td>
+        </tr>
+        <tr>
+            <th>Peso :</th>
+            <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required></td>
+        </tr>
+        <tr>
+            <th>Temperatura corporal :</th>
+            <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required></td>
+        </tr>
+        <tr>
+            <th>Examen físico :</th>
+            <td><textarea name="exf" id="exf" placeholder="Examen físico" class="form-control wd-450" required></textarea></td>
+        </tr>
+        <tr>
+            <th>Prescripción médica :</th>
+            <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required></textarea></td>
+        </tr>
+        <tr>
+            <th>Órdenes médicas :</th>
+            <td><textarea name="ord" id="ord" placeholder="Órdenes médicas" class="form-control wd-450" required></textarea></td>
+        </tr>
+        <tr>
+            <th>Evolución :</th>
+            <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required></textarea></td>
+        </tr>
+    </table>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>
                                     </div>
                                 </div>
                             </div>
@@ -537,13 +516,13 @@ if (isset($_POST['emitir_receta'])) {
                                 `;
                                 container.appendChild(newMedicamentoRow);
 
-                                // Add event listener to the new remove button
+                                // Agregar detector de eventos al nuevo botón de eliminar
                                 newMedicamentoRow.querySelector('.remove-medicamento').addEventListener('click', function() {
                                 newMedicamentoRow.remove();
                                     });
                                 });
 
-                                // Add event listener to the existing remove button
+                                // Agregar un detector de eventos al botón de eliminación existente
                                 document.querySelectorAll('.remove-medicamento').forEach(function(button) {
                                 button.addEventListener('click', function() {
                                 button.parentElement.remove();
@@ -556,7 +535,7 @@ if (isset($_POST['emitir_receta'])) {
                                <button class="btn btn-primary no-print" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
                                <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
                                <button class="btn btn-primary no-print" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
-                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
+                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
                                <button class="btn btn-primary no-print" onclick="printDiv('printIt')">Imprimir</button>
                             </div>
                         </div>
@@ -742,20 +721,6 @@ document.getElementById('rxId').addEventListener('change', function() {
         });
     });
 </script>
-
-<!--agregar medicamtno a recemta medica-->
-<!--<script>
-    document.getElementById('addMedicamento').addEventListener('click', function () {
-        var container = document.getElementById('medicamentosContainer');
-        var entry = document.querySelector('.medicamento-entry').cloneNode(true);
-        entry.querySelectorAll('input, textarea').forEach(function(input) {
-            input.value = '';
-        });
-        container.appendChild(entry);
-    });
-</script>-->
-
-
 
 <!-- include required scripts here -->
 <script src="vendor/jquery/jquery.min.js"></script>

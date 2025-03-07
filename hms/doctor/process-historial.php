@@ -1,0 +1,56 @@
+<?php
+include('include/config.php');
+header('Content-Type: application/json');
+
+// Activar depuración
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $vid = isset($_POST['viewid']) ? $_POST['viewid'] : null;
+    $appointmentid = isset($_POST['appointmentid']) ? $_POST['appointmentid'] : null;
+
+    // Verificar que los datos esenciales están presentes
+    if (!$vid || !$appointmentid) {
+        echo json_encode(["status" => "error", "message" => "Faltan datos (viewid o appointmentid)"]);
+        exit();
+    }
+
+    // Obtener datos del formulario
+    $bp = mysqli_real_escape_string($con, $_POST['bp']);
+    $bs = mysqli_real_escape_string($con, $_POST['bs']);
+    $weight = mysqli_real_escape_string($con, $_POST['weight']);
+    $temp = mysqli_real_escape_string($con, $_POST['temp']);
+    $exf = mysqli_real_escape_string($con, $_POST['exf']);
+    $pres = mysqli_real_escape_string($con, $_POST['pres']);
+    $ord = mysqli_real_escape_string($con, $_POST['ord']);
+    $evo = mysqli_real_escape_string($con, $_POST['evo']);
+
+    // Insertar historial médico
+    $query = mysqli_query($con, "INSERT INTO tblmedicalhistory 
+        (PatientID, BloodPressure, BloodSugar, Weight, Temperature, ExamenFisico, MedicalPres, OrdenesMedicas, Evolucion) 
+        VALUES ('$vid', '$bp', '$bs', '$weight', '$temp', '$exf', '$pres', '$ord', '$evo')");
+
+    if ($query) {
+        // Verificar que se insertó correctamente
+        $historial_id = mysqli_insert_id($con);
+        if ($historial_id) {
+            // Actualizar estado de la cita
+            $sqlUpdate = "UPDATE appointment SET doctorStatus = 2, updationDate = NOW() WHERE id = '$appointmentid'";
+            $updateQuery = mysqli_query($con, $sqlUpdate);
+
+            if ($updateQuery) {
+                echo json_encode(["status" => "success", "message" => "Historial médico agregado y cita finalizada"]);
+            } else {
+                echo json_encode(["status" => "error", "message" => "Error al actualizar la cita: " . mysqli_error($con)]);
+            }
+        } else {
+            echo json_encode(["status" => "error", "message" => "Error al insertar historial médico"]);
+        }
+    } else {
+        echo json_encode(["status" => "error", "message" => "Error en la consulta: " . mysqli_error($con)]);
+    }
+} else {
+    echo json_encode(["status" => "error", "message" => "Método no permitido"]);
+}
+?>
