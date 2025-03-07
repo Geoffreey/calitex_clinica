@@ -84,7 +84,7 @@ check_login();
                                                   <td><?php echo $row['PatientGender'];?></td>
                                                   <td><?php echo $row['CreationDate'];?></td>
                                                   <td><?php echo $row['UpdationDate'];?></td>
-                                                  <td><a href="edit-patient.php?editid=<?php echo $row['ID'];?>"><i class="fa fa-edit"></i></a> || <a href="view-patient.php?viewid=<?php echo $row['ID'];?>"><i class="fa fa-eye"></i></a></td>
+                                                  <td><a href="edit-patient.php?editid=<?php echo $row['user_id'];?>"><i class="fa fa-edit"></i></a> || <a href="view-patient.php?viewid=<?php echo $row['user_id'];?>"><i class="fa fa-eye"></i></a></td>
                                               </tr>
                                               <?php 
                                                  $cnt=$cnt+1;

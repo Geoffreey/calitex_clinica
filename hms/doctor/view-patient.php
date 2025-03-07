@@ -162,32 +162,27 @@ if (isset($_POST['emitir_receta'])) {
     }
 }
 ?>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <title>Medico | Administrar pacientes</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
-    <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
-    <link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
-    <link href="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="screen">
-    <link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
-    <link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/plugins.css">
-    <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-</head>
-<body>
-<div id="app">
+    <head>
+        <title>Medico | Administrar pacientes</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
+        <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
+        <link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
+        <link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
+        <link href="vendor/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet" media="screen">
+        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="screen">
+        <link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
+        <link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/plugins.css">
+        <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+    </head>
+    <body>
+    <div id="app">
     <?php include('include/sidebar.php');?>
     <div class="app-content">
         <?php include('include/header.php');?>
@@ -347,14 +342,14 @@ if (isset($_POST['emitir_receta'])) {
                             </div>
                         </div>
                             
-                            <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Crear Cita de Laboratorio</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                        <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Crear Cita de Laboratorio</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                         </div>
                                         <div class="modal-body">
                                             <form name="add-labappointment" method="post" action="">
@@ -464,111 +459,107 @@ if (isset($_POST['emitir_receta'])) {
                                 </div>
                             </div>
                             <!-- Modal para emitir receta -->
-<!-- Modal para emitir receta -->
-<div class="modal fade" id="emitirRecetaModal" tabindex="-1" role="dialog" aria-labelledby="emitirRecetaModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="emitirRecetaModalLabel">Emitir Receta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-              <form id="emitirRecetaForm" method="post" action="view-patient.php?viewid=<?php echo $_GET['viewid']; ?>" enctype="multipart/form-data">
-                  <input type="hidden" name="doctor_id" value="<?php echo $_SESSION['doctor_id']; ?>">
-                    <div id="medicamentosContainer">
-                        <div class="medicamento-row">
-                            <div class="form-group">
-                                <label for="medicamento_id">Medicamento</label>
-                                <select id="medicamento_id" name="medicamento_id[]" class="form-control" required>
-                                    <option value="">Seleccione un medicamento</option>
-                                    <?php
-                                    $query = mysqli_query($con, "SELECT id, nombre FROM medicamentos");
-                                    while ($row = mysqli_fetch_array($query)) {
-                                        echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
-                                    }
-                                    ?>
-                                </select>
+                            <div class="modal fade" id="emitirRecetaModal" tabindex="-1" role="dialog" aria-labelledby="emitirRecetaModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="emitirRecetaModalLabel">Emitir Receta</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="emitirRecetaForm" method="post" action="view-patient.php?viewid=<?php echo $_GET['viewid']; ?>" enctype="multipart/form-data">
+                                                <input type="hidden" name="doctor_id" value="<?php echo $_SESSION['doctor_id']; ?>">
+                                                <div id="medicamentosContainer">
+                                                    <div class="medicamento-row">
+                                                        <div class="form-group">
+                                                            <label for="medicamento_id">Medicamento</label>
+                                                            <select id="medicamento_id" name="medicamento_id[]" class="form-control" required>
+                                                                <option value="">Seleccione un medicamento</option>
+                                                                <?php
+                                                                    $query = mysqli_query($con, "SELECT id, nombre FROM medicamentos");
+                                                                    while ($row = mysqli_fetch_array($query)) {
+                                                                    echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
+                                                                    }
+                                                                ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="cantidad">Cantidad</label>
+                                                            <input type="number" name="cantidad[]" class="form-control" placeholder="Cantidad" required>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="indicacion">Indicación</label>
+                                                            <textarea name="indicacion[]" class="form-control" placeholder="Indicación" required></textarea>
+                                                        </div>
+                                                        <button type="button" class="btn btn-danger remove-medicamento">Eliminar</button>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-success" id="addMedicamento">Agregar otro medicamento</button>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" name="emitir_receta" class="btn btn-primary">Emitir Receta</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" name="cantidad[]" class="form-control" placeholder="Cantidad" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="indicacion">Indicación</label>
-                                <textarea name="indicacion[]" class="form-control" placeholder="Indicación" required></textarea>
-                            </div>
-                            <button type="button" class="btn btn-danger remove-medicamento">Eliminar</button>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-success" id="addMedicamento">Agregar otro medicamento</button>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="submit" name="emitir_receta" class="btn btn-primary">Emitir Receta</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-<script>
-    document.getElementById('addMedicamento').addEventListener('click', function() {
-        const container = document.getElementById('medicamentosContainer');
-        const newMedicamentoRow = document.createElement('div');
-        newMedicamentoRow.className = 'medicamento-row';
-        newMedicamentoRow.innerHTML = `
-            <div class="form-group">
-                <label for="medicamento_id">Medicamento</label>
-                <select name="medicamento_id[]" class="form-control" required>
-                    <option value="">Seleccione un medicamento</option>
-                    <?php
-                    $query = mysqli_query($con, "SELECT id, nombre FROM medicamentos");
-                    while ($row = mysqli_fetch_array($query)) {
-                        echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="cantidad">Cantidad</label>
-                <input type="number" name="cantidad[]" class="form-control" placeholder="Cantidad" required>
-            </div>
-            <div class="form-group">
-                <label for="indicacion">Indicación</label>
-                <textarea name="indicacion[]" class="form-control" placeholder="Indicación" required></textarea>
-            </div>
-            <button type="button" class="btn btn-danger remove-medicamento">Eliminar</button>
-        `;
-        container.appendChild(newMedicamentoRow);
+                            <script>
+                                document.getElementById('addMedicamento').addEventListener('click', function() {
+                                const container = document.getElementById('medicamentosContainer');
+                                const newMedicamentoRow = document.createElement('div');
+                                newMedicamentoRow.className = 'medicamento-row';
+                                newMedicamentoRow.innerHTML = `
+                                <div class="form-group">
+                                    <label for="medicamento_id">Medicamento</label>
+                                    <select name="medicamento_id[]" class="form-control" required>
+                                        <option value="">Seleccione un medicamento</option>
+                                        <?php
+                                            $query = mysqli_query($con, "SELECT id, nombre FROM medicamentos");
+                                            while ($row = mysqli_fetch_array($query)) {
+                                            echo "<option value='{$row['id']}'>{$row['nombre']}</option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="number" name="cantidad[]" class="form-control" placeholder="Cantidad" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="indicacion">Indicación</label>
+                                    <textarea name="indicacion[]" class="form-control" placeholder="Indicación" required></textarea>
+                                </div>
+                                <button type="button" class="btn btn-danger remove-medicamento">Eliminar</button>
+                                `;
+                                container.appendChild(newMedicamentoRow);
 
-        // Add event listener to the new remove button
-        newMedicamentoRow.querySelector('.remove-medicamento').addEventListener('click', function() {
-            newMedicamentoRow.remove();
-        });
-    });
+                                // Add event listener to the new remove button
+                                newMedicamentoRow.querySelector('.remove-medicamento').addEventListener('click', function() {
+                                newMedicamentoRow.remove();
+                                    });
+                                });
 
-    // Add event listener to the existing remove button
-    document.querySelectorAll('.remove-medicamento').forEach(function(button) {
-        button.addEventListener('click', function() {
-            button.parentElement.remove();
-        });
-    });
-</script>
-
-
-                            
+                                // Add event listener to the existing remove button
+                                document.querySelectorAll('.remove-medicamento').forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                button.parentElement.remove();
+                                    });
+                                });
+                            </script>
                             <div class='text-center'>
                                <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
-                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
-                               <button class="btn btn-primary no-print" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
-                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
-                               <button class="btn btn-primary no-print" style="background-color: green; border-color: green; color: white;" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
-                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
+                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
+                               <button class="btn btn-primary no-print" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
+                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
+                               <button class="btn btn-primary no-print" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
+                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
                                <button class="btn btn-primary no-print" onclick="printDiv('printIt')">Imprimir</button>
                             </div>
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -577,9 +568,9 @@ if (isset($_POST['emitir_receta'])) {
     <?php include('include/footer.php');?>
     <?php include('include/setting.php'); ?>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
         $("#addHistorialForm").submit(function(event) {
             event.preventDefault(); // Evita la recarga de la página
 
@@ -619,65 +610,65 @@ if (isset($_POST['emitir_receta'])) {
             });
         });
     });
-</script>
-<script>
-    function printDiv(divName) {
-        var printContents = document.getElementById(divName).innerHTML;
-        var originalContents = document.body.innerHTML;
-        document.body.innerHTML = printContents;
-        window.print();
-        document.body.innerHTML = originalContents;
-    }
-</script>
-<script>
-function updateLabOptions() {
-    var labType = document.getElementById('labType').value;
-    var labIdSelect = document.getElementById('labId');
-    var consultancyFeesInput = document.getElementById('consultancyFees');
+    </script>
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+    </script>
+    <script>
+        function updateLabOptions() {
+            var labType = document.getElementById('labType').value;
+            var labIdSelect = document.getElementById('labId');
+            var consultancyFeesInput = document.getElementById('consultancyFees');
     
-    // Limpiar las opciones existentes
-    labIdSelect.innerHTML = '<option value="">Seleccione un ID</option>';
-    consultancyFeesInput.value = '';
+            // Limpiar las opciones existentes
+            labIdSelect.innerHTML = '<option value="">Seleccione un ID</option>';
+            consultancyFeesInput.value = '';
     
-    if (labType) {
-        // Hacer una solicitud AJAX para obtener los laboratorios de ese tipo
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_lab_options.php?labType=' + encodeURIComponent(labType), true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                response.forEach(function(lab) {
+            if (labType) {
+            // Hacer una solicitud AJAX para obtener los laboratorios de ese tipo
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'get_lab_options.php?labType=' + encodeURIComponent(labType), true);
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    response.forEach(function(lab) {
                     var option = document.createElement('option');
                     option.value = lab.id;
                     option.text = lab.codigo;
                     labIdSelect.add(option);
-                });
+                    });
+                }
+            };
+            xhr.send();
             }
-        };
-        xhr.send();
-    }
-}
+        }
 
-// Actualiza el costo cuando cambia el ID del laboratorio
-document.getElementById('labId').addEventListener('change', function() {
-    var labId = this.value;
-    var consultancyFeesInput = document.getElementById('consultancyFees');
+        // Actualiza el costo cuando cambia el ID del laboratorio
+        document.getElementById('labId').addEventListener('change', function() {
+            var labId = this.value;
+            var consultancyFeesInput = document.getElementById('consultancyFees');
     
-    if (labId) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get_lab_cost.php?labId=' + encodeURIComponent(labId), true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                consultancyFeesInput.value = response.costo;
-            }
-        };
-        xhr.send();
-    } else {
+            if (labId) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'get_lab_cost.php?labId=' + encodeURIComponent(labId), true);
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    consultancyFeesInput.value = response.costo;
+                }
+            };
+            xhr.send();
+        } else {
         consultancyFeesInput.value = '';
-    }
-});
-</script>
+        }
+        });
+    </script>
 
 <!--Modal crear cita Rayos X-->
 <script>
