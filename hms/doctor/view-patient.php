@@ -275,60 +275,60 @@ if (isset($_POST['emitir_receta'])) {
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                        <form id="addHistorialForm" method="POST">
-    <input type="hidden" name="appointmentid" value="<?php echo isset($_GET['appointmentid']) ? $_GET['appointmentid'] : ''; ?>">
-    <table class="table table-bordered table-hover data-tables">
-        <tr>
-            <th>Presión arterial :</th>
-            <td><input name="bp" id="bp" placeholder="Presión arterial" class="form-control wd-450" required></td>
-        </tr>
-        <tr>
-            <th>Glucosa :</th>
-            <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required></td>
-        </tr>
-        <tr>
-            <th>Peso :</th>
-            <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required></td>
-        </tr>
-        <tr>
-            <th>Temperatura corporal :</th>
-            <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required></td>
-        </tr>
-        <tr>
-            <th>Examen físico :</th>
-            <td><textarea name="exf" id="exf" placeholder="Examen físico" class="form-control wd-450" required></textarea></td>
-        </tr>
-        <tr>
-            <th>Prescripción médica :</th>
-            <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required></textarea></td>
-        </tr>
-        <tr>
-            <th>Órdenes médicas :</th>
-            <td><textarea name="ord" id="ord" placeholder="Órdenes médicas" class="form-control wd-450" required></textarea></td>
-        </tr>
-        <tr>
-            <th>Evolución :</th>
-            <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required></textarea></td>
-        </tr>
-    </table>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
-    </div>
-</form>
+                                            <form id="addHistorialForm" method="POST">
+                                                <input type="hidden" name="appointmentid" value="<?php echo isset($_GET['appointmentid']) ? $_GET['appointmentid'] : ''; ?>">
+                                                <table class="table table-bordered table-hover data-tables">
+                                                    <tr>
+                                                        <th>Presión arterial :</th>
+                                                        <td><input name="bp" id="bp" placeholder="Presión arterial" class="form-control wd-450" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Glucosa :</th>
+                                                        <td><input name="bs" id="bs" placeholder="Nivel de glucosa" class="form-control wd-450" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Peso :</th>
+                                                        <td><input name="weight" id="weight" placeholder="Peso" class="form-control wd-450" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Temperatura corporal :</th>
+                                                            <td><input name="temp" id="temp" placeholder="Temperatura corporal" class="form-control wd-450" required></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Examen físico :</th>
+                                                        <td><textarea name="exf" id="exf" placeholder="Examen físico" class="form-control wd-450" required></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Prescripción médica :</th>
+                                                        <td><textarea name="pres" id="pres" placeholder="Prescripción médica" class="form-control wd-450" required></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Órdenes médicas :</th>
+                                                        <td><textarea name="ord" id="ord" placeholder="Órdenes médicas" class="form-control wd-450" required></textarea></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Evolución :</th>
+                                                        <td><textarea name="evo" id="evo" placeholder="Evolución" class="form-control wd-450" required></textarea></td>
+                                                    </tr>
+                                                </table>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                             
-                        <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Crear Cita de Laboratorio</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                            <div class="modal fade" id="addLabAppointmentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Crear Cita de Laboratorio</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <form name="add-labappointment" method="post" action="">
