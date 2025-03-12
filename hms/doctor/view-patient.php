@@ -530,13 +530,27 @@ if (isset($_POST['emitir_receta'])) {
                                 });
                             </script>
                             <div class='text-center'>
-                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addHistorialModal">Añadir Historial Médico</button>
-                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addLabAppointmentModal">Orden de laboratorio</button>
-                               <button class="btn btn-primary no-print" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
-                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
-                               <button class="btn btn-primary no-print" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
-                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
-                               <button class="btn btn-primary no-print" onclick="printDiv('printIt')">Imprimir</button>
+                                <button class="btn btn-custom no-print" data-toggle="modal" data-target="#addHistorialModal" title="Agregar Historial Médico">
+                                    <i class="ti-book"></i>
+                                </button>
+                                <button class="btn btn-custom no-print" data-toggle="modal" data-target="#addLabAppointmentModal" title="Agendar Cita de Laboratorio">
+                                    <i class="ti-clipboard"></i>
+                                </button>
+                                <button class="btn btn-custom no-print" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'" title="Ver Resultados de Laboratorio">
+                                    <i class="ti-file"></i>
+                                </button>
+                                <button class="btn btn-custom no-print" data-toggle="modal" data-target="#addRxAppointmentModal" title="Agendar Cita de Rayos X">
+                                    <i class="ti-clipboard"></i>
+                                </button>
+                                <button class="btn btn-custom no-print" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'" title="Ver Resultados de Rayos X">
+                                    <i class="ti-image"></i>
+                                </button>
+                                <button class="btn btn-custom no-print" data-toggle="modal" data-target="#emitirRecetaModal" title="Emitir Receta">
+                                    <i class="ti-pencil-alt"></i>
+                                </button>
+                                <button class="btn btn-custom no-print" onclick="printDiv('printIt')" title="Imprimir">
+                                    <i class="ti-printer"></i>
+                                </button>
                             </div>
                         </div>
                     </div>

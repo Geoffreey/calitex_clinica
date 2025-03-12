@@ -13080,3 +13080,28 @@ td.small-width {
     display: none !important;
   }
 }
+
+.btn-custom {
+  background-color: #007bff; /* Azul Bootstrap */
+  color: white;
+  border: none;
+  border-radius: 12px; /* Bordes redondeados */
+  padding: 10px 15px; /* Espacio interno */
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+.btn-custom i {
+  font-size: 24px; /* Ajustar tamaño del icono */
+}
+
+.btn-custom:hover {
+  background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* Mayor sombra */
+  transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.btn-custom:active {
+  transform: translateY(1px); /* Efecto al presionar */
+}
