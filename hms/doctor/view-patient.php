@@ -535,7 +535,7 @@ if (isset($_POST['emitir_receta'])) {
                                <button class="btn btn-primary no-print" onclick="window.location.href='resultado-laboratorio.php?viewid=<?php echo $vid; ?>'">Resultados_lab</button>
                                <button class="btn btn-primary no-print" data-toggle="modal" data-target="#addRxAppointmentModal">Orden de rayos X</button>
                                <button class="btn btn-primary no-print" onclick="window.location.href='resultado-rayosx.php?viewid=<?php echo $vid; ?>'">Resultados_rx</button>
-                               <button class="btn btn-primary no-print" style="background-color: orange; border-color: orange; color: white;" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
+                               <button class="btn btn-primary no-print" data-toggle="modal" data-target="#emitirRecetaModal">Emitir receta</button>
                                <button class="btn btn-primary no-print" onclick="printDiv('printIt')">Imprimir</button>
                             </div>
                         </div>
@@ -549,46 +549,47 @@ if (isset($_POST['emitir_receta'])) {
 </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-        $("#addHistorialForm").submit(function(event) {
-            event.preventDefault(); // Evita la recarga de la página
+      $(document).ready(function() {
+    $("#addHistorialForm").submit(function(event) {
+        event.preventDefault(); // Evita la recarga de la página
 
-            let formData = {
-                viewid: "<?php echo isset($_GET['viewid']) ? $_GET['viewid'] : ''; ?>",
-                bp: $("#bp").val(),
-                bs: $("#bs").val(),
-                weight: $("#weight").val(),
-                temp: $("#temp").val(),
-                exf: $("#exf").val(),
-                pres: $("#pres").val(),
-                ord: $("#ord").val(),
-                evo: $("#evo").val()
-            };
+        let formData = {
+            viewid: "<?php echo $_GET['viewid']; ?>", // ID del paciente
+            appointmentid: "<?php echo isset($_GET['appointmentid']) ? $_GET['appointmentid'] : ''; ?>", // ID de la cita
+            bp: $("#bp").val(),
+            bs: $("#bs").val(),
+            weight: $("#weight").val(),
+            temp: $("#temp").val(),
+            exf: $("#exf").val(),
+            pres: $("#pres").val(),
+            ord: $("#ord").val(),
+            evo: $("#evo").val()
+        };
 
-            console.log("Enviando datos AJAX:", formData); // Debug en consola
+        console.log("Enviando datos AJAX:", formData); // Debug en consola
 
-            $.ajax({
-                type: "POST",
-                url: "add_medical_history.php",
-                data: formData,
-                dataType: "json",
-                success: function(response) {
-                    console.log("Respuesta del servidor:", response); // Depuración
-                    if (response.status === "success") {
-                        alert(response.message);
-                        $("#addHistorialModal").modal("hide"); // Cerrar modal
-                        location.reload(); // Recargar la vista del paciente
-                    } else {
-                        alert("Error: " + response.message);
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.error("Error AJAX:", textStatus, errorThrown, jqXHR.responseText);
-                    alert("Error en la solicitud AJAX.");
+        $.ajax({
+            type: "POST",
+            url: "add_medical_history.php", // Archivo PHP que procesa la solicitud
+            data: formData,
+            dataType: "json",
+            success: function(response) {
+                console.log("Respuesta del servidor:", response); // Depuración
+                if (response.status === "success") {
+                    alert(response.message);
+                    $("#addHistorialModal").modal("hide"); // Cerrar modal
+                    location.reload(); // Recargar la vista del paciente
+                } else {
+                    alert("Error: " + response.message);
                 }
-            });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error AJAX:", textStatus, errorThrown, jqXHR.responseText);
+                alert("Error en la solicitud AJAX.");
+            }
         });
     });
+});
     </script>
     <script>
         function printDiv(divName) {

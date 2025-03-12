@@ -131,7 +131,7 @@ check_login();
                                                             Acción <span class="caret"></span>
                                                         </button>
                                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?php echo $row['id']; ?>">
-                                                            <li><a class="dropdown-item" href="view-patient.php?viewid=<?php echo $row['userId']; ?>&appointmentid=<?php echo $row['id']; ?>">Atender</a></li>
+                                                        <a href="view-patient.php?viewid=<?php echo $row['userId']; ?>&appointmentid=<?php echo $row['id']; ?>" class="btn btn-primary">Atender</a>
                                                             <li><a class="dropdown-item text-danger" href="appointment-history.php?id=<?php echo $row['id']; ?>&Cancelada=update" onclick="return confirm('¿Estás seguro de cancelar esta cita?');">Cancelar</a></li>
                                                         </ul>
                                                     </div>
