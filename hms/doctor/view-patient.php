@@ -15,53 +15,90 @@ if (isset($_GET['viewid'])) {
 
 if(isset($_POST['submit_lab']))
 {
-    $vid = $_GET['viewid'];
+    require_once("include/config.php");
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($con)) {
+        die("Error: No hay conexión a la base de datos.");
+    }
+
+    $user_id = $_GET['viewid']; // Este es el user_id del paciente
     $labType = $_POST['labType'];
     $labId = $_POST['labId'];
     $consultancyFees = $_POST['consultancyFees'];
     $appointmentDate = $_POST['appointmentDate'];
     $appointmentTime = $_POST['appointmentTime'];
-    $userStatus = 1; // Assuming user status is set to 1 when appointment is created
-    $doctorStatus = 1; // Assuming doctor status is set to 1 when appointment is created
+    $userStatus = 1; 
+    $doctorStatus = 1; 
     $technician_id = 1;
-    // Obtener user_id del paciente
-    $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
-    $row = mysqli_fetch_assoc($result);
-    $user_id = $row['user_id']; // Asignar el user_id a la variable
 
-    $query = mysqli_query($con, "INSERT INTO lab_appointments (labType, labId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) VALUES ('$labType', '$labId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id',  '$userStatus', '$doctorStatus', '$user_id')");
-    
+    // ✅ Obtener el ID real del paciente en tblpatient usando user_id
+    $result = mysqli_query($con, "SELECT ID FROM tblpatient WHERE user_id='$user_id'");
+    $row = mysqli_fetch_assoc($result);
+
+    if (!$row) {
+        die("Error: No se encontró un paciente con user_id = $user_id en tblpatient.");
+    }
+
+    $paciente_id = $row['ID']; // Ahora tenemos el ID real del paciente
+
+    // ✅ Insertar orden de laboratorio con el ID correcto
+    $query = mysqli_query($con, "INSERT INTO lab_appointments (labType, labId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) 
+                                 VALUES ('$labType', '$labId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id', '$userStatus', '$doctorStatus', '$user_id')");
+
     if ($query) {
         echo '<script>alert("Se ha creado una orden para laboratorio.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
     } else {
-        echo '<script>alert("Something Went Wrong. Please try again")</script>';
+        die("Error en la inserción: " . mysqli_error($con));
     }
 }
 
-if(isset($_POST['submit_rx']))
+//Orden de rayos X
+if(isset($_POST['submit_rx'])) 
 {
-    $vid = $_GET['viewid'];
+    require_once("include/config.php");
+
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (!isset($con)) {
+        die("Error: No hay conexión a la base de datos.");
+    }
+
+    $user_id = $_GET['viewid']; // Este es el user_id del paciente
     $rxType = $_POST['rxType'];
     $rxId = $_POST['rxId'];
     $consultancyFees = $_POST['consultancyFees'];
     $appointmentDate = $_POST['appointmentDate'];
     $appointmentTime = $_POST['appointmentTime'];
-    $userStatus = 1; // Assuming user status is set to 1 when appointment is created
-    $doctorStatus = 1; // Assuming doctor status is set to 1 when appointment is created
+    $userStatus = 1; 
+    $doctorStatus = 1; 
     $technician_id = 1;
-    // Obtener user_id del paciente
-    $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
-    $row = mysqli_fetch_assoc($result);
-    $user_id = $row['user_id']; // Asignar el user_id a la variable
 
-    $query = mysqli_query($con, "INSERT INTO rx_appointments (rxType, rxId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) VALUES ('$rxType', '$rxId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id',  '$userStatus', '$doctorStatus', '$user_id')");
-    
+    // ✅ Obtener el ID real del paciente en tblpatient usando user_id
+    $result = mysqli_query($con, "SELECT ID FROM tblpatient WHERE user_id='$user_id'");
+    $row = mysqli_fetch_assoc($result);
+
+    if (!$row) {
+        die("Error: No se encontró un paciente con user_id = $user_id en tblpatient.");
+    }
+
+    $paciente_id = $row['ID']; // Ahora tenemos el ID real del paciente
+
+    // ✅ Insertar orden de rayos X con el ID correcto
+    $query = mysqli_query($con, "INSERT INTO rx_appointments (rxType, rxId, consultancyFees, appointmentDate, appointmentTime, technician_id, userStatus, doctorStatus, user_id) 
+                                 VALUES ('$rxType', '$rxId', '$consultancyFees', '$appointmentDate', '$appointmentTime', '$technician_id', '$userStatus', '$doctorStatus', '$user_id')");
+
     if ($query) {
         echo '<script>alert("Se ha creado una orden para rayos X.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
     } else {
-        echo '<script>alert("Algo salió mal. Inténtalo de nuevo.")</script>';
+        die("Error en la inserción: " . mysqli_error($con));
     }
 }
 
