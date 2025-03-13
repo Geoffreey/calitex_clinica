@@ -6,6 +6,7 @@ include('include/config.php');
 include('include/checklogin.php');
 check_login();
 
+
 if (isset($_GET['viewid'])) {
     //echo "✅ Recibido viewid: " . htmlspecialchars($_GET['viewid']);
 } //else {
@@ -60,12 +61,12 @@ if(isset($_POST['submit_rx']))
         echo '<script>alert("Se ha creado una orden para rayos X.")</script>';
         echo "<script>window.location.href ='manage-patient.php'</script>";
     } else {
-        echo '<script>alert("Something Went Wrong. Please try again")</script>';
+        echo '<script>alert("Algo salió mal. Inténtalo de nuevo.")</script>';
     }
 }
 
 //Emitir receta
-if (isset($_POST['emitir_receta'])) { 
+ if (isset($_POST['emitir_receta'])) {
     require_once("include/config.php");
 
     if (session_status() == PHP_SESSION_NONE) {
@@ -73,71 +74,64 @@ if (isset($_POST['emitir_receta'])) {
     }
 
     if (!isset($_SESSION['doctor_id'])) {
-        header("Location: view-patient.php?viewid=" . $_GET['viewid']);
-        exit();
+        die("Error: doctor_id no está definido en la sesión.");
     }
 
     if (!isset($con)) {
-        header("Location: view-patient.php?viewid=" . $_GET['viewid']);
-        exit();
+        die("Error: No hay conexión a la base de datos.");
     }
 
-    $vid = $_GET['viewid']; // ID del paciente
+    $user_id = $_GET['viewid']; // user_id del paciente
     $doctor_id = $_SESSION['doctor_id'];
     $medicamento_ids = $_POST['medicamento_id'] ?? [];
     $cantidades = $_POST['cantidad'] ?? [];
     $indicaciones = $_POST['indicacion'] ?? [];
 
-    // Validar que haya al menos un medicamento
+    // Verificar que haya al menos un medicamento
     if (empty($medicamento_ids) || empty($cantidades) || empty($indicaciones)) {
-        header("Location: view-patient.php?viewid=$vid&error=empty_medicamento");
+        header("Location: view-patient.php?viewid=$user_id&error=No se seleccionó ningún medicamento.");
         exit();
     }
 
-    // Obtener user_id del paciente
-    $result = mysqli_query($con, "SELECT user_id FROM tblpatient WHERE ID='$vid'");
+    // Obtener el ID real del paciente
+    $result = mysqli_query($con, "SELECT ID FROM tblpatient WHERE user_id='$user_id'");
     $row = mysqli_fetch_assoc($result);
 
     if (!$row) {
-        header("Location: view-patient.php?viewid=$vid&error=paciente_not_found");
+        header("Location: view-patient.php?viewid=$user_id&error=Paciente no encontrado.");
         exit();
     }
 
-    $user_id = $row['user_id'];
+    $paciente_id = $row['ID'];
 
     // Insertar receta
-    $query = mysqli_query($con, "INSERT INTO recetas (paciente_id, doctor_id) VALUES ('$vid', '$doctor_id')");
+    $query = mysqli_query($con, "INSERT INTO recetas (paciente_id, doctor_id) VALUES ('$paciente_id', '$doctor_id')");
 
-    if ($query) {
-        $receta_id = mysqli_insert_id($con);
-        $success = true;
-
-        // Insertar detalles de receta
-        for ($i = 0; $i < count($medicamento_ids); $i++) {
-            $medicamento_id = mysqli_real_escape_string($con, $medicamento_ids[$i]);
-            $cantidad = mysqli_real_escape_string($con, $cantidades[$i]);
-            $indicacion = mysqli_real_escape_string($con, $indicaciones[$i]);
-
-            $query_detalle = mysqli_query($con, "INSERT INTO detalles_receta (receta_id, medicamento_id, cantidad, indicacion) 
-                          VALUES ('$receta_id', '$medicamento_id', '$cantidad', '$indicacion')");
-
-            if (!$query_detalle) {
-                $success = false;
-                break;
-            }
-        }
-
-        if ($success) {
-            header("Location: manage-patient.php?success=receta_emitida");
-            exit();
-        } else {
-            header("Location: view-patient.php?viewid=$vid&error=detalle_error");
-            exit();
-        }
-    } else {
-        header("Location: view-patient.php?viewid=$vid&error=receta_error");
+    if (!$query) {
+        header("Location: view-patient.php?viewid=$user_id&error=Error al insertar receta.");
         exit();
     }
+
+    $receta_id = mysqli_insert_id($con);
+
+    // Insertar detalles de receta
+    for ($i = 0; $i < count($medicamento_ids); $i++) {
+        $medicamento_id = mysqli_real_escape_string($con, $medicamento_ids[$i]);
+        $cantidad = mysqli_real_escape_string($con, $cantidades[$i]);
+        $indicacion = mysqli_real_escape_string($con, $indicaciones[$i]);
+
+        $query_detalle = mysqli_query($con, "INSERT INTO detalles_receta (receta_id, medicamento_id, cantidad, indicacion) 
+                          VALUES ('$receta_id', '$medicamento_id', '$cantidad', '$indicacion')");
+
+        if (!$query_detalle) {
+            header("Location: view-patient.php?viewid=$user_id&error=Error al insertar detalles de la receta.");
+            exit();
+        }
+    }
+
+    // ✅ Si todo sale bien, redirigir con mensaje de éxito
+    header("Location: view-patient.php?viewid=$user_id&success=Receta emitida correctamente.");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -160,6 +154,17 @@ if (isset($_POST['emitir_receta'])) {
         <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
     </head>
     <body>
+        <?php if (isset($_GET['success'])): ?>
+        <script>
+            alert("✅ <?php echo $_GET['success']; ?>");
+        </script>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['error'])): ?>
+        <script>
+            alert("❌ <?php echo $_GET['error']; ?>");
+        </script>
+        <?php endif; ?>
     <div id="app">
     <?php include('include/sidebar.php');?>
     <div class="app-content">
