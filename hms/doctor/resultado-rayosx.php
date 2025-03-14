@@ -75,7 +75,7 @@ $viewid = isset($_GET['viewid']) ? $_GET['viewid'] : '';
                                                                FROM rx_appointments a
                                                                JOIN rayosx l ON l.id = a.rxId
                                                                JOIN tblpatient p ON p.user_id = a.user_id
-                                                               WHERE p.ID = '$viewid'");
+                                                               WHERE p.user_id = '$viewid'");
                                     $cnt = 1;
                                     while ($row = mysqli_fetch_array($sql)) {
                                         // Obtener el enlace al archivo asociado con el appointment_id
