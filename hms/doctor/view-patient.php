@@ -13,6 +13,7 @@ if (isset($_GET['viewid'])) {
     //echo "❌ No se recibió viewid.";
 //}
 
+//Emitir orden de laboratorio
 if(isset($_POST['submit_lab']))
 {
     require_once("include/config.php");
@@ -57,7 +58,7 @@ if(isset($_POST['submit_lab']))
     }
 }
 
-//Orden de rayos X
+//Emitir orden de rayos X
 if(isset($_POST['submit_rx'])) 
 {
     require_once("include/config.php");
