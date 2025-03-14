@@ -25,7 +25,7 @@ if (isset($_GET['viewid'])) {
         exit;
     }
 
-    // Consulta para obtener el historial de citas de laboratorio del paciente desde la tabla lab_appointments
+    // Consulta para obtener el historial de citas y resultados en Rayos X del paciente desde la tabla lab_appointments
     $sql_rx_appointments = "SELECT rayosx.tipo AS rxtype, rayosx.nombre AS rxname, rx_appointments.*
                              FROM rx_appointments
                              JOIN rayosx ON rayosx.id = rx_appointments.rxId

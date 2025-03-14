@@ -77,7 +77,7 @@ if (isset($_GET['Finalizada'])) {
                                                     WHERE rx_appointments.technician_id='" . $technician_id . "'");
                                                 $cnt = 1;
                                                 while ($row = mysqli_fetch_array($sql)) {
-                                                    // Check if a file exists for this appointment
+                                                    // Verificar si existe un archivo para esta cita
                                                     $file_check_sql = mysqli_query($con, "SELECT COUNT(*) AS file_count FROM tblfiles WHERE appointmentrx_id='" . $row['id'] . "'");
                                                     $file_check_row = mysqli_fetch_array($file_check_sql);
                                                     $file_exists = $file_check_row['file_count'] > 0;
