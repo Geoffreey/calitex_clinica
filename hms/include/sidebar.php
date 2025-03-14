@@ -21,6 +21,18 @@
 								</a>
 							</li>
 							<li>
+								<a href="ver-recetas.php">
+									<div class="item-content">
+										<div class="item-media">
+											<i class="ti-receipt"></i>
+										</div>
+										<div class="item-inner">
+											<span class="title">Recetas</span>
+										</div>
+									</div>
+								</a>
+							</li>
+							<li>
 								<a href="book-appointment.php">
 									<div class="item-content">
 										<div class="item-media">
