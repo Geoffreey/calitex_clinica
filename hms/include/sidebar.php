@@ -21,7 +21,7 @@
 								</a>
 							</li>
 							<li>
-								<a href="ver-recetas.php">
+								<a href="recetas.php">
 									<div class="item-content">
 										<div class="item-media">
 											<i class="ti-receipt"></i>

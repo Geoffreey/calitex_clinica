@@ -23,7 +23,7 @@ if (!$rowPaciente) {
 $paciente_id = $rowPaciente['id']; // Definir paciente_id antes de usarlo
 
 // Ahora que tenemos el paciente_id correcto, hacemos la consulta de recetas
-$query = "SELECT r.id, r.fecha_emision, d.doctorName AS doctor, r.fecha_emision
+$query = "SELECT r.id, r.fecha_emision, d.doctorName AS doctor
           FROM recetas r
           JOIN doctors d ON r.doctor_id = d.id
           WHERE r.paciente_id = '$paciente_id'
@@ -83,16 +83,14 @@ if (!$result) {
                                             <tr align="center"><th colspan="10">Lista de recetas medicas</th></tr>
                                                 <th>Fecha</th>
                                                 <?php if ($role == 'doctor') { echo "<th>Paciente</th>"; } else { echo "<th>Doctor</th>"; } ?>
-                                                <th>Notas</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
-                                                <td><?php echo $row['fecha']; ?></td>
+                                                <td><?php echo $row['fecha_emision']; ?></td>
                                                 <td><?php echo ($role == 'doctor') ? $row['paciente'] : $row['doctor']; ?></td>
-                                                <td><?php echo $row['notas']; ?></td>
                                                 <td><a href="detalle-receta.php?id=<?php echo $row['id']; ?>">Ver Detalle</a></td>
                                             </tr>
                                             <?php } ?>

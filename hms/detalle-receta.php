@@ -57,7 +57,7 @@ $medicamentos_result = mysqli_query($con, $medicamentos_query);
     </tbody>
 </table>
 
-<a href="ver-recetas.php">Volver</a>
+<a href="recetas.php">Volver</a>
 
 </body>
 </html>
