@@ -7,16 +7,19 @@ check_login();
 
 $receta_id = $_GET['id'];
 
-$query = "SELECT r.fecha, r.notas, d.nombre AS doctor, p.nombre AS paciente 
+$query = "SELECT r.fecha_emision, d.doctorName AS doctor, p.PatientName AS paciente 
           FROM recetas r
-          JOIN tbldoctor d ON r.doctor_id = d.id
+          JOIN doctors d ON r.doctor_id = d.id
           JOIN tblpatient p ON r.paciente_id = p.id
           WHERE r.id = '$receta_id'";
 
 $result = mysqli_query($con, $query);
 $receta = mysqli_fetch_assoc($result);
 
-$medicamentos_query = "SELECT medicamento, dosis, frecuencia, duracion FROM detalles_receta WHERE receta_id = '$receta_id'";
+$medicamentos_query = "SELECT m.nombre as medicamento, cantidad, indicacion
+                        FROM detalles_receta d
+                        JOIN medicamentos m ON d.medicamento_id = m.id
+                        WHERE receta_id = '$receta_id'";
 $medicamentos_result = mysqli_query($con, $medicamentos_query);
 ?>
 
@@ -30,10 +33,9 @@ $medicamentos_result = mysqli_query($con, $medicamentos_query);
 <body>
 
 <h2>Detalle de Receta</h2>
-<p><strong>Fecha:</strong> <?php echo $receta['fecha']; ?></p>
+<p><strong>Fecha:</strong> <?php echo $receta['fecha_emision']; ?></p>
 <p><strong>Doctor:</strong> <?php echo $receta['doctor']; ?></p>
 <p><strong>Paciente:</strong> <?php echo $receta['paciente']; ?></p>
-<p><strong>Notas:</strong> <?php echo $receta['notas']; ?></p>
 
 <h3>Medicamentos Recetados</h3>
 <table border="1">
@@ -41,17 +43,15 @@ $medicamentos_result = mysqli_query($con, $medicamentos_query);
         <tr>
             <th>Medicamento</th>
             <th>Dosis</th>
-            <th>Frecuencia</th>
-            <th>Duración</th>
+            <th>Indicaciones</th>
         </tr>
     </thead>
     <tbody>
         <?php while ($med = mysqli_fetch_assoc($medicamentos_result)) { ?>
         <tr>
             <td><?php echo $med['medicamento']; ?></td>
-            <td><?php echo $med['dosis']; ?></td>
-            <td><?php echo $med['frecuencia']; ?></td>
-            <td><?php echo $med['duracion']; ?></td>
+            <td><?php echo $med['cantidad']; ?></td>
+            <td><?php echo $med['indicacion']; ?></td>
         </tr>
         <?php } ?>
     </tbody>
