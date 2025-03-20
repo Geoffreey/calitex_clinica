@@ -15,12 +15,15 @@ if (isset($_POST['submit'])) {
     $doccontactno      = $_POST['doccontact'];
     $docemail          = $_POST['docemail'];
     $password          = md5($_POST['npass']);
-    $sql               = mysqli_query($con, "insert into doctors(specilization,doctorName,ncolegiado, ndpi,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$docemail','$password')");
-    if ($sql) {
-        echo "<script>alert('Doctor info added Successfully');</script>";
-        echo "<script>window.location.href ='manage-doctors.php'</script>";
+    $sql = "INSERT INTO doctors(specilization,doctorName,ncolegiado,ndpi,address,docFees,contactno,docEmail,password) 
+        VALUES ('$docspecialization','$docname','$ncolegiado','$ndpi','$docaddress','$docfees','$doccontactno','$docemail','$password')";
 
-    }
+if (mysqli_query($con, $sql)) {
+    echo "<script>alert('✅ Información del médico añadida correctamente!!');</script>";
+    echo "<script>window.location.href ='manage-doctors.php'</script>";
+} else {
+    echo "<script>alert('⛔ Error al agregar el médico: " . mysqli_error($con) . "');</script>";
+}
 }
 ?>
 <!DOCTYPE html>
