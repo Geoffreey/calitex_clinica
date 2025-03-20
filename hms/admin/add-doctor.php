@@ -8,12 +8,14 @@ check_login();
 if (isset($_POST['submit'])) {
     $docspecialization = $_POST['Doctorspecialization'];
     $docname           = $_POST['docname'];
+	$ncolegiado        = $_POST['ncolegiado'];
+	$ndpi              = $_POST['ndpi'];
     $docaddress        = $_POST['clinicaddress'];
     $docfees           = $_POST['docfees'];
     $doccontactno      = $_POST['doccontact'];
     $docemail          = $_POST['docemail'];
     $password          = md5($_POST['npass']);
-    $sql               = mysqli_query($con, "insert into doctors(specilization,doctorName,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$docemail','$password')");
+    $sql               = mysqli_query($con, "insert into doctors(specilization,doctorName,ncolegiado, ndpi,address,docFees,contactno,docEmail,password) values('$docspecialization','$docname','$docaddress','$docfees','$doccontactno','$docemail','$password')");
     if ($sql) {
         echo "<script>alert('Doctor info added Successfully');</script>";
         echo "<script>window.location.href ='manage-doctors.php'</script>";
@@ -110,7 +112,7 @@ if (isset($_POST['submit'])) {
 																Especializaicon medica
 															</label>
 							                                <select name="Doctorspecialization" class="form-control" required="true">
-																<option value="">Select Specialization</option>
+																<option value="">Seleccionar especialización</option>
                                                                 <?php $ret = mysqli_query($con, "select * from doctorspecilization");
                                                                   while ($row = mysqli_fetch_array($ret)) {
                                                                 ?>
@@ -122,32 +124,40 @@ if (isset($_POST['submit'])) {
 														</div>
                                                         <div class="form-group">
 															<label for="doctorname">Nombre medico</label>
-					                                        <input type="text" name="docname" class="form-control"  placeholder="Enter Doctor Name" required="true">
+					                                        <input type="text" name="docname" class="form-control"  placeholder="Nombre y apellidos" required="true">
+														</div>
+														<div class="from-group">
+															<label for="ncolegiado">No. Colegiado</label>
+															<input type="number" name="ncolegiado" class="form-control" placeholder="ingrese colegiado activo" required="ture">
+														</div>
+														<div class="from-group">
+															<label for="ndpi">DPI</label>
+															<input type="text" name="ndpi" class="form-control" pattern="\d{13}" maxlength="13" placeholder="Ingrese DPI" required="true">
 														</div>
 														<div class="form-group">
-															<label for="address">Direccion clinica</label>
-					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Enter Doctor Clinic Address" required="true"></textarea>
+															<label for="address">Direccion</label>
+					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Domicilio" required="true"></textarea>
 														</div>
                                                         <div class="form-group">
 															<label for="fess">Honorarios de consulta</label>
-					                                        <input type="text" name="docfees" class="form-control"  placeholder="Enter Doctor Consultancy Fees" required="true">
+					                                        <input type="text" name="docfees" class="form-control"  placeholder="Honorarios" required="true">
 														</div>
 														<div class="form-group">
 									                       <label for="fess">Telefono</label>
-					                                       <input type="text" name="doccontact" class="form-control"  placeholder="Enter Doctor Contact no" required="true">
+					                                       <input type="tel" name="doccontact" class="form-control"  placeholder="Telefono" required="true">
 														</div>
 														<div class="form-group">
 									                       <label for="fess">Email</label>
-                                                           <input type="email" id="docemail" name="docemail" class="form-control"  placeholder="Enter Doctor Email id" required="true" onBlur="checkemailAvailability()">
+                                                           <input type="email" id="docemail" name="docemail" class="form-control"  placeholder="Correo electronico" required="true" onBlur="checkemailAvailability()">
                                                            <span id="email-availability-status"></span>
                                                         </div>
 														<div class="form-group">
 															<label for="exampleInputPassword1">Contraseña</label>
-					                                        <input type="password" name="npass" class="form-control"  placeholder="New Password" required="required">
+					                                        <input type="password" name="npass" class="form-control"  placeholder="Nueva contraseña" required="required">
 														</div>
 														<div class="form-group">
 															<label for="exampleInputPassword2">Conformar contraseña</label>
-									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirm Password" required="required">
+									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirmar contraseña" required="required">
 														</div>
 														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
 															Crear

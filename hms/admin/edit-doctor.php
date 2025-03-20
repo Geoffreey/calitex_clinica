@@ -8,13 +8,15 @@ $did = intval($_GET['id']); // get doctor id
 if (isset($_POST['submit'])) {
     $docspecialization = $_POST['Doctorspecialization'];
     $docname           = $_POST['docname'];
+	$ncolegiado        = $_POST['ncolegiado'];
+	$ndpi              = $_POST['ndpi'];
     $docaddress        = $_POST['clinicaddress'];
     $docfees           = $_POST['docfees'];
     $doccontactno      = $_POST['doccontact'];
     $docemail          = $_POST['docemail'];
-    $sql               = mysqli_query($con, "Update doctors set specilization='$docspecialization',doctorName='$docname',address='$docaddress',docFees='$docfees',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
+    $sql               = mysqli_query($con, "Update doctors set specilization='$docspecialization',doctorName='$docname',ncolegiado='$ncolegiado',ndpi='$ndpi',address='$docaddress',docFees='$docfees',contactno='$doccontactno',docEmail='$docemail' where id='$did'");
     if ($sql) {
-        $msg = "Doctor Details updated Successfully";
+        $msg = "✅Se actualizo la informacion conexito";
 
     }
 }
@@ -38,18 +40,14 @@ if (isset($_POST['submit'])) {
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-
-
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
+			<?php include 'include/sidebar.php';?>
 			<div class="app-content">
-
-						<?php include 'include/header.php';?>
-						<!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
-
-				<!-- end: TOP NAVBAR -->
+				<?php include 'include/header.php';?>
+				<!-- Inicio: MENÚ DE CONMUTACIÓN PARA DISPOSITIVOS MÓVILES -->
+				<!-- fin: BARRA DE NAVEGACIÓN SUPERIOR-->
 				<div class="main-content" >
 					<div class="wrap-content container" id="container">
 						<!-- start: PAGE TITLE -->
@@ -74,7 +72,7 @@ if (isset($_POST['submit'])) {
 							<div class="row">
 								<div class="col-md-12">
 									<h5 style="color: green; font-size:18px; ">
-<?php if ($msg) {echo htmlentities($msg);}?> </h5>
+									<?php if ($msg) {echo htmlentities($msg);}?> </h5>
 									<div class="row margin-top-30">
 										<div class="col-lg-8 col-md-12">
 											<div class="panel panel-white">
@@ -82,26 +80,26 @@ if (isset($_POST['submit'])) {
 													<h5 class="panel-title">Editar informacion de medico</h5>
 												</div>
 												<div class="panel-body">
-									<?php $sql = mysqli_query($con, "select * from doctors where id='$did'");
-while ($data = mysqli_fetch_array($sql)) {
-    ?>
-<h4><?php echo htmlentities($data['doctorName']); ?>'s Profile</h4>
-<p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
-<?php if ($data['updationDate']) {?>
-<p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
-<?php }?>
-<hr />
+													<?php $sql = mysqli_query($con, "select * from doctors where id='$did'");
+														while ($data = mysqli_fetch_array($sql)) {
+    												?>
+													<h4><?php echo htmlentities($data['doctorName']); ?>'s Profile</h4>
+													<p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
+													<?php if ($data['updationDate']) {?>
+														<p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
+													<?php }?>
+													<hr />
 													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
 														<div class="form-group">
 															<label for="DoctorSpecialization">
 																Especializacion
 															</label>
-							<select name="Doctorspecialization" class="form-control" required="required">
-					<option value="<?php echo htmlentities($data['specilization']); ?>">
-					<?php echo htmlentities($data['specilization']); ?></option>
-<?php $ret = mysqli_query($con, "select * from doctorspecilization");
-    while ($row = mysqli_fetch_array($ret)) {
-        ?>
+															<select name="Doctorspecialization" class="form-control" required="required">
+																<option value="<?php echo htmlentities($data['specilization']); ?>">
+																<?php echo htmlentities($data['specilization']); ?></option>
+																<?php $ret = mysqli_query($con, "select * from doctorspecilization");
+    																while ($row = mysqli_fetch_array($ret)) {
+        														?>
 																<option value="<?php echo htmlentities($row['specilization']); ?>">
 																	<?php echo htmlentities($row['specilization']); ?>
 																</option>
@@ -109,80 +107,56 @@ while ($data = mysqli_fetch_array($sql)) {
 
 															</select>
 														</div>
-
-<div class="form-group">
-															<label for="doctorname">
-																 Nombre medico
-															</label>
-	<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['doctorName']); ?>" >
+														<div class="form-group">
+															<label for="doctorname">Nombre medico</label>
+															<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['doctorName']); ?>" >
 														</div>
-
-
-<div class="form-group">
-															<label for="address">
-																 Direccion de la clinica medica
-															</label>
-					<textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
+														<div class="form-group">
+															<label for="ncolegiado">No. Clolegiado</label>
+															<input type="number" name="ncolegiado" class="form-control" value="<?php echo htmlentities($data['ncolegiago']); ?>" >
 														</div>
-<div class="form-group">
-															<label for="fess">
-																 Honorarios de consulta
-															</label>
-		<input type="text" name="docfees" class="form-control" required="required"  value="<?php echo htmlentities($data['docFees']); ?>" >
+														<div class="form-group">
+															<label for="ndpi">DPI</label>
+															<input type="text" name="ndpi" class="form-control" value="<?php echo htmlentities($data['ndpi']); ?>" >
 														</div>
-
-<div class="form-group">
-									<label for="fess">
-																 Telefono
-															</label>
-					<input type="text" name="doccontact" class="form-control" required="required"  value="<?php echo htmlentities($data['contactno']); ?>">
+														<div class="form-group">
+															<label for="address">Direccion de la clinica medica</label>
+															<textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
 														</div>
-
-<div class="form-group">
-									<label for="fess">
-																 Email
-															</label>
-					<input type="email" name="docemail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['docEmail']); ?>">
+														<div class="form-group">
+															<label for="fess">Honorarios de consulta</label>
+															<input type="text" name="docfees" class="form-control" required="required"  value="<?php echo htmlentities($data['docFees']); ?>" >
 														</div>
-
-
-
-
+														<div class="form-group">
+															<label for="fess">Telefono</label>
+															<input type="text" name="doccontact" class="form-control" required="required"  value="<?php echo htmlentities($data['contactno']); ?>">
+														</div>
+														<div class="form-group">
+															<label for="fess">Email</label>
+															<input type="email" name="docemail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['docEmail']); ?>">
+														</div>
 														<?php }?>
-
-
-														<button type="submit" name="submit" class="btn btn-o btn-primary">
-															Actualizar
-														</button>
+														<button type="submit" name="submit" class="btn btn-o btn-primary">Actualizar</button>
 													</form>
 												</div>
 											</div>
 										</div>
+									</div>
+								</div>
+								<div class="col-lg-12 col-md-12">
+									<div class="panel panel-white">
 
-											</div>
-										</div>
-									<div class="col-lg-12 col-md-12">
-											<div class="panel panel-white">
-
-
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
-						<!-- end: SELECT BOXES -->
-
 					</div>
 				</div>
+				<!-- end: BASIC EXAMPLE -->
+				<!-- end: SELECT BOXES -->
 			</div>
+		</div>
+	</div>
 			<!-- start: FOOTER -->
 	<?php include 'include/footer.php';?>
 			<!-- end: FOOTER -->
