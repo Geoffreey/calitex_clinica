@@ -257,7 +257,7 @@
 									</div>
 								</a>
 							</li>
-				<li>
+							<li>
 								<a href="javascript:void(0)">
 									<div class="item-content">
 										<div class="item-media">
