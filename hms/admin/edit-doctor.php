@@ -43,129 +43,121 @@ if (isset($_POST['submit'])) {
 	</head>
 	<body>
 		<div id="app">
-			<?php include 'include/sidebar.php';?>
+			<?php include 'include/sidebar.php'; ?>
 			<div class="app-content">
-				<?php include 'include/header.php';?>
-				<!-- Inicio: MENÚ DE CONMUTACIÓN PARA DISPOSITIVOS MÓVILES -->
-				<!-- fin: BARRA DE NAVEGACIÓN SUPERIOR-->
-				<div class="main-content" >
+				<?php include 'include/header.php'; ?>
+				<div class="main-content">
 					<div class="wrap-content container" id="container">
-						<!-- start: PAGE TITLE -->
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
 									<h1 class="mainTitle">Admin | Editar detalles de medico</h1>
-																	</div>
+								</div>
 								<ol class="breadcrumb">
-									<li>
-										<span>Admin</span>
-									</li>
-									<li class="active">
-										<span>Editar detalles de medico</span>
-									</li>
+									<li><span>Admin</span></li>
+									<li class="active"><span>Editar detalles de medico</span></li>
 								</ol>
 							</div>
 						</section>
-						<!-- end: PAGE TITLE -->
-						<!-- start: BASIC EXAMPLE -->
+
 						<div class="container-fluid container-fullw bg-white">
 							<div class="row">
 								<div class="col-md-12">
-									<h5 style="color: green; font-size:18px; ">
-									<?php if ($msg) {echo htmlentities($msg);}?> </h5>
+									<h5 style="color: green; font-size:18px;">
+										<?php if ($msg) { echo htmlentities($msg); } ?>
+									</h5>
 									<div class="row margin-top-30">
 										<div class="col-lg-8 col-md-12">
 											<div class="panel panel-white">
 												<div class="panel-heading">
-													<h5 class="panel-title">Editar informacion de medico</h5>
+													<h5 class="panel-title">Editar información del médico</h5>
 												</div>
 												<div class="panel-body">
-													<?php $sql = mysqli_query($con, "select * from doctors where id='$did'");
-														while ($data = mysqli_fetch_array($sql)) {
-    												?>
+													<?php 
+													$sql = mysqli_query($con, "SELECT * FROM doctors WHERE id='$did'");
+													while ($data = mysqli_fetch_array($sql)) { 
+													?>
 													<h4><?php echo htmlentities($data['doctorName']); ?>'s Profile</h4>
-													<p><b>Profile Reg. Date: </b><?php echo htmlentities($data['creationDate']); ?></p>
-													<?php if ($data['updationDate']) {?>
-														<p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
-													<?php }?>
+													<p><b>Fecha de Registro: </b><?php echo htmlentities($data['creationDate']); ?></p>
+													<?php if ($data['updationDate']) { ?>
+														<p><b>Última actualización: </b><?php echo htmlentities($data['updationDate']); ?></p>
+													<?php } ?>
 													<hr />
-													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-														<div class="form-group">
-															<label for="DoctorSpecialization">
-																Especializacion
-															</label>
-															<select name="Doctorspecialization" class="form-control" required="required">
-																<option value="<?php echo htmlentities($data['specilization']); ?>">
-																<?php echo htmlentities($data['specilization']); ?></option>
-																<?php $ret = mysqli_query($con, "select * from doctorspecilization");
-    																while ($row = mysqli_fetch_array($ret)) {
-        														?>
-																<option value="<?php echo htmlentities($row['specilization']); ?>">
-																	<?php echo htmlentities($row['specilization']); ?>
-																</option>
-																<?php }?>
 
+													<form role="form" name="editdoc" method="post">
+														<div class="form-group">
+															<label for="DoctorSpecialization">Especialización</label>
+															<select name="Doctorspecialization" class="form-control" required>
+																<option value="<?php echo htmlentities($data['specilization']); ?>">
+																	<?php echo htmlentities($data['specilization']); ?>
+																</option>
+																<?php 
+																$ret = mysqli_query($con, "SELECT * FROM doctorspecilization");
+																while ($row = mysqli_fetch_array($ret)) { ?>
+																	<option value="<?php echo htmlentities($row['specilization']); ?>">
+																		<?php echo htmlentities($row['specilization']); ?>
+																	</option>
+																<?php } ?>
 															</select>
 														</div>
+
 														<div class="form-group">
-															<label for="doctorname">Nombre medico</label>
-															<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['doctorName']); ?>" >
+															<label for="doctorname">Nombre del médico</label>
+															<input type="text" name="docname" class="form-control" value="<?php echo htmlentities($data['doctorName']); ?>">
 														</div>
+
 														<div class="form-group">
-															<label for="ncolegiado">No. Clolegiado</label>
-															<input type="number" name="ncolegiado" class="form-control" value="<?php echo htmlentities($data['ncolegiago']); ?>" >
+															<label for="ncolegiado">No. Colegiado</label>
+															<input type="number" name="ncolegiado" class="form-control" value="<?php echo htmlentities($data['ncolegiado']); ?>">
 														</div>
+
 														<div class="form-group">
 															<label for="ndpi">DPI</label>
-															<input type="text" name="ndpi" class="form-control" value="<?php echo htmlentities($data['ndpi']); ?>" >
+															<input type="text" name="ndpi" class="form-control" value="<?php echo htmlentities($data['ndpi']); ?>">
 														</div>
+
 														<div class="form-group">
-															<label for="address">Direccion de la clinica medica</label>
+															<label for="address">Dirección de la clínica</label>
 															<textarea name="clinicaddress" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
 														</div>
+
 														<div class="form-group">
-															<label for="fess">Honorarios de consulta</label>
-															<input type="text" name="docfees" class="form-control" required="required"  value="<?php echo htmlentities($data['docFees']); ?>" >
+															<label for="fess">Honorarios</label>
+															<input type="text" name="docfees" class="form-control" value="<?php echo htmlentities($data['docFees']); ?>">
 														</div>
+
 														<div class="form-group">
-															<label for="fess">Telefono</label>
-															<input type="text" name="doccontact" class="form-control" required="required"  value="<?php echo htmlentities($data['contactno']); ?>">
+															<label for="fess">Teléfono</label>
+															<input type="text" name="doccontact" class="form-control" value="<?php echo htmlentities($data['contactno']); ?>">
 														</div>
+
 														<div class="form-group">
 															<label for="fess">Email</label>
-															<input type="email" name="docemail" class="form-control"  readonly="readonly"  value="<?php echo htmlentities($data['docEmail']); ?>">
+															<input type="email" name="docemail" class="form-control" readonly value="<?php echo htmlentities($data['docEmail']); ?>">
 														</div>
-														<?php }?>
-														<button type="submit" name="submit" class="btn btn-o btn-primary">Actualizar</button>
+
+														<button type="submit" name="submit" class="btn btn-primary">Actualizar</button>
 													</form>
+													<?php } ?>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-12 col-md-12">
-									<div class="panel panel-white">
+										</div> <!-- col-lg-8 -->
+									</div> <!-- row margin-top-30 -->
+								</div> <!-- col-md-12 -->
+							</div> <!-- row -->
+						</div> <!-- container-fluid -->
+					</div> <!-- wrap-content -->
+				</div> <!-- main-content -->
+			</div> <!-- app-content -->
 
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- end: BASIC EXAMPLE -->
-				<!-- end: SELECT BOXES -->
-			</div>
-		</div>
-	</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
+			<!-- FOOTER -->
+			<?php include 'include/footer.php'; ?>
+			<!-- FIN FOOTER -->
 
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-			<>
-			<!-- end: SETTINGS -->
-		</div>
+			<!-- SETTINGS -->
+			<?php include 'include/setting.php'; ?>
+			<!-- FIN SETTINGS -->
+		</div> <!-- #app -->
 		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
