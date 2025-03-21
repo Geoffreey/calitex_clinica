@@ -58,10 +58,9 @@ check_login();
                     <div class="container-fluid container-fullw bg-white">
                         <div class="row">
                             <div class="col-md-12">
-                                <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-                                <?php echo htmlentities($_SESSION['msg']="");?></p>
-
-                                <table class="table table-hover" id="sample-table-1">
+                                <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg']="");?></p>
+                                <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="sample-table-1">
                                     <thead>
                                         <tr>
                                             <th class="center">#</th>
@@ -101,16 +100,16 @@ check_login();
                                         ?>
                                         <tr>
                                             <td class="center"><?php echo $cnt; ?>.</td>
-                                            <td class="hidden-xs"><?php echo isset($row['PatientName']) ? $row['PatientName'] : '<span class="text-muted">No registrado</span>'; ?></td>
-                                            <td><?php echo $row['doctorSpecialization']; ?></td>
-                                            <td><?php echo $row['consultancyFees']; ?></td>
-                                            <td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
-                                            <td><?php echo $row['postingDate']; ?></td>
-                                            <td><?php echo isset($row['PatientContno']) ? $row['PatientContno'] : '<span class="text-muted">No disponible</span>'; ?></td>
-                                            <td><?php echo isset($row['PatientEmail']) ? $row['PatientEmail'] : '<span class="text-muted">No disponible</span>'; ?></td>
-                                            <td><?php echo isset($row['PatientAdd']) ? $row['PatientAdd'] : '<span class="text-muted">No disponible</span>'; ?></td>
-                                            <td><?php echo !empty($row['PatientMedhis']) ? nl2br(htmlspecialchars($row['PatientMedhis'])) : '<span class="text-muted">Sin historial</span>'; ?></td>
-                                            <td>
+                                            <td data-label="PatientName" class="hidden-xs"><?php echo isset($row['PatientName']) ? $row['PatientName'] : '<span class="text-muted">No registrado</span>'; ?></td>
+                                            <td data-label="doctorSpecialization"><?php echo $row['doctorSpecialization']; ?></td>
+                                            <td data-label="consultancyFees"><?php echo $row['consultancyFees']; ?></td>
+                                            <td data-label="appointmentDate"><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
+                                            <td data-label="postingDate"><?php echo $row['postingDate']; ?></td>
+                                            <td data-label="PatientContno"><?php echo isset($row['PatientContno']) ? $row['PatientContno'] : '<span class="text-muted">No disponible</span>'; ?></td>
+                                            <td data-label="PatientEmail"><?php echo isset($row['PatientEmail']) ? $row['PatientEmail'] : '<span class="text-muted">No disponible</span>'; ?></td>
+                                            <td data-label="PatientAdd"><?php echo isset($row['PatientAdd']) ? $row['PatientAdd'] : '<span class="text-muted">No disponible</span>'; ?></td>
+                                            <td data-label="PatientMedhis"><?php echo !empty($row['PatientMedhis']) ? nl2br(htmlspecialchars($row['PatientMedhis'])) : '<span class="text-muted">Sin historial</span>'; ?></td>
+                                            <td data-label="Accion">
                                                 <?php 
                                                 if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {
                                                     echo "Activo";
@@ -126,14 +125,9 @@ check_login();
                                             <td>
                                                 <div class="visible-md visible-lg hidden-sm hidden-xs">
                                                     <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) { ?>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary btn-xs dropdown-toggle" type="button" id="dropdownMenuButton<?php echo $row['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Acción <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton<?php echo $row['id']; ?>">
-                                                        <a href="view-patient.php?viewid=<?php echo $row['userId']; ?>&appointmentid=<?php echo $row['id']; ?>" class="btn btn-primary">Atender</a>
-                                                            <li><a class="dropdown-item text-danger" href="appointment-history.php?id=<?php echo $row['id']; ?>&Cancelada=update" onclick="return confirm('¿Estás seguro de cancelar esta cita?');">Cancelar</a></li>
-                                                        </ul>
+                                                    <div class="btn-group">
+                                                        <a href="view-patient.php?viewid=<?php echo $row['userId']; ?>&appointmentid=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary">Atender</a>
+                                                        <a class="btn btn-sm btn-outline-danger" href="appointment-history.php?id=<?php echo $row['id']; ?>&Cancelada=update" onclick="return confirm('¿Estás seguro de cancelar esta cita?');">Cancelar</a>
                                                     </div>
                                                     <?php } else { ?>
                                                     <span class="text-muted">Sin acciones</span>
@@ -147,6 +141,8 @@ check_login();
                                         ?>
                                     </tbody>
                                 </table>
+                                </div>
+
                             </div>
                         </div>
                     </div> <!-- End Table -->

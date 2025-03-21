@@ -53,7 +53,8 @@ check_login();
                               <div class="row">
                                  <div class="col-md-14">
                                      <h5 class="over-title margin-bottom-15">Lista <span class="text-bold"> Pacientes</span></h5>
-	                                 <table class="table table-hover" id="sample-table-1">
+                                     <div class="table-responsive">
+                                     <table class="table table-hover table-bordered" id="sample-table-1">
                                          <thead>
                                              <tr>
                                                  <th class="center">#</th>
@@ -77,20 +78,25 @@ check_login();
                                                 ?>
                                                <tr>
                                                   <td class="center"><?php echo $cnt;?>.</td>
-                                                  <td><?php echo $row['PatientAdmision'];?></td>
-                                                  <td class="hidden-xs"><?php echo $row['PatientName'];?></td>
-                                                  <td><?php echo $row['FechaNac'];?></td>
-                                                  <td><?php echo $row['PatientContno'];?></td>
-                                                  <td><?php echo $row['PatientGender'];?></td>
-                                                  <td><?php echo $row['CreationDate'];?></td>
-                                                  <td><?php echo $row['UpdationDate'];?></td>
-                                                  <td><a href="edit-patient.php?editid=<?php echo $row['user_id'];?>"><i class="fa fa-edit"></i></a> || <a href="view-patient.php?viewid=<?php echo $row['user_id'];?>"><i class="fa fa-eye"></i></a></td>
+                                                  <td data-label="PatientAdmision"><?php echo $row['PatientAdmision'];?></td>
+                                                  <td data-label="PatientName" class="hidden-xs"><?php echo $row['PatientName'];?></td>
+                                                  <td data-label="FechaNac"><?php echo $row['FechaNac'];?></td>
+                                                  <td data-label="PatientContno"><?php echo $row['PatientContno'];?></td>
+                                                  <td data-label="PatientGender"><?php echo $row['PatientGender'];?></td>
+                                                  <td data-label="CreationDate"><?php echo $row['CreationDate'];?></td>
+                                                  <td data-label="UpdationDate"><?php echo $row['UpdationDate'];?></td>
+                                                  <td data-label="Accion">
+                                                    <div class="btn-group">
+                                                        <a href="edit-patient.php?editid=<?php echo $row['user_id'];?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-edit"></i></a>
+                                                        <a href="view-patient.php?viewid=<?php echo $row['user_id'];?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fa fa-eye"></i></a></td>
+                                                    </div> 
                                               </tr>
                                               <?php 
                                                  $cnt=$cnt+1;
                                                 }?>
                                          </tbody>
                                       </table>
+                                     </div>
                                  </div>
                               </div>
                           </div>
