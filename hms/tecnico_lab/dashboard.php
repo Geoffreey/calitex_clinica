@@ -54,22 +54,17 @@ check_login();
 						<!-- end: PAGE TITLE -->
 						<!-- start: BASIC EXAMPLE -->
 						<div class="container-fluid container-fullw bg-white">
-  <div class="row g-4">
-
-    <!-- Mi perfil -->
-    <div class="col-md-6 col-lg-4 mb-4">
-      <div class="card shadow-sm border-0 h-100 text-center p-4">
-        <div class="mb-3">
-          <i class="fas fa-user-circle fa-4x text-hospital mb-3"></i>
-        </div>
-        <h5 class="fw-bold mb-2">Mi perfil</h5>
-        <p class="mb-0">
-          <a href="edit-profile.php" class="text-decoration-none fw-semibold text-primary">
-            Actualizar perfil
-          </a>
-        </p>
-      </div>
-    </div>
+  							<div class="row g-4">
+								<!-- Mi perfil -->
+								<div class="col-md-6 col-lg-4 mb-4">
+									<div class="card shadow-sm border-0 h-100 text-center p-4">
+										<div class="mb-3">
+											<i class="fas fa-user-circle fa-4x text-hospital mb-3"></i>
+										</div>
+										<h5 class="fw-bold mb-2">Mi perfil</h5>
+										<p class="mb-0"><a href="edit-profile.php" class="text-decoration-none fw-semibold text-primary">Actualizar perfil</a></p>
+									</div>
+								</div>
 
     <!-- Mis citas -->
     <div class="col-md-6 col-lg-4 mb-4">

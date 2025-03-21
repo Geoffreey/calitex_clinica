@@ -30,88 +30,68 @@ check_login();
 	</head>
 	<body>
 		<div id="app">
-<?php include 'include/sidebar.php';?>
-			<div class="app-content">
+			<?php include 'include/sidebar.php';?>
+				<div class="app-content">
+					<?php include 'include/header.php';?>
+					<!-- end: TOP NAVBAR -->
+					<div class="main-content" >
+						<div class="wrap-content container" id="container">
+							<!-- start: PAGE TITLE -->
+							<section id="page-title">
+								<div class="row">
+									<div class="col-sm-8">
+										<h1 class="mainTitle">Admin | Consola</h1>
+									</div>
+									<ol class="breadcrumb">
+										<li><span>Admin</span></li>
+										<li class="active"><span>Consola</span></li>
+									</ol>
+								</div>
+							</section>
+							<!-- end: PAGE TITLE -->
+							<!-- start: BASIC EXAMPLE -->
+							<div class="container-fluid container-fullw bg-white">
+  								<div class="row g-4">
+									<?php
+									 // Paneles configurables
+									 $cards = [
+										 ['icon' => 'fa-users', 'title' => 'Admin. Usuarios', 'query' => "SELECT * FROM users", 'link' => 'manage-users.php', 'label' => 'Total usuarios'],
+										 ['icon' => 'fa-user-md', 'title' => 'Admin. Médicos', 'query' => "SELECT * FROM doctors", 'link' => 'manage-doctors.php', 'label' => 'Total médicos'],
+										 ['icon' => 'fa-flask', 'title' => 'Admin. Laboratorio', 'query' => "SELECT * FROM tecnico_lab", 'link' => 'manage-laboratorio.php', 'label' => 'Técnicos laboratorio'],
+										 ['icon' => 'fa-calendar-check-o', 'title' => 'Admin. Citas', 'query' => "SELECT * FROM appointment", 'link' => 'appointment-history.php', 'label' => 'Total citas'],
+     									 ['icon' => 'fa-user', 'title' => 'Admin. Pacientes', 'query' => "SELECT * FROM tblpatient", 'link' => 'manage-patient.php', 'label' => 'Total pacientes'],
+     									 ['icon' => 'fa-envelope-open', 'title' => 'Consultas Web', 'query' => "SELECT * FROM tblcontactus WHERE IsRead IS NULL", 'link' => 'unread-queries.php', 'label' => 'Consultas sin leer']
+   										 ];
 
-						<?php include 'include/header.php';?>
-
-				<!-- end: TOP NAVBAR -->
-				<div class="main-content" >
-					<div class="wrap-content container" id="container">
-						<!-- start: PAGE TITLE -->
-						<section id="page-title">
-							<div class="row">
-								<div class="col-sm-8">
-									<h1 class="mainTitle">Admin | Consola</h1>
-																	</div>
-								<ol class="breadcrumb">
-									<li>
-										<span>Admin</span>
-									</li>
-									<li class="active">
-										<span>Consola</span>
-									</li>
-								</ol>
+    									foreach ($cards as $card) {
+      										$res = mysqli_query($con, $card['query']);
+     									 $count = mysqli_num_rows($res);
+    								?>
+      								<div class="col-md-6 col-lg-4 mb-4">
+        								<div class="card shadow-sm border-0 h-100 text-center p-4">
+          									<div class="mb-3">
+            									<i class="fa <?php echo $card['icon']; ?> fa-4x text-hospital mb-3"></i>
+          									</div>
+          									<h5 class="fw-bold mb-2"><?php echo $card['title']; ?></h5>
+          									<p class="mb-0">
+            									<a href="<?php echo $card['link']; ?>" class="text-decoration-none fw-semibold text-primary"><?php echo $card['label']; ?>: <?php echo htmlentities($count); ?></a>
+          									</p>
+        								</div>
+      								</div>
+    								<?php } ?>
+								</div>
 							</div>
-						</section>
-						<!-- end: PAGE TITLE -->
-						<!-- start: BASIC EXAMPLE -->
-						<div class="container-fluid container-fullw bg-white">
-  <div class="row g-4">
-
-    <?php
-    // Paneles configurables
-    $cards = [
-      ['icon' => 'fa-users', 'title' => 'Admin. Usuarios', 'query' => "SELECT * FROM users", 'link' => 'manage-users.php', 'label' => 'Total usuarios'],
-      ['icon' => 'fa-user-md', 'title' => 'Admin. Médicos', 'query' => "SELECT * FROM doctors", 'link' => 'manage-doctors.php', 'label' => 'Total médicos'],
-      ['icon' => 'fa-flask', 'title' => 'Admin. Laboratorio', 'query' => "SELECT * FROM tecnico_lab", 'link' => 'manage-laboratorio.php', 'label' => 'Técnicos laboratorio'],
-      ['icon' => 'fa-x-ray', 'title' => 'Admin. Rayos X', 'query' => "SELECT * FROM tecnico_rx", 'link' => 'manage-rayosx.php', 'label' => 'Técnicos Rayos X'],
-      ['icon' => 'fa-calendar-check-o', 'title' => 'Admin. Citas', 'query' => "SELECT * FROM appointment", 'link' => 'appointment-history.php', 'label' => 'Total citas'],
-      ['icon' => 'fa-user', 'title' => 'Admin. Pacientes', 'query' => "SELECT * FROM tblpatient", 'link' => 'manage-patient.php', 'label' => 'Total pacientes'],
-      ['icon' => 'fa-envelope-open', 'title' => 'Consultas Web', 'query' => "SELECT * FROM tblcontactus WHERE IsRead IS NULL", 'link' => 'unread-queries.php', 'label' => 'Consultas sin leer']
-    ];
-
-    foreach ($cards as $card) {
-      $res = mysqli_query($con, $card['query']);
-      $count = mysqli_num_rows($res);
-    ?>
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card shadow-sm border-0 h-100 text-center p-4">
-          <div class="mb-3">
-            <i class="fa <?php echo $card['icon']; ?> fa-4x text-hospital mb-3"></i>
-          </div>
-          <h5 class="fw-bold mb-2"><?php echo $card['title']; ?></h5>
-          <p class="mb-0">
-            <a href="<?php echo $card['link']; ?>" class="text-decoration-none fw-semibold text-primary">
-              <?php echo $card['label']; ?>: <?php echo htmlentities($count); ?>
-            </a>
-          </p>
-        </div>
-      </div>
-    <?php } ?>
-
-  </div>
-</div>
-
-
-
-
-
-
-						<!-- end: SELECT BOXES -->
-
+							<!-- end: SELECT BOXES -->
+						</div>
 					</div>
 				</div>
+				<!-- start: FOOTER -->
+				<?php include 'include/footer.php';?>
+				<!-- end: FOOTER -->
+				<!-- start: SETTINGS -->
+				 <?php include 'include/setting.php';?>
+				<!-- end: SETTINGS -->
 			</div>
-			<!-- start: FOOTER -->
-	<?php include 'include/footer.php';?>
-			<!-- end: FOOTER -->
-
-			<!-- start: SETTINGS -->
-	<?php include 'include/setting.php';?>
-			<>
-			<!-- end: SETTINGS -->
-		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
