@@ -14,6 +14,7 @@ check_login();
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 		<link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
 		<link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
 		<link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
@@ -52,39 +53,41 @@ check_login();
 						</section>
 						<!-- end: PAGE TITLE -->
 						<!-- start: BASIC EXAMPLE -->
-							<div class="container-fluid container-fullw bg-white">
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Mi perfil</h2>
-											
-											<p class="links cl-effect-1">
-												<a href="edit-profile.php">
-													Actualizar perfil
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Mis citas</h2>
-										
-											<p class="cl-effect-1">
-												<a href="appointment-history.php">
-												Ver historial de citas
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								
-							</div>
-						</div>
+						<div class="container-fluid container-fullw bg-white">
+  <div class="row g-4">
+
+    <!-- Mi perfil -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-sm border-0 h-100 text-center p-4">
+        <div class="mb-3">
+          <i class="fas fa-user-circle fa-4x text-hospital mb-3"></i>
+        </div>
+        <h5 class="fw-bold mb-2">Mi perfil</h5>
+        <p class="mb-0">
+          <a href="edit-profile.php" class="text-decoration-none fw-semibold text-primary">
+            Actualizar perfil
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Mis citas -->
+    <div class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-sm border-0 h-100 text-center p-4">
+        <div class="mb-3">
+          <i class="fas fa-calendar-check fa-4x text-hospital mb-3"></i>
+        </div>
+        <h5 class="fw-bold mb-2">Mis citas</h5>
+        <p class="mb-0">
+          <a href="appointment-history.php" class="text-decoration-none fw-semibold text-primary">
+            Ver historial de citas
+          </a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
 						<!-- end: SELECT BOXES -->
 						
 					</div>

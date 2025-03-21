@@ -1750,9 +1750,9 @@ ul.sub-menu li ul.sub-menu li ul.sub-menu li a {
   border-color: #c8c7cc;
   border-radius: 0 !important;
 }
-.settings.panel .panel-body {
+/*.settings.panel .panel-body {
   padding: 0;
-}
+}*/
 .settings.panel .setting-box {
   border-bottom: 1px solid #c8c7cc;
   padding: 11px 10px 10px;
@@ -3477,9 +3477,9 @@ a.text-light:hover {
 .panel-tabs .panel-heading {
   background: #efeff4;
 }
-.panel-tabs .panel-body {
+/*.panel-tabs .panel-body {
   padding: 0;
-}
+}*/
 .panel-tabs .tabbable {
   margin: 0;
   padding: 0;
@@ -3677,9 +3677,9 @@ a.text-light:hover {
 .panel .collapse-off {
   display: block;
 }
-.panel.collapses .panel-body {
+/*.panel.collapses .panel-body {
   display: none;
-}
+}*/
 .panel.collapses .collapse-on {
   display: block;
 }
@@ -4164,12 +4164,12 @@ a.text-light:hover {
 .panel-note .panel-heading h3 {
   margin: 0;
 }
-.panel-note .panel-body {
+/*.panel-note .panel-body {
   background: url("../images/line.png") repeat;
   padding: 0;
   margin: 0 15px;
   line-height: 18px;
-}
+}*/
 .panel-note .panel-footer {
   background: none;
   border-bottom-left-radius: 0;
@@ -4559,9 +4559,9 @@ a.text-light:hover {
   content: "\f107";
   color: #007aff;
 }
-.accordion .panel-body {
+/*.accordion .panel-body {
   border: none !important;
-}
+}*/
 .accordion.panel-group .panel + .panel {
   margin-top: 1px;
 }
@@ -4583,12 +4583,12 @@ a.text-light:hover {
   margin-top: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
 }
-.accordion.no-padding .panel-body {
+/*.accordion.no-padding .panel-body {
   padding: 0;
-}
-.accordion.body-light-grey .panel-body {
+}*/
+/*.accordion.body-light-grey .panel-body {
   background: #f7f7f8 !important;
-}
+}*/
 .accordion .panel-group {
   margin-bottom: 0;
 }
@@ -11889,8 +11889,36 @@ div.timeline .column_center .timeline_element:after {
 /* ---------------------------------------------------------------------- */
 /*  Messages
 /* ---------------------------------------------------------------------- */
-.panel-body.messages {
+/*.panel-body.messages {
   padding: 0;
+}*/
+
+.text-hospital {
+  color: #00bcd4; /* azul tipo hospital */
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 188, 212, 0.2);
+}
+
+.card h5 {
+  color: #2c3e50;
+  font-size: 1.2rem;
+}
+
+.card p a {
+  font-size: 0.95rem;
+}
+
+.card i.fa {
+  font-size: 3.5rem;
 }
 
 .messages-list {

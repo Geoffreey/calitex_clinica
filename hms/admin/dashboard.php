@@ -56,156 +56,42 @@ check_login();
 						</section>
 						<!-- end: PAGE TITLE -->
 						<!-- start: BASIC EXAMPLE -->
-							<div class="container-fluid container-fullw bg-white">
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Admin. Usuarios</h2>
+						<div class="container-fluid container-fullw bg-white">
+  <div class="row g-4">
 
-											<p class="links cl-effect-1">
-												<a href="manage-users.php">
-												<?php $result = mysqli_query($con, "SELECT * FROM users ");
-                                                   $num_rows                 = mysqli_num_rows($result);
-                                                     {
-                                                     ?>
-											          Total usuarios :<?php echo htmlentities($num_rows);} ?>
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Admin. Medicos</h2>
+    <?php
+    // Paneles configurables
+    $cards = [
+      ['icon' => 'fa-users', 'title' => 'Admin. Usuarios', 'query' => "SELECT * FROM users", 'link' => 'manage-users.php', 'label' => 'Total usuarios'],
+      ['icon' => 'fa-user-md', 'title' => 'Admin. Médicos', 'query' => "SELECT * FROM doctors", 'link' => 'manage-doctors.php', 'label' => 'Total médicos'],
+      ['icon' => 'fa-flask', 'title' => 'Admin. Laboratorio', 'query' => "SELECT * FROM tecnico_lab", 'link' => 'manage-laboratorio.php', 'label' => 'Técnicos laboratorio'],
+      ['icon' => 'fa-x-ray', 'title' => 'Admin. Rayos X', 'query' => "SELECT * FROM tecnico_rx", 'link' => 'manage-rayosx.php', 'label' => 'Técnicos Rayos X'],
+      ['icon' => 'fa-calendar-check-o', 'title' => 'Admin. Citas', 'query' => "SELECT * FROM appointment", 'link' => 'appointment-history.php', 'label' => 'Total citas'],
+      ['icon' => 'fa-user', 'title' => 'Admin. Pacientes', 'query' => "SELECT * FROM tblpatient", 'link' => 'manage-patient.php', 'label' => 'Total pacientes'],
+      ['icon' => 'fa-envelope-open', 'title' => 'Consultas Web', 'query' => "SELECT * FROM tblcontactus WHERE IsRead IS NULL", 'link' => 'unread-queries.php', 'label' => 'Consultas sin leer']
+    ];
 
-											<p class="cl-effect-1">
-												<a href="manage-doctors.php">
-												<?php $result1 = mysqli_query($con, "SELECT * FROM doctors ");
-                                                    $num_rows1                 = mysqli_num_rows($result1);
-                                                     {
-                                                    ?>
-											            Total de medicos :<?php echo htmlentities($num_rows1);} ?>
-												</a>
+    foreach ($cards as $card) {
+      $res = mysqli_query($con, $card['query']);
+      $count = mysqli_num_rows($res);
+    ?>
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card shadow-sm border-0 h-100 text-center p-4">
+          <div class="mb-3">
+            <i class="fa <?php echo $card['icon']; ?> fa-4x text-hospital mb-3"></i>
+          </div>
+          <h5 class="fw-bold mb-2"><?php echo $card['title']; ?></h5>
+          <p class="mb-0">
+            <a href="<?php echo $card['link']; ?>" class="text-decoration-none fw-semibold text-primary">
+              <?php echo $card['label']; ?>: <?php echo htmlentities($count); ?>
+            </a>
+          </p>
+        </div>
+      </div>
+    <?php } ?>
 
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-flask-vial fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Admin. Laboratorio</h2>
-
-											<p class="cl-effect-1">
-												<a href="manage-laboratorio.php">
-												<?php $result1 = mysqli_query($con, "SELECT * FROM tecnico_lab ");
-                                                    $num_rows1                 = mysqli_num_rows($result1);
-                                                     {
-                                                    ?>
-											            Total tecnicos de laboratorio :<?php echo htmlentities($num_rows1);} ?>
-												</a>
-
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-person-rays fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Admin. Rayos X</h2>
-
-											<p class="cl-effect-1">
-												<a href="manage-rayosx.php">
-												<?php $result1 = mysqli_query($con, "SELECT * FROM tecnico_rx ");
-                                                    $num_rows1                 = mysqli_num_rows($result1);
-                                                     {
-                                                    ?>
-											            Total tecnicos rayos x :<?php echo htmlentities($num_rows1);} ?>
-												</a>
-
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Admin. Citas</h2>
-
-											<p class="links cl-effect-1">
-												<a href="book-appointment.php">
-													<a href="appointment-history.php">
-												<?php $sql = mysqli_query($con, "SELECT * FROM appointment");
-                                                   $num_rows2             = mysqli_num_rows($sql);
-                                                   {
-                                                   ?>
-											Total de citas:<?php echo htmlentities($num_rows2);} ?>
-												</a>
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-                                <div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Admin. Pacientes</h2>
-
-											<p class="links cl-effect-1">
-												<a href="manage-patient.php">
-                                                  <?php $result = mysqli_query($con, "SELECT * FROM tblpatient ");
-                                                    $num_rows     = mysqli_num_rows($result);
-                                                    {
-                                                    ?>
-                                                     Total pacientes:<?php echo htmlentities($num_rows);
-                                                     } ?>
-                                                </a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-
-
-
-
-			                    <div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Consultas Web</h2>
-
-											<p class="links cl-effect-1">
-												<a href="book-appointment.php">
-													<a href="unread-queries.php">
-												<?php
-                                                $sql        = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
-                                                $num_rows22 = mysqli_num_rows($sql);
-                                                ?>
-											    Total consultas web:<?php echo htmlentities($num_rows22); ?>
-												</a>
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-
-
-							</div>
-						</div>
+  </div>
+</div>
 
 
 
