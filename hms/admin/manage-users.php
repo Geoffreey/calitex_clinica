@@ -55,45 +55,44 @@ if (isset($_GET['del'])) {
 						<div class="container-fluid container-fullw bg-white"><div class="row">
 						  <div class="col-md-12">
 							 <h5 class="over-title margin-bottom-15">Lista<span class="text-bold"> Usuarios</span></h5>
-							 <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-								<?php echo htmlentities($_SESSION['msg'] = ""); ?>
-							 </p>
-							 <table class="table table-hover" id="sample-table-1">
-								 <thead>
-									 <tr>
-										 <th class="center">No.</th>
-										 <th>No. Admision</th>
-										 <th>Nombre completo</th>
-										 <th>Fecha de nacimiento</th>
-										 <th class="hidden-xs">Direccion</th>
-										 <th>Ciudad</th>
-										 <th>Genero</th>
-										 <th>Email</th>
-										 <th>Fecha de creacion</th>
-										 <th>Fecha de actualizacion</th>
-										 <th>Accion</th>
-									  </tr>
+							 <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
+							 <div class="table-responsive">
+							 	<table class="table table-hover table-bordered" id="sample-table-1">
+								 	<thead>
+									 	<tr>
+										 	<th class="center">No.</th>
+										 	<th>No. Admision</th>
+										 	<th>Nombre completo</th>
+										 	<th>Fecha de nacimiento</th>
+										 	<th class="hidden-xs">Direccion</th>
+										 	<th>Ciudad</th>
+										 	<th>Genero</th>
+										 	<th>Email</th>
+										 	<th>Fecha de creacion</th>
+										 	<th>Fecha de actualizacion</th>
+										 	<th>Accion</th>
+									  	</tr>
 									</thead>
-								 <tbody>
-                                     <?php
-                                         $sql = mysqli_query($con, "select * from users");
-                                         $cnt = 1;
-                                         while ($row = mysqli_fetch_array($sql)) {
+								 	<tbody>
+                                     	<?php
+                                         	$sql = mysqli_query($con, "select * from users");
+                                         	$cnt = 1;
+                                         	while ($row = mysqli_fetch_array($sql)) {
                                         ?>
-									     <tr>
-										     <td class="center"><?php echo $cnt; ?>.</td>
-											 <td><?php echo $row['PatientAdmision'];?></td>
-											 <td class="hidden-xs"><?php echo $row['fullName']; ?></td>
-											 <td><?php echo $row['FechaNac'];?></td>
-											 <td><?php echo $row['address']; ?></td>
-											 <td><?php echo $row['city']; ?></td>
-											 <td><?php echo $row['gender']; ?></td>
-											 <td><?php echo $row['email']; ?></td>
-											 <td><?php echo $row['regDate']; ?></td>
-											 <td><?php echo $row['updationDate']; ?></td>
-											 <td>
-												 <div class="visible-md visible-lg hidden-sm hidden-xs">
-													 <a href="manage-users.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('Are you sure you want to delete?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
+									    <tr>
+										    <td class="center"><?php echo $cnt; ?>.</td>
+											<td data-label="PatientAdmision"><?php echo $row['PatientAdmision'];?></td>
+											<td data-label="fullName"class="hidden-xs"><?php echo $row['fullName']; ?></td>
+											<td data-label="FechaNac"><?php echo $row['FechaNac'];?></td>
+											<td data-label="address"><?php echo $row['address']; ?></td>
+											<td data-label="city"><?php echo $row['city']; ?></td>
+											<td data-label="gender"><?php echo $row['gender']; ?></td>
+											<td data-label="email"><?php echo $row['email']; ?></td>
+											<td data-label="regDate"><?php echo $row['regDate']; ?></td>
+											<td data-label="updationDate"><?php echo $row['updationDate']; ?></td>
+											<td data-label="">
+												<div class="visible-md visible-lg hidden-sm hidden-xs">
+													 <a href="manage-users.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
 												 </div>
 												 <!--<div class="visible-xs visible-sm hidden-md hidden-lg">
 													 <div class="btn-group" dropdown is-open="status.isopen">
@@ -114,6 +113,8 @@ if (isset($_GET['del'])) {
                                             }?>
 								 </tbody>
 							 </table>
+							 </div>
+							 
 						 </div>
 					 </div>
 				 </div>

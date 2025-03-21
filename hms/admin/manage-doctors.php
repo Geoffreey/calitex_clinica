@@ -60,52 +60,41 @@ if (isset($_GET['del'])) {
 									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
 								       <?php echo htmlentities($_SESSION['msg'] = ""); ?>
 									</p>
-									<table class="table table-hover" id="sample-table-1">
-										<thead>
-											<tr>
-												<th class="center">#</th>
-												<th>Especializacion</th>
-												<th class="hidden-xs">Nombre medico</th>
-												<th>Fecha de creacion</th>
-												<th>Accion</th>
-
-											</tr>
-										</thead>
-										<tbody>
-                                            <?php
-                                              $sql = mysqli_query($con, "select * from doctors");
-                                              $cnt = 1;
-                                              while ($row = mysqli_fetch_array($sql)) {
-                                            ?>
-											<tr>
-												<td class="center"><?php echo $cnt; ?>.</td>
-												<td class="hidden-xs"><?php echo $row['specilization']; ?></td>
-												<td><?php echo $row['doctorName']; ?></td>
-												<td><?php echo $row['creationDate']; ?></td>
-												<td >
-												  <div class="visible-md visible-lg hidden-sm hidden-xs">
-							                         <a href="edit-doctor.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
-	                                                 <a href="manage-doctors.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
-												   </div>
-												   <div class="visible-xs visible-sm hidden-md hidden-lg">
-													  <div class="btn-group" dropdown is-open="status.isopen">
-														 <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-															 <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-														  </button>
-														 <ul class="dropdown-menu pull-right dropdown-light" role="menu">
-															 <li><a href="#">Editar</a></li>
-															 <li><a href="#">Compartir</a></li>
-															 <li><a href="#">Eliminar</a></li>
-														  </ul>
-													  </div>
-												   </div>
-												</td>
-											</tr>
-											<?php
-                                              $cnt = $cnt + 1;
-                                            }?>
-										</tbody>
-									</table>
+									<div class="table-responsive">
+  										<table class="table table-hover table-bordered" id="sample-table-1">
+    										<thead class="thead-dark">
+      											<tr>
+        											<th class="center">No.</th>
+        											<th>Especialización</th>
+        											<th class="hidden-xs">Nombre médico</th>
+        											<th>Fecha de creación</th>
+        											<th>Acción</th>
+      											</tr>
+    										</thead>
+    										<tbody>
+      											<?php
+      												$sql = mysqli_query($con, "SELECT * FROM doctors");
+      												$cnt = 1;
+      												while ($row = mysqli_fetch_array($sql)) {
+      											?>
+        										<tr>
+          											<td data-label="#" class="center"><?php echo $cnt; ?>.</td>
+          											<td data-label="Especialización" class="hidden-xs"><?php echo $row['specilization']; ?></td>
+          											<td data-label="Nombre médico"><?php echo $row['doctorName']; ?></td>
+          											<td data-label="Fecha de creación"><?php echo $row['creationDate']; ?></td>
+          											<td data-label="Acción">
+            											<div class="btn-group">
+              												<a href="edit-doctor.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>
+              												<a href="manage-doctors.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times"></i></a>
+            											</div>
+          											</td>
+        										</tr>
+      											<?php
+        											$cnt++;
+      											} ?>
+    										</tbody>
+  										</table>
+									</div>
 								</div>
 							</div>
 						</div>

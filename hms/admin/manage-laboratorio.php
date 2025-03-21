@@ -57,68 +57,47 @@ if (isset($_GET['del'])) {
                             <div class="col-md-12">
                                 <h5 class="over-title margin-bottom-15">Lista<span class="text-bold"> técnicos</span></h5>
                                 <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-                                    <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-                                <table class="table table-hover" id="sample-table-1">
-                                    <thead>
-                                        <tr>
-                                            <th class="center">No.</th>
-                                            <th class="hidden-xs">Nombre técnico</th>
-                                            <th>Teléfono</th>
-                                            <th>Correo Electrónico</th>
-                                            <th>Dirección</th>
-                                            <th>Fecha de creación</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                        $sql = mysqli_query($con, "SELECT * FROM tecnico_lab");
-                                        $cnt = 1;
-                                        while ($row = mysqli_fetch_array($sql)) {
-                                        ?>
+                                    <?php echo htmlentities($_SESSION['msg'] = ""); ?>
+                                </p>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered" id="sample-table-1">
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <td class="center"><?php echo $cnt; ?>.</td>
-                                                <td><?php echo $row['tecnicoName']; ?></td>
-                                                <td><?php echo $row['contactno']; ?></td>
-                                                <td><?php echo $row['labEmail']; ?></td>
-                                                <td><?php echo $row['address']; ?></td>
-                                                <td><?php echo $row['creationDate']; ?></td>
-                                                <td>
-                                                    <div class="visible-md visible-lg hidden-sm hidden-xs">
-                                                        <a href="edit-tecnicolab.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                                                        <a href="manage-laboratorio.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
-                                                    </div>
-                                                    <div class="visible-xs visible-sm hidden-md hidden-lg">
-                                                        <div class="btn-group" dropdown is-open="status.isopen">
-                                                            <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-                                                                <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-                                                            </button>
-                                                            <ul class="dropdown-menu pull-right dropdown-light" role="menu">
-                                                                <li>
-                                                                    <a href="#">
-                                                                        Editar
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        Compartir
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        Eliminar
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                <th class="center">No.</th>
+                                                <th class="hidden-xs">Nombre técnico</th>
+                                                <th>Teléfono</th>
+                                                <th>Correo Electrónico</th>
+                                                <th>Dirección</th>
+                                                <th>Fecha de creación</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                                $sql = mysqli_query($con, "SELECT * FROM tecnico_lab");
+                                                $cnt = 1;
+                                                while ($row = mysqli_fetch_array($sql)) {
+                                            ?>
+                                            <tr>
+                                                <td class="center" data-label="No."><?php echo $cnt; ?>.</td>
+                                                <td data-label="Nombre técnico"><?php echo $row['tecnicoName']; ?></td>
+                                                <td data-label="Teléfono"><?php echo $row['contactno']; ?></td>
+                                                <td data-label="Correo Electrónico"><?php echo $row['labEmail']; ?></td>
+                                                <td data-label="Dirección"><?php echo $row['address']; ?></td>
+                                                <td data-label="Fecha de creación"><?php echo $row['creationDate']; ?></td>
+                                                <td data-label="Acción">
+                                                    <div class="btn-group">
+                                                        <a href="edit-tecnicolab.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>
+                                                        <a href="manage-laboratorio.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times"></i></a>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php
-                                            $cnt = $cnt + 1;
-                                        } ?>
-                                    </tbody>
-                                </table>
+                                            <?php
+                                                $cnt++;
+                                            } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

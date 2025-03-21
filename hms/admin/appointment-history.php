@@ -57,104 +57,84 @@ check_login();
 
 
 									<div class="row">
-								<div class="col-md-12">
-
-									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-								<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-									<table class="table table-hover" id="sample-table-1">
-										<thead>
-											<tr>
-												<th class="center">#</th>
-												<th class="hidden-xs">Nombre medico</th>
-												<th>Nombre paciente</th>
-												<th>Especializacion</th>
-												<th>Pago por consulta</th>
-												<th>fecha y hora de cita</th>
-												<th>Fecha de creacion de cita</th>
-												<th>Estado Actual</th>
-												<th>Accion</th>
-
-											</tr>
-										</thead>
-										<tbody>
-<?php
-$sql = mysqli_query($con, "select doctors.doctorName as docname,users.fullName as pname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId join users on users.id=appointment.userId ");
-$cnt = 1;
-while ($row = mysqli_fetch_array($sql)) {
-    ?>
-
-											<tr>
-												<td class="center"><?php echo $cnt; ?>.</td>
-												<td class="hidden-xs"><?php echo $row['docname']; ?></td>
-												<td class="hidden-xs"><?php echo $row['pname']; ?></td>
-												<td><?php echo $row['doctorSpecialization']; ?></td>
-												<td><?php echo $row['consultancyFees']; ?></td>
-												<td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
-												<td><?php echo $row['postingDate']; ?></td>
-												<td><?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1))
-												{
-													echo "Activo";
-												}
-												if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) 
-												{
-													echo "Cancelar por paciente";
-												}
-												if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0))
-												{
-													echo "Cancelar por Medico";
-												}
-
-												if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 2))
-												{
-													echo "Finalizo por Medico";
-												}
-												?>
-												</td>
-												<td >
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							                       <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1))
-												   {
-													echo "No Action yet";
-												   } else {
-													echo "Cancelada";
-													}
-													?>
-												</div>
-												<div class="visible-xs visible-sm hidden-md hidden-lg">
-													<div class="btn-group" dropdown is-open="status.isopen">
-														<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-															<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-														</button>
-														<ul class="dropdown-menu pull-right dropdown-light" role="menu">
-															<li>
-																<a href="#">
-																	Editar
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Compartir
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Eliminar
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div></td>
-											</tr>
-
-											<?php
-$cnt = $cnt + 1;
-}?>
-
-
-										</tbody>
-									</table>
-								</div>
-							</div>
+										<div class="col-md-12">
+											<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
+											<div class="table-responsive">
+											<table class="table table-hover table-bordered" id="sample-table-1">
+												<thead>
+													<tr>
+														<th class="center">No.</th>
+														<th class="hidden-xs">Nombre medico</th>
+														<th>Nombre paciente</th>
+														<th>Especializacion</th>
+														<th>Pago por consulta</th>
+														<th>fecha y hora de cita</th>
+														<th>Fecha de creacion de cita</th>
+														<th>Estado Actual</th>
+														<th>Accion</th>
+													</tr>
+												</thead>
+												<tbody>
+													<?php
+														$sql = mysqli_query($con, "select doctors.doctorName as docname,users.fullName as pname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId join users on users.id=appointment.userId ");
+														$cnt = 1;
+														while ($row = mysqli_fetch_array($sql)) {
+    												?>
+													<tr>
+														<td class="center"><?php echo $cnt; ?>.</td>
+														<td class="hidden-xs"><?php echo $row['docname']; ?></td>
+														<td class="hidden-xs"><?php echo $row['pname']; ?></td>
+														<td><?php echo $row['doctorSpecialization']; ?></td>
+														<td><?php echo $row['consultancyFees']; ?></td>
+														<td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
+														<td><?php echo $row['postingDate']; ?></td>
+														<td><?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1))
+															{
+															echo "Activo";
+															}
+															if (($row['userStatus'] == 0) && ($row['doctorStatus'] == 1)) 
+															{
+															echo "Cancelar por paciente";
+															}
+															if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 0))
+															{
+															echo "Cancelar por Medico";
+															}
+															if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 2))
+															{
+															echo "Finalizo por Medico";
+															}?>
+														</td>
+														<td >
+															<div class="visible-md visible-lg hidden-sm hidden-xs">
+							                       				<?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1))
+												   				{
+																echo "Ninguna acción";
+												   				} else {
+																echo "Cancelada";
+																}
+																?>
+															</div>
+															<div class="visible-xs visible-sm hidden-md hidden-lg">
+																<div class="btn-group" dropdown is-open="status.isopen">
+																	<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle><i class="fa fa-cog"></i>&nbsp;<span class="caret"></span></button>
+																	<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+																		<li><a href="#">Editar</a></li>
+																		<li><a href="#">Compartir</a></li>
+															            <li><a href="#">Eliminar</a></li>
+																	</ul>
+																</div>
+															</div>
+														</td>
+													</tr>
+													<?php
+														$cnt = $cnt + 1;
+													}?>
+												</tbody>
+											</table>
+											</div>
+										</div>
+									</div>
 								</div>
 
 						<!-- end: BASIC EXAMPLE -->

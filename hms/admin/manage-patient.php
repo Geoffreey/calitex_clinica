@@ -52,43 +52,51 @@ check_login();
                          <div class="row">
                              <div class="col-md-14">
                                  <h5 class="over-title margin-bottom-15">Lista<span class="text-bold"> Pacientes</span></h5>
-                                 <table class="table table-hover" id="sample-table-1">
-                                     <thead>
-                                         <tr>
-                                             <th class="center">No.</th>
-                                             <th>No. Admision</th>
-                                             <th>Nombre paciente</th>
-                                             <th>Fecha de nacimiento</th>
-                                             <th>Telefono</th>
-                                             <th>Genero</th>
-                                             <th>Fecha de creacion</th>
-                                             <th>Fecha de actualizacion</th>
-                                             <th>Accion</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                         <?php
-                                             $sql = mysqli_query($con, "select * from tblpatient");
-                                             $cnt = 1;
-                                             while ($row = mysqli_fetch_array($sql)) {
-                                            ?>
-                                          <tr>
-                                             <td class="center"><?php echo $cnt; ?>.</td>
-                                             <td><?php echo $row['PatientAdmision'];?></td>
-                                             <td class="hidden-xs"><?php echo $row['PatientName']; ?></td>
-                                             <td><?php echo $row['FechaNac'];?></td>
-                                             <td><?php echo $row['PatientContno']; ?></td>
-                                             <td><?php echo $row['PatientGender']; ?></td>
-                                             <td><?php echo $row['CreationDate']; ?></td>
-                                             <td><?php echo $row['UpdationDate']; ?></td>
-                                             <td><a href="view-patient.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a></td>
-                                           </tr>
-                                           <?php
-                                             $cnt = $cnt + 1;
-                                            }?>
-                                      </tbody>
-                                  </table>
-                              </div>
+                                 <div class="table-responsive">
+                                        <table class="table table-hover table-bordered" id="sample-table-1">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th class="center">No.</th>
+                                                    <th>No. Admision</th>
+                                                    <th>Nombre paciente</th>
+                                                    <th>Fecha de nacimiento</th>
+                                                    <th>Telefono</th>
+                                                    <th>Genero</th>
+                                                    <th>Fecha de creacion</th>
+                                                    <th>Fecha de actualizacion</th>
+                                                    <th>Accion</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                     $sql = mysqli_query($con, "select * from tblpatient");
+                                                    $cnt = 1;
+                                                    while ($row = mysqli_fetch_array($sql)) {
+                                                ?>
+                                                <tr>
+                                                    <td class="center"><?php echo $cnt; ?>.</td>
+                                                    <td data-label="PatientAdmision"><?php echo $row['PatientAdmision'];?></td>
+                                                    <td data-label="PatientName"class="hidden-xs"><?php echo $row['PatientName']; ?></td>
+                                                    <td data-label="FechNac"><?php echo $row['FechaNac'];?></td>
+                                                    <td data-label="PatientContno"><?php echo $row['PatientContno']; ?></td>
+                                                    <td data-label="PatientGender"><?php echo $row['PatientGender']; ?></td>
+                                                    <td data-label="CreationDate"><?php echo $row['CreationDate']; ?></td>
+                                                    <td data-label="UpdationDate"><?php echo $row['UpdationDate']; ?></td>
+                                                    <td data-label="Accion">
+                                                        <div class="btn-group">
+                                                            <a href="view-patient.php?viewid=<?php echo $row['ID']; ?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fa fa-eye"></i></a>
+                                                            <!--<a href="view-patient.php?viewid=</?php echo $row['ID']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>-->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <?php
+                                                     $cnt = $cnt + 1;
+                                                }?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                 
+                                </div>
                           </div>
                       </div>
                   </div>

@@ -64,84 +64,65 @@ if (isset($_GET['del'])) {
 									<div class="row">
 								<div class="col-md-12">
 									<h5 class="over-title margin-bottom-15">Lista<span class="text-bold"> tecnicos</span></h5>
-									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
-								<?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-									<table class="table table-hover" id="sample-table-1">
-										<thead>
-											<tr>
-												<th class="center">No.</th>
-												<th class="hidden-xs">Nombre tecnico</th>
-												<th class="hidden-xs">Telefono</th>
-												<th class="hidden-xs">Correo electronico</th>
-												<th class="hidden-xs">Direccion</th>
-												<th>Fecha de creacion</th>
-												<th>Accion</th>
-
-											</tr>
-										</thead>
-										<tbody>
-                                            <?php
-                                              $sql = mysqli_query($con, "select * from tecnico_rx");
-                                              $cnt = 1;
-                                               while ($row = mysqli_fetch_array($sql)) {
-                                             ?>
-
-											<tr>
-												<td class="center"><?php echo $cnt; ?>.</td>
-												<td><?php echo $row['tecnicoName']; ?></td>
-												<td><?php echo $row['contactno']; ?></td>
-												<td><?php echo $row['labEmail']; ?></td>
-												<td><?php echo $row['address']; ?></td>
-												<td><?php echo $row['creationDate']; ?>
-												</td>
-
-												<td >
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
-							                         <a href="edit-tecnirx.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
-                                                     <a href="manage-rayosx.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')"class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Remove"><i class="fa fa-times fa fa-white"></i></a>
-												</div>
-												<div class="visible-xs visible-sm hidden-md hidden-lg">
-													<div class="btn-group" dropdown is-open="status.isopen">
-														<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-															<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-														</button>
-														<ul class="dropdown-menu pull-right dropdown-light" role="menu">
-															<li>
-																<a href="#">
-																	Editar
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Compartir
-																</a>
-															</li>
-															<li>
-																<a href="#">
-																	Eliminar
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div></td>
-											</tr>
-
-											<?php
-                                               $cnt = $cnt + 1;
-                                            }?>
-
-
-										</tbody>
-									</table>
-								</div>
-							</div>
+									<p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?><?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
+									<div class="table-responsive">
+										<table class="table table-hover table-bordered" id="sample-table-1">
+											<thead>
+												<tr>
+													<th class="center">No.</th>
+													<th class="hidden-xs">Nombre tecnico</th>
+													<th class="hidden-xs">Telefono</th>
+													<th class="hidden-xs">Correo electronico</th>
+													<th class="hidden-xs">Direccion</th>
+													<th>Fecha de creacion</th>
+													<th>Accion</th>
+												</tr>
+											</thead>
+											<tbody>
+                                            	<?php
+                                              		$sql = mysqli_query($con, "select * from tecnico_rx");
+                                              		$cnt = 1;
+                                               		while ($row = mysqli_fetch_array($sql)) {
+                                             	?>
+												<tr>
+													<td class="center"><?php echo $cnt; ?>.</td>
+													<td data-label=""><?php echo $row['tecnicoName']; ?></td>
+													<td data-label=""><?php echo $row['contactno']; ?></td>
+													<td data-label=""><?php echo $row['labEmail']; ?></td>
+													<td data-label=""><?php echo $row['address']; ?></td>
+													<td data-label=""><?php echo $row['creationDate']; ?></td>
+													<td >
+														<div class="visible-md visible-lg hidden-sm hidden-xs">
+							                         		<a href="edit-tecnirx.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>
+                                                     		<a href="manage-rayosx.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')"class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+														</div>
+														<div class="visible-xs visible-sm hidden-md hidden-lg">
+															<div class="btn-group" dropdown is-open="status.isopen">
+																<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle><i class="fa fa-cog"></i>&nbsp;<span class="caret"></span></button>
+																<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+																	<li><a href="#">Editar</a></li>
+																	<li><a href="#">Compartir</a></li>
+																	<li><a href="#">Eliminar</a></li>
+																</ul>
+															</div>
+														</div>
+													</td>
+												</tr>
+												<?php
+                                               		$cnt = $cnt + 1;
+                                            	}?>
+											</tbody>
+										</table>
+									</div>
+									
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
 						<!-- end: BASIC EXAMPLE -->
 						<!-- end: SELECT BOXES -->
-
-					</div>
+			</div>
 					<?php include 'include/footer.php';?>
 					<?php include 'include/setting.php';?>
 				</div>
