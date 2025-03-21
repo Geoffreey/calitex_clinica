@@ -9922,151 +9922,75 @@ div.timeline .column_center .timeline_element:before, div.timeline .column_cente
 /* ---------------------------------------------------------------------- */
 /*  Tables
 /* ---------------------------------------------------------------------- */
-.table {
-  border-collapse: separate;
-}
-
-.table > thead > tr > th {
-  border-top: none;
-}
-
-.table-bordered.table > thead > tr > th {
-  border-bottom: 1px solid #ddd;
-}
-
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-  border-bottom: 1px solid #e2e2e4;
-  color: #5b5b60 !important;
-  border-top: none;
-}
-
-.table-hover > tbody > tr:hover > td, .table-hover > tbody > tr:hover > th {
-  background-color: #e7e7e9;
-}
-
-.table > tbody > tr.active > td, .table > tbody > tr.active > th {
-  background-color: #e7e7e9 !important;
-  color: #5b5b60 !important;
-}
-
-.table > tbody > tr.active:hover > td, .table > tbody > tr.active:hover > th {
-  background-color: #dddcdf !important;
-  color: #5b5b60 !important;
-}
-
-th.center, td.center {
+.table thead th {
+  background-color: #343a40;
+  color: #ffffff;
+  font-weight: 600;
   text-align: center;
 }
 
-td.center .dropdown-menu {
-  text-align: left;
+/* Botones modernos */
+.btn-outline-primary {
+  border: 1px solid #007bff;
+  color: #007bff;
+  transition: 0.3s;
+}
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
 }
 
-td.small-width {
-  width: 15%;
+.btn-outline-danger {
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  transition: 0.3s;
+}
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
 
-.table thead tr {
-  color: #707070;
-  font-weight: normal;
+/* Responsive scroll horizontal */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.table.table-bordered {
-  border-right: none;
-  border-bottom: none;
-}
-
-.table.table-bordered thead tr th {
-  vertical-align: middle;
-}
-
-.table.table-bordered > thead > tr > th, .table.table-bordered > tbody > tr > th, .table.table-bordered > tfoot > tr > th, .table.table-bordered > thead > tr > td, .table.table-bordered > tbody > tr > td, .table.table-bordered > tfoot > tr > td {
-  border-top: none;
-  border-left: none;
-}
-
-.table.table-bordered > thead > tr > th, .table.table-bordered > tbody > tr > th, .table.table-bordered > tfoot > tr > th, .table.table-bordered > thead > tr > td, .table.table-bordered > tbody > tr > td, .table.table-bordered > tfoot > tr > td {
-  border-top: none;
-  border-left: none;
-}
-
-.table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
-  vertical-align: middle;
-}
-
-.table-striped > tbody > tr:nth-child(2n+1) {
-  background-color: #efeff0;
-}
-
-.editable-element {
-  border-bottom: 1px dashed #0088CC;
-  text-decoration: none;
-  opacity: 0.5;
-  display: inline;
-}
-
-.ng-table th {
-  text-align: left !important;
-}
-
-.ng-table .plus, .ng-table .minus {
-  font-weight: bold;
-  padding-left: 18px;
-  position: relative;
-}
-
-.ng-table .plus:before, .ng-table .minus:before {
-  content: "";
-  border-width: 4px;
-  border-style: solid;
-  left: 8px;
-  top: 50%;
-  position: absolute;
-  margin-top: -2px;
-}
-
-.ng-table .plus {
-  color: green;
-}
-
-.ng-table .plus:before {
-  border-color: green;
-  border-top: none;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-}
-
-.ng-table .minus {
-  color: red;
-}
-
-.ng-table .minus:before {
-  border-color: red;
-  border-bottom: none;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-}
-
-.odd {
-  background: #EFEFF0;
-}
-
-.even {
-  background: #ffffff;
-}
-
-@media (max-width: 767px) {
-  .ng-table-pager {
-    text-align: center;
+/* Centrado en móviles */
+@media screen and (max-width: 768px) {
+  .table thead {
+    display: none;
   }
-  .ng-table-pager .ng-table-counts {
-    float: none !important;
-  }
-  .ng-table-pager .pagination {
+
+  .table tbody tr {
     display: block;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
   }
-  .ng-table-pager .pagination li {
-    display: inline-block;
+
+  .table tbody td {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    border: none;
+    padding: 10px;
+    position: relative;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: 50%;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
   }
 }
 

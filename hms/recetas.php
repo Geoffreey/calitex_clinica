@@ -78,7 +78,8 @@ if (!$result) {
                         <div class="container-fluid container-fullw bg-white">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-bordered">
+                                    <div class="table-responsive">
+                                    <table class="table table-hover table-bordered" id="sample-table-1">
                                         <thead>
                                             <tr align="center"><th colspan="10">Lista de recetas medicas</th></tr>
                                                 <th>Fecha</th>
@@ -89,13 +90,19 @@ if (!$result) {
                                         <tbody>
                                             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                             <tr>
-                                                <td><?php echo $row['fecha_emision']; ?></td>
-                                                <td><?php echo ($role == 'doctor') ? $row['paciente'] : $row['doctor']; ?></td>
-                                                <td><a href="detalle-receta.php?id=<?php echo $row['id']; ?>">Ver Detalle</a></td>
+                                                <td data-label="Fecha"><?php echo $row['fecha_emision']; ?></td>
+                                                <td data-label="doctor"><?php echo ($role == 'doctor') ? $row['paciente'] : $row['doctor']; ?></td>
+                                                <td data-label="Accion">
+                                                    <div class="btn-group">
+                                                        <a href="detalle-receta.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="ti-receipt"></i></a>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <?php } ?>
                                         </tbody>
                                     </table>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>

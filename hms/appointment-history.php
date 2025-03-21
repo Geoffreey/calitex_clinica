@@ -57,15 +57,16 @@ check_login();
 								<div class="col-md-12">
                                   <p style="color:red;"><?php echo htmlentities($_SESSION['msg']); ?>
 								  <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
-									<table class="table table-hover" id="sample-table-1">
+								  <div class="table-responsive">
+								  <table class="table table-hover table-bordered" id="sample-table-1">
 										<thead>
 											<tr>
 												<th class="center">No.</th>
 												<th class="hidden-xs">Nombre doctor</th>
 												<th>Especializacion</th>
 												<th>Honorarios consulta</th>
-												<th>fecha y hora de la cita</th>
-												<th>fecha de creacion de cita</th>
+												<th>Fecha y hora de la cita</th>
+												<th>Fecha de creacion de cita</th>
 												<th>Estado actual</th>
 												<th>Accion</th>
                                             </tr>
@@ -78,13 +79,13 @@ check_login();
                                             ?>
 
 											<tr>
-												<td class="center"><?php echo $cnt; ?>.</td>
-												<td class="hidden-xs"><?php echo $row['docname']; ?></td>
-												<td><?php echo $row['doctorSpecialization']; ?></td>
-												<td><?php echo $row['consultancyFees']; ?></td>
-												<td><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
-												<td><?php echo $row['postingDate']; ?></td>
-												<td>
+												<td data-label="No." class="center"><?php echo $cnt; ?>.</td>
+												<td data-label="Nombre doctor" class="hidden-xs"><?php echo $row['docname']; ?></td>
+												<td data-label="Especializacion"><?php echo $row['doctorSpecialization']; ?></td>
+												<td data-label="Honorarios consulta"><?php echo $row['consultancyFees']; ?></td>
+												<td data-label="Fecha y hora de la cita"><?php echo $row['appointmentDate']; ?> / <?php echo $row['appointmentTime']; ?></td>
+												<td data-label="Estado actual"><?php echo $row['postingDate']; ?></td>
+												<td data-label="Accion">
                                                    <?php 
 												   if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) 
 												   {
@@ -110,15 +111,15 @@ check_login();
 												</td>
 
 												<td >
-												  <div class="visible-md visible-lg hidden-sm hidden-xs">
+												  <div class="btn-group">
 							                         <?php if (($row['userStatus'] == 1) && ($row['doctorStatus'] == 1)) {?>
-                                                     <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita?')"class="btn btn-transparent btn-xs tooltips" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
+                                                     <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" onClick="return confirm('¿Estás segura de que quieres cancelar esta cita?')" class="btn btn-sm btn-outline-danger" oltititle="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancelar</a>
 	                                                 <?php } else {
 														echo "Cancelada";
                                                       }
 													  ?>
 												   </div>
-												   <div class="visible-xs visible-sm hidden-md hidden-lg">
+												   <!--<div class="visible-xs visible-sm hidden-md hidden-lg">
 													  <div class="btn-group" dropdown is-open="status.isopen">
 														 <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
 															 <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
@@ -141,7 +142,7 @@ check_login();
 															</li>
 														  </ul>
 													    </div>
-												   </div>
+												   </div>-->
 											    </td>
 											</tr>
 
@@ -152,6 +153,8 @@ check_login();
 
 										</tbody>
 									</table>
+								  </div>
+									
 								</div>
 							</div>
 						</div>
