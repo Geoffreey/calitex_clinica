@@ -51,50 +51,47 @@ exit();
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 	</head>
 	<body class="login">
-		<div class="row">
-			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-				<div class="logo margin-top-30">
-				<h2>Inicio de sesion de admin</h2>
-				</div>
+	<div class="main-login">
+  <div class="logo">
+    <h2>Inicio de Sesión de Administrador</h2>
+  </div>
 
-				<div class="box-login">
-					<form class="form-login" method="post">
-						<fieldset>
-							<legend>
-								Iniciar sesion en su cuenta
-							</legend>
-							<p>
-								Por favro ingrese su nombre y contraseña para iniciar sesion.<br />
-								<span style="color:red;"><?php echo htmlentities($_SESSION['errmsg']); ?><?php echo htmlentities($_SESSION['errmsg']="");?></span>
-							</p>
-							<div class="form-group">
-								<span class="input-icon">
-									<input type="text" class="form-control" name="username" placeholder="Username">
-									<i class="fa fa-user"></i> </span>
-							</div>
-							<div class="form-group form-actions">
-								<span class="input-icon">
-									<input type="password" class="form-control password" name="password" placeholder="Password"><i class="fa fa-lock"></i>
-									 </span>
-							</div>
-							<div class="form-actions">
-								
-								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Acceso <i class="fa fa-arrow-circle-right"></i>
-								</button>
-							</div>
-							
-						</fieldset>
-					</form>
+  <div class="box-login">
+    <form class="form-login" method="post">
+      <fieldset>
+        <legend>Inicia sesión</legend>
+        <p>Por favor ingresa tu usuario y contraseña.</p>
+        <span style="color:red;">
+          <?php echo htmlentities($_SESSION['errmsg']); $_SESSION['errmsg'] = ""; ?>
+        </span>
 
-					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> geoffdeep</span>. <span>todos los derechos reservados</span>
-					</div>
-			
-				</div>
+        <div class="form-group">
+          <span class="input-icon">
+            <input type="text" name="username" class="form-control" placeholder="Usuario">
+            <i class="fa fa-user"></i>
+          </span>
+        </div>
 
-			</div>
-		</div>
+        <div class="form-group">
+          <span class="input-icon">
+            <input type="password" name="password" class="form-control password" placeholder="Contraseña">
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary" name="submit">
+            Acceso <i class="fa fa-arrow-circle-right"></i>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+
+    <div class="copyright">
+      &copy; <span class="current-year"></span> <strong>geoffdeep</strong>. Todos los derechos reservados.
+    </div>
+  </div>
+</div>
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="vendor/modernizr/modernizr.js"></script>

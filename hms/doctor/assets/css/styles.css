@@ -10948,74 +10948,131 @@ nav.links a {
 /* ---------------------------------------------------------------------- */
 /*  Login
 /* ---------------------------------------------------------------------- */
-.main-login {
-  margin-top: 0;
-  position: relative;
+body {
+  background: linear-gradient(to right, #0d6efd, #00c9ff);
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-@media (max-width: 991px) {
-  .main-login {
-    margin-top: 65px;
+
+.main-login {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-.main-login .logo {
-  padding: 0 10px;
+
+.logo h2 {
+  font-weight: 700;
+  color: #0d6efd;
 }
-.main-login .box-login,
-.main-login .box-forgot,
-.main-login .box-register {
-  background: #ffffff;
-  border-radius: 5px;
-  overflow: hidden;
-  padding: 15px;
-  margin: 15px 0 65px 0;
+
+.box-login legend {
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
 }
-.main-login .form fieldset {
-  border: none;
-  margin: 0;
-  padding: 10px 0 0;
+
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
 }
-.main-login a.forgot {
-  color: #909090;
-  font-size: 12px;
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon input {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-icon i {
   position: absolute;
-  right: 10px;
-  text-shadow: 1px 1px 1px #ffffff;
-  top: 9px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0d6efd;
 }
-.main-login input.password {
-  padding-right: 130px;
+
+.input-icon input:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
 }
-.main-login label {
-  color: #7f7f7f;
-  font-size: 14px;
-  margin-top: 5px;
+
+.btn-primary {
+  background: #0d6efd;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 8px;
+  color: #fff;
+  transition: background 0.3s ease-in-out;
 }
-.main-login .copyright {
-  font-size: 11px;
-  margin: 0 auto;
-  padding: 10px 10px 0;
-  text-align: center;
+
+.btn-primary:hover {
+  background: #0056b3;
 }
-.main-login .form-actions:before,
-.main-login .form-actions:after {
-  content: "";
-  display: table;
-  line-height: 0;
-}
-.main-login .form-actions:after {
-  clear: both;
-}
-.main-login .form-actions {
-  margin-top: 15px;
-  padding-top: 10px;
+
+a {
+  font-size: 13px;
+  color: #6c757d;
   display: block;
+  margin-top: 10px;
 }
-.main-login .new-account {
-  border-top: 1px dotted #eeeeee;
-  margin-top: 15px;
-  padding-top: 10px;
-  display: block;
+
+a:hover {
+  text-decoration: underline;
 }
+
+.copyright {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #888;
+}
+
+@media screen and (max-width: 480px) {
+  .main-login {
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .logo h2 {
+    font-size: 20px;
+  }
+
+  .btn-primary {
+    font-size: 14px;
+  }
+}
+
 
 /* ---------------------------------------------------------------------- */
 /*  Lock Screen
@@ -11039,7 +11096,7 @@ nav.links a {
 
 .lock-screen .user-info h4 {
   color: #666666;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 300;
   margin-top: 0;
 }

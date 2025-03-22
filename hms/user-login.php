@@ -41,8 +41,7 @@ if (isset($_POST['submit'])) {
 	    <meta name="viewport" content="">
 	    <meta name="keywords" content="">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		  <title>Inicio de sesion usuario</title>
-
+		<title>Inicio de sesion usuario</title>
 		<link href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -55,58 +54,38 @@ if (isset($_POST['submit'])) {
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 	</head>
 	<body class="login">
-		<div class="row">
-			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-				<div class="logo margin-top-30">
-				<a href="../index.php"><h2> Calitex | Inicio de secion pacientes</h2></a>
+		<div class="main-login">
+  			<div class="logo">
+    			<a href="../index.php"><h2>Calitex | Portal de Pacientes</h2></a>
+  			</div>
+			<div class="box-login">
+				<form class="form-login" method="post">
+					<fieldset>
+						<legend>Inicia sesión</legend>
+						<p>Ingresa tu usuario y contraseña</p>
+						<span style="color:red;"><?php echo $_SESSION['errmsg']; $_SESSION['errmsg'] = ""; ?></span>
+						<div class="form-group">
+							<span class="input-icon">
+								<input type="text" name="username" class="form-control" placeholder="Usuario">
+								<i class="fa fa-user"></i>
+							</span>
+						</div>
+						<div class="form-group">
+							<span class="input-icon">
+								<input type="password" name="password" class="form-control" placeholder="Contraseña">
+								<i class="fa fa-lock"></i>
+							</span>
+							<a href="forgot-password.php">¿Olvidaste tu contraseña?</a>
+						</div>
+						<button type="submit" class="btn btn-primary" name="submit">Acceder <i class="fa fa-arrow-circle-right"></i></button>
+      				</fieldset>
+				</form>
+				<div class="copyright">
+					&copy; <span class="current-year"></span> <strong>geoffdeep</strong>. Todos los derechos reservados.
 				</div>
-
-				<div class="box-login">
-					<form class="form-login" method="post">
-						<fieldset>
-							<legend>
-								Iniciar sesion en su cuenta
-							</legend>
-							<p>
-								Por favor ingrese su numbre y contraseña para iniciar sesion.<br />
-								<span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg'] = ""; ?></span>
-							</p>
-							<div class="form-group">
-								<span class="input-icon">
-									<input type="text" class="form-control" name="username" placeholder="Username">
-									<i class="fa fa-user"></i> </span>
-							</div>
-							<div class="form-group form-actions">
-								<span class="input-icon">
-									<input type="password" class="form-control password" name="password" placeholder="Password">
-									<i class="fa fa-lock"></i>
-									 </span><a href="forgot-password.php">
-									Has olvidado tu contraseña ?
-								</a>
-							</div>
-							<div class="form-actions">
-
-								<button type="submit" class="btn btn-primary pull-right" name="submit">
-									Acceso <i class="fa fa-arrow-circle-right"></i>
-								</button>
-							</div>
-							<div class="new-account">
-								No tienes una cuenta todavia?
-								<a href="registration.php">
-									Crea una cuenta
-								</a>
-							</div>
-						</fieldset>
-					</form>
-
-					<div class="copyright">
-						&copy; <span class="current-year"></span><span class="text-bold text-uppercase"> geoffdeep</span>. <span>todos los derechos reservados</span>
-					</div>
-
-				</div>
-
 			</div>
 		</div>
+	</div>
 		<script src="vendor/jquery/jquery.min.js"></script>
 		<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="vendor/modernizr/modernizr.js"></script>
