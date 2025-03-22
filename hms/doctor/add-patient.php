@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 <html lang="es">
 <head>
 <head>
-    <title>Laboratorio | Agregar paciente</title>
+    <title>Medico | Agregar paciente</title>
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-10">
-                                <h1 class="mainTitle">Paciente | Agregar paciente</h1>
+                                <h1 class="mainTitle">Medico| Agregar paciente</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
@@ -118,7 +118,7 @@ if (isset($_POST['submit'])) {
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="fess">Fecha de nacimiento</label>
-                                                        <input type="text" name="fena" class="form-control" placeholder="AAA-MM-DD" required="true" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                                                        <input type="date" name="fena" class="form-control" placeholder="AAA-MM-DD" required="true">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="fess">Telefono</label>
