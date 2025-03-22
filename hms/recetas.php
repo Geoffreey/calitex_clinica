@@ -81,7 +81,7 @@ if (!$result) {
                                     <div class="table-responsive">
                                     <table class="table table-hover table-bordered" id="sample-table-1">
                                         <thead>
-                                            <tr align="center"><th colspan="10">Lista de recetas medicas</th></tr>
+                                            <tr align="center">
                                                 <th>Fecha</th>
                                                 <?php if ($role == 'doctor') { echo "<th>Paciente</th>"; } else { echo "<th>Doctor</th>"; } ?>
                                                 <th>Acción</th>
