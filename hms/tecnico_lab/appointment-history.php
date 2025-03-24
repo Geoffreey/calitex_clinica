@@ -104,9 +104,8 @@ if (isset($_GET['Finalizada'])) {
                                                     <td>
                                                         <div class="btn-group">
                                                         <?php if ($row['userStatus'] == 1) { ?>
-                                                            <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-sm btn-outline-danger" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
                                                             <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-sm btn-outline-primary"><i class="fa fa-eye"></i> Ver</a>
-                                                            
+                                                            <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-sm btn-outline-danger" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
                                                             <?php if (!$file_exists) { ?>
                                                             <!-- Formulario de subida de archivo -->
                                                             <form action="upload.php" method="post" enctype="multipart/form-data" style="display: inline; margin-right: 5px;">

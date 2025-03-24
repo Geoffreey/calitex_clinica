@@ -59,7 +59,7 @@ check_login();
 								  <?php echo htmlentities($_SESSION['msg'] = ""); ?></p>
 								  <div class="table-responsive">
 								  <table class="table table-hover table-bordered" id="sample-table-1">
-										<thead>
+										<thead class="thead-dark">
 											<tr>
 												<th class="center">No.</th>
 												<th class="hidden-xs">Nombre doctor</th>

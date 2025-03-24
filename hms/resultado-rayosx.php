@@ -52,9 +52,9 @@ check_login();
                     <div class="row">
                         <div class="col-md-12">
                             <h5 class="over-title margin-bottom-15"><span class="text-bold"> Historial de rayos X</span></h5>
-
-                            <table class="table table-hover" id="sample-table-1">
-                                <thead>
+                            <div class="table-responsive">
+                            <table class="table table-hover table-bordered" id="sample-table-1">
+                                <thead class="thead-dark">
                                     <tr>
                                         <th class="center">No.</th>
                                         <th>Nombre</th>
@@ -79,15 +79,19 @@ check_login();
                                         $file_sql = mysqli_query($con, "SELECT FilePath FROM tblfiles WHERE appointmentrx_id = '".$row['appointmentrx_id']."' LIMIT 1");
                                         $file_row = mysqli_fetch_array($file_sql);
                                         $file_url = $file_row['FilePath'] ? 'http://localhost/calitex_clinica/hms/tecnico_rx/' . $file_row['FilePath'] : '#';
-                                        $file_link = $file_row['FilePath'] ? '<a href="' . $file_url . '" target="_blank">Ver Resultado</a>' : 'Sin Resultado';
+                                        $file_link = $file_row['FilePath'] ? '<a href="' . $file_url . '" target="_blank" class="btn btn-sm btn-outline-primary">Ver Resultado</a>' : 'Sin Resultado';
                                         ?>
                                         <tr>
-                                            <td class="center"><?php echo $cnt; ?>.</td>
-                                            <td><?php echo $row['rxname']; ?></td>
-                                            <td><?php echo $row['rxtype']; ?></td>
-                                            <td><?php echo $row['costo']; ?></td>
-                                            <td><?php echo $row['appointmentDate']; ?></td>
-                                            <td><?php echo $file_link; ?></td> <!-- Nueva columna -->
+                                            <td data-label="No." class="center"><?php echo $cnt; ?>.</td>
+                                            <td data-label="Nombre"><?php echo $row['rxname']; ?></td>
+                                            <td data-label="Tipo"><?php echo $row['rxtype']; ?></td>
+                                            <td data-label="Costo"><?php echo $row['costo']; ?></td>
+                                            <td data-label="Fecha de Cita"><?php echo $row['appointmentDate']; ?></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <?php echo $file_link; ?>
+                                                </div>
+                                            </td> <!-- Nueva columna -->
                                         </tr>
                                         <?php
                                         $cnt++;
@@ -95,6 +99,7 @@ check_login();
                                     ?>
                                 </tbody>
                             </table>
+                            </div> 
                         </div>
                     </div>
                 </div>

@@ -54,8 +54,8 @@ if (isset($_GET['Finalizada'])) {
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
+                                        <table class="table table-hover table-bordered" id="sample-table-1">
+                                            <thead class="thead-dark">
                                                 <tr>
                                                     <th>No.</th>
                                                     <th>Nombre de Paciente</th>
@@ -83,14 +83,14 @@ if (isset($_GET['Finalizada'])) {
                                                     $file_exists = $file_check_row['file_count'] > 0;
                                                 ?>
                                                 <tr>
-                                                    <td><?php echo $cnt; ?></td>
-                                                    <td><?php echo $row['PatientName']; ?></td>
-                                                    <td><?php echo $row['rxtype']; ?></td>
-                                                    <td><?php echo $row['rxname']; ?></td>
-                                                    <td><?php echo $row['consultancyFees']; ?></td>
-                                                    <td><?php echo $row['appointmentDate'] . ' / ' . $row['appointmentTime']; ?></td>
-                                                    <td><?php echo $row['created_at']; ?></td>
-                                                    <td>
+                                                    <td data-label="No."><?php echo $cnt; ?></td>
+                                                    <td data-label="Nombre de Paciente"><?php echo $row['PatientName']; ?></td>
+                                                    <td data-label="Tipo"><?php echo $row['rxtype']; ?></td>
+                                                    <td data-label="Nombre"><?php echo $row['rxname']; ?></td>
+                                                    <td data-label="Costo"><?php echo $row['consultancyFees']; ?></td>
+                                                    <td data-label="Fecha de la cita"><?php echo $row['appointmentDate'] . ' / ' . $row['appointmentTime']; ?></td>
+                                                    <td data-label="Fecha de creción"><?php echo $row['created_at']; ?></td>
+                                                    <td data-label="Estado">
                                                         <?php 
                                                         if ($row['userStatus'] == 1) {
                                                             echo "Activo";
@@ -101,10 +101,12 @@ if (isset($_GET['Finalizada'])) {
                                                         }
                                                         ?>
                                                     </td>
-                                                    <td>
+                                                    <td data-label="Acción">
+                                                        <div class="btn-group">
                                                         <?php if ($row['userStatus'] == 1) { ?>
-                                                            <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-danger btn-sm" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
-                                                            <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
+                                                            <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-sm btn-outline-primary"><i class="fa fa-eye"></i> Ver</a>
+                                                            <a href="appointment-history.php?id=<?php echo $row['id'] ?>&Cancelada=update" class="btn btn-sm btn-outline-danger" onClick="return confirm('¿Estás seguro de que quieres cancelar esta cita?')">Cancelar</a>
+                                                            
                                                             
                                                             <?php if (!$file_exists) { ?>
                                                             <!-- Formulario de subida de archivo -->
@@ -120,6 +122,7 @@ if (isset($_GET['Finalizada'])) {
                                                         <?php } elseif ($row['userStatus'] == 2) { ?>
                                                             <a href="view-patient.php?viewid=<?php echo $row['user_id']; ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Ver</a>
                                                         <?php } ?>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <?php $cnt = $cnt + 1; } ?>

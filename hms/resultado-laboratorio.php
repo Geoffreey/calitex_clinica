@@ -52,49 +52,54 @@ check_login();
                     <div class="row">
                         <div class="col-md-12">
                             <h5 class="over-title margin-bottom-15"><span class="text-bold"> Historial de laboratorios</span></h5>
-
-                            <table class="table table-hover" id="sample-table-1">
-                                <thead>
-                                    <tr>
-                                        <th class="center">No.</th>
-                                        <th>Nombre del Laboratorio</th>
-                                        <th>Tipo de Laboratorio</th>
-                                        <th>Costo</th>
-                                        <th>Fecha de Cita</th>
-                                        <th>Resultado</th> <!-- Nueva columna -->
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $uid = $_SESSION['id'];
-                                    // Obtener los laboratorios asociados al paciente
-                                    $sql = mysqli_query($con, "SELECT l.nombre AS labname, l.tipo AS labtype, l.costo, a.appointmentDate, a.id AS appointment_id
+                            <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="sample-table-1">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="center">No.</th>
+                                            <th>Nombre del Laboratorio</th>
+                                            <th>Tipo de Laboratorio</th>
+                                            <th>Costo</th>
+                                            <th>Fecha de Cita</th>
+                                            <th>Resultado</th> <!-- Nueva columna -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $uid = $_SESSION['id'];
+                                            // Obtener los laboratorios asociados al paciente
+                                            $sql = mysqli_query($con, "SELECT l.nombre AS labname, l.tipo AS labtype, l.costo, a.appointmentDate, a.id AS appointment_id
                                                                FROM lab_appointments a
                                                                JOIN laboratories l ON l.id = a.labId
                                                                JOIN tblpatient p ON p.user_id = a.user_id
                                                                WHERE p.ID = (SELECT ID FROM tblpatient WHERE user_id = '$uid')");
-                                    $cnt = 1;
-                                    while ($row = mysqli_fetch_array($sql)) {
-                                        // Obtener el enlace al archivo asociado con el appointment_id
-                                        $file_sql = mysqli_query($con, "SELECT FilePath FROM tblfiles WHERE appointment_id = '".$row['appointment_id']."' LIMIT 1");
-                                        $file_row = mysqli_fetch_array($file_sql);
-                                        $file_url = $file_row['FilePath'] ? 'http://localhost/calitex_clinica/hms/tecnico_lab/' . $file_row['FilePath'] : '#';
-                                        $file_link = $file_row['FilePath'] ? '<a href="' . $file_url . '" target="_blank">Ver Resultado</a>' : 'Sin Resultado';
+                                                                $cnt = 1;
+                                            while ($row = mysqli_fetch_array($sql)) {
+                                            // Obtener el enlace al archivo asociado con el appointment_id
+                                            $file_sql = mysqli_query($con, "SELECT FilePath FROM tblfiles WHERE appointment_id = '".$row['appointment_id']."' LIMIT 1");
+                                            $file_row = mysqli_fetch_array($file_sql);
+                                            $file_url = $file_row['FilePath'] ? 'http://localhost/calitex_clinica/hms/tecnico_lab/' . $file_row['FilePath'] : '#';
+                                            $file_link = $file_row['FilePath'] ? '<a href="' . $file_url . '" target="_blank" class="btn btn-sm btn-outline-primary">Ver Resultado</a>' : 'Sin Resultado';
                                         ?>
                                         <tr>
-                                            <td class="center"><?php echo $cnt; ?>.</td>
-                                            <td><?php echo $row['labname']; ?></td>
-                                            <td><?php echo $row['labtype']; ?></td>
-                                            <td><?php echo $row['costo']; ?></td>
-                                            <td><?php echo $row['appointmentDate']; ?></td>
-                                            <td><?php echo $file_link; ?></td> <!-- Nueva columna -->
+                                            <td data-label="No." class="center"><?php echo $cnt; ?>.</td>
+                                            <td data-label="Nombre del laboratorio"><?php echo $row['labname']; ?></td>
+                                            <td data-label="Tipo de laboratorio"><?php echo $row['labtype']; ?></td>
+                                            <td data-label="Costo"><?php echo $row['costo']; ?></td>
+                                            <td data-label="Fecha de cita"><?php echo $row['appointmentDate']; ?></td>
+                                            <td data-label="Resultado">
+                                                <div class="btn-group">
+                                                  <?php echo $file_link; ?>
+                                                </div>
+                                            </td> <!-- Nueva columna -->
                                         </tr>
                                         <?php
                                         $cnt++;
-                                    }
-                                    ?>
-                                </tbody>
-                            </table>
+                                         }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
