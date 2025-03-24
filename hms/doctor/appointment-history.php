@@ -63,7 +63,7 @@ check_login();
                                 <table class="table table-hover table-bordered" id="sample-table-1">
                                     <thead>
                                         <tr>
-                                            <th class="center">#</th>
+                                            <th class="center">No.</th>
                                             <th class="hidden-xs">Nombre paciente</th>
                                             <th>Especializacion</th>
                                             <th>Cuota de consulta</th>
@@ -99,7 +99,7 @@ check_login();
                                         while ($row = mysqli_fetch_assoc($sql)) {
                                         ?>
                                         <tr>
-                                            <td class="center"><?php echo $cnt; ?>.</td>
+                                            <td datalabel="No." class="center"><?php echo $cnt; ?>.</td>
                                             <td data-label="PatientName" class="hidden-xs"><?php echo isset($row['PatientName']) ? $row['PatientName'] : '<span class="text-muted">No registrado</span>'; ?></td>
                                             <td data-label="doctorSpecialization"><?php echo $row['doctorSpecialization']; ?></td>
                                             <td data-label="consultancyFees"><?php echo $row['consultancyFees']; ?></td>
