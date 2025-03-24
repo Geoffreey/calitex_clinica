@@ -78,7 +78,7 @@ if (isset($_GET['del'])) {
       												while ($row = mysqli_fetch_array($sql)) {
       											?>
         										<tr>
-          											<td data-label="#" class="center"><?php echo $cnt; ?>.</td>
+          											<td data-label="No." class="center"><?php echo $cnt; ?>.</td>
           											<td data-label="Especialización" class="hidden-xs"><?php echo $row['specilization']; ?></td>
           											<td data-label="Nombre médico"><?php echo $row['doctorName']; ?></td>
           											<td data-label="Fecha de creación"><?php echo $row['creationDate']; ?></td>

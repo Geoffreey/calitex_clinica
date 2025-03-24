@@ -57,7 +57,7 @@ check_login();
                                      <table class="table table-hover table-bordered" id="sample-table-1">
                                          <thead>
                                              <tr>
-                                                 <th class="center">#</th>
+                                                 <th class="center">No.</th>
                                                  <th>No. Admision</th>
                                                  <th>Nombre paciente</th>
                                                  <th>Fecha de nacimiento</th>
@@ -77,7 +77,7 @@ check_login();
                                                   {
                                                 ?>
                                                <tr>
-                                                  <td class="center"><?php echo $cnt;?>.</td>
+                                                  <td data.label="No."class="center"><?php echo $cnt;?>.</td>
                                                   <td data-label="PatientAdmision"><?php echo $row['PatientAdmision'];?></td>
                                                   <td data-label="PatientName" class="hidden-xs"><?php echo $row['PatientName'];?></td>
                                                   <td data-label="FechaNac"><?php echo $row['FechaNac'];?></td>
@@ -86,10 +86,11 @@ check_login();
                                                   <td data-label="CreationDate"><?php echo $row['CreationDate'];?></td>
                                                   <td data-label="UpdationDate"><?php echo $row['UpdationDate'];?></td>
                                                   <td data-label="Accion">
-                                                    <div class="btn-group">
-                                                        <a href="edit-patient.php?editid=<?php echo $row['user_id'];?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-edit"></i></a>
-                                                        <a href="view-patient.php?viewid=<?php echo $row['user_id'];?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fa fa-eye"></i></a></td>
-                                                    </div> 
+                                                        <div class="btn-group">
+                                                            <a href="edit-patient.php?editid=<?php echo $row['user_id'];?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-edit"></i></a>
+                                                            <a href="view-patient.php?viewid=<?php echo $row['user_id'];?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fa fa-eye"></i></a>
+                                                        </div>
+                                                  </td>
                                               </tr>
                                               <?php 
                                                  $cnt=$cnt+1;

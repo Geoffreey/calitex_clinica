@@ -74,7 +74,7 @@ check_login();
                                                     while ($row = mysqli_fetch_array($sql)) {
                                                 ?>
                                                 <tr>
-                                                    <td class="center"><?php echo $cnt; ?>.</td>
+                                                    <td data-label="No." class="center"><?php echo $cnt; ?>.</td>
                                                     <td data-label="PatientAdmision"><?php echo $row['PatientAdmision'];?></td>
                                                     <td data-label="PatientName"class="hidden-xs"><?php echo $row['PatientName']; ?></td>
                                                     <td data-label="FechNac"><?php echo $row['FechaNac'];?></td>

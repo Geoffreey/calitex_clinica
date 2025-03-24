@@ -51,8 +51,9 @@ check_login();
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="over-title margin-bottom-15">Administrar <span class="text-bold">Pacientes</span></h5>
-                                <table class="table table-hover" id="sample-table-1">
-                                    <thead>
+                                <div class="table-responsive">
+                                <table class="table table-hover table-bordered" id="sample-table-1">
+                                    <thead class="thead-dark">
                                         <tr>
                                             <th class="center">#</th>
                                             <th>Nombre del Paciente</th>
@@ -87,6 +88,7 @@ check_login();
                                         }?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>

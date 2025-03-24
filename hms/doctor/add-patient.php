@@ -8,6 +8,8 @@ check_login();
 if (isset($_POST['submit'])) {
     $docid = $_SESSION['id'];
     $patadmi = $_POST['patadmi'];
+    $seguro = $_POST['seguro'];
+    $dpi = $_POST['dpi'];
     $patname = $_POST['patname'];
     $fena = $_POST['fena'];
     $patcontact = $_POST['patcontact'];
@@ -15,6 +17,9 @@ if (isset($_POST['submit'])) {
     $gender = $_POST['gender'];
     $pataddress = $_POST['pataddress'];
     $patage = $_POST['patage'];
+    $alergias_patologicas = $_POST['alergias_patologicas'];
+    $alergias_medicamentos = $_POST['alergias_medicamentos'];
+    $familiares_diabeticos = $_POST['familiares_diabeticos'];
     $medhis = $_POST['medhis'];
 
     // Insertar en la tabla users
@@ -24,7 +29,10 @@ if (isset($_POST['submit'])) {
         $user_id = mysqli_insert_id($con);
 
         // Insertar en la tabla tblpatient usando el user_id
-        $sql_patient = mysqli_query($con, "INSERT INTO tblpatient (user_id, Docid, PatientAdmision, PatientName, FechaNac, PatientContno, PatientEmail, PatientGender, PatientAdd, PatientAge, PatientMedhis) VALUES ('$user_id', '$docid', '$patadmi', '$patname', '$fena', '$patcontact', '$patemail', '$gender', '$pataddress', '$patage', '$medhis')");
+        $sql_patient = mysqli_query($con, "INSERT INTO tblpatient 
+(user_id, Docid, PatientAdmision, PatientName, FechaNac, PatientContno, PatientEmail, PatientGender, PatientAdd, PatientAge, PatientMedhis, alergias_patologicas, alergias_medicamentos, seguro, diabetico, familiares_diabeticos, dpi) 
+VALUES 
+('$user_id', '$docid', '$patadmi', '$patname', '$fena', '$patcontact', '$patemail', '$gender', '$pataddress', '$patage', '$medhis', '$alergias_patologicas', '$alergias_medicamentos', '$seguro', '$diabetico', '$familiares_diabeticos', '$dpi')");
         if ($sql_patient) {
             echo "<script>alert('Información del paciente se agregó correctamente');</script>";
             header('location:add-patient.php');
@@ -53,8 +61,10 @@ if (isset($_POST['submit'])) {
     <link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
     <link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/add-patient.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <script>
     function userAvailability() {
@@ -102,53 +112,83 @@ if (isset($_POST['submit'])) {
                             <div class="col-md-11">
                                 <div class="row margin-top-30">
                                     <div class="col-lg-8 col-md-11">
-                                        <div class="panel panel-white">
+                                        <div class="panel panel-white card">
                                             <div class="panel-heading">
                                                 <h5 class="panel-title">Agregar paciente</h5>
                                             </div>
-                                            <div class="panel-body">
+                                            <div class="panel-body card-body">
                                                 <form role="form" name="" method="post">
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="doctorname">No. Admision</label>
                                                         <input type="text" name="patadmi" class="form-control" placeholder="No. adminision" required="true">
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label for="doctorname">Seguro Medico</label>
+                                                        <input type="text" name="patname" class="form-control" placeholder="Enter Patient Name" required="true">
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label for="doctorname">DPI</label>
+                                                        <input type="text" name="patadmi" class="form-control" placeholder="No. adminision" required="true">
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="doctorname">Nombre paciente</label>
                                                         <input type="text" name="patname" class="form-control" placeholder="Enter Patient Name" required="true">
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="fess">Fecha de nacimiento</label>
                                                         <input type="date" name="fena" class="form-control" placeholder="AAA-MM-DD" required="true">
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="fess">Telefono</label>
                                                         <input type="text" name="patcontact" class="form-control" placeholder="Enter Patient Contact no" required="true" maxlength="10" pattern="[0-9]+">
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="fess">Email</label>
                                                         <input type="email" id="patemail" name="patemail" class="form-control" placeholder="Enter Patient Email id" onBlur="userAvailability()">
                                                         <span id="user-availability-status1" style="font-size:12px;"></span>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label class="block">Genero</label>
-                                                        <div class="clip-radio radio-primary">
-                                                            <input type="radio" id="rg-female" name="gender" value="femenino">
-                                                            <label for="rg-female">Femenino</label>
-                                                            <input type="radio" id="rg-male" name="gender" value="masculino">
-                                                            <label for="rg-male">Masculino</label>
-                                                        </div>
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label>Genero</label>
+                                                        <select class="form-select">
+                                                            <!--<input id="rg-female" name="gender" value="femenino">-->
+                                                            <option for="rg-female">Femenino</option>
+                                                            <!--<input id="rg-male" name="gender" value="masculino">-->
+                                                            <option for="rg-male">Masculino</optioon>
+                                                        </select>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="address">Direccion</label>
-                                                        <textarea name="pataddress" class="form-control" placeholder="Enter Patient Address" required="true"></textarea>
-                                                    </div>
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="fess">Edad</label>
-                                                        <input type="text" name="patage" class="form-control" placeholder="Enter Patient Age" required="true">
+                                                        <input type="text" name="patage" class="form-control" placeholder="Ingrese la edad" required="true">
                                                     </div>
-                                                    <div class="form-group">
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label>¿Es diabetico?</label>
+                                                        <select name="diabetico" class="form-select">
+                                                            <option value="Sí">Sí</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label>¿Tiene familiares diabéticos?</label>
+                                                        <select name="familiares_diabeticos" class="form-select">
+                                                            <option value="Sí">Sí</option>
+                                                            <option value="No">No</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label for="address">Direccion</label>
+                                                        <textarea name="pataddress" class="form-control" placeholder="Domicilio" required="true"></textarea>
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label for="fess">Alergias patologicas</label>
+                                                        <textarea type="text" name="medhis" class="form-control" placeholder="Describa las alegias" required="true"></textarea>
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
+                                                        <label for="fess">Alergias a medicamentos</label>
+                                                        <textarea type="text" name="medhis" class="form-control" placeholder="Describa las alegias" required="true"></textarea>
+                                                    </div>
+                                                    <div class="row col-md-6 mb-3">
                                                         <label for="fess">Historial medico</label>
-                                                        <textarea type="text" name="medhis" class="form-control" placeholder="Enter Patient Medical History(if any)" required="true"></textarea>
+                                                        <textarea type="text" name="medhis" class="form-control" placeholder="Historial medico" required="true"></textarea>
                                                     </div>
                                                     <button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">Agregar</button>
                                                 </form>
