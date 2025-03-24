@@ -1,4 +1,68 @@
 <?php
+// Ruta al archivo de cache
+$cacheFile = 'ip_cache.json';
+
+// Obtener la IP real del usuario (considerando proxies)
+if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    // Si hay múltiples IPs, tomamos la primera válida
+    $ipList = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+    $userIp = trim($ipList[0]);
+} else {
+    $userIp = $_SERVER['REMOTE_ADDR'];
+}
+
+// Validar que la IP es una dirección IPv4 o IPv6 válida
+if (!filter_var($userIp, FILTER_VALIDATE_IP)) {
+    error_log("IP inválida detectada: $userIp");
+    header("HTTP/1.1 503 Service Unavailable");
+    die("<h1>503 Servicio No Disponible</h1><p>El sitio está temporalmente fuera de servicio.</p>");
+}
+
+// Solo permitir acceso desde Guatemala
+$allowedCountry = 'GT';
+
+// Cargar el cache si existe
+$cache = file_exists($cacheFile) ? json_decode(file_get_contents($cacheFile), true) : [];
+
+// Verificar si la IP ya está en el cache
+if (isset($cache[$userIp])) {
+    $userCountry = $cache[$userIp];
+} else {
+    // Consultar la API de geolocalización
+    $apiUrl = "https://ipwho.is/{$userIp}";
+    $response = @file_get_contents($apiUrl);
+    $data = json_decode($response, true);
+
+    // Depuración: Verificar qué devuelve la API
+    error_log("API Response for IP $userIp: " . print_r($data, true));
+
+    // Verificar si la API respondió correctamente
+    if (!empty($data['country_code']) && $data['success'] === true) {
+        $userCountry = strtoupper($data['country_code']); // Convertir a mayúsculas
+        $cache[$userIp] = $userCountry;
+
+        // Guardar en el cache
+        file_put_contents($cacheFile, json_encode($cache, JSON_PRETTY_PRINT));
+    } else {
+        // Si la API falla, bloquear el acceso mostrando error
+        error_log("Error al obtener el país para la IP: $userIp - Mensaje API: " . ($data['message'] ?? 'Desconocido'));
+        header("HTTP/1.1 503 Service Unavailable");
+        die("<h1>503 Servicio No Disponible</h1><p>El sitio está temporalmente fuera de servicio.</p>");
+    }
+}
+
+// **Depuración: Ver qué país se detectó**
+error_log("IP: $userIp - País Detectado: $userCountry");
+
+// **Si el país no es Guatemala, bloquear acceso**
+if ($userCountry !== $allowedCountry) {
+    header("HTTP/1.1 503 Service Unavailable");
+    die("<h1>503 Servicio No Disponible</h1><p>El sitio está temporalmente fuera de servicio.</p>");
+}
+
+// Si el país es Guatemala, permitir el acceso
+//echo '¡Bienvenido desde Guatemala!';
+/////////////////////////////////////////////////////////////
 session_start();
 include("include/config.php");
 error_reporting(0);
