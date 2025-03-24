@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     $patage = $_POST['patage'];
     $alergias_patologicas = $_POST['alergias_patologicas'];
     $alergias_medicamentos = $_POST['alergias_medicamentos'];
+    $diabetico = $_POST['diabetico'];
     $familiares_diabeticos = $_POST['familiares_diabeticos'];
     $medhis = $_POST['medhis'];
 
@@ -124,23 +125,23 @@ VALUES
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="doctorname">Seguro Medico</label>
-                                                        <input type="text" name="patname" class="form-control" placeholder="Enter Patient Name" required="true">
+                                                        <input type="text" name="seguro" class="form-control" placeholder="Nombre de aseguradora" required="true">
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="doctorname">DPI</label>
-                                                        <input type="text" name="patadmi" class="form-control" placeholder="No. adminision" required="true">
+                                                        <input type="text" name="dpi" class="form-control" placeholder="Documento poesonal de identificacion" required="true">
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="doctorname">Nombre paciente</label>
-                                                        <input type="text" name="patname" class="form-control" placeholder="Enter Patient Name" required="true">
+                                                        <input type="text" name="patname" class="form-control" placeholder="Nombre y apellido" required="true">
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="fess">Fecha de nacimiento</label>
-                                                        <input type="date" name="fena" class="form-control" placeholder="AAA-MM-DD" required="true">
+                                                        <input type="date" name="fena" class="form-control" required="true">
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="fess">Telefono</label>
-                                                        <input type="text" name="patcontact" class="form-control" placeholder="Enter Patient Contact no" required="true" maxlength="10" pattern="[0-9]+">
+                                                        <input type="tel" name="patcontact" class="form-control" placeholder="Enter Patient Contact no" required="true" maxlength="10" pattern="[0-9]+">
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="fess">Email</label>
@@ -149,11 +150,9 @@ VALUES
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label>Genero</label>
-                                                        <select class="form-select">
-                                                            <!--<input id="rg-female" name="gender" value="femenino">-->
-                                                            <option for="rg-female">Femenino</option>
-                                                            <!--<input id="rg-male" name="gender" value="masculino">-->
-                                                            <option for="rg-male">Masculino</optioon>
+                                                        <select name="gender" class="form-select">
+                                                            <option value="femenino">Femenino</option>
+                                                            <option value="masculino">Masculino</optioon>
                                                         </select>
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
@@ -163,15 +162,15 @@ VALUES
                                                     <div class="row col-md-6 mb-3">
                                                         <label>¿Es diabetico?</label>
                                                         <select name="diabetico" class="form-select">
-                                                            <option value="Sí">Sí</option>
-                                                            <option value="No">No</option>
+                                                            <option value="Sí" required="true">Sí</option>
+                                                            <option value="No" required="true">No</option>
                                                         </select>
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label>¿Tiene familiares diabéticos?</label>
                                                         <select name="familiares_diabeticos" class="form-select">
-                                                            <option value="Sí">Sí</option>
-                                                            <option value="No">No</option>
+                                                            <option value="Sí" required="true">Sí</option>
+                                                            <option value="No" required="true">No</option>
                                                         </select>
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
@@ -180,11 +179,11 @@ VALUES
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="fess">Alergias patologicas</label>
-                                                        <textarea type="text" name="medhis" class="form-control" placeholder="Describa las alegias" required="true"></textarea>
+                                                        <textarea type="text" name="alergias_patologicas" class="form-control" placeholder="Describa las alegias" required="true"></textarea>
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="fess">Alergias a medicamentos</label>
-                                                        <textarea type="text" name="medhis" class="form-control" placeholder="Describa las alegias" required="true"></textarea>
+                                                        <textarea type="text" name="alergias_medicamentos" class="form-control" placeholder="Describa las alegias" required="true"></textarea>
                                                     </div>
                                                     <div class="row col-md-6 mb-3">
                                                         <label for="fess">Historial medico</label>
