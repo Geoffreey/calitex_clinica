@@ -43,8 +43,10 @@ if (mysqli_query($con, $sql)) {
 		<link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
 		<link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
 		<link rel="stylesheet" href="assets/css/styles.css">
+		<link rel="stylesheet" href="assets/css/add-patient.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <script type="text/javascript">
             function valid()
               {
@@ -104,13 +106,13 @@ if (mysqli_query($con, $sql)) {
 								<div class="col-md-12">
 									<div class="row margin-top-30">
 										<div class="col-lg-8 col-md-12">
-											<div class="panel panel-white">
+											<div class="panel panel-white card">
 												<div class="panel-heading">
 													<h5 class="panel-title">Agregar medico</h5>
 												</div>
-												<div class="panel-body">
+												<div class="panel-body card-body">
 													<form role="form" name="adddoc" method="post" onSubmit="return valid();">
-														<div class="form-group">
+														<div class="row col-md-6 mb-3">
 															<label for="DoctorSpecialization">
 																Especializaicon medica
 															</label>
@@ -125,40 +127,40 @@ if (mysqli_query($con, $sql)) {
 																<?php }?>
 															</select>
 														</div>
-                                                        <div class="form-group">
+                                                        <div class="row col-md-6 mb-3">
 															<label for="doctorname">Nombre medico</label>
 					                                        <input type="text" name="docname" class="form-control"  placeholder="Nombre y apellidos" required="true">
 														</div>
-														<div class="from-group">
+														<div class="row col-md-6 mb-3">
 															<label for="ncolegiado">No. Colegiado</label>
 															<input type="number" name="ncolegiado" class="form-control" placeholder="ingrese colegiado activo" required="ture">
 														</div>
-														<div class="from-group">
+														<div class="row col-md-6 mb-3">
 															<label for="ndpi">DPI</label>
 															<input type="text" name="ndpi" class="form-control" pattern="\d{13}" maxlength="13" placeholder="Ingrese DPI" required="true">
 														</div>
-														<div class="form-group">
-															<label for="address">Direccion</label>
-					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Domicilio" required="true"></textarea>
-														</div>
-                                                        <div class="form-group">
+                                                        <div class="row col-md-6 mb-3">
 															<label for="fess">Honorarios de consulta</label>
 					                                        <input type="text" name="docfees" class="form-control"  placeholder="Honorarios" required="true">
 														</div>
-														<div class="form-group">
+														<div class="row col-md-6 mb-3">
 									                       <label for="fess">Telefono</label>
 					                                       <input type="tel" name="doccontact" class="form-control"  placeholder="Telefono" required="true">
 														</div>
-														<div class="form-group">
+														<div class="row col-md-6 mb-3">
 									                       <label for="fess">Email</label>
                                                            <input type="email" id="docemail" name="docemail" class="form-control"  placeholder="Correo electronico" required="true" onBlur="checkemailAvailability()">
                                                            <span id="email-availability-status"></span>
                                                         </div>
-														<div class="form-group">
+														<div class="row col-md-6 mb-3">
+															<label for="address">Direccion</label>
+					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Domicilio" required="true"></textarea>
+														</div>
+														<div class="row col-md-6 mb-3">
 															<label for="exampleInputPassword1">Contraseña</label>
 					                                        <input type="password" name="npass" class="form-control"  placeholder="Nueva contraseña" required="required">
 														</div>
-														<div class="form-group">
+														<div class="row col-md-6 mb-3">
 															<label for="exampleInputPassword2">Conformar contraseña</label>
 									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirmar contraseña" required="required">
 														</div>
