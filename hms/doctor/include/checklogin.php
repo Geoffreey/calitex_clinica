@@ -19,7 +19,7 @@ function check_login()
         die("❌ Error: La conexión a la base de datos no está definida.");
     }
 
-    $con = $GLOBALS['con']; // Asegurar que `$con` esté accesible
+    $con = $GLOBALS['con']; // Asegurar que $con esté accesible
     $email = $_SESSION['dlogin'];
 
     //echo "🔍 Buscando doctor con username: " . $email . "<br>";
@@ -32,10 +32,10 @@ function check_login()
 
     $row = mysqli_fetch_assoc($query);
     if ($row) {
-        $_SESSION['doctor_id'] = $row['uid']; // Guardar `uid` como `doctor_id`
-        //echo "✅ Doctor ID recuperado de `doctorslog`: " . $_SESSION['doctor_id'] . "<br>";
+        $_SESSION['doctor_id'] = $row['uid']; // Guardar uid como doctor_id
+        //echo "✅ Doctor ID recuperado de doctorslog: " . $_SESSION['doctor_id'] . "<br>";
     } //else {
-        //die("❌ No se encontró un doctor con este username en `doctorslog`.");
+        //die("❌ No se encontró un doctor con este username en doctorslog.");
     //}
 }
 ?>
