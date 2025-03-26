@@ -153,16 +153,16 @@ if (mysqli_query($con, $sql)) {
                                                            <span id="email-availability-status"></span>
                                                         </div>
 														<div class="row col-md-6 mb-3">
-															<label for="address">Direccion</label>
-					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Domicilio" required="true"></textarea>
-														</div>
-														<div class="row col-md-6 mb-3">
 															<label for="exampleInputPassword1">Contraseña</label>
 					                                        <input type="password" name="npass" class="form-control"  placeholder="Nueva contraseña" required="required">
 														</div>
 														<div class="row col-md-6 mb-3">
 															<label for="exampleInputPassword2">Conformar contraseña</label>
 									                        <input type="password" name="cfpass" class="form-control"  placeholder="Confirmar contraseña" required="required">
+														</div>
+														<div class="row col-md-6 mb-3">
+															<label for="address">Direccion</label>
+					                                        <textarea name="clinicaddress" class="form-control"  placeholder="Domicilio" required="true"></textarea>
 														</div>
 														<button type="submit" name="submit" id="submit" class="btn btn-o btn-primary">
 															Crear
