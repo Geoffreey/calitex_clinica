@@ -8,22 +8,30 @@ check_login();
 if (isset($_POST['submit'])) {
     $docspecialization = $_POST['Doctorspecialization'];
     $docname           = $_POST['docname'];
-	$ncolegiado        = $_POST['ncolegiado'];
-	$ndpi              = $_POST['ndpi'];
+    $ncolegiado        = $_POST['ncolegiado'];
+    $ndpi              = $_POST['ndpi'];
     $docaddress        = $_POST['clinicaddress'];
     $docfees           = $_POST['docfees'];
     $doccontactno      = $_POST['doccontact'];
     $docemail          = $_POST['docemail'];
     $password          = md5($_POST['npass']);
-    $sql = "INSERT INTO doctors(specilization,doctorName,ncolegiado,ndpi,address,docFees,contactno,docEmail,password) 
-        VALUES ('$docspecialization','$docname','$ncolegiado','$ndpi','$docaddress','$docfees','$doccontactno','$docemail','$password')";
+    $token             = bin2hex(random_bytes(50)); // Generar token único
 
-if (mysqli_query($con, $sql)) {
-    echo "<script>alert('✅ Información del médico añadida correctamente!!');</script>";
-    echo "<script>window.location.href ='manage-doctors.php'</script>";
-} else {
-    echo "<script>alert('⛔ Error al agregar el médico: " . mysqli_error($con) . "');</script>";
-}
+    $sql = "INSERT INTO doctors (specilization, doctorName, ncolegiado, ndpi, address, docFees, contactno, docEmail, password, status, token) 
+            VALUES ('$docspecialization', '$docname', '$ncolegiado', '$ndpi', '$docaddress', '$docfees', '$doccontactno', '$docemail', '$password', 0, '$token')";
+
+    if (mysqli_query($con, $sql)) {
+        $subject = "Confirma tu cuenta";
+        $message = "Hola $docname, haz clic en el siguiente enlace para activar tu cuenta: \n\n";
+        $message .= "http:///hptl.geoffdevops.com/hms/doctor/verify.php?token=$token";
+        $headers = "From: no-reply@geoffdevops.com";
+
+        mail($docemail, $subject, $message, $headers);
+
+        echo "<script>alert('✅ Registro exitoso. Verifica tu correo para activar tu cuenta.');</script>";
+    } else {
+        echo "<script>alert('⛔ Error al agregar el médico: " . mysqli_error($con) . "');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
