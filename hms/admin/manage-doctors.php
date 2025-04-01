@@ -9,6 +9,18 @@ if (isset($_GET['del'])) {
     mysqli_query($con, "delete from doctors where id = '" . $_GET['id'] . "'");
     $_SESSION['msg'] = "Se elemino con exito!!";
 }
+
+$limit = 8; // Número de doctores por página
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start = ($page - 1) * $limit;
+
+$sql = "SELECT * FROM doctors LIMIT $start, $limit";
+$result = mysqli_query($con, $sql);
+
+// Contar el total de registros para la paginación
+$total_results = mysqli_query($con, "SELECT COUNT(id) AS count FROM doctors");
+$total_rows = mysqli_fetch_assoc($total_results)['count'];
+$total_pages = ceil($total_rows / $limit);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -74,8 +86,9 @@ if (isset($_GET['del'])) {
     										<tbody>
       											<?php
       												$sql = mysqli_query($con, "SELECT * FROM doctors");
-      												$cnt = 1;
-      												while ($row = mysqli_fetch_array($sql)) {
+													  $cnt = $start + 1;
+													  while ($row = mysqli_fetch_array($result)) {
+													
       											?>
         										<tr>
           											<td data-label="No." class="center"><?php echo $cnt; ?>.</td>
@@ -83,9 +96,9 @@ if (isset($_GET['del'])) {
           											<td data-label="Nombre médico"><?php echo $row['doctorName']; ?></td>
           											<td data-label="Fecha de creación"><?php echo $row['creationDate']; ?></td>
           											<td data-label="Acción">
-            											<div class="btn-group">
-              												<a href="edit-doctor.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>
-              												<a href="manage-doctors.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times"></i></a>
+            											<div class="btn-group1">
+              												<a href="edit-doctor.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary2" title="Editar"><i class="fa fa-pencil"></i></a>
+              												<a href="manage-doctors.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger2" title="Eliminar"><i class="fa fa-times"></i></a>
             											</div>
           											</td>
         										</tr>
@@ -94,6 +107,23 @@ if (isset($_GET['del'])) {
       											} ?>
     										</tbody>
   										</table>
+										  <div class="pagination1">
+    										<?php if ($total_pages > 1): ?>
+        									<?php if ($page > 1): ?>
+            								<a href="?page=<?php echo $page - 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&laquo;</a>
+        									<?php endif; ?>
+
+       		 								<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            								<a href="?page=<?php echo $i; ?>" class="btn1 btn-sm1 <?php echo ($i == $page) ? 'btn-primary1' : 'btn-outline-primary1'; ?>">
+                							<?php echo $i; ?>
+            								</a>
+        									<?php endfor; ?>
+
+        									<?php if ($page < $total_pages): ?>
+            								<a href="?page=<?php echo $page + 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&raquo;</a>
+       										<?php endif; ?>
+    										<?php endif; ?>
+										</div>
 									</div>
 								</div>
 							</div>

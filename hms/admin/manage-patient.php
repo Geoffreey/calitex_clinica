@@ -5,6 +5,18 @@ include 'include/config.php';
 include 'include/checklogin.php';
 check_login();
 
+$limit = 8; // Número de pacientes por página
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start = ($page - 1) * $limit;
+
+$sql = "SELECT * FROM tblpatient LIMIT $start, $limit";
+$result = mysqli_query($con, $sql);
+
+// Contar el total de registros para la paginación
+$total_results = mysqli_query($con, "SELECT COUNT(id) AS count FROM tblpatient");
+$total_rows = mysqli_fetch_assoc($total_results)['count'];
+$total_pages = ceil($total_rows / $limit);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,8 +82,8 @@ check_login();
                                             <tbody>
                                                 <?php
                                                      $sql = mysqli_query($con, "select * from tblpatient");
-                                                    $cnt = 1;
-                                                    while ($row = mysqli_fetch_array($sql)) {
+                                                     $cnt = $start + 1;
+                                                     while ($row = mysqli_fetch_array($result)) {
                                                 ?>
                                                 <tr>
                                                     <td data-label="No." class="center"><?php echo $cnt; ?>.</td>
@@ -83,9 +95,9 @@ check_login();
                                                     <td data-label="CreationDate"><?php echo $row['CreationDate']; ?></td>
                                                     <td data-label="UpdationDate"><?php echo $row['UpdationDate']; ?></td>
                                                     <td data-label="Accion">
-                                                        <div class="btn-group">
-                                                            <a href="view-patient.php?viewid=<?php echo $row['ID']; ?>" class="btn btn-sm btn-outline-primary" title="Ver"><i class="fa fa-eye"></i></a>
-                                                            <!--<a href="view-patient.php?viewid=</?php echo $row['ID']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>-->
+                                                        <div class="btn-group1">
+                                                            <a href="view-patient.php?viewid=<?php echo $row['ID']; ?>" class="btn btn-sm btn-outline-primary2" title="Ver"><i class="fa fa-eye"></i></a>
+                                                            <a href="view-patient.php?viewid=</?php echo $row['ID']; ?>" class="btn btn-sm btn-outline-primary2" title="Editar"><i class="fa fa-pencil"></i></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -94,6 +106,23 @@ check_login();
                                                 }?>
                                             </tbody>
                                         </table>
+                                        <div class="pagination1">
+    										<?php if ($total_pages > 1): ?>
+        									<?php if ($page > 1): ?>
+            								<a href="?page=<?php echo $page - 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&laquo;</a>
+        									<?php endif; ?>
+
+       		 								<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            								<a href="?page=<?php echo $i; ?>" class="btn1 btn-sm1 <?php echo ($i == $page) ? 'btn-primary1' : 'btn-outline-primary1'; ?>">
+                							<?php echo $i; ?>
+            								</a>
+        									<?php endfor; ?>
+
+        									<?php if ($page < $total_pages): ?>
+            								<a href="?page=<?php echo $page + 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&raquo;</a>
+       										<?php endif; ?>
+    										<?php endif; ?>
+										</div>
                                     </div>
                                  
                                 </div>

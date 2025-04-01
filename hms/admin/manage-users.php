@@ -9,6 +9,19 @@ if (isset($_GET['del'])) {
     mysqli_query($con, "delete from users where id = '" . $_GET['id'] . "'");
     $_SESSION['msg'] = "data deleted !!";
 }
+
+$limit = 8; // Número de usuarios por página
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start = ($page - 1) * $limit;
+
+$sql = "SELECT * FROM users LIMIT $start, $limit";
+$result = mysqli_query($con, $sql);
+
+// Contar el total de registros para la paginación
+$total_results = mysqli_query($con, "SELECT COUNT(id) AS count FROM users");
+$total_rows = mysqli_fetch_assoc($total_results)['count'];
+$total_pages = ceil($total_rows / $limit);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -76,8 +89,8 @@ if (isset($_GET['del'])) {
 								 	<tbody>
                                      	<?php
                                          	$sql = mysqli_query($con, "select * from users");
-                                         	$cnt = 1;
-                                         	while ($row = mysqli_fetch_array($sql)) {
+											 $cnt = $start + 1;
+											 while ($row = mysqli_fetch_array($result)) {
                                         ?>
 									    <tr>
 										    <td class="center"><?php echo $cnt; ?>.</td>
@@ -90,10 +103,10 @@ if (isset($_GET['del'])) {
 											<td data-label="email"><?php echo $row['email']; ?></td>
 											<td data-label="regDate"><?php echo $row['regDate']; ?></td>
 											<td data-label="updationDate"><?php echo $row['updationDate']; ?></td>
-											<td data-label="">
-												<div class="visible-md visible-lg hidden-sm hidden-xs">
-													 <a href="manage-users.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
-												 </div>
+											<td data-label="Accion">
+												<div class="btn-group1">
+													<a href="manage-users.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')" class="btn btn-sm btn-outline-danger2" title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
+												</div>
 												 <!--<div class="visible-xs visible-sm hidden-md hidden-lg">
 													 <div class="btn-group" dropdown is-open="status.isopen">
 														 <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
@@ -113,6 +126,23 @@ if (isset($_GET['del'])) {
                                             }?>
 								 </tbody>
 							 </table>
+							 <div class="pagination1">
+    										<?php if ($total_pages > 1): ?>
+        									<?php if ($page > 1): ?>
+            								<a href="?page=<?php echo $page - 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&laquo;</a>
+        									<?php endif; ?>
+
+       		 								<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            								<a href="?page=<?php echo $i; ?>" class="btn1 btn-sm1 <?php echo ($i == $page) ? 'btn-primary1' : 'btn-outline-primary1'; ?>">
+                							<?php echo $i; ?>
+            								</a>
+        									<?php endfor; ?>
+
+        									<?php if ($page < $total_pages): ?>
+            								<a href="?page=<?php echo $page + 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&raquo;</a>
+       										<?php endif; ?>
+    										<?php endif; ?>
+										</div>
 							 </div>
 							 
 						 </div>

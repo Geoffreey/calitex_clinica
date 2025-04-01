@@ -9,6 +9,19 @@ if (isset($_GET['del'])) {
     mysqli_query($con, "delete from tecnico_rx where id = '" . $_GET['id'] . "'");
     $_SESSION['msg'] = "data deleted !!";
 }
+
+$limit = 8; // Número de tecnicos de rayos X por página
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$start = ($page - 1) * $limit;
+
+$sql = "SELECT * FROM tecnico_rx LIMIT $start, $limit";
+$result = mysqli_query($con, $sql);
+
+// Contar el total de registros para la paginación
+$total_results = mysqli_query($con, "SELECT COUNT(id) AS count FROM tecnico_rx");
+$total_rows = mysqli_fetch_assoc($total_results)['count'];
+$total_pages = ceil($total_rows / $limit);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -81,8 +94,8 @@ if (isset($_GET['del'])) {
 											<tbody>
                                             	<?php
                                               		$sql = mysqli_query($con, "select * from tecnico_rx");
-                                              		$cnt = 1;
-                                               		while ($row = mysqli_fetch_array($sql)) {
+													  $cnt = $start + 1;
+													  while ($row = mysqli_fetch_array($result)) {
                                              	?>
 												<tr>
 													<td class="center"><?php echo $cnt; ?>.</td>
@@ -92,19 +105,9 @@ if (isset($_GET['del'])) {
 													<td data-label=""><?php echo $row['address']; ?></td>
 													<td data-label=""><?php echo $row['creationDate']; ?></td>
 													<td >
-														<div class="visible-md visible-lg hidden-sm hidden-xs">
-							                         		<a href="edit-tecnirx.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary" title="Editar"><i class="fa fa-pencil"></i></a>
-                                                     		<a href="manage-rayosx.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')"class="btn btn-sm btn-outline-danger" title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
-														</div>
-														<div class="visible-xs visible-sm hidden-md hidden-lg">
-															<div class="btn-group" dropdown is-open="status.isopen">
-																<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle><i class="fa fa-cog"></i>&nbsp;<span class="caret"></span></button>
-																<ul class="dropdown-menu pull-right dropdown-light" role="menu">
-																	<li><a href="#">Editar</a></li>
-																	<li><a href="#">Compartir</a></li>
-																	<li><a href="#">Eliminar</a></li>
-																</ul>
-															</div>
+														<div class="btn-group1">
+															<a href="edit-tecnirx.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-outline-primary2" title="Editar"><i class="fa fa-pencil"></i></a>
+															<a href="manage-rayosx.php?id=<?php echo $row['id'] ?>&del=delete" onClick="return confirm('¿Estás seguro de que quieres eliminar?')"class="btn btn-sm btn-outline-danger2" title="Eliminar"><i class="fa fa-times fa fa-white"></i></a>
 														</div>
 													</td>
 												</tr>
@@ -113,6 +116,23 @@ if (isset($_GET['del'])) {
                                             	}?>
 											</tbody>
 										</table>
+										<div class="pagination1">
+    										<?php if ($total_pages > 1): ?>
+        									<?php if ($page > 1): ?>
+            								<a href="?page=<?php echo $page - 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&laquo;</a>
+        									<?php endif; ?>
+
+       		 								<?php for ($i = 1; $i <= $total_pages; $i++): ?>
+            								<a href="?page=<?php echo $i; ?>" class="btn1 btn-sm1 <?php echo ($i == $page) ? 'btn-primary1' : 'btn-outline-primary1'; ?>">
+                							<?php echo $i; ?>
+            								</a>
+        									<?php endfor; ?>
+
+        									<?php if ($page < $total_pages): ?>
+            								<a href="?page=<?php echo $page + 1; ?>" class="btn1 btn-sm1 btn-outline-primary1">&raquo;</a>
+       										<?php endif; ?>
+    										<?php endif; ?>
+										</div>
 									</div>
 									
 								</div>

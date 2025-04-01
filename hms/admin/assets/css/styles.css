@@ -11536,22 +11536,22 @@ div.timeline .column_center .timeline_element:after {
 }
 
 /* Botones modernos */
-.btn-outline-primary {
+.btn-outline-primary2 {
   border: 1px solid #007bff;
   color: #007bff;
   transition: 0.3s;
 }
-.btn-outline-primary:hover {
+.btn-outline-primary2:hover {
   background-color: #007bff;
   color: #fff;
 }
 
-.btn-outline-danger {
+.btn-outline-danger2 {
   border: 1px solid #dc3545;
   color: #dc3545;
   transition: 0.3s;
 }
-.btn-outline-danger:hover {
+.btn-outline-danger2:hover {
   background-color: #dc3545;
   color: #fff;
 }
@@ -11593,11 +11593,35 @@ div.timeline .column_center .timeline_element:after {
     color: #333;
   }
 
-  .btn-group {
+  .btn-group2 {
     display: flex;
     justify-content: center;
     gap: 10px;
   }
+}
+
+.pagination1 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.pagination1 a {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: 1px solid #007bff;
+  color: #007bff;
+  text-decoration: none;
+  border-radius: 3px;
+  display: inline-block; /* Evita que los botones se expandan */
+  text-align: center;
+  min-width: 30px; /* Asegura que tenga un tamaño mínimo */
+}
+
+.pagination1 a:hover, .pagination1 .btn-primary1 {
+  background-color: #007bff;
+  color: #fff;
 }
 
 /* ---------------------------------------------------------------------- */
