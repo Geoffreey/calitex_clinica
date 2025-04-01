@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     if (mysqli_query($con, $sql)) {
         $subject = "Confirma tu cuenta";
         $message = "Hola $docname, haz clic en el siguiente enlace para activar tu cuenta: \n\n";
-        $message .= "http:///hptl.geoffdevops.com/hms/doctor/verify.php?token=$token";
+        $message .= "http://hptl.geoffdevops.com/hms/doctor/verify.php?token=$token";
         $headers = "From: no-reply@geoffdevops.com";
 
         mail($docemail, $subject, $message, $headers);
