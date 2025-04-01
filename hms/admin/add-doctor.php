@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
 
         mail($docemail, $subject, $message, $headers);
 
-        echo "<script>alert('✅ Registro exitoso. Verifica tu correo para activar tu cuenta.');</script>";
+        echo "<script>alert('✅ Registro exitoso. Se envio correo al medico para verificacion de cuenta.');</script>";
     } else {
         echo "<script>alert('⛔ Error al agregar el médico: " . mysqli_error($con) . "');</script>";
     }
